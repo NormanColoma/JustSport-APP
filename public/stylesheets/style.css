@@ -1,0 +1,52 @@
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FBFAFA;
+}
+
+.layout-center{
+  margin:0 auto;
+}
+
+.md-toolbar-tools-notpading{
+  padding: 0 !important;
+}
+.overlay{
+  background: rgba(0,0,0, .7);
+  height:100%;
+}
+
+.main-header-container{
+  margin-top: -200px;
+}
+
+.main-header{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 142px;
+  font-weight: 300;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.main-header p{
+  color: white;
+  text-align: center;
+}
+
+.background-wh{
+  background-color: white !important;
+}
+
+.btn-exp-more{
+  bottom: 0px;
+  position: absolute;
+  left: 47%;
+}
+
+.color-primary{
+  color:rgb(16,108,200);
+}
+
+.margin-md{
+  margin-bottom: 15px;
+}
