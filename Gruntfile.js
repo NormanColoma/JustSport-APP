@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                 files: {
                     'app/app.min.js': ['app/sports/sport.module.js', 'app/sports/sportList.controller.js',
                         'app/services/sportList.service.js', 'app/home/home.module.js', 'app/home/scrollTo.directive.js',
-                        'app/app.module.js']
+                        'app/home/home.controller.js','app/app.module.js']
                 }
             }
         },
@@ -45,8 +45,8 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['Gruntfile.js', './app/*.js','./routes/*.js','./test/**/*.js'],
-            tasks: ['jshint']
+            files: ['app/**/*.js'],
+            tasks: ['ngAnnotate', 'uglify']
         }
     });
 
