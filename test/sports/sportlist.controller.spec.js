@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 27/03/2016.
  */
-describe('SportList Controller', function() {
+xdescribe('SportList Controller', function() {
     var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
     var sports = {rows:[{id:1, name: 'Spinning'},{id:2, name: 'GAP'},{id:3, name: 'BodyJump'},{id:4, name: 'Pilates'},

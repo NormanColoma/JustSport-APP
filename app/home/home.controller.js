@@ -28,7 +28,7 @@ angular
          * @memberOf Home.HomeController
          */
         function loadAll(){
-
+            /*jshint multistr: true */
             var cities ='Albacete, Alicante, Almería, Álava, Asturias, Ávila, Badajoz, Baleares, Barcelona, Bizkaia, Burgos,\
              Cáceres, Cádiz, Cantabria, Castellón, Ciudad Real, Córdoba, Coruña A, Cuenca, Guipuzkoa, Girona, Granada,\
              Guadalajara, Huelva, Huesca, Jaén,Las Palmas, La Rioja, León, Lleida, Lugo, Madrid, Málaga, Murcia, Navarra, Ourense,\

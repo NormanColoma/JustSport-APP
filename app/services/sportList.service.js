@@ -16,7 +16,7 @@ angular
      */
     function sportListService($resource){
         var local_api = "https://localhost:3000/api";
-        var server_api = "https://justsport-api.herokuapp.com/api"
+        var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
 
         var Sport = $resource(server+'/sports/:id', {id:'@id'},{
