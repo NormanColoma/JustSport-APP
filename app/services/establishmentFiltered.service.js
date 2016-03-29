@@ -32,6 +32,14 @@ angular
 
         return service;
 
+        /**
+         * @name getEstablishments
+         * @desc Fetch all the establishments filtered by the sport, and location
+         * @memberOf establishmentFilteredService
+         * @param sport_id -> Represents id of the sports to look for
+         * @param location -> Location to look for
+         * @returns {Array || String}
+         */
         function getEstablishments(sport_id, location){
             return Establishment.get({id: sport_id, location: location}).$promise
                 .then(getEstabsSuccess)
@@ -44,7 +52,6 @@ angular
             function  getEstabsFailed(error){
                 return error.data.message;
             }
-
 
         }
 
