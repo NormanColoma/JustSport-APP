@@ -43,13 +43,15 @@ angular
          * @param location -> Location to look for
          * @returns {Array || String}
          */
-        function getEstablishments(sport_id, location){
-            return Establishment.get({id: sport_id, location: location}).$promise
+        function getEstablishments(sport_id, location, after){
+            if(after === "none")
+                after = undefined;
+            return Establishment.get({id: sport_id, location: location, after: after}).$promise
                 .then(getEstabsSuccess)
                 .catch(getEstabsFailed);
 
             function getEstabsSuccess(data){
-                return data.Establishments;
+                return data;
             }
 
             function  getEstabsFailed(error){

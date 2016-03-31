@@ -20,16 +20,14 @@ angular
 
 
         function fetchMore(){
-            console.log(vm.sport.value);
-            console.log(vm.location);
-            /*establishmentFilteredService.getEstablishments(sport, location, vm.after).then(angular.bind(this, function (data) {
+            establishmentFilteredService.getEstablishments(vm.sport, vm.location, vm.after).then(angular.bind(this, function (data) {
                 if(data == "There no more rows to retrieve") {
                     $mdToast.show($mdToast.simple().textContent('No hay más establecimientos para la búsqueda introducida'));
                 }else {
                     vm.after = data.paging.cursors.after;
                     vm.items = vm.items.concat(data.Establishments.rows);
                 }
-            }));*/
+            }));
         }
 
         function selectedItemChange(item){

@@ -39,8 +39,8 @@ describe('Service that fetch all the establishment filtered by location and spor
             ests = estabs;
         });
         $httpBackend.flush();
-        expect(ests.count).toBe(5);
-        expect(ests).toEqual(data);
+        expect(ests.Establishments.count).toBe(5);
+        expect(ests.Establishments).toEqual(data);
     });
 
     it('Should return empty array', function(){

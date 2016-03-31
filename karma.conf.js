@@ -28,6 +28,7 @@ module.exports = function(config) {
       'app/home/home.module.js',
       'app/components/scrollTo.directive.js',
       'app/services/establishmentFiltered.service.js',
+      'app/home/establishmentFiltered.controller.js',
       'app/app.module.js',
       'test/!(e2e)/*.js',
     ],
