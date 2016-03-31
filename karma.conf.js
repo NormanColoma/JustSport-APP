@@ -26,7 +26,7 @@ module.exports = function(config) {
       'app/services/sportList.service.js',
       'app/sports/sportList.controller.js',
       'app/home/home.module.js',
-      'app/home/scrollTo.directive.js',
+      'app/components/scrollTo.directive.js',
       'app/services/establishmentFiltered.service.js',
       'app/app.module.js',
       'test/!(e2e)/*.js',

@@ -34,8 +34,9 @@ module.exports = function(grunt) {
             app: {
                 files: {
                     'app/app.min.js': ['app/sports/sport.module.js', 'app/sports/sportList.controller.js',
-                        'app/services/sportList.service.js', 'app/home/home.module.js', 'app/home/scrollTo.directive.js',
-                        'app/home/home.controller.js','app/app.module.js']
+                        'app/services/sportList.service.js', 'app/home/home.module.js', 'app/components/scrollTo.directive.js',
+                        'app/services/establishmentFiltered.service.js','app/services/citySuggestions.service.js','app/home/home.controller.js',
+                        'app/home/establishmentFiltered.controller.js', 'app/app.module.js']
                 }
             }
         },

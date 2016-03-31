@@ -14,6 +14,7 @@ angular
      * @memberOf Services
      */
     function establishmentFilteredService($resource){
+        var indexes = new Map();
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
@@ -27,7 +28,9 @@ angular
         );
 
         var service = {
-            getEstablishments: getEstablishments
+            getEstablishments: getEstablishments,
+            getIndexOf: getIndexOf,
+            setIndexes: setIndexes
         };
 
         return service;
@@ -53,6 +56,31 @@ angular
                 return error.data.message;
             }
 
+        }
+
+        /**
+         *
+         * @name getIndexOf
+         * @desc Find in the Map and return the value which is associated with the given key
+         * @memberOf establishmentFilteredService
+         * @param {String} name -> Key of the map
+         * @returns {Integer}
+         */
+        function getIndexOf(name){
+            return indexes.get(name);
+        }
+
+        /**
+         * @name setIndexes
+         * @desc Set the Map from the given array
+         * @memeberOf establishmtFilteredService
+         * @param {Array} data -> Array which contains the name and the id of sports
+         * @returns {Void}
+         */
+        function setIndexes(data){
+            for(var i=0;i<data.rows.length;i++){
+                indexes.set(data.rows[i].name, data.rows[i].id);
+            }
         }
 
     }
