@@ -49,6 +49,8 @@ describe('Establishment Filtered Controller', function() {
         $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?after=0')
             .respond(404, {message: 'There no more rows to retrieve'});
         controller.sport = 1;
+        controller.prevSport = 1;
+        controller.prevLocation = "Alicante";
         controller.location = "Alicante";
         controller.after=0;
         expect(controller.items.length).toBe(0);
@@ -60,4 +62,44 @@ describe('Establishment Filtered Controller', function() {
         expect(controller.items).toEqual([]);
     });
 
+    it('Should add more establishments', function(){
+        var controller = createController();
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante')
+            .respond(estabs);
+        controller.sport = 1;
+        controller.prevSport = 1;
+        controller.prevLocation = "Alicante";
+        controller.location = "Alicante";
+        expect(controller.items.length).toBe(0);
+        /* jshint ignore:start*/
+        controller.fetchMore();
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.items.length).toBe(3);
+        controller.after = "NE";
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?after=NE')
+            .respond(estabs);
+        /* jshint ignore:start*/
+        controller.fetchMore();
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.items.length).toBe(6);
+
+    });
+
+    it('Should shorten the description of establishment', function(){
+        var controller = createController();
+        var string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor " +
+            "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud " +
+            "exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor " +
+            "in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint " +
+            "occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum";
+        expect(controller.shortenDesc(string)).toEqual("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a...");
+    });
+
+    it('Should shorten the description of establishment, that ends with full stop', function(){
+        var controller = createController();
+        var string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a.";
+        expect(controller.shortenDesc(string)).toEqual("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a...");
+    });
 });

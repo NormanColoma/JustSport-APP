@@ -14,7 +14,8 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
             Busca los centros que ofertan el deporte que quieres realizar. Solo tienes que decirnos que deporte te apetece practicar,
             y en que lugar quieres realizarlo. ¿A qué estás esperando?. ¡Comienza a buscar ya!
         div(layout="column", flex="100")
-            form(layout="column" layout-align="space-between", layout-padding, name="searchForm", novalidate)
+            form(layout="column" layout-align="space-between", layout-padding, name="searchForm",
+            ng-submit="estFlVm.fetchMore()", novalidate)
                 div(ng-controller="SportListController as spList")
                     md-autocomplete(md-selected-item='spList.selectedItem',md-search-text='spList.searchText',
                     md-items='item in spList.querySearch(spList.searchText)',md-item-text='item.display',md-min-length='0',
@@ -41,6 +42,7 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                                 | Tienes que seleccionar un lugar
                 div(layout="row")
                         md-button(type="submit").md-raised.md-primary Buscar
+        filtered-results
 
 include footer
 
