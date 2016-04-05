@@ -21,16 +21,16 @@
                     </p>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
-                    <button class="md-icon-button md-button md-ink-ripple" type="button"  aria-label="Favorite">
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Información" title="Información sobre {{item.name}}">
+                        <md-icon md-svg-icon="public/images/icons/info.svg" aria-hidden="true"></md-icon>
                     </button>
-                    <button class="md-icon-button md-button md-ink-ripple" type="button"  aria-label="Settings">
-                    </button>
-                    <button class="md-icon-button md-button md-ink-ripple" type="button"  aria-label="Share">
+                    <button class="md-icon-button md-button md-ink-ripple" type="button"  aria-label="Horarios" tille="Horarios clases">
+                        <md-icon md-svg-icon="public/images/icons/date.svg" aria-hidden="true"></md-icon>
                     </button>
                 </md-card-actions>
             </md-card>
         </div>
     </md-content>
-    <a class="md-caption" ng-click="estFlVm.fetchMore()" ng-show="estFlVm.after != 'none' && estFlVm.after != 0">Cargar más resultados</a>
+    <a class="md-caption fetch-more-link" ng-click="estFlVm.fetchMore()" ng-show="estFlVm.after != 'none' && estFlVm.after != 0">Cargar más resultados</a>
 </div>
 
