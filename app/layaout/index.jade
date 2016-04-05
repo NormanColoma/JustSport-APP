@@ -26,7 +26,7 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                         md-not-found
                             | No hay resultados para "{{spList.searchText}}".
                         div(ng-messages='searchForm.sportField.$error' ng-if="searchForm.sportField.$touched || searchForm.$submitted")
-                            div(ng-message='required')
+                            div(ng-message='required').sport-message
                                 | Tienes que seleccionar un deporte
                 div(ng-controller="HomeController as homeVm")
                     md-autocomplete(md-selected-item='homeVm.selectedItem',md-search-text='homeVm.searchText',
@@ -38,10 +38,10 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                         md-not-found
                             | No hay resultados para "{{homeVm.searchText}}".
                         div(ng-messages='searchForm.locationField.$error' ng-if="searchForm.locationField.$touched || searchForm.$submitted")
-                            div(ng-message='required')
+                            div(ng-message='required').location-message
                                 | Tienes que seleccionar un lugar
                 div(layout="row")
-                        md-button(type="submit").md-raised.md-primary Buscar
+                        md-button(type="submit").md-raised.md-primary.search-ests Buscar
         filtered-results
 
 include footer

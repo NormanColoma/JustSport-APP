@@ -5,6 +5,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-ng-annotate');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-env');
+    grunt.loadNpmTasks('grunt-express-server');
 
     grunt.initConfig({
         jshint: {
@@ -46,6 +49,25 @@ module.exports = function(grunt) {
                 configFile: 'karma.conf.js'
             }
         },
+        shell: {
+            start_server: {
+                command: 'node bin/www.js'
+            },
+            e2e_test: {
+                command: 'protractor protractor.conf.js'
+            }
+        },
+        express: {
+            options: {
+                port: 5000,
+            },
+            test: {
+                options: {
+                    script: 'bin/www.js',
+                    node_env: 'test'
+                }
+            }
+        },
         watch: {
             files: ['app/**/*.js'],
             tasks: ['ngAnnotate', 'uglify']
@@ -54,5 +76,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', ['jshint']);
     grunt.registerTask('unit-test', ['karma:unit']);
-
+    grunt.registerTask('start', ['shell:start_server']);
+    grunt.registerTask('e2e-test', ['express:test', 'shell:e2e_test']);
 };
