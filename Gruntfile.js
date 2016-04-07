@@ -75,7 +75,7 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('build', ['jshint']);
+    grunt.registerTask('build', ['jshint', 'unit-test', 'e2e-test']);
     grunt.registerTask('unit-test', ['karma:unit']);
     grunt.registerTask('start', ['shell:start_server']);
     grunt.registerTask('e2e-test', ['express:test', 'shell:e2e_test']);

@@ -15,7 +15,7 @@ function estabsFilteredTest($httpBackend) {
     var local_api = "https://localhost:3000/api";
     var message_1 = {
         message: "There are no establishments that match the current filter"
-    }
+    };
     $httpBackend.whenGET(local_api + '/establishments/sport/1/location/Valencia').respond(404,message_1);
 
     /**
