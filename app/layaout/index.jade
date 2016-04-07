@@ -8,41 +8,41 @@ div(layout="row" layout-align-gt-sm="center center", layout-align-sm="center cen
             md-button.md-fab.md-primary.background-wh.btn-exp-more(aria-label='Comenzar', id="test")
                 md-icon(md-svg-icon='public/images/icons/ic_expand_more_black_36px.svg')
 div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin)
-    div(flex="75", id="scroll")
+    div(flex="75" flex-md="95" flex-sm="95" id="scroll", ng-controller="EstablishmentFilteredController as estFlVm")
         h2.md-headline Encuentra tus centros
         p.
             Busca los centros que ofertan el deporte que quieres realizar. Solo tienes que decirnos que deporte te apetece practicar,
             y en que lugar quieres realizarlo. ¿A qué estás esperando?. ¡Comienza a buscar ya!
         div(layout="column", flex="100")
-            form(layout="column" layout-align="space-between", layout-padding, name="searchForm", novalidate)
+            form(layout="column" layout-align="space-between", layout-padding, name="searchForm",
+            ng-submit="estFlVm.fetchMore()", novalidate)
                 div(ng-controller="SportListController as spList")
                     md-autocomplete(md-selected-item='spList.selectedItem',md-search-text='spList.searchText',
                     md-items='item in spList.querySearch(spList.searchText)',md-item-text='item.display',md-min-length='0',
                     md-floating-label='¿Qué deporte te apetece practicar?', md-input-name="sportField",
-                    ng-model="sport" required)
+                    ng-model="sport", md-selected-item-change="estFlVm.selectedItemChange(item)",required)
                         md-item-template
                             span(md-highlight-text='spList.searchText', md-highlight-flags='^i') {{item.display}}
                         md-not-found
                             | No hay resultados para "{{spList.searchText}}".
                         div(ng-messages='searchForm.sportField.$error' ng-if="searchForm.sportField.$touched || searchForm.$submitted")
-                            div(ng-message='required')
+                            div(ng-message='required').sport-message
                                 | Tienes que seleccionar un deporte
-                div
-                    md-autocomplete(ng-disabled='ctrl.isDisabled',
-                    md-selected-item='ctrl.selectedItem',md-search-text='ctrl.searchText',
-                    md-items='item in ctrl.querySearch(ctrl.searchText)', md-item-text='item.display',
-                    md-min-length='0', md-floating-label='¿Dónde quieres hacerlo?', md-input-name="locationField",
-                    ng-model="location" required)
+                div(ng-controller="HomeController as homeVm")
+                    md-autocomplete(md-selected-item='homeVm.selectedItem',md-search-text='homeVm.searchText',
+                    md-items='item in homeVm.querySearch(homeVm.searchText)', md-item-text='item',
+                    md-floating-label='¿Dónde quieres hacerlo?', md-input-name="locationField",
+                    ng-model="location",md-selected-item-change="estFlVm.selectedLocationChange(item)" required)
                         md-item-template
-                            span(md-highlight-text='ctrl.searchText', md-highlight-flags='^i') {{item.display}}
+                            span(md-highlight-text='homeVm.searchText', md-highlight-flags='^i') {{item}}
                         md-not-found
-                            | No states matching "{{ctrl.searchText}}" were found.
-                            a(ng-click='ctrl.newState(ctrl.searchText)') Create a new one!
+                            | No hay resultados para "{{homeVm.searchText}}".
                         div(ng-messages='searchForm.locationField.$error' ng-if="searchForm.locationField.$touched || searchForm.$submitted")
-                            div(ng-message='required')
+                            div(ng-message='required').location-message
                                 | Tienes que seleccionar un lugar
                 div(layout="row")
-                        md-button(type="submit").md-raised.md-primary Buscar
+                        md-button(type="submit").md-raised.md-primary.search-ests Buscar
+        filtered-results
 
 include footer
 

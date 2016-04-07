@@ -14,9 +14,9 @@ angular
      * @desc Sport list service
      * @memberOf Sports
      */
-    function sportListService($resource){
+    function sportListService($resource, $http){
         var local_api = "https://localhost:3000/api";
-        var server_api = "https://justsport-api.herokuapp.com/api"
+        var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
 
         var Sport = $resource(server+'/sports/:id', {id:'@id'},{
@@ -28,7 +28,7 @@ angular
         );
 
         var service = {
-            getSports: getSports
+            getSports: getSports,
         };
 
         return service;

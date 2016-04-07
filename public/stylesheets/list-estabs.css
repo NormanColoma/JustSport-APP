@@ -1,0 +1,29 @@
+.flex-33 img{
+    height: 250px;
+}
+
+.flex-100 md-card{
+    min-height: 255px;
+}
+
+.flex-100 md-card md-card-title md-card-title-media .md-media-lg {
+    height: 252px;
+    width: 252px;
+}
+
+md-card{
+    min-height: 508px;
+}
+
+md-card-actions md-icon{
+    color: rgba(0,0,0,0.87);
+}
+
+.fetch-more-link{
+    cursor: pointer;
+}
+
+.fetch-more-link:hover{
+    text-decoration: underline;
+    color: rgb(16,108,200);
+}

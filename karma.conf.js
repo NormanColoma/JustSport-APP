@@ -26,9 +26,11 @@ module.exports = function(config) {
       'app/services/sportList.service.js',
       'app/sports/sportList.controller.js',
       'app/home/home.module.js',
-      'app/home/scrollTo.directive.js',
+      'app/components/scrollTo.directive.js',
+      'app/services/establishmentFiltered.service.js',
+      'app/home/establishmentFiltered.controller.js',
       'app/app.module.js',
-      'test/!(e2e)/*.js',
+      'test/**/*.spec.js',
     ],
 
 
@@ -73,7 +75,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

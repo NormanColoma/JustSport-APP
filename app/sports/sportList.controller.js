@@ -6,7 +6,7 @@ angular
     .module('sportModule')
     .controller('SportListController', SportListController);
 
-    SportListController.$inject = ['sportListService'];
+    SportListController.$inject = ['sportListService', 'establishmentFilteredService'];
 
     /**
      *
@@ -14,7 +14,7 @@ angular
      * @desc Controller that manages the list of sports
      * @memberOf Sports
      */
-    function SportListController(sportListService){
+    function SportListController(sportListService, establishmentFilteredService){
         var vm = this;
         /**
          *
@@ -51,6 +51,7 @@ angular
                     else
                         allSports+=data.rows[i].name;
                 }
+                establishmentFilteredService.setIndexes(data);
                 return allSports.split(/, +/g).map( function (sport) {
                     var s= {
                         value: sport.toLowerCase(),
