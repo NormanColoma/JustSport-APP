@@ -14,7 +14,7 @@ function testApp($httpBackend) {
     };
     var cities2 = {
         locations: ['Valencia']
-    }
+    };
     $httpBackend.whenGET(local_api + '/establishments/Valencia/suggestions').respond(cities2);
     $httpBackend.whenGET(local_api + '/establishments/Alicante/suggestions').respond(cities);
 }
