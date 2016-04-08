@@ -50,3 +50,21 @@ body{
 .margin-md{
   margin-bottom: 15px;
 }
+
+.md-button-gt{
+  width:100%;
+}
+
+.md-link-button{
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.md-link-button:hover{
+  color:rgb(16,108,200);
+  text-decoration: underline;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

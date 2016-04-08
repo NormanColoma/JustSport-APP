@@ -1,0 +1,24 @@
+include header
+link(rel="stylesheet",href="/public/stylesheets/login.css")
+div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin, ng-cloak)
+    div(flex="35", flex-sm="45")
+        h2.md-display-2.login-title Accede a tu cuenta
+        div.login-container
+            form(layout-align="space-between", layout-padding, novalidate, name="loginForm")
+                md-input-container.md-block
+                    label Email
+                    input(required='', name='email', ng-model='project.email')
+                    div(ng-messages='loginForm.email.$error')
+                        div(ng-message='required') El email es obligatorio.
+                md-input-container.md-block
+                    label Password
+                    input(required='', name='pass', ng-model='project.password')
+                    div(ng-messages='loginForm.pass.$error')
+                        div(ng-message='required') La contraseña es obligatoria.
+                div(layout="column" layout-align="center center")
+                    md-button(type="submit")#login_button.md-raised.md-primary.md-button-gt Login
+                    p.md-body-1 ¿Todavía no tiene suna cuenta?
+                        a.md-link-button Regístrate ya
+        p.md-title.login-title.color-primary &copy;2016 JustSport
+include footer
+
