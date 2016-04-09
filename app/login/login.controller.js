@@ -5,9 +5,9 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$mdDialog', '$window','$location'];
+    LoginController.$inject = ['loginService', '$mdDialog', '$window','$location', '$http'];
 
-    function LoginController(loginService, $mdDialog, $window, $location){
+    function LoginController(loginService, $mdDialog, $window, $location, $http){
         var vm = this;
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
 
@@ -17,7 +17,6 @@ angular
         vm.login = login;
         vm.logout = logout;
         vm.name = null;
-        vm.redirect = redirect;
         vm.role = null;
 
         isLoggedIn();
@@ -34,10 +33,6 @@ angular
                 vm.loggedIn = true;
                 vm.name= localStorage.username;
                 vm.role = localStorage.role;
-                var abs = $location.absUrl();
-                var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/"+$location.path();
-                var path = abs.split(url);
-                redirect(path[1]);
             }
         }
         function login(email,pass,remember, ev){
@@ -67,7 +62,9 @@ angular
                     vm.loggedIn = true;
                     vm.name = data.username;
                     vm.role = data.role;
-                    $window.location.href = url;
+                    $http.post(url+'token/'+data.access_token).then(function(data){
+                        $window.location.href = url;
+                    });
                 }
             })
         }
@@ -83,10 +80,5 @@ angular
             localStorage.removeItem("expires");
             localStorage.removeItem("password");
             localStorage.removeItem("email");
-        }
-
-        function redirect(path){
-            if(path === "login")
-                $window.location.href = url;
         }
     }
