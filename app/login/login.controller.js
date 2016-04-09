@@ -15,6 +15,7 @@ angular
         vm.isLoggedIn = isLoggedIn;
         vm.loggedIn = false;
         vm.login = login;
+        vm.loginProgress = false;
         vm.logout = logout;
         vm.name = null;
         vm.role = null;
@@ -36,8 +37,10 @@ angular
             }
         }
         function login(email,pass,remember, ev){
+            vm.loginProgress = true;
             loginService.getToken(email,pass).then(function(data){
                 if(data.error){
+                    vm.loginProgress = false;
                     $mdDialog.show(
                         $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#popupContainer')))
