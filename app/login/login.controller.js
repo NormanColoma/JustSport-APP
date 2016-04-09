@@ -10,12 +10,19 @@ angular
     function LoginController(loginService){
         var vm = this;
 
+        vm.checkToken = checkToken;
         vm.loggedIn = false;
         vm.login = login;
         vm.logout = logout;
         vm.name = null;
         vm.role = null;
 
+        function checkToken(){
+            if(localStorage.expires <= Date.now()){
+                return false;
+            }
+            return true;
+        }
         function login(email,pass){
             loginService.getToken(email,pass).then(function(data){
                 if(data.error){

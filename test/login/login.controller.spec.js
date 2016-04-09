@@ -69,7 +69,8 @@ describe('Login Controller', function() {
 
     it('should return valid token expiration', function(){
         var controller = createController();
-        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: '123456789'};
+        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735',
+            expires: 1460805614894};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
@@ -78,7 +79,7 @@ describe('Login Controller', function() {
         expect(controller.checkToken()).toBeTruthy();
     });
 
-    it('should return valid token expiration', function(){
+    it('should return invalid token expiration', function(){
         var controller = createController();
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
