@@ -22,17 +22,17 @@ describe('Login Controller', function() {
 
     it('Should set username and role after successful login', function () {
         var controller = createController();
-        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735'};
+        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
         expect(controller.name).toBe(null);
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
         /* jshint ignore:start*/
-        controller.login();
+        controller.login("Norman", "1234");
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.name).toBe('Norman');
-        expect(controller.role).toBe('Admin');
+        expect(controller.role).toBe('admin');
         expect(controller.loggedIn).toBeTruthy();
     });
 
@@ -46,7 +46,7 @@ describe('Login Controller', function() {
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
         /* jshint ignore:start*/
-        controller.login();
+        controller.login("Pepe", "1");
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.name).toBe(null);
@@ -57,12 +57,11 @@ describe('Login Controller', function() {
     it('Should log out the user', function () {
         var controller = createController();
         controller.name = "Pepe";
-        controller.role = "Owner";
+        controller.role = "owner";
         controller.loggedIn = true;
         /* jshint ignore:start*/
         controller.logout();
         /*jshint ignore:end */
-        $httpBackend.flush();
         expect(controller.name).toBe(null);
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
