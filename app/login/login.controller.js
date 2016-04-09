@@ -11,11 +11,14 @@ angular
         var vm = this;
 
         vm.checkToken = checkToken;
+        vm.isLoggedIn = isLoggedIn;
         vm.loggedIn = false;
         vm.login = login;
         vm.logout = logout;
         vm.name = null;
         vm.role = null;
+
+        isLoggedIn();
 
         function checkToken(){
             if(localStorage.expires <= Date.now()){
@@ -23,11 +26,24 @@ angular
             }
             return true;
         }
-        function login(email,pass){
+
+        function isLoggedIn(){
+            if(localStorage.username !== undefined){
+                vm.loggedIn = true;
+                vm.name= localStorage.username;
+                vm.role = localStorage.role;
+            }
+        }
+        function login(email,pass,remember){
             loginService.getToken(email,pass).then(function(data){
                 if(data.error){
 
                 }else{
+                    if(remember){
+                        localStorage.setItem("remember", true);
+                        localStorage.setItem("password", pass);
+                        localStorage.setItem("email", email);
+                    }
                     localStorage.setItem("token", data.access_token);
                     localStorage.setItem("username", data.username);
                     localStorage.setItem("role", data.role);
@@ -49,5 +65,7 @@ angular
             localStorage.removeItem("role");
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
+            localStorage.removeItem("password");
+            localStorage.removeItem("email");
         }
     }
