@@ -11,6 +11,7 @@ angular
         var server = local_api;
         var service = {
             getToken: getToken,
+            isLoggedIn: isLoggedIn
         };
 
         return service;
@@ -28,5 +29,12 @@ angular
             function getTokenFail(err){
                 return err.data;
             }
+        }
+
+        function isLoggedIn(){
+            if(localStorage.username !== undefined){
+                return true;
+            }
+            return false;
         }
     }

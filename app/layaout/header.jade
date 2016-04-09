@@ -1,13 +1,14 @@
 doctype html
-html(ng-app="justSportTest")
+html(ng-app="justSport")
     head
         meta(name='viewport', content='width=device-width')
+        base(href="/")
         title= "JustSport"
         link(rel="stylesheet",href="/node_modules/angular-material/angular-material.css")
         link(rel="stylesheet",href="/public/stylesheets/style.css")
         link(href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
-    body(ng-cloak)
+    body(ng-cloak, ng-controller="LoginController as loginVm")
             md-content
                 div(layout='row')
                     br
@@ -16,7 +17,7 @@ html(ng-app="justSportTest")
                             h2
                                 span JustSport
                             span(flex='')
-                            a(href='').md-body-1 Login
+                            a(href='/login').md-body-1 Login
                         div(layout='row', show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
                             h2
                                 span JustSport

@@ -10,6 +10,7 @@ var users = require('./routes/users');
 
 var app = express();
 
+global.port = '5000';
 // view engine setup
 app.set('views', path.join(__dirname, 'app/layaout'));
 app.set('view engine', 'jade');
