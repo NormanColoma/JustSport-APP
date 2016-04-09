@@ -66,4 +66,26 @@ describe('Login Controller', function() {
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
     });
+
+    it('should return valid token expiration', function(){
+        var controller = createController();
+        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: '123456789'};
+        $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        /* jshint ignore:start*/
+        controller.login("Norman", "1234");
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.checkToken()).toBeTruthy();
+    });
+
+    it('should return valid token expiration', function(){
+        var controller = createController();
+        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
+        $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        /* jshint ignore:start*/
+        controller.login("Norman", "1234");
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.checkToken()).toBeFalsy();
+    });
 });
