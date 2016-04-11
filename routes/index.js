@@ -17,7 +17,7 @@ router.post('/token/:token', function(req, res, next) {
 });
 
 
-router.get('/token', function(req,res,next){
+router.delete('/token', function(req,res,next){
   var url = req.protocol + "://" + req.hostname + ":" + global.port + "/";
   localStorage.removeItem('token');
   res.redirect(url);

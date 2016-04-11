@@ -28,7 +28,6 @@
                 .definePalette('customPrimary',
                     customPrimary);
             $mdThemingProvider.theme('default')
-                .primaryPalette('customPrimary')
-                .accentPalette('orange');
+                .primaryPalette('customPrimary');
         }]);
 })();

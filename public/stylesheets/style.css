@@ -3,6 +3,10 @@ body{
   background-color: #FBFAFA;
 }
 
+.clickable{
+  cursor: pointer;
+}
+
 .layout-center{
   margin:0 auto;
 }
@@ -68,3 +72,13 @@ body{
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+md-checkbox.md-checked .md-icon{
+  background: rgba(255,82,82,0.87);
+}
+
+md-checkbox.md-checked .md-icon svg{
+  fill: #fff !important;
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon:after, md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-color: white !important; }
