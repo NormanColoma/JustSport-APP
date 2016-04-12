@@ -5,7 +5,7 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
         h2.md-display-2.login-title Accede a tu cuenta
         div.login-container
             form(layout-align="space-between", layout-padding, novalidate, name="loginForm",
-            ng-submit="loginVm.login(loginVm.email,loginVm.password, loginVm.remember)", ng-hide="loginVm.loginProgress")
+            ng-submit="loginVm.login(loginVm.email,loginVm.password)", ng-hide="loginVm.loginProgress")
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='loginVm.email')
@@ -18,8 +18,6 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                         div(ng-message='required') La contraseña es obligatoria.
                 div(layout="column" layout-align="center center")
                     md-button(type="submit")#login_button.md-raised.md-primary.md-button-gt Login
-                    md-checkbox(ng-model='loginVm.remember', name='remember').margin-field
-                        | Recordarme
                     p.md-body-1 ¿Todavía no tienes una cuenta?
                         a.md-link-button Regístrate
             .progress-login(ng-show="loginVm.loginProgress")

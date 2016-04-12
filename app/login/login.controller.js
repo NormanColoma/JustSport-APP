@@ -11,34 +11,17 @@ angular
         var vm = this;
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
 
-        vm.checkRemember = checkRemember;
         vm.checkToken = checkToken;
-        vm.email = '';
         vm.isLoggedIn = isLoggedIn;
         vm.loggedIn = false;
         vm.login = login;
         vm.loginProgress = false;
         vm.logout = logout;
         vm.name = null;
-        vm.password = '';
-        vm.remember = false;
-        vm.rememberMe = rememberMe;
         vm.role = null;
 
-        rememberMe();
         isLoggedIn();
 
-        function checkRemember(remember, email, pass){
-            if(remember === true){
-                localStorage.setItem("remember", true);
-                localStorage.setItem("password", pass);
-                localStorage.setItem("email", email);
-            }else{
-                localStorage.removeItem("remember");
-                localStorage.removeItem("password");
-                localStorage.removeItem("email");
-            }
-        }
         function checkToken(){
             if(localStorage.expires <= Date.now()){
                 return false;
@@ -53,7 +36,7 @@ angular
                 vm.role = localStorage.role;
             }
         }
-        function login(email,pass,remember, ev){
+        function login(email,pass, ev){
             vm.loginProgress = true;
             loginService.getToken(email,pass).then(function(data){
                 if(data.error){
@@ -69,7 +52,6 @@ angular
                             .targetEvent(ev)
                     );
                 }else{
-                    checkRemember(remember,email,pass);
                     localStorage.setItem("token", data.access_token);
                     localStorage.setItem("username", data.username);
                     localStorage.setItem("role", data.role);
@@ -95,13 +77,5 @@ angular
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
             $http.delete(url+'token');
-        }
-
-        function rememberMe(){
-            if(localStorage.remember){
-                vm.email = localStorage.email;
-                vm.password = localStorage.password;
-                vm.remember = localStorage.remember;
-            }
         }
     }
