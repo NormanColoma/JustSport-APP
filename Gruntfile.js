@@ -41,7 +41,8 @@ module.exports = function(grunt) {
                         'app/components/filteredResults.directive.js', 'app/services/establishmentFiltered.service.js',
                         'app/services/citySuggestions.service.js','app/home/home.controller.js', 'app/home/establishmentFiltered.controller.js',
                         'app/login/login.module.js','app/services/login.service.js', 'app/login/login.controller.js',
-                        'app/app.module.js', 'test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js', 'test/app/estabsFiltered.module.test.js']
+                        'app/app.module.js', 'test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
+                        'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js']
                 }
             }
         },

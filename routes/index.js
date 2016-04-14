@@ -11,7 +11,6 @@ router.get('/login', middleware.isLoggedIn, function(req, res, next) {
 });
 
 router.post('/token/:token', function(req, res, next) {
-  var url = req.protocol + "://" + req.hostname + global.port + "/";
   localStorage.setItem('token', req.params.token);
   res.sendStatus(200);
 });

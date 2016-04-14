@@ -10,12 +10,12 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                     label Email
                     input(required='', name='email', ng-model='loginVm.email')
                     div(ng-messages='loginForm.email.$error')
-                        div(ng-message='required') El email es obligatorio.
+                        div(ng-message='required').email-message El email es obligatorio.
                 md-input-container.md-block
                     label Password
                     input(required='', name='pass', ng-model='loginVm.password', type="password")
                     div(ng-messages='loginForm.pass.$error')
-                        div(ng-message='required') La contraseña es obligatoria.
+                        div(ng-message='required').pass-message La contraseña es obligatoria.
                 div(layout="column" layout-align="center center")
                     md-button(type="submit")#login_button.md-raised.md-primary.md-button-gt Login
                     p.md-body-1 ¿Todavía no tienes una cuenta?
