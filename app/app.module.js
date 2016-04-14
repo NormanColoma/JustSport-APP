@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('justSport',['ngMaterial', 'ngMessages', 'homeModule','sportModule'])
+        .module('justSport',['ngMaterial', 'ngMessages', 'homeModule','sportModule', 'loginModule'])
         .config(['$mdThemingProvider', function($mdThemingProvider) {
             var customPrimary = {
                 '50': '#65acf3',
@@ -28,7 +28,6 @@
                 .definePalette('customPrimary',
                     customPrimary);
             $mdThemingProvider.theme('default')
-                .primaryPalette('customPrimary')
-                .accentPalette('orange');
+                .primaryPalette('customPrimary');
         }]);
 })();

@@ -5,11 +5,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 
 var app = express();
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 
+global.port = '5000';
 // view engine setup
 app.set('views', path.join(__dirname, 'app/layaout'));
 app.set('view engine', 'jade');

@@ -3,6 +3,10 @@ body{
   background-color: #FBFAFA;
 }
 
+.clickable{
+  cursor: pointer;
+}
+
 .layout-center{
   margin:0 auto;
 }
@@ -50,3 +54,31 @@ body{
 .margin-md{
   margin-bottom: 15px;
 }
+
+.md-button-gt{
+  width:100%;
+}
+
+.md-link-button{
+  padding-left: 5px;
+  cursor: pointer;
+  color:rgb(16,108,200);
+}
+
+.md-link-button:hover{
+  text-decoration: underline;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+md-checkbox.md-checked .md-icon{
+  background: rgba(255,82,82,0.87);
+}
+
+md-checkbox.md-checked .md-icon svg{
+  fill: #fff !important;
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon:after, md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-color: white !important; }
