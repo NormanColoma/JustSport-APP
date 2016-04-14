@@ -9,7 +9,11 @@ angular
 
     function LoginController(loginService, $mdDialog, $window, $location, $http){
         var vm = this;
+        var base_api = 'https://localhost:3000/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
+
+        if($location.host() === 'server')
+            url = base_api;
 
         vm.checkToken = checkToken;
         vm.isLoggedIn = isLoggedIn;

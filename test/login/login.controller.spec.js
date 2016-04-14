@@ -22,11 +22,16 @@ describe('Login Controller', function() {
 
     it('Should set username and role after successful login', function () {
         var controller = createController();
-        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
-        $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735',
+            expires: 123};
+        controller.name = null;
+        controller.role = null;
+        controller.loggedIn = false;
         expect(controller.name).toBe(null);
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
+        $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        $httpBackend.expectPOST(baseAPI+'token/eyJ0').respond(404);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
@@ -42,6 +47,9 @@ describe('Login Controller', function() {
             error: "invalid_grant",
             error_description: "Invalid resource owner credentials"
         });
+        controller.name = null;
+        controller.role = null;
+        controller.loggedIn = false;
         expect(controller.name).toBe(null);
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
@@ -72,6 +80,7 @@ describe('Login Controller', function() {
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735',
             expires: 1460805614894};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        $httpBackend.expectPOST(baseAPI+'token/eyJ0').respond(404);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
@@ -83,6 +92,7 @@ describe('Login Controller', function() {
         var controller = createController();
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        $httpBackend.expectPOST(baseAPI+'token/eyJ0').respond(404);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
