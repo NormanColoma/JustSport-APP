@@ -16,11 +16,15 @@ angular
         vm.changeView = changeView;
         vm.registerView = false;
 
-        function changeView(){
+        function changeView(form){
             if(!vm.registerView)
                 vm.registerView = true;
             else
                 vm.registerView = false;
+
+            form.$setPristine();
+            form.$setUntouched();
+
         }
 
     }

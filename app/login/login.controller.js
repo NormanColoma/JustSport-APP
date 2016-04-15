@@ -41,34 +41,37 @@ angular
             }
         }
         function login(email,pass, ev){
-            vm.loginProgress = true;
-            loginService.getToken(email,pass).then(function(data){
-                if(data.error){
-                    vm.loginProgress = false;
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                            .parent(angular.element(document.querySelector('#popupContainer')))
-                            .clickOutsideToClose(true)
-                            .title('Login incorrecto')
-                            .textContent('El email o la contraseña introducidos, no son correctos.')
-                            .ariaLabel('Alert Dialog Demo')
-                            .ok('Listo')
-                            .targetEvent(ev)
-                    );
-                }else{
-                    localStorage.setItem("token", data.access_token);
-                    localStorage.setItem("username", data.username);
-                    localStorage.setItem("role", data.role);
-                    localStorage.setItem("user_id", data.user_id);
-                    localStorage.setItem("expires", data.expires);
-                    vm.loggedIn = true;
-                    vm.name = data.username;
-                    vm.role = data.role;
-                    $http.post(url+'token/'+data.access_token).then(function(data){
-                        $window.location.href = url;
-                    });
-                }
-            });
+            if(email !== undefined && pass !== undefined)
+            {
+                vm.loginProgress = true;
+                loginService.getToken(email, pass).then(function (data) {
+                    if (data.error) {
+                        vm.loginProgress = false;
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title('Login incorrecto')
+                                .textContent('El email o la contraseña introducidos, no son correctos.')
+                                .ariaLabel('Alert Dialog Demo')
+                                .ok('Listo')
+                                .targetEvent(ev)
+                        );
+                    } else {
+                        localStorage.setItem("token", data.access_token);
+                        localStorage.setItem("username", data.username);
+                        localStorage.setItem("role", data.role);
+                        localStorage.setItem("user_id", data.user_id);
+                        localStorage.setItem("expires", data.expires);
+                        vm.loggedIn = true;
+                        vm.name = data.username;
+                        vm.role = data.role;
+                        $http.post(url + 'token/' + data.access_token).then(function (data) {
+                            $window.location.href = url;
+                        });
+                    }
+                });
+            }
         }
 
         function logout(){
