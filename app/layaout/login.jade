@@ -25,6 +25,28 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                     p Accediendo a la cuenta
                 div(layout='row', layout-sm='column', layout-align='space-around')
                     md-progress-circular(md-mode='indeterminate')
+        div.register-container
+            form(layout-align="space-between", layout-padding, novalidate, name="loginForm",
+            ng-submit="loginVm.login(loginVm.email,loginVm.password)", ng-hide="loginVm.loginProgress")
+                md-input-container.md-block
+                    label Email
+                    input(required='', name='email', ng-model='loginVm.email')
+                    div(ng-messages='loginForm.email.$error')
+                        div(ng-message='required').email-message El email es obligatorio.
+                md-input-container.md-block
+                    label Password
+                    input(required='', name='pass', ng-model='loginVm.password', type="password")
+                    div(ng-messages='loginForm.pass.$error')
+                        div(ng-message='required').pass-message La contraseña es obligatoria.
+                div(layout="column" layout-align="center center")
+                    md-button(type="submit")#register_button.md-raised.md-primary.md-button-gt Login
+                    p.md-body-1 ¿Todavía no tienes una cuenta?
+                        a.md-link-button Regístrate
+            .progress-login(ng-show="loginVm.loginProgress")
+                div(layout='row', layout-align="center center")
+                    p Accediendo a la cuenta
+                div(layout='row', layout-sm='column', layout-align='space-around')
+                    md-progress-circular(md-mode='indeterminate')
         p.md-title.login-title.color-primary &copy;2016 JustSport
 include footer
 
