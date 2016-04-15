@@ -5,7 +5,7 @@
     'use strict';
 
     angular
-        .module('justSport',['ngMaterial', 'ngMessages', 'homeModule','sportModule', 'loginModule'])
+        .module('justSport',['ngMaterial', 'ngMessages', 'homeModule','sportModule', 'loginModule', 'registerModule'])
         .config(['$mdThemingProvider', function($mdThemingProvider) {
             var customPrimary = {
                 '50': '#65acf3',
