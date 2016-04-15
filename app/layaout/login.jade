@@ -11,12 +11,12 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='email')
-                    div(ng-messages='loginForm.email.$error')
+                    div(ng-messages='loginForm.email.$error' ng-show="loginForm.email.$touched || loginForm.$submitted")
                         div(ng-message='required').email-message El email es obligatorio.
                 md-input-container.md-block
                     label Password
                     input(required='', name='pass', ng-model='password', type="password")
-                    div(ng-messages='loginForm.pass.$error')
+                    div(ng-messages='loginForm.pass.$error' ng-show="loginForm.pass.$touched || loginForm.$submitted")
                         div(ng-message='required').pass-message La contraseña es obligatoria.
                 div(layout="column" layout-align="center center")
                     md-button(type="submit")#login_button.md-raised.md-primary.md-button-gt Login
@@ -32,29 +32,29 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='registerVm.email')
-                    div(ng-messages='registerForm.email.$error')
+                    div(ng-messages='registerForm.email.$error' ng-show="registerForm.email.$touched || registerForm.$submitted")
                         div(ng-message='required').email-register-message El email es obligatorio.
                 md-input-container.md-block
                     label Password
                     input(required='', name='pass', ng-model='registerVm.password', type="password")
-                    div(ng-messages='registerForm.pass.$error')
+                    div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
                 md-input-container.md-block
                     label Nombre
                     input(required='', name='name', ng-model='registerVm.name')
-                    div(ng-messages='registerForm.name.$error')
+                    div(ng-messages='registerForm.name.$error' ng-show="registerForm.name.$touched || registerForm.$submitted")
                         div(ng-message='required').name-register-message El nombre es obligatorio.
                 md-input-container.md-block
                     label Apellidos
                     input(required='', name='lname', ng-model='registerVm.lname')
-                    div(ng-messages='registerForm.lname.$error')
+                    div(ng-messages='registerForm.lname.$error' ng-show="registerForm.lname.$touched || registerForm.$submitted")
                         div(ng-message='required').lname-register-message Los apellidos son obligatorios.
                 md-input-container.md-block
                     label Sexo
                     md-select(name='gender', ng-model='registerVm.gender', required='')
                         md-option(value='male') Hombre
                         md-option(value='female') Mujer
-                    div(ng-messages='registerForm.gender.$error')
+                    div(ng-messages='registerForm.gender.$error' ng-show="registerForm.gender.$touched || registerForm.$submitted")
                         div(ng-message='required').gender-register-message El sexo es obligatorio
                 md-checkbox(ng-model='registerVm.role', aria-label='role')
                     | Propietario
