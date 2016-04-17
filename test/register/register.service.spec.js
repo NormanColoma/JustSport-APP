@@ -21,7 +21,7 @@ describe('Login Controller', function() {
         }
         $httpBackend.expectPOST(baseAPI+'users').respond(user);
         var registeredUser = null;
-        lService.registerUser(user).then(function(data){
+        rService.registerUser(user).then(function(data){
             registeredUser = data;
         });
         $httpBackend.flush();
@@ -43,11 +43,11 @@ describe('Login Controller', function() {
                 }
             ]
         }
-        $httpBackend.expectPOST(baseAPI+'users').respond(user);
-        lService.registerUser(user).then(function(data){
+        $httpBackend.expectPOST(baseAPI+'users').respond(500,error);
+        rService.registerUser(user).then(function(data){
             message = data;
         });
         $httpBackend.flush();
-        expect(registeredUser).toEqual("The value: 'llca@gmail.com' is already taken");
+        expect(message).toEqual("The value: 'llca@gmail.com' is already taken");
     });
 });
