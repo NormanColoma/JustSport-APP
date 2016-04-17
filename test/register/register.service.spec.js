@@ -8,10 +8,10 @@ describe('Login Controller', function() {
     // Set up the module
     beforeEach(module('justSport'));
 
-    beforeEach(inject(function ($injector, registerService) {
+    beforeEach(inject(function ($injector, registerUserService) {
         // Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
-        rService = registerService;
+        rService = registerUserService;
     }));
 
     it('Should register the user correctly', function(){

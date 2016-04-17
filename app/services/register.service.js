@@ -3,11 +3,11 @@
  */
 angular
     .module('registerModule')
-    .factory('registerService', registerService);
+    .factory('registerUserService', registerUserService);
 
-    registerService.$inject = ['$http'];
+    registerUserService.$inject = ['$http'];
 
-    function registerService($http){
+    function registerUserService($http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
@@ -15,7 +15,7 @@ angular
 
 
         var service = {
-            registerUser: registerUser,
+            registerUser: registerUser
         };
 
         return service;
