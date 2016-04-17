@@ -18,7 +18,6 @@ angular
         vm.resetForm = resetForm;
 
         function changeView(form){
-            console.log(vm.user);
             if(!vm.registerView)
                 vm.registerView = true;
             else
