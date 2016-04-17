@@ -18,6 +18,7 @@ angular
         vm.resetForm = resetForm;
 
         function changeView(form){
+            console.log(vm.user);
             if(!vm.registerView)
                 vm.registerView = true;
             else
@@ -25,10 +26,11 @@ angular
             resetForm(form);
         }
 
-        function resetForm(form){
+        function resetForm(form,user,account){
             if(form !== undefined) {
                 form.$setPristine();
                 form.$setUntouched();
+                vm.user = {};
             }
         }
 

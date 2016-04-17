@@ -7,15 +7,15 @@ ng-controller="RegisterController as registerVm" ng-cloak)
         h2.md-display-2.register-title(ng-show="registerVm.registerView") Crea tu cuenta
         div.login-container(ng-show="!registerVm.registerView")
             form(layout-align="space-between", layout-padding, novalidate, name="loginForm",
-            ng-submit="loginVm.login(email,password)", ng-hide="loginVm.loginProgress")
+            ng-submit="loginVm.login(registerVm.user.email,registerVm.user.password)", ng-hide="loginVm.loginProgress")
                 md-input-container.md-block
                     label Email
-                    input(required='', name='email', ng-model='email')
+                    input(required='', name='email', ng-model='registerVm.user.email')
                     div(ng-messages='loginForm.email.$error' ng-show="loginForm.email.$touched || loginForm.$submitted")
                         div(ng-message='required').email-message El email es obligatorio.
                 md-input-container.md-block
                     label Password
-                    input(required='', name='pass', ng-model='password', type="password")
+                    input(required='', name='pass', ng-model='registerVm.user.password', type="password")
                     div(ng-messages='loginForm.pass.$error' ng-show="loginForm.pass.$touched || loginForm.$submitted")
                         div(ng-message='required').pass-message La contraseña es obligatoria.
                 div(layout="column" layout-align="center center")
@@ -31,37 +31,37 @@ ng-controller="RegisterController as registerVm" ng-cloak)
             form(layout-align="space-between", layout-padding, novalidate, name="registerForm")
                 md-input-container.md-block
                     label Email
-                    input(required='', name='email', ng-model='registerVm.email')
+                    input(required='', name='email', ng-model='registerVm.user.email')
                     div(ng-messages='registerForm.email.$error' ng-show="registerForm.email.$touched || registerForm.$submitted")
                         div(ng-message='required').email-register-message El email es obligatorio.
                 md-input-container.md-block
                     label Password
-                    input(required='', name='pass', ng-model='registerVm.password', type="password")
+                    input(required='', name='pass', ng-model='registerVm.user.password', type="password")
                     div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
                 md-input-container.md-block
                     label Nombre
-                    input(required='', name='name', ng-model='registerVm.name')
+                    input(required='', name='name', ng-model='registerVm.user.name')
                     div(ng-messages='registerForm.name.$error' ng-show="registerForm.name.$touched || registerForm.$submitted")
                         div(ng-message='required').name-register-message El nombre es obligatorio.
                 md-input-container.md-block
                     label Apellidos
-                    input(required='', name='lname', ng-model='registerVm.lname')
+                    input(required='', name='lname', ng-model='registerVm.user.lname')
                     div(ng-messages='registerForm.lname.$error' ng-show="registerForm.lname.$touched || registerForm.$submitted")
                         div(ng-message='required').lname-register-message Los apellidos son obligatorios.
                 md-input-container.md-block
                     label Sexo
-                    md-select(name='gender', ng-model='registerVm.gender', required='')
+                    md-select(name='gender', ng-model='registerVm.user.gender', required='')
                         md-option(value='male') Hombre
                         md-option(value='female') Mujer
                     div(ng-messages='registerForm.gender.$error' ng-show="registerForm.gender.$touched || registerForm.$submitted")
                         div(ng-message='required').gender-register-message El sexo es obligatorio
-                md-checkbox(ng-model='registerVm.role', aria-label='role')
+                md-checkbox(ng-model='registerVm.user.role', aria-label='role')
                     | Propietario
                 div(layout="column" layout-align="center center")
                     md-button(type="submit")#register_button.md-raised.md-primary.md-button-gt Registrar
                     p.md-body-1 ¿Ya tienes una cuenta?
-                        a(ng-click="registerVm.changeView(registerForm)").md-link-button Accede
+                        a(ng-click="registerVm.changeView(registerForm,user)").md-link-button Accede
             .progress-login(ng-show="loginVm.loginProgress")
                 div(layout='row', layout-align="center center")
                     p Creando cuenta
