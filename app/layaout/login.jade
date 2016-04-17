@@ -2,9 +2,9 @@ include header
 link(rel="stylesheet",href="/public/stylesheets/login.css")
 div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
 ng-controller="RegisterController as registerVm" ng-cloak)
-    div(flex="35", flex-sm="45")
+    div(flex="40", flex-sm="65")
         h2.md-display-2.login-title(ng-show="!registerVm.registerView") Accede a tu cuenta
-        h2.md-display-2.login-title(ng-show="registerVm.registerView") Crea tu cuenta
+        h2.md-display-2.register-title(ng-show="registerVm.registerView") Crea tu cuenta
         div.login-container(ng-show="!registerVm.registerView")
             form(layout-align="space-between", layout-padding, novalidate, name="loginForm",
             ng-submit="loginVm.login(email,password)", ng-hide="loginVm.loginProgress")

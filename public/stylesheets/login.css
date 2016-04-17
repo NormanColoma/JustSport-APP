@@ -7,9 +7,37 @@
     padding: 30px;
 }
 
-.login-title{
+/**transitions*/
+.login-container.ng-hide, .login-title.ng-hide{
+    transform: translateX(50%);
+}
+
+.login-container.ng-hide-add, .login-title.ng-hide-add{
+    transform: translateX(0%);
+    transition: 0s;
+}
+
+.login-container{
+    transition: 0.5s;
+}
+.register-container.ng-hide, .register-title.ng-hide{
+    transform: translateX(-50%);
+}
+
+.register-container.ng-hide-add, .register-title.ng-hide-add{
+    transform: translateX(0%);
+    transition: 0s;
+}
+
+.register-container, .register-title{
+    transform: translateX(0%);
+    transition: 0.5s;
+}
+
+.login-title, .register-title{
     text-align: center;
     font-family: 'Open Sans Condensed', sans-serif;
+    transition: 0.5s;
 }
 
 .margin-field{
