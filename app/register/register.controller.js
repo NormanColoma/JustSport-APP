@@ -21,10 +21,14 @@ angular
         vm.resetForm = resetForm;
 
         function changeView(form){
-            if(!vm.registerView)
+            if(!vm.registerView) {
                 vm.registerView = true;
-            else
+                $location.path('/register');
+            }
+            else {
                 vm.registerView = false;
+                $location.path('/login');
+            }
             resetForm(form);
         }
 

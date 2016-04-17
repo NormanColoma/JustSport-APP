@@ -6,7 +6,7 @@
 
     angular
         .module('justSport',['ngMaterial', 'ngMessages', 'homeModule','sportModule', 'loginModule', 'registerModule'])
-        .config(['$mdThemingProvider', function($mdThemingProvider) {
+        .config(['$mdThemingProvider', '$locationProvider', function($mdThemingProvider, $locationProvider) {
             var customPrimary = {
                 '50': '#65acf3',
                 '100': '#4d9ff1',
@@ -29,5 +29,7 @@
                     customPrimary);
             $mdThemingProvider.theme('default')
                 .primaryPalette('customPrimary');
+
+            $locationProvider.html5Mode(true);
         }]);
 })();
