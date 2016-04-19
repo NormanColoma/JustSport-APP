@@ -15,7 +15,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 
 global.port = '5000';
 // view engine setup
-app.set('views', path.join(__dirname, 'app/layaout'));
+app.set('views', path.join(__dirname, 'app/layout'));
 app.set('view engine', 'jade');
 
 app.use(bodyParser.json());

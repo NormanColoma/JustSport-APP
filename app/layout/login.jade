@@ -1,0 +1,79 @@
+include header
+link(rel="stylesheet",href="/public/stylesheets/login.css")
+div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
+ng-controller="RegisterController as registerVm" ng-cloak)
+    div(flex="40", flex-sm="65")
+        h2.md-display-2.login-title(ng-show="!registerVm.registerView") Accede a tu cuenta
+        h2.md-display-2.register-title(ng-show="registerVm.registerView") Crea tu cuenta
+        div.login-container(ng-show="!registerVm.registerView")
+            form(layout-align="space-between", layout-padding, novalidate, name="loginForm",
+            ng-submit="loginVm.login(registerVm.user.email,registerVm.user.password)", ng-hide="loginVm.loginProgress")
+                md-input-container.md-block
+                    label Email
+                    input(required='', name='email', ng-model='registerVm.user.email')
+                    div(ng-messages='loginForm.email.$error' ng-show="loginForm.email.$touched || loginForm.$submitted")
+                        div(ng-message='required').email-message El email es obligatorio.
+                md-input-container.md-block
+                    label Password
+                    input(required='', name='pass', ng-model='registerVm.user.password', type="password")
+                    div(ng-messages='loginForm.pass.$error' ng-show="loginForm.pass.$touched || loginForm.$submitted")
+                        div(ng-message='required').pass-message La contraseña es obligatoria.
+                div(layout="column" layout-align="center center")
+                    md-button(type="submit")#login_button.md-raised.md-primary.md-button-gt Login
+                    p.md-body-1 ¿Todavía no tienes una cuenta?
+                        a(ng-click="registerVm.changeView(loginForm)").md-link-button Regístrate
+            .progress-login(ng-show="loginVm.loginProgress")
+                div(layout='row', layout-align="center center")
+                    p Accediendo a la cuenta
+                div(layout='row', layout-sm='column', layout-align='space-around')
+                    md-progress-circular(md-mode='indeterminate')
+        div.register-container(ng-show="registerVm.registerView")
+            form(layout-align="space-between", layout-padding, novalidate, name="registerForm",
+            ng-submit="registerVm.register(e)", ng-hide="registerVm.registeringUser")
+                md-input-container.md-block
+                    label Email
+                    input(required='', name='email', ng-model='registerVm.user.email', type="email")
+                    div(ng-messages='registerForm.email.$error' ng-show="registerForm.email.$touched || registerForm.$submitted")
+                        div(ng-message='required').email-register-message El email es obligatorio.
+                        div(ng-show="registerForm.email.$error.email").email-register-message.error-message El email no es válido.
+                md-input-container.md-block
+                    label Password
+                    input(required='', name='pass', ng-model='registerVm.user.password', type="password",
+                    ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
+                    .hint(ng-if="!registerForm.pass.$touched") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
+                    div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
+                        div(ng-message='required').pass-register-message La contraseña es obligatoria.
+                        div(ng-show="registerForm.pass.$error.pattern").pass-register-message.error-message La contraseña no es correcta.
+                md-input-container.md-block
+                    label Nombre
+                    input(required='', name='name', ng-model='registerVm.user.name', ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i")
+                    div(ng-messages='registerForm.name.$error' ng-show="registerForm.name.$touched || registerForm.$submitted")
+                        div(ng-message='required').name-register-message El nombre es obligatorio.
+                        div(ng-show="registerForm.name.$error.pattern").name-register-message.error-message El nombre no es válido.
+                md-input-container.md-block
+                    label Apellidos
+                    input(required='', name='lname', ng-model='registerVm.user.lname', ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i")
+                    div(ng-messages='registerForm.lname.$error' ng-show="registerForm.lname.$touched || registerForm.$submitted")
+                        div(ng-message='required').lname-register-message Los apellidos son obligatorios.
+                        div(ng-show="registerForm.lname.$error.pattern").lname-register-message.error-message Los apellidos no son válidos.
+                md-input-container.md-block
+                    label Sexo
+                    md-select(name='gender', ng-model='registerVm.user.gender', required='')
+                        md-option(value='male') Hombre
+                        md-option(value='female') Mujer
+                    div(ng-messages='registerForm.gender.$error' ng-show="registerForm.gender.$touched || registerForm.$submitted")
+                        div(ng-message='required').gender-register-message El sexo es obligatorio
+                md-checkbox(ng-model='registerVm.user.role', aria-label='role', name="role")
+                    | Propietario
+                div(layout="column" layout-align="center center")
+                    md-button(type="submit")#register_button.md-raised.md-primary.md-button-gt Registrar
+                    p.md-body-1 ¿Ya tienes una cuenta?
+                        a(ng-click="registerVm.changeView(registerForm,user)").md-link-button Accede
+            .progress-login(ng-show="registerVm.registeringUser")
+                div(layout='row', layout-align="center center")
+                    p Creando cuenta
+                div(layout='row', layout-sm='column', layout-align='space-around')
+                    md-progress-circular(md-mode='indeterminate')
+        p.md-title.login-title.color-primary &copy;2016 JustSport
+include footer
+

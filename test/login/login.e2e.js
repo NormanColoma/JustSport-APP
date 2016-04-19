@@ -4,7 +4,7 @@
 var express = require('express');
 var app = express();
 
-describe('Home', function() {
+xdescribe('Home', function() {
     var host = 'http://localhost:5000';
     if (app.get('env') === 'test') {
         host = 'https://localhost:5000';
@@ -19,7 +19,7 @@ describe('Home', function() {
     });
 
     it('Should log in correctly', function(){
-        browser.get(host+'/login');
+        browser.get(host+'/account/');
         email_field.sendKeys('pepe@gmail.com');
         pass_field.sendKeys('pepe15');
         login_button.click();
@@ -35,12 +35,12 @@ describe('Home', function() {
     });
 
     it('should failed when trying to log in with incorrect user', function(){
-        browser.get(host+'/login');
+        browser.get(host+'/account/');
         expect(element(by.css('md-dialog')).isPresent()).toBeFalsy();
         email_field.sendKeys('pepis@gmail.com');
         pass_field.sendKeys('pepe23');
         login_button.click();
-        expect(browser.getCurrentUrl()).toBe(host+'/login');
+        expect(browser.getCurrentUrl()).toBe(host+'/account/#/login');
         expect(element(by.css('md-dialog')).isPresent()).toBeTruthy();
         expect(element(by.css('md-dialog')).isDisplayed()).toBeTruthy();
     });

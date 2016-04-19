@@ -17,7 +17,7 @@ html(ng-app="justSportTest")
                             h2
                                 span JustSport
                             span(flex='')
-                            a(href='/login' ng-show="!loginVm.loggedIn").md-body-1 Login
+                            a(href='/account/' ng-show="!loginVm.loggedIn").md-body-1 Login
                             a(ng-show="loginVm.loggedIn" ng-click="loginVm.logout()").md-body-1.clickable.account-options Salir
                         div(layout='row', show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
                             h2
