@@ -28,7 +28,8 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                 div(layout='row', layout-sm='column', layout-align='space-around')
                     md-progress-circular(md-mode='indeterminate')
         div.register-container(ng-show="registerVm.registerView")
-            form(layout-align="space-between", layout-padding, novalidate, name="registerForm")
+            form(layout-align="space-between", layout-padding, novalidate, name="registerForm",
+            ng-submit="registerVm.register(e)", ng-hide="registerVm.registeringUser")
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='registerVm.user.email', type="email")
@@ -38,7 +39,7 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                 md-input-container.md-block
                     label Password
                     input(required='', name='pass', ng-model='registerVm.user.password', type="password",
-                    ng-pattern="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/")
+                    ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
                     div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
                         div(ng-show="registerForm.pass.$error.pattern").email-register-message.error-message La contraseña no es correcta.
@@ -67,7 +68,7 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                     md-button(type="submit")#register_button.md-raised.md-primary.md-button-gt Registrar
                     p.md-body-1 ¿Ya tienes una cuenta?
                         a(ng-click="registerVm.changeView(registerForm,user)").md-link-button Accede
-            .progress-login(ng-show="loginVm.loginProgress")
+            .progress-login(ng-show="registerVm.registeringUser")
                 div(layout='row', layout-align="center center")
                     p Creando cuenta
                 div(layout='row', layout-sm='column', layout-align='space-around')

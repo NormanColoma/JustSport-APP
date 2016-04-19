@@ -25,7 +25,7 @@ angular
                 name:user.name, lname:user.lname, email:user.email,
                 pass:user.password, gender:user.gender, role :user.role
             }
-            return $http.post(server+"/users", data)
+            return $http.post(server+"/users/new", data)
                 .then(registerSuccess)
                 .catch(registerFail);
 

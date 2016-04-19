@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                         'app/services/citySuggestions.service.js','app/home/home.controller.js', 'app/home/establishmentFiltered.controller.js',
                         'app/login/login.module.js','app/services/login.service.js', 'app/login/login.controller.js',
                         'app/register/register.module.js', 'app/register/register.controller.js', 'app/services/register.service.js',
-                        'app/app.module.js', 'test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
+                        'app/app.module.js', 'app/services/dialog.service.js','test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
                         'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js']
                 }
             }

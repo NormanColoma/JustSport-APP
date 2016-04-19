@@ -5,10 +5,10 @@ angular
     .module('registerModule')
     .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$mdDialog','$location','registerUserService'];
+    RegisterController.$inject = ['$location','registerUserService', 'dialogService'];
 
 
-    function RegisterController($mdDialog, $location, registerUserService){
+    function RegisterController($location, registerUserService, dialogService){
         var vm = this;
         var base_api = 'https://localhost:3000/api/';
 
@@ -36,30 +36,34 @@ angular
         }
 
         function register(ev){
-            vm.registeringUser = true;
-            if(vm.user.role === true)
-                vm.user.role = 'owner';
-            else
-                vm.user.role = 'user';
-            registerUserService.registerUser(vm.user).then(function(data){
-                if(data === true){
-                    vm.registered = true;
-                    vm.registeringUser = false;
-                    $mdDialog.show(
-                        $mdDialog.alert()
-                            .parent(angular.element(document.querySelector('#popupContainer')))
-                            .clickOutsideToClose(true)
-                            .title('¡Bienvenido!')
-                            .textContent('Su cuenta se ha creado correctamente.')
-                            .ariaLabel('Registered User Alert')
-                            .ok('Listo')
-                            .targetEvent(ev)
-                    );
-                }else{
-                    vm.registered = false;
-                    vm.registeringUser = false;
-                }
-            });
+            if(vm.user !== undefined) {
+                vm.registeringUser = true;
+                if (vm.user.role !== undefined)
+                    vm.user.role = 'owner';
+                else
+                    vm.user.role = 'user';
+                registerUserService.registerUser(vm.user).then(function (data) {
+                    if (data === true) {
+                        vm.registered = true;
+                        vm.registeringUser = false;
+                        vm.registerView = false;
+                        $location.path('/login');
+                        var dataDialog = {
+                            title: '¡Bienvenido!', text: 'Su cuenta se ha creado correctamente.',
+                            aria: 'Registered User Alert', textButton: 'Listo'
+                        };
+                        dialogService.showDialog(dataDialog, ev);
+                    } else {
+                        vm.registered = false;
+                        vm.registeringUser = false;
+                        var dataDialog = {
+                            title: '¡Cuenta existente!', text: 'No se ha podido crear su cuenta. El email '+vm.user.email+' ya está registrado.',
+                            aria: 'Registered User Alert', textButton: 'Listo'
+                        };
+                        dialogService.showDialog(dataDialog, ev);
+                    }
+                });
+            }
         }
 
         function resetForm(form){
@@ -71,7 +75,6 @@ angular
         }
 
         function selectView(){
-            console.log($location.path());
             var path = $location.path();
             if(path === '/register'){
                 vm.registerView = true;

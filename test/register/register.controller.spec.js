@@ -36,7 +36,7 @@ describe('Register Controller', function() {
 
     it('Should call registerService, and register the user', function(){
         var controller = createController();
-        $httpBackend.expectPOST(baseAPI+'users').respond(user);
+        $httpBackend.expectPOST(baseAPI+'users/new').respond(user);
         controller.user = user;
         expect(controller.registered).toBeTruthy();
         expect(controller.registeringUser).toBeFalsy();
@@ -56,7 +56,7 @@ describe('Register Controller', function() {
                 }
             ]
         }
-        $httpBackend.expectPOST(baseAPI+'users').respond(500, error);
+        $httpBackend.expectPOST(baseAPI+'users/new').respond(500, error);
         controller.user = user;
         expect(controller.registered).toBeTruthy();
         controller.register();

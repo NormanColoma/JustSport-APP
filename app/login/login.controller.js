@@ -5,9 +5,9 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$mdDialog', '$window','$location', '$http'];
+    LoginController.$inject = ['loginService', '$window','$location', '$http', 'dialogService'];
 
-    function LoginController(loginService, $mdDialog, $window, $location, $http){
+    function LoginController(loginService, $window, $location, $http, dialogService){
         var vm = this;
         var base_api = 'https://localhost:3000/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
@@ -47,16 +47,11 @@ angular
                 loginService.getToken(email, pass).then(function (data) {
                     if (data.error) {
                         vm.loginProgress = false;
-                        $mdDialog.show(
-                            $mdDialog.alert()
-                                .parent(angular.element(document.querySelector('#popupContainer')))
-                                .clickOutsideToClose(true)
-                                .title('Login incorrecto')
-                                .textContent('El email o la contraseña introducidos, no son correctos.')
-                                .ariaLabel('Alert Dialog Demo')
-                                .ok('Listo')
-                                .targetEvent(ev)
-                        );
+                        var dataDialog = {
+                            title: 'Login incorrecto', text: 'El email o la contraseña introducidos, no son correctos.',
+                            aria: 'Login User Alert', textButton: 'Listo'
+                        };
+                        dialogService.showDialog(dataDialog, ev);
                     } else {
                         localStorage.setItem("token", data.access_token);
                         localStorage.setItem("username", data.username);
