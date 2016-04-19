@@ -84,4 +84,15 @@ md-checkbox.md-checked .md-icon svg{
   fill: #fff !important;
 }
 
-md-checkbox.md-default-theme.md-checked .md-icon:after, md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-color: white !important; }
+md-checkbox.md-default-theme.md-checked .md-icon:after,
+md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-color: white !important; }
+
+.error-message{
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  opacity: 1;
+  margin-top: 0;
+  padding-top: 5px;
+}

@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Just Sport' });
 });
 
-router.get('/login', middleware.isLoggedIn, function(req, res, next) {
+router.get('/account', middleware.isLoggedIn, function(req, res, next) {
   res.render('login', { title: 'Just Sport' });
 });
 
