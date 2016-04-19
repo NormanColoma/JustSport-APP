@@ -40,6 +40,7 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                     label Password
                     input(required='', name='pass', ng-model='registerVm.user.password', type="password",
                     ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
+                    .hint(ng-if="!registerForm.pass.$touched") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
                     div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
                         div(ng-show="registerForm.pass.$error.pattern").pass-register-message.error-message La contraseña no es correcta.
