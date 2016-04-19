@@ -57,7 +57,9 @@ module.exports = function(grunt) {
                 command: 'node bin/www.js'
             },
             e2e_test: {
-                command: 'protractor protractor.conf.js'
+                command: [
+                    'protractor protractor.conf.js'
+                ]
             }
         },
         express: {
