@@ -7,8 +7,6 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 before_script:
 - npm install grunt-cli -g
-addons:
-  sauce_connect:
-      username: "NormanColoma"
-      access_key:
-        secure: "923e35c3-a5a6-4518-b002-21b52dd559f1"
+- npm install protractor -g
+- webdriver-manager update
+- webdriver-manager start
