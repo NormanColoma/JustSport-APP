@@ -2,14 +2,8 @@
  * Created by Norman on 03/12/2015.
  */
 exports.config = {
-    saucelabs: {
-        options: {
-            args: {
-                sauceUser: process.env.SAUCE_USERNAME,
-                sauceKey: process.env.SAUCE_ACCESS_KEY
-            }
-        }
-    },
+    sauceUser: process.env.SAUCE_USERNAME,
+    sauceKey: process.env.SAUCE_ACCESS_KEY,
     allScriptsTimeout: 11000,
 
     specs: [
@@ -17,7 +11,9 @@ exports.config = {
     ],
 
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+        'build': process.env.TRAVIS_BUILD_NUMBER
     },
 
     baseUrl: 'https://localhost:5000',
