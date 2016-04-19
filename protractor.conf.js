@@ -9,8 +9,7 @@ exports.config = {
     ],
 
     capabilities: {
-        'browserName': 'chrome',
-        'build': process.env.TRAVIS_BUILD_NUMBER
+        'browserName': 'chrome'
     },
 
     baseUrl: 'https://localhost:5000',
