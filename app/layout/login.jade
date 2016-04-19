@@ -38,7 +38,7 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                 md-input-container.md-block
                     label Password
                     input(required='', name='pass', ng-model='registerVm.user.password', type="password",
-                    ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/i")
+                    ng-pattern="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/")
                     div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
                         div(ng-show="registerForm.pass.$error.pattern").email-register-message.error-message La contraseña no es correcta.

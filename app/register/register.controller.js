@@ -19,6 +19,9 @@ angular
         vm.registerView = false;
         vm.registeringUser = false;
         vm.resetForm = resetForm;
+        vm.selectView = selectView;
+
+        selectView();
 
         function changeView(form){
             if(!vm.registerView) {
@@ -64,6 +67,19 @@ angular
                 form.$setPristine();
                 form.$setUntouched();
                 vm.user = {};
+            }
+        }
+
+        function selectView(){
+            console.log($location.path());
+            var path = $location.path();
+            if(path === '/register'){
+                vm.registerView = true;
+            }else if(path === ''){
+                $location.path('/login');
+            }
+            else{
+                vm.registerView = false;
             }
         }
 
