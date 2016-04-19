@@ -36,4 +36,3 @@ node_modules
 .idea/
 
 #Files for simulate HTTPS server in local development
-fixtures
