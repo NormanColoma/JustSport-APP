@@ -36,6 +36,7 @@ angular
         }
 
         function register(ev){
+            var dataDialog = {};
             if(vm.user !== undefined) {
                 vm.registeringUser = true;
                 if (vm.user.role !== undefined)
@@ -48,7 +49,7 @@ angular
                         vm.registeringUser = false;
                         vm.registerView = false;
                         $location.path('/login');
-                        var dataDialog = {
+                        dataDialog = {
                             title: '¡Bienvenido!', text: 'Su cuenta se ha creado correctamente.',
                             aria: 'Registered User Alert', textButton: 'Listo'
                         };
@@ -56,7 +57,7 @@ angular
                     } else {
                         vm.registered = false;
                         vm.registeringUser = false;
-                        var dataDialog = {
+                        dataDialog = {
                             title: '¡Cuenta existente!', text: 'No se ha podido crear su cuenta. El email '+vm.user.email+' ya está registrado.',
                             aria: 'Registered User Alert', textButton: 'Listo'
                         };

@@ -18,7 +18,7 @@ describe('Login Controller', function() {
         var user = {
             name:"Pepe", lname:"Cano Gómez", email:"llca@gmail.com", pass:"lcano2102",
             gender:"male", role:"owner"
-        }
+        };
         $httpBackend.expectPOST(baseAPI+'users/new').respond(user);
         var registeredUser = null;
         rService.registerUser(user).then(function(data){
@@ -32,7 +32,7 @@ describe('Login Controller', function() {
         var user = {
             name:"Pepe", lname:"Cano Gómez", email:"llca@gmail.com", pass:"lcano2102",
             gender:"male", role:"owner"
-        }
+        };
         var message = null;
         var error = {
             errors: [
@@ -42,7 +42,7 @@ describe('Login Controller', function() {
                     message: "The value: 'llca@gmail.com' is already taken"
                 }
             ]
-        }
+        };
         $httpBackend.expectPOST(baseAPI+'users/new').respond(500,error);
         rService.registerUser(user).then(function(data){
             message = data;

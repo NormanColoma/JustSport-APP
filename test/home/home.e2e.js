@@ -4,7 +4,7 @@
 var express = require('express');
 var app = express();
 
-xdescribe('Home', function() {
+describe('Home', function() {
     var host = 'http://localhost:5000';
     if(app.get('env') === 'test'){
         host = 'https://localhost:5000';

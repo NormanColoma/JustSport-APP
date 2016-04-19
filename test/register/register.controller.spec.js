@@ -24,7 +24,7 @@ describe('Register Controller', function() {
         user = {
             name:"Pepe", lname:"Cano Gómez", email:"llca@gmail.com", password:"lcano2102",
             gender:"male", role: true
-        }
+        };
     }));
 
     it('Should switch the view between login and register views', function(){
@@ -55,7 +55,7 @@ describe('Register Controller', function() {
                     message: "The value: 'llca@gmail.com' is already taken"
                 }
             ]
-        }
+        };
         $httpBackend.expectPOST(baseAPI+'users/new').respond(500, error);
         controller.user = user;
         expect(controller.registered).toBeTruthy();

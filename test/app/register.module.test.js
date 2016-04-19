@@ -17,7 +17,7 @@ angular
                     message: "The value: 'pepe@gmail.com' is already taken"
                 }
             ]
-        }
+        };
         $httpBackend.whenPOST(local_api + '/api/users/new').respond(function(method, url, data) {
             var user = angular.fromJson(data);
             if(user.email === "pepe@gmail.com"){
