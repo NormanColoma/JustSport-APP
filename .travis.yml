@@ -1,12 +1,15 @@
 language: node_js
-sudo: true
 node_js:
-  - '4.1'
+- '4.1'
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - webdriver-manager update
-  - webdriver-manager start
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install grunt-cli -g
+- npm install grunt-cli -g
+addons:
+  sauce_connect: true
+env:
+  global:
+  - secure: SG/OJ1u8LKHERpclRVL5t0LdZGkY03YroaPv3ypm1XH+jwKscbbdxkk7rput4Wz2dc2XRFq+OKYJuOCHATdZtyJZDuzGpZPisXCFHvnHZCTVNrnddoz7aly0jvZbjqqfv6v8SFU3LupLT4G2ZDObmvAr0xQFdIO1f5oCUTnIAFJPMIpgtPz+4Gq3SAWUbXFfLxnalTzQ9bx2bQfO3O1iQWWXYyYu0XLAfsp6UpLhxvXBFhfIkrG6DA6VwaUJWdBA/6spCCcI4YgKVgmmJZpP1eH7r5LSswmtu2TmLfjTSNTDhac6sm6mtMVkPlsqFZyH3vYjwgovb2zESUi+CAzYcxM78ojwpss37ostLV1KFS/x0Abu2NOYl6P5Xn5ddN/BsSx3w/rmWPRpB77p8ohf2aAgNr19X0dlFwLcF3DT+h7bbGIkK/VE9MntM02hbGqr8spB42ZkwxtOqQgxK9VsRY/YA4S6ckXFnACCbDiVXl2qJ5+mKfpB7pDV6S6DUe3kVcA/xEQZmR7UF0S8oEJ3kHCQQiyOzoyRQfNOAaJ2WIOfLB+kyBVMf3E0kKNoakWAlnGijelnsjnaYSOTqZ/0q4xtvxEDaymF8PbYwRLI8Kvj6J650B1SyS0dcT687H9W9cFmTRXBkbwCdiEc3HhO34C+ao2B66a+mrT4liOaKBs=
+  - secure: kAydqVZHWgScZ06RAOokN5emzcMXTzHrwlGvdPHS6sw9GAwScAGPYimuT4/gKC/55LTmh2SwMNsI4xva+3LHIySnBb/Bs5OkoO4L2kOfLibAunse8EUjX4NbYw4YAqONso31g1GUXtPwnATi+1YAIO1KWq9Zqnd5sIZaMPCb7TWX+8MJu1wydM9S5eQcxYNUlvnRfmOG8CrpC29U/U/vImzgTgZfhiU6q5yd17kwGrtmuEnQg8y1HHHiKdKPAbqzCsR8jzzN3QOAF3BwjwKob7EpUobEk0eCkthNo9Lf4VbQ8SQrBcQQKAKluApwebvy8T2g0t4gPpT4gL3PZXHKBpwUvi99LtKX4Z0C41LE0Nj++kYLkl0CfiRvxoOhWNC3kinzlnwvuf+ugzjbkAiDmi+CKKfTSndxJPSGX5UopbEp3r7pThqAroEIMAN2eUduvR3RGBbP7TufVP78ZalRt3EyWPfFSDZ8B30/YsRbzT1gAYjp9gG6sLp1S0NcLlLDCZLSjkZEbFGgSkLTccIpsQGK1WJAOLUEf6xL5wGArWNXKTcGsY37qHbyMsRFRwQuSLGT6fML/gk+6EDNUTLqmxUIrf+CGC8X9MzSwiDZ3iBCFoJnAYAZUGL3UGx8thwvAcWchbLEV9GtaHg6FtQcczcnnV82tic5sv1SHUX2Mh8=
