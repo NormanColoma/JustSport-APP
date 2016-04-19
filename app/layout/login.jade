@@ -41,16 +41,19 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                     ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/i")
                     div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
+                        div(ng-show="registerForm.pass.$error.pattern").email-register-message.error-message La contraseña no es correcta.
                 md-input-container.md-block
                     label Nombre
                     input(required='', name='name', ng-model='registerVm.user.name', ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i")
                     div(ng-messages='registerForm.name.$error' ng-show="registerForm.name.$touched || registerForm.$submitted")
                         div(ng-message='required').name-register-message El nombre es obligatorio.
+                        div(ng-show="registerForm.name.$error.pattern").email-register-message.error-message El nombre no es válido.
                 md-input-container.md-block
                     label Apellidos
                     input(required='', name='lname', ng-model='registerVm.user.lname', ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i")
                     div(ng-messages='registerForm.lname.$error' ng-show="registerForm.lname.$touched || registerForm.$submitted")
                         div(ng-message='required').lname-register-message Los apellidos son obligatorios.
+                        div(ng-show="registerForm.lname.$error.pattern").email-register-message.error-message Los apellidos no son válidos.
                 md-input-container.md-block
                     label Sexo
                     md-select(name='gender', ng-model='registerVm.user.gender', required='')
