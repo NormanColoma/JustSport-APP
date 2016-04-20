@@ -36,9 +36,8 @@ angular
         }
 
         function register(ev){
-            console.log(vm.user);
             var dataDialog = {};
-            if(vm.user !== undefined) {
+            if(vm.user !== undefined && vm.user !== {}) {
                 vm.registeringUser = true;
                 if (vm.user.role !== undefined)
                     vm.user.role = 'owner';
