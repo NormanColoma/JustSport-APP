@@ -36,7 +36,8 @@ angular
         }
 
         function register(ev){
-            if(vm.user !== undefined) {
+            if(vm.user.email !== undefined && vm.user.password !== undefined && vm.user.name !== undefined &&
+                vm.user.lname !== undefined && vm.user.gender !== undefined) {
                 var dataDialog = {};
                 vm.registeringUser = true;
                 if (vm.user.role !== undefined)
