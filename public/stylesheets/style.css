@@ -118,3 +118,34 @@ md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-
 .hint.ng-enter.ng-enter-active {
   bottom: 7px;
   opacity: 1; }
+
+@media screen and (min-width: 980px) and (max-width: 1260px){
+  .hint {
+    bottom: -1px;
+  }
+}
+
+@media screen and (min-width: 781px) and (max-width: 979px){
+  .hint {
+    bottom: 7px;
+  }
+}
+
+@media screen and (min-width: 781px) and (max-width: 979px){
+  .hint {
+    bottom: 7px;
+  }
+}
+
+@media screen and (min-width: 740px) and (max-width: 780px){
+  .hint {
+    font-size: 11px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 739px){
+  .hint {
+    bottom: -1px;
+    font-size: 11px;
+  }
+}
