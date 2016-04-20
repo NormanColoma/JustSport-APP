@@ -6,4 +6,8 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - sleep 3
 - npm install grunt-cli -g
-
+deploy:
+  provider: heroku
+  app: justsportapp
+  api_key:
+    secure: "31dcaa24-8994-4def-a702-0e4a6e2a9915"
