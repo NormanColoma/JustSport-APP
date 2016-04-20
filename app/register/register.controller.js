@@ -35,9 +35,9 @@ angular
             resetForm(form);
         }
 
-        function register(ev){
-            var dataDialog = {};
-            if(vm.user !== undefined && vm.user !== {}) {
+        function register(ev,form){
+            if(form.$valid) {
+                var dataDialog = {};
                 vm.registeringUser = true;
                 if (vm.user.role !== undefined)
                     vm.user.role = 'owner';
@@ -58,8 +58,10 @@ angular
                         vm.registered = false;
                         vm.registeringUser = false;
                         dataDialog = {
-                            title: '¡Cuenta existente!', text: 'No se ha podido crear su cuenta. El email '+vm.user.email+' ya está registrado.',
-                            aria: 'Registered User Alert', textButton: 'Listo'
+                            title: '¡Cuenta existente!',
+                            text: 'No se ha podido crear su cuenta. El email ' + vm.user.email + ' ya está registrado.',
+                            aria: 'Registered User Alert',
+                            textButton: 'Listo'
                         };
                         dialogService.showDialog(dataDialog, ev);
                     }
@@ -85,6 +87,10 @@ angular
             else{
                 vm.registerView = false;
             }
+        }
+
+        function userIsNull(){
+
         }
 
     }

@@ -29,7 +29,7 @@ ng-controller="RegisterController as registerVm" ng-cloak)
                     md-progress-circular(md-mode='indeterminate')
         div.register-container(ng-show="registerVm.registerView")
             form(layout-align="space-between", layout-padding, novalidate, name="registerForm",
-            ng-submit="registerVm.register(e)", ng-hide="registerVm.registeringUser")
+            ng-submit="registerVm.register(e,registerForm)", ng-hide="registerVm.registeringUser")
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='registerVm.user.email', type="email")
