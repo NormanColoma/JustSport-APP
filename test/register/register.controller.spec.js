@@ -40,7 +40,7 @@ describe('Register Controller', function() {
         controller.user = user;
         expect(controller.registered).toBeTruthy();
         expect(controller.registeringUser).toBeFalsy();
-        controller.register(e);
+        controller.register();
         $httpBackend.flush();
         expect(controller.registered).toBeTruthy();
     });
