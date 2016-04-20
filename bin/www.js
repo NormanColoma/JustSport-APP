@@ -13,18 +13,28 @@ var fs = require('fs');
 var port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
-var options = {
-  key: fs.readFileSync('./fixtures/keys/server.key'),
-  cert: fs.readFileSync('./fixtures/keys/server.crt')
-};
+var server = null;
+var listener = null;
 
-/**
- * Create HTTPs server.
- */
-var server = https.createServer(options, app);
-var listener = server.listen(port, function(){
-  console.log('Listening on port ' + listener.address().port);
-});
+if(app.get('env') === 'test' || app.get('env') === 'development') {
+  var options = {
+    key: fs.readFileSync('./fixtures/keys/server.key'),
+    cert: fs.readFileSync('./fixtures/keys/server.crt')
+  };
+
+  /**
+   * Create HTTPs server.
+   */
+  server = https.createServer(options, app);
+  listener = server.listen(port, function () {
+    console.log('Listening on port ' + listener.address().port);
+  });
+}else{
+  server = http.createServer(app).listen(port)
+  listener = server.listen(port, function(){
+    console.log('Listening on port http ' + listener.address().port);
+  });
+}
 
 /**
  * Listen on provided port, on all network interfaces.

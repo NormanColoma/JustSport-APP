@@ -6,7 +6,6 @@ before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
-- ./my_server &
-- sleep 2
+- bash ./bin/sauce_connect_setup.sh
 - npm install grunt-cli -g
 
