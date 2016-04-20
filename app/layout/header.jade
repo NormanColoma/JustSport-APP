@@ -15,7 +15,7 @@ html(ng-app="justSport")
                     md-toolbar
                         div(layout='row', flex='95', hide-sm, hide-xs).md-toolbar-tools.layout-center.md-toolbar-tools-notpading
                             h2
-                                span JustSport
+                                a(href='/') JustSport
                             span(flex='')
                             a(href='/account/' ng-show="!loginVm.loggedIn").md-body-1 Login
                             a(ng-show="loginVm.loggedIn" ng-click="loginVm.logout()").md-body-1.clickable.account-options Salir
