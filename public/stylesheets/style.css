@@ -1,0 +1,120 @@
+html{
+  background-color: #FBFAFA;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FBFAFA;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+.layout-center{
+  margin:0 auto;
+}
+
+.md-toolbar-tools-notpading{
+  padding: 0 !important;
+}
+.overlay{
+  background: rgba(0,0,0, .7);
+  height:100%;
+}
+
+.main-header-container{
+  margin-top: -200px;
+}
+
+.main-header{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 142px;
+  font-weight: 300;
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.main-header p{
+  color: white;
+  text-align: center;
+}
+
+.background-wh{
+  background-color: white !important;
+}
+
+.btn-exp-more{
+  bottom: 0px;
+  position: absolute;
+  left: 47%;
+}
+
+.color-primary{
+  color:rgb(16,108,200);
+}
+
+.margin-md{
+  margin-bottom: 15px;
+}
+
+.md-button-gt{
+  width:100%;
+}
+
+.md-link-button{
+  padding-left: 5px;
+  cursor: pointer;
+  color:rgb(16,108,200);
+}
+
+.md-link-button:hover{
+  text-decoration: underline;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+md-checkbox.md-checked .md-icon{
+  background: rgba(255,82,82,0.87);
+}
+
+md-checkbox.md-checked .md-icon svg{
+  fill: #fff !important;
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon:after,
+md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-color: white !important; }
+
+.error-message{
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  opacity: 1;
+  margin-top: 0;
+  padding-top: 5px;
+}
+
+.hint {
+  /* Position the hint */
+  position: absolute;
+  left: 2px;
+  right: auto;
+  bottom: 7px;
+  /* Copy styles from ng-messages */
+  font-size: 12px;
+  line-height: 14px;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  /* Set our own color */
+  color: grey; }
+.hint.ng-hide,
+.hint.ng-enter,
+.hint.ng-leave.ng-leave-active {
+  bottom: 26px;
+  opacity: 0; }
+.hint.ng-leave,
+.hint.ng-enter.ng-enter-active {
+  bottom: 7px;
+  opacity: 1; }
