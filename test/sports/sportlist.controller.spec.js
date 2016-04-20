@@ -3,7 +3,7 @@
  */
 describe('SportList Controller', function() {
     var $httpBackend, $rootScope, createController;
-    var baseAPI = 'https://localhost:3000/api/';
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
     var sports = {rows:[{id:1, name: 'Spinning'},{id:2, name: 'GAP'},{id:3, name: 'BodyJump'},{id:4, name: 'Pilates'},
         {id:5, name: 'CrossFit'}], count: 5};
     var Sports = {Sports: sports};

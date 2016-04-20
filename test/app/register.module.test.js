@@ -8,7 +8,7 @@ angular
     registerTest.$inject = ['$httpBackend'];
 
     function registerTest($httpBackend){
-        var local_api = "https://localhost:3000";
+        var local_api = "https://justsport-api.herokuapp.com/api/";
         var error = {
             errors: [
                 {

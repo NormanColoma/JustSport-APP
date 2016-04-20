@@ -12,7 +12,7 @@ function estabsFilteredTest($httpBackend) {
      *
      * Mocking no establishment found
      */
-    var local_api = "https://localhost:3000/api";
+    var local_api = "https://justsport-api.herokuapp.com/api/";
     var message_1 = {
         message: "There are no establishments that match the current filter"
     };

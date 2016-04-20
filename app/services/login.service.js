@@ -8,7 +8,7 @@ angular
         var client_id = "2xa001za-78b3-4f38-9376-e2dd88b7c682";
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
-        var server = local_api;
+        var server = server_api;
         var service = {
             getToken: getToken,
             isLoggedIn: isLoggedIn

@@ -9,7 +9,7 @@ angular
 
     function LoginController(loginService, $window, $location, $http, dialogService){
         var vm = this;
-        var base_api = 'https://localhost:3000/api/';
+        var base_api = 'https://justsport-api.herokuapp.com/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
 
         if($location.host() === 'server')

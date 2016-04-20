@@ -1,6 +1,6 @@
 describe('Service that manages the login', function() {
     var $httpBackend;
-    var baseAPI = 'https://localhost:3000/api/';
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
     var client_id = "2xa001za-78b3-4f38-9376-e2dd88b7c682";
     var lService;
     // Set up the module

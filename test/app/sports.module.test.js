@@ -8,7 +8,7 @@ angular
 sportTest.$inject = ['$httpBackend'];
 
 function sportTest($httpBackend) {
-    var local_api = "https://localhost:3000/api";
+    var local_api = "https://justsport-api.herokuapp.com/api/";
     var sports = {
         rows: [{id: 1, name: 'Spinning'}, {id: 2, name: 'GAP'}, {id: 3, name: 'BodyJump'}, {id: 4, name: 'Pilates'},
             {id: 5, name: 'CrossFit'}], count: 5

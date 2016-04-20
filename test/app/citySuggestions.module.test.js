@@ -8,7 +8,7 @@ angular
 testApp.$inject = ['$httpBackend'];
 
 function testApp($httpBackend) {
-    var local_api = "https://localhost:3000/api";
+    var local_api = "https://justsport-api.herokuapp.com/api/";
     var cities = {
         locations: ['Alicante']
     };

@@ -3,7 +3,7 @@
  */
 describe('Service that fetch all the establishment filtered by location and sport', function() {
     var $httpBackend;
-    var baseAPI = 'https://localhost:3000/api/';
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
     var homeService;
     var est1 = {id: 1, name: 'Gym A Tope', desc: 'Gimnasio perfecto para realizar tus actividades deportivas.',
         city: 'San Vicente del Raspeig', province: 'Alicante', addr: 'Calle San Franciso nº15',

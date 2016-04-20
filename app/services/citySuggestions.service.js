@@ -17,7 +17,7 @@ angular
     function citySuggestionsService($http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
-        var server = local_api;
+        var server = server_api;
         var service = {
             getCities: getCities,
         };

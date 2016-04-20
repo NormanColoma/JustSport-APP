@@ -36,3 +36,10 @@ node_modules
 .idea/
 
 #Files for simulate HTTPS server in local development
+fixtures
+
+#Scripts
+bin/sauce_connect.sh
+
+#Testing app
+test/app

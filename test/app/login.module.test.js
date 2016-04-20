@@ -8,7 +8,7 @@ angular
     loginTest.$inject = ['$httpBackend'];
 
     function loginTest($httpBackend) {
-        var local_api = "https://localhost:3000";
+        var local_api = "https://justsport-api.herokuapp.com/api/";
         var token = {access_token: "eyJ0", role: "owner", username: 'Pepe', expires: 1460805614894};
         var error = {error: 'Faking error'};
         $httpBackend.whenPOST(local_api + '/api/oauth2/token').respond(function(method, url, data) {
