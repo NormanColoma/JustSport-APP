@@ -11,7 +11,9 @@ exports.config = {
         'test/**/*.e2e.js'
     ],
     capabilities: {
-        'browserName': 'chrome'
+        'browserName': 'chrome',
+        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+        'build': process.env.TRAVIS_BUILD_NUMBER,
     },
     baseUrl: 'http://localhost:5000',
     jasmineNodeOpts: {
