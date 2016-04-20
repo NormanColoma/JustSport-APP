@@ -35,8 +35,8 @@ angular
             resetForm(form);
         }
 
-        function register(ev,form){
-            if(form.$valid) {
+        function register(ev){
+            if(vm.user !== undefined) {
                 var dataDialog = {};
                 vm.registeringUser = true;
                 if (vm.user.role !== undefined)

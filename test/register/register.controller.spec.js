@@ -40,10 +40,7 @@ describe('Register Controller', function() {
         controller.user = user;
         expect(controller.registered).toBeTruthy();
         expect(controller.registeringUser).toBeFalsy();
-        var form = {};
-        var e = {};
-        form.$valid = true;
-        controller.register(e,form);
+        controller.register(e);
         $httpBackend.flush();
         expect(controller.registered).toBeTruthy();
     });
@@ -59,13 +56,10 @@ describe('Register Controller', function() {
                 }
             ]
         };
-        var form = {};
-        var e = {};
-        form.$valid = true;
         $httpBackend.expectPOST(baseAPI+'users/new').respond(500, error);
         controller.user = user;
         expect(controller.registered).toBeTruthy();
-        controller.register(e,form);
+        controller.register();
         $httpBackend.flush();
         expect(controller.registered).toBeFalsy();
     });
