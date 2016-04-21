@@ -41,6 +41,7 @@ describe('Show Schedule Controller', function() {
             Courses: [{id:1}]
         };
         controller.getSchedule(courses);
-        expect(controller.schedule).toEqual(full_schedule);
+        $httpBackend.flush();
+        expect(controller.schedule).toEqual(full_schedule.Courses);
     });
 });
