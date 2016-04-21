@@ -102,7 +102,7 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
         var courses = {
             Courses: [{id:1}]
         };
-        s = sechService.getFullSchedule(courses);
+        s = sechService.getFullSchedule(courses.Courses);
         $httpBackend.flush();
         expect(s).toEqual(full_schedule.Courses);
     });

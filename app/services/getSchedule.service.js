@@ -11,6 +11,7 @@ angular
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
+        var courses = [];
 
         var Course = $resource(server+'/courses/:id', {id:'@id'},{
                 schedule:{
@@ -22,9 +23,11 @@ angular
         );
 
         var service ={
+            getCourses: getCourses,
             getCourse: getCourse,
             getFullSchedule: getFullSchedule,
-            getSchedule: getSchedule
+            getSchedule: getSchedule,
+            setCourses: setCourses
         };
 
         return service;
@@ -46,12 +49,16 @@ angular
             }
         }
 
+        function getCourses(){
+            return courses;
+        }
+
         function getFullSchedule(courses){
             var Courses = [];
-            for(var i=0;i<courses.Courses.length;i++){
+            for(var i=0;i<courses.length;i++){
                 var c = null;
                 var timetable = null;
-                var id = courses.Courses[i].id;
+                var id = courses[i].id;
                 getCourse(id).then(function(data){
                     c = data;
                     getSchedule(id).then(function(data){
@@ -76,5 +83,9 @@ angular
             function getScheduleFailed(err){
                 return err.data.message;
             }
+        }
+
+        function setCourses(cour){
+            courses = cour;
         }
     }

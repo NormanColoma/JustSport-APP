@@ -40,7 +40,7 @@ describe('Show Schedule Controller', function() {
         var courses = {
             Courses: [{id:1}]
         };
-        controller.getSchedule(courses);
+        controller.getSchedule(courses.Courses);
         $httpBackend.flush();
         expect(controller.schedule).toEqual(full_schedule.Courses);
     });
