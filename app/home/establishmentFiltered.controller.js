@@ -6,7 +6,7 @@ angular
     .module('homeModule')
     .controller('EstablishmentFilteredController', EstablishmentFilteredController);
 
-    EstablishmentFilteredController.$inject = ['establishmentFilteredService', '$mdToast', '$mdDialog'];
+    EstablishmentFilteredController.$inject = ['establishmentFilteredService', 'dialogService'];
 
     /**
      *
@@ -15,7 +15,7 @@ angular
      * @memberOf Home
      *
      */
-    function EstablishmentFilteredController(establishmentFilteredService, $mdToast, $mdDialog){
+    function EstablishmentFilteredController(establishmentFilteredService, dialogService){
             var vm = this;
             var local_folder = "https://localhost:3000/";
             var server_folder = "https://justsport-api.herokuapp.com/";
@@ -42,6 +42,7 @@ angular
              * @returns {void}
              */
             function fetchMore(ev){
+                    var dataDialog = {};
                     vm.activated = false;
                     if(vm.prevLocation != vm.location || vm.prevSport != vm.sport){
                         vm.items = [];
@@ -50,19 +51,13 @@ angular
                     establishmentFilteredService.getEstablishments(vm.sport, vm.location, vm.after).then(angular.bind(this, function (data) {
                         if(data === "There no more rows to retrieve") {
                             vm.activated = true;
-                           // $mdToast.show($mdToast.simple().textContent('No hay más establecimientos para la búsqueda introducida'));
                         }else if(data === "There are no establishments that match the current filter"){
                             vm.activated = true;
-                            $mdDialog.show(
-                                $mdDialog.alert()
-                                    .parent(angular.element(document.querySelector('#popupContainer')))
-                                    .clickOutsideToClose(true)
-                                    .title('¡Sin resultados!')
-                                    .textContent('No se han encontrado establecimientos para la búsqueda introducida.')
-                                    .ariaLabel('Alert Dialog Demo')
-                                    .ok('Listo')
-                                    .targetEvent(ev)
-                            );
+                            dataDialog = {
+                                title: 'Sin resultados', text: 'No se han encontrado establecimientos para la búsqueda introducida.',
+                                aria: 'Establishment Dialog', textButton: 'Listo'
+                            };
+                            dialogService.showDialog(dataDialog,ev);
                         }else {
                             vm.activated = true;
                             vm.after = data.paging.cursors.after;
