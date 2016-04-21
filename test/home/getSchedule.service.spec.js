@@ -93,23 +93,18 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
         }};
         var course ={
             course: course1,
-            timetable: schedule.rows
-        }
+            timetable: schedule.Schedule.rows
+        };
         $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
         $httpBackend.expectGET(baseAPI+'courses/1/schedule').respond(schedule);
-        var full_schedule = {
-            Schedule: {
-                Courses: [course]
-            }
-        }
+        var full_schedule = {Courses: [course]};
         var s = null;
         var courses = {
             Courses: [{id:1}]
-        }
-        sechService.getFullSchedule(courses).then(function(data){
-            s = data;
-        });
-        expect(s).toEqual(full_schedule);
+        };
+        s = sechService.getFullSchedule(courses);
+        $httpBackend.flush();
+        expect(s).toEqual(full_schedule.Courses);
     });
 
 });

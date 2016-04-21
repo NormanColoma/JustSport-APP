@@ -23,6 +23,7 @@ angular
 
         var service ={
             getCourse: getCourse,
+            getFullSchedule: getFullSchedule,
             getSchedule: getSchedule
         };
 
@@ -43,6 +44,24 @@ angular
             function getCourseFailed(err){
                 return err.data.message;
             }
+        }
+
+        function getFullSchedule(courses){
+            var Courses = [];
+            for(var i=0;i<courses.Courses.length;i++){
+                var c = null;
+                var timetable = null;
+                var id = courses.Courses[i].id;
+                getCourse(id).then(function(data){
+                    c = data;
+                    getSchedule(id).then(function(data){
+                        timetable = data;
+                        var course = {course: c, timetable: timetable};
+                        Courses.push(course);
+                    });
+                });
+            }
+            return Courses;
         }
 
         function getSchedule(id){
