@@ -22,12 +22,12 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
             c1 = data;
         });
         $httpBackend.flush();
-        expect(c1).toEqual(coruse1);
+        expect(c1).toEqual(course1);
     });
 
     it('Should return message when trying to fetch course that does not exist', function(){
         var message = {message: 'The course was not found'};
-        $httpBackend.expectGET(baseAPI+'courses/5').respond(message);
+        $httpBackend.expectGET(baseAPI+'courses/5').respond(404,message);
         var c1 = null;
         sechService.getCourse(5).then(function(data){
             c1 = data;
@@ -54,14 +54,14 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
             s = data;
         });
         $httpBackend.flush();
-        expect(s).toEqual(schedule.rows);
+        expect(s).toEqual(schedule.Schedule.rows);
     });
 
     it('Should return message when trying to fetch schedule from course that does not exist', function(){
         var message = {message: 'The course was not found'};
-        $httpBackend.expectGET(baseAPI+'courses/5/schedule').respond(message);
+        $httpBackend.expectGET(baseAPI+'courses/5/schedule').respond(404,message);
         var c1 = null;
-        sechService.getCourse(5).then(function(data){
+        sechService.getSchedule(5).then(function(data){
             c1 = data;
         });
         $httpBackend.flush();
@@ -70,9 +70,9 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
 
     it('Should return message when trying to fetch schedule that is not set yet', function(){
         var message = {message: 'There are no schedules for this course'};
-        $httpBackend.expectGET(baseAPI+'courses/5/schedule').respond(message);
+        $httpBackend.expectGET(baseAPI+'courses/5/schedule').respond(404,message);
         var c1 = null;
-        sechService.getCourse(5).then(function(data){
+        sechService.getSchedule(5).then(function(data){
             c1 = data;
         });
         $httpBackend.flush();
