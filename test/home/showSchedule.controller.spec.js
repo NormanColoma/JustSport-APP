@@ -63,14 +63,15 @@ describe('Show Schedule Controller', function() {
         var courses = {
             Courses: [{id:1}]
         };
-        var s = controller.getSchedule(courses.Courses);
+        controller.getSchedule(courses.Courses);
         $httpBackend.flush();
-        controller.orderSchedule(s);
-        expect(controller.schedule.Courses.timetable[0]).toEqual(s2);
-        expect(controller.schedule.Courses.timetable[1]).toEqual(s1);
-        expect(controller.schedule.Courses.timetable[2]).toEqual(s3);
-        expect(controller.schedule.Courses.timetable[3]).toEqual(s4);
-        expect(controller.schedule.Courses.timetable[4]).toEqual(s5);
-        expect(controller.schedule.Courses.timetable[5]).toEqual(s6);
+        var s = controller.schedule;
+        var ordered = controller.orderSchedule(s[0].timetable);
+        expect(ordered[0]).toEqual(s2);
+        expect(ordered[1]).toEqual(s1);
+        expect(ordered[2]).toEqual(s3);
+        expect(ordered[3]).toEqual(s4);
+        expect(ordered[4]).toEqual(s5);
+        expect(ordered[5]).toEqual(s6);
     })
 });

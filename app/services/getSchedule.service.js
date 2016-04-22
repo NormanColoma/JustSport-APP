@@ -3,7 +3,7 @@
  */
 angular
     .module('homeModule')
-    .factory('scheduleService', getScheduleService);
+    .factory('getScheduleService', getScheduleService);
 
     getScheduleService.$inject = ['$resource'];
 
