@@ -1,8 +1,8 @@
-<md-dialog aria-label="Horario"  ng-controller="ShowScheduleController as showScVm" ng-init="showScVm.getSchedule(showScVm.courses)" ng-cloak>
+<md-dialog aria-label="Horario"  ng-controller="ShowScheduleController as showScVm" ng-init="showScVm.getSchedule(showScVm.estab,showScVm.sport)" ng-cloak>
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Horario {{showScVm.timetable}}</h2>
+                <h2>Horario</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="showScVm.hideSchedule()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>

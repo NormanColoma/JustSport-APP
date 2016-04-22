@@ -17,7 +17,8 @@ angular
     function ShowScheduleController(getScheduleService, $mdDialog){
         var vm = this;
 
-        vm.courses = getScheduleService.getCourses();
+        vm.estab = getScheduleService.getEstab();
+        vm.sport = getScheduleService.getSport();
         vm.getSchedule = getSchedule;
         vm.hideSchedule = hideSchedule;
         vm.isTimeGreater = isTimeGreater;
@@ -122,7 +123,8 @@ angular
             return ordered_s;
         }
 
-        function showSchedule(ev){
+        function showSchedule(ev, estabId){
+            getScheduleService.setEstab(estabId);
             $mdDialog.show({
                 templateUrl: 'app/home/est-schedule.tmpl.html',
                 parent: angular.element(document.body),

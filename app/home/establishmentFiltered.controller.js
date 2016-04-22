@@ -6,7 +6,7 @@ angular
     .module('homeModule')
     .controller('EstablishmentFilteredController', EstablishmentFilteredController);
 
-    EstablishmentFilteredController.$inject = ['establishmentFilteredService', 'dialogService'];
+    EstablishmentFilteredController.$inject = ['establishmentFilteredService', 'dialogService', 'getScheduleService'];
 
     /**
      *
@@ -15,7 +15,7 @@ angular
      * @memberOf Home
      *
      */
-    function EstablishmentFilteredController(establishmentFilteredService, dialogService){
+    function EstablishmentFilteredController(establishmentFilteredService, dialogService, getScheduleService){
             var vm = this;
             var local_folder = "https://localhost:3000/";
             var server_folder = "https://justsport-api.herokuapp.com/";
@@ -59,6 +59,7 @@ angular
                             };
                             dialogService.showDialog(dataDialog,ev);
                         }else {
+                            getScheduleService.setSport(vm.sport);
                             vm.activated = true;
                             vm.after = data.paging.cursors.after;
                             vm.items = vm.items.concat(data.Establishments.rows);

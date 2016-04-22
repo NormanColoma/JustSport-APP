@@ -17,7 +17,8 @@ angular
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
-        var courses = [];
+        var sport = null;
+        var estab = null;
 
 
         var Course = $resource(server+'/courses/:id', {id:'@id'},{
@@ -35,11 +36,13 @@ angular
         );
 
         var service ={
-            getCourses: getCourses,
             getCourse: getCourse,
+            getEstab: getEstab,
             getFullSchedule: getFullSchedule,
             getSchedule: getSchedule,
-            setCourses: setCourses
+            getSport: getSport,
+            setEstab: setEstab,
+            setSport: setSport
         };
 
         return service;
@@ -68,8 +71,14 @@ angular
             }
         }
 
-        function getCourses(){
-            return courses;
+        /**
+         * @name getEstab
+         * @desc Returns the estab
+         * @memberOf getScheduleService
+         * @returns {integer}
+         */
+        function getEstab(){
+            return estab;
         }
 
         /**
@@ -115,7 +124,33 @@ angular
             }
         }
 
-        function setCourses(cour){
-            courses = cour;
+        /**
+         * @name getSport
+         * @desc Returns the sport typed in the main search of the app
+         * @memberOf getScheduleService
+         * @returns {string}
+         */
+        function getSport(){
+            return sport;
+        }
+
+        /**
+         * @name setEstab
+         * @desc Sets the estab variable
+         * @memberOf getScheduleService
+         * @param est-> The id of the establishment to retrieve the schedule
+         */
+        function setEstab(est){
+            estab = est;
+        }
+
+        /**
+         * @name setSport
+         * @desc Sets the sport
+         * @param sp-> Sport typed by the user in the main search
+         * @return {void}
+         */
+        function setSport(sp){
+            sport = sp;
         }
     }
