@@ -19,7 +19,6 @@ describe('Show Schedule Controller', function() {
 
     it('Should fetch the schedule', function(){
         var controller = createController();
-        var course1 = {sportId:'1', establishmentId:'1',instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
         var s1 = {day: 'Martes', startTime: '10:00', endTime:"11:00", courseId: 1};
         var s2 = {day: 'Lunes', startTime: '11:00', endTime:"12:00", courseId: 1};
         var s3 = {day: 'Miércoles', startTime: '17:00', endTime:"18:00", courseId: 1};
@@ -30,19 +29,10 @@ describe('Show Schedule Controller', function() {
             count: 6,
             rows: [s1,s2,s3,s4,s5,s6]
         }};
-        var course ={
-            course: course1,
-            timetable: schedule.Schedule.rows
-        };
-        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
-        $httpBackend.expectGET(baseAPI+'courses/1/schedule').respond(schedule);
-        var full_schedule = {Courses: [course]};
-        var courses = {
-            Courses: [{id:1}]
-        };
-        controller.getSchedule(courses.Courses);
+        $httpBackend.expectGET(baseAPI+'establishments/1/sport/1/schedule').respond(schedule);
+        controller.getSchedule(1,1);
         $httpBackend.flush();
-        expect(controller.schedule).toEqual(full_schedule.Courses);
+        expect(controller.schedule).toEqual(schedule.Schedule.rows);
     });
 
     it('Should order the schedule by days and time', function(){
@@ -54,50 +44,25 @@ describe('Show Schedule Controller', function() {
         var s5 = {day: 'Jueves', startTime: '20:00', endTime:"21:00", courseId: 1};
         var s4 = {day: 'Jueves', startTime: '12:00', endTime:"13:00", courseId: 1};
         var s6 = {day: 'Viernes', startTime: '09:00', endTime:"10:00", courseId: 1};
+        var s7 = {day: 'Viernes', startTime: '09:30', endTime:"10:30", courseId: 2};
+        var s8 = {day: 'Domingo', startTime: '19:00', endTime:"20:00", courseId: 2};
+        var s9 = {day: 'Domingo', startTime: '18:00', endTime:"19:00", courseId: 2};
         var schedule = {Schedule: {
             count: 6,
-            rows: [s1,s2,s3,s4,s5,s6]
+            rows: [s1,s2,s3,s4,s5,s6,s7,s8,s9]
         }};
-        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
-        $httpBackend.expectGET(baseAPI+'courses/1/schedule').respond(schedule);
-        var courses = {
-            Courses: [{id:1}]
-        };
-        controller.getSchedule(courses.Courses);
+        $httpBackend.expectGET(baseAPI+'establishments/1/sport/1/schedule').respond(schedule);
+        controller.getSchedule(1,1);
         $httpBackend.flush();
-        var s = controller.schedule;
-        var ordered = controller.orderSchedule(s[0].timetable);
+        var ordered = controller.orderSchedule(controller.schedule);
         expect(ordered[0]).toEqual(s2);
         expect(ordered[1]).toEqual(s1);
         expect(ordered[2]).toEqual(s3);
         expect(ordered[3]).toEqual(s4);
         expect(ordered[4]).toEqual(s5);
         expect(ordered[5]).toEqual(s6);
+        expect(ordered[6]).toEqual(s7);
+        expect(ordered[7]).toEqual(s9);
+        expect(ordered[8]).toEqual(s8);
     });
-
-    it('Should extract the full schedule', function(){
-        var controller = createController();
-        var course1 = {sportId:'1', establishmentId:'1',instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
-        var s1 = {day: 'Martes', startTime: '10:00', endTime:"11:00", courseId: 1};
-        var s2 = {day: 'Lunes', startTime: '11:00', endTime:"12:00", courseId: 1};
-        var s3 = {day: 'Miércoles', startTime: '17:00', endTime:"18:00", courseId: 1};
-        var s5 = {day: 'Jueves', startTime: '20:00', endTime:"21:00", courseId: 1};
-        var s4 = {day: 'Jueves', startTime: '12:00', endTime:"13:00", courseId: 1};
-        var s6 = {day: 'Viernes', startTime: '09:00', endTime:"10:00", courseId: 1};
-        var extracted = [s1,s2,s3,s4,s5,s6];
-        var schedule = {Schedule: {
-            count: 6,
-            rows: [s1,s2,s3,s4,s5,s6]
-        }};
-        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
-        $httpBackend.expectGET(baseAPI+'courses/1/schedule').respond(schedule);
-        var courses = {
-            Courses: [{id:1}]
-        };
-        controller.getSchedule(courses.Courses);
-        $httpBackend.flush();
-
-        var ext = controller.extractSchedule();
-        expect(ext).toEqual(extracted);
-    })
 });

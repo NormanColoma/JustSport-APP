@@ -18,6 +18,11 @@ angular
                     method: 'GET',
                     url: server + '/courses/:id/schedule',
                     isArray: false
+                },
+                fullSchedule:{
+                    method: 'GET',
+                    url: server + '/establishments/:id/sport/:sport/schedule',
+                    isArray: false
                 }
             }
         );
@@ -39,7 +44,7 @@ angular
                 .catch(getCourseFailed);
 
             function getCourseSuccess(data){
-                var course = {sportId: data.sportId, establishmentId: data.establishmentId,
+                var course = {sportId: data.Sport.id, establishmentId: data.Establishment.id,
                 instructor: data.instructor, price: data.price, info: data.info};
                 return course;
             }
@@ -53,22 +58,18 @@ angular
             return courses;
         }
 
-        function getFullSchedule(courses){
-            var Courses = [];
-            for(var i=0;i<courses.length;i++){
-                var c = null;
-                var timetable = null;
-                var id = courses[i].id;
-                getCourse(id).then(function(data){
-                    c = data;
-                    getSchedule(id).then(function(data){
-                        timetable = data;
-                        var course = {course: c, timetable: timetable};
-                        Courses.push(course);
-                    });
-                });
+        function getFullSchedule(id,sport){
+            return Course.fullSchedule({id:id,sport:sport}).$promise
+                .then(getFullScheduleSuccess)
+                .catch(getFullScheduleFailed);
+
+            function getFullScheduleSuccess(data){
+                return data.Schedule.rows;
             }
-            return Courses;
+
+            function getFullScheduleFailed(err){
+                return err.data.message;
+            }
         }
 
         function getSchedule(id){

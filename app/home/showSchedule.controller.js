@@ -11,26 +11,20 @@ angular
         var vm = this;
 
         vm.courses = getScheduleService.getCourses();
-        vm.extractSchedule = extractSchedule;
         vm.getSchedule = getSchedule;
         vm.hideSchedule = hideSchedule;
         vm.isTimeGreater = isTimeGreater;
         vm.orderSchedule = orderSchedule;
         vm.schedule = null;
         vm.showSchedule = showSchedule;
+        vm.timetable = null;
 
 
-        function getSchedule(courses){
-            vm.schedule = getScheduleService.getFullSchedule(courses);
-        }
-
-        function extractSchedule(){
-            var extracted = [];
-            for(var i=0;i<vm.schedule.length;i++){
-                for(var j=0;j<vm.schedule[i].timetable.length;j++)
-                    extracted.push(vm.schedule[i].timetable[j]);
-            }
-            return extracted;
+        function getSchedule(id,sport){
+            getScheduleService.getFullSchedule(id,sport).then(function(data){
+                vm.schedule = data;
+                vm.timetable = orderSchedule(vm.schedule);
+            });
         }
 
         function hideSchedule(){

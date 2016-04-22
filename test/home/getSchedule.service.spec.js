@@ -15,14 +15,16 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
     }));
 
     it('Should return the course passing its id', function(){
-        var course1 = {sportId:'1', establishmentId:'1',instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
+        var course1 = {Sport:{id: '1'},Establishment:{id:'1'},
+            instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
         $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
         var c1 = null;
         sechService.getCourse(1).then(function(data){
             c1 = data;
         });
         $httpBackend.flush();
-        expect(c1).toEqual(course1);
+        var expc_c = {sportId:'1', establishmentId:'1',instructor:'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
+        expect(c1).toEqual(expc_c);
     });
 
     it('Should return message when trying to fetch course that does not exist', function(){
@@ -80,31 +82,28 @@ describe('Schedule Service that retrieves shcedule and courses', function() {
     });
 
     it('Should return the full schedule',function(){
-        var course1 = {sportId:'1', establishmentId:'1',instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
+        var course1 = {Sport:{id: 1},Establishment:{id:1},
+            instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
         var s1 = {day: 'Martes', startTime: '10:00', endTime:"11:00", courseId: 1};
         var s2 = {day: 'Lunes', startTime: '11:00', endTime:"12:00", courseId: 1};
         var s3 = {day: 'Miércoles', startTime: '17:00', endTime:"18:00", courseId: 1};
         var s5 = {day: 'Jueves', startTime: '20:00', endTime:"21:00", courseId: 1};
         var s4 = {day: 'Jueves', startTime: '12:00', endTime:"13:00", courseId: 1};
         var s6 = {day: 'Viernes', startTime: '09:00', endTime:"10:00", courseId: 1};
-        var schedule = {Schedule: {
-            count: 6,
-            rows: [s1,s2,s3,s4,s5,s6]
-        }};
-        var course ={
-            course: course1,
-            timetable: schedule.Schedule.rows
+        var schedule = [s1,s2,s3,s4,s5,s6];
+        var fullSchedule ={
+            Schedule:{
+                count: 6,
+                rows: schedule
+            }
         };
-        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
-        $httpBackend.expectGET(baseAPI+'courses/1/schedule').respond(schedule);
-        var full_schedule = {Courses: [course]};
+        $httpBackend.expectGET(baseAPI+'establishments/1/sport/1/schedule').respond(fullSchedule);
         var s = null;
-        var courses = {
-            Courses: [{id:1}]
-        };
-        s = sechService.getFullSchedule(courses.Courses);
+        sechService.getFullSchedule(1,1).then(function(data){
+            s = data;
+        });
         $httpBackend.flush();
-        expect(s).toEqual(full_schedule.Courses);
+        expect(s).toEqual(schedule);
     });
 
 });
