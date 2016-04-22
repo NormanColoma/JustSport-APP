@@ -44,4 +44,33 @@ describe('Show Schedule Controller', function() {
         $httpBackend.flush();
         expect(controller.schedule).toEqual(full_schedule.Courses);
     });
+
+    it('Should order the schedule by days and time', function(){
+        var controller = createController();
+        var course1 = {sportId:'1', establishmentId:'1',instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
+        var s1 = {day: 'Martes', startTime: '10:00', endTime:"11:00", courseId: 1};
+        var s2 = {day: 'Lunes', startTime: '11:00', endTime:"12:00", courseId: 1};
+        var s3 = {day: 'Miércoles', startTime: '17:00', endTime:"18:00", courseId: 1};
+        var s5 = {day: 'Jueves', startTime: '20:00', endTime:"21:00", courseId: 1};
+        var s4 = {day: 'Jueves', startTime: '12:00', endTime:"13:00", courseId: 1};
+        var s6 = {day: 'Viernes', startTime: '09:00', endTime:"10:00", courseId: 1};
+        var schedule = {Schedule: {
+            count: 6,
+            rows: [s1,s2,s3,s4,s5,s6]
+        }};
+        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
+        $httpBackend.expectGET(baseAPI+'courses/1/schedule').respond(schedule);
+        var courses = {
+            Courses: [{id:1}]
+        };
+        var s = controller.getSchedule(courses.Courses);
+        $httpBackend.flush();
+        controller.orderSchedule(s);
+        expect(controller.schedule.Courses.timetable[0]).toEqual(s2);
+        expect(controller.schedule.Courses.timetable[1]).toEqual(s1);
+        expect(controller.schedule.Courses.timetable[2]).toEqual(s3);
+        expect(controller.schedule.Courses.timetable[3]).toEqual(s4);
+        expect(controller.schedule.Courses.timetable[4]).toEqual(s5);
+        expect(controller.schedule.Courses.timetable[5]).toEqual(s6);
+    })
 });
