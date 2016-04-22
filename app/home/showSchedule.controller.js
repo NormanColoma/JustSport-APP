@@ -1,5 +1,6 @@
 /**
- * Created by Norman on 21/04/2016.
+ * Show Schedule Controller
+ * @namespace Home
  */
 angular
     .module('homeModule')
@@ -7,6 +8,12 @@ angular
 
     ShowScheduleController.$inject = ['getScheduleService', '$mdDialog'];
 
+    /**
+    *
+    * @namespace ShowScheduleController
+    * @desc Controller that manages the information about schedules from Home
+    * @memberOf Home
+    */
     function ShowScheduleController(getScheduleService, $mdDialog){
         var vm = this;
 
@@ -20,6 +27,14 @@ angular
         vm.timetable = null;
 
 
+        /**
+         * @name getSchedule
+         * @desc Fetch the full schedule and order it
+         * @memberOf ShowScheduleController
+         * @param id -> Id of the establishment
+         * @param sport -> Id of the sport
+         * @return {Void}
+         */
         function getSchedule(id,sport){
             getScheduleService.getFullSchedule(id,sport).then(function(data){
                 vm.schedule = data;
@@ -27,10 +42,24 @@ angular
             });
         }
 
+        /**
+         * @name hideSchedule
+         * @desc Hides the schedule dialog
+         * @memberOf ShowScheduleController
+         * @return {void}
+         */
         function hideSchedule(){
             $mdDialog.cancel();
         }
 
+        /**
+         * @name isTimeGreater
+         * @desc Checks if current time of schedule activity, is greater than old time
+         * @memberOf ShowScheduleController
+         * @param current-> String that represents current startTime
+         * @param old-> String that represents old startTime
+         * @returns {boolean}
+         */
         function isTimeGreater(current, old){
             var current_t = current.split(":");
             var old_t = old.split(":");
@@ -46,6 +75,13 @@ angular
 
         }
 
+        /**
+         * @name orderSchedule
+         * @desc Order the schedule ascending by day of week and time of day
+         * @memberOf ShowScheduleController
+         * @param schedule -> Array containing full schedule
+         * @returns {Array}
+         */
         function orderSchedule(schedule){
             var ordered_s = [];
             ordered_s.push(schedule[0]);
@@ -86,8 +122,7 @@ angular
             return ordered_s;
         }
 
-        function showSchedule(ev, courses){
-            getScheduleService.setCourses(courses);
+        function showSchedule(ev){
             $mdDialog.show({
                 templateUrl: 'app/home/est-schedule.tmpl.html',
                 parent: angular.element(document.body),

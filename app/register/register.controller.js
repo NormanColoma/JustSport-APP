@@ -1,5 +1,6 @@
 /**
- * Created by Norman on 15/04/2016.
+ * Register Controller
+ * @namespace Register
  */
 angular
     .module('registerModule')
@@ -8,6 +9,12 @@ angular
     RegisterController.$inject = ['$location','registerUserService', 'dialogService'];
 
 
+    /**
+    *
+    * @namespace RegisterController
+    * @desc Controller that manages the registation of the user into the app
+    * @memberOf Register
+    */
     function RegisterController($location, registerUserService, dialogService){
         var vm = this;
         var base_api = 'https://localhost:3000/api/';
@@ -23,6 +30,13 @@ angular
 
         selectView();
 
+        /**
+         * @name changeView
+         * @desc Change the view between login and register, and clean up the form passed
+         * @memberOf RegisterController
+         * @param form-> Login or register form
+         * @return void
+         */
         function changeView(form){
             if(!vm.registerView) {
                 vm.registerView = true;
@@ -35,6 +49,14 @@ angular
             resetForm(form);
         }
 
+        /**
+         * @name register
+         * @desc Registers the user into the app. If ok, it redirects the user to the login, and show info dialog. If not,
+         * it will show alert dialog.
+         * @memberOf RegisterController
+         * @param ev-> Event captured
+         * @return {void}
+         */
         function register(ev){
             var dataDialog = {};
             if(vm.user !== undefined) {
@@ -67,6 +89,13 @@ angular
             }
         }
 
+        /**
+         * @name resetForm
+         * @desc Sets the form to its initial stateç
+         * @memberOf RegisterController
+         * @param form-> The form to be reseted
+         * @return {void}
+         */
         function resetForm(form){
             if(form !== undefined) {
                 form.$setPristine();
@@ -75,6 +104,12 @@ angular
             }
         }
 
+        /**
+         * @name selectView
+         * @desc Redirects to register or login view
+         * @memberOf RegisterController
+         * @return {void}
+         */
         function selectView(){
             var path = $location.path();
             if(path === '/register'){

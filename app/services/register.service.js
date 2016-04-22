@@ -1,5 +1,6 @@
 /**
- * Created by Norman on 17/04/2016.
+ * Register Service
+ * @nameSpace Services
  */
 angular
     .module('registerModule')
@@ -7,6 +8,12 @@ angular
 
     registerUserService.$inject = ['$http'];
 
+    /**
+    *
+    * @namespaces registerUserService
+    * @desc Services that manages the user registration
+    * @memberOf Services
+    */
     function registerUserService($http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
@@ -20,6 +27,13 @@ angular
 
         return service;
 
+        /**
+         * @name registerUser
+         * @desc Register the user making and http request through the API
+         * @memberOf registerUserService
+         * @param user -> User to be registered
+         * @returns {Boolean || String}
+         */
         function registerUser(user){
             var data = {
                 name:user.name, lname:user.lname, email:user.email,

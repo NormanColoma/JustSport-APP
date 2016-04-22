@@ -1,5 +1,6 @@
 /**
- * Created by Norman on 21/04/2016.
+ * Get Schedule Service
+ * @namespace Services
  */
 angular
     .module('homeModule')
@@ -7,11 +8,17 @@ angular
 
     getScheduleService.$inject = ['$resource'];
 
+    /**
+     * @namespace getScheduleService
+     * @desc Service that fetch the schedule
+     * @memberOf Services
+     */
     function getScheduleService($resource){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
         var courses = [];
+
 
         var Course = $resource(server+'/courses/:id', {id:'@id'},{
                 schedule:{
@@ -37,6 +44,13 @@ angular
 
         return service;
 
+        /**
+         * @name getCourse
+         * @desc Fetch the course by its id
+         * @memberOf getScheduleService
+         * @param id -> Represents the id of the course
+         * @returns {course}
+         */
         function getCourse(id){
 
             return Course.get({id: id}).$promise
@@ -58,6 +72,14 @@ angular
             return courses;
         }
 
+        /**
+         * @name getFullSchedule
+         * @desc Fetch the schedules for courses that belong to the establishment and sport passed
+         * @memberOf getScheduleService
+         * @param id -> Represents the id of the establishment
+         * @param sport -> Represents the id of the sport
+         * @returns {Array}
+         */
         function getFullSchedule(id,sport){
             return Course.fullSchedule({id:id,sport:sport}).$promise
                 .then(getFullScheduleSuccess)
@@ -72,6 +94,13 @@ angular
             }
         }
 
+        /**
+         * @name getSchedule
+         * @desc Fetch the schedule of the course
+         * @memberOf getScheduleService
+         * @param id -> Represents the id of the course
+         * @returns {Array}
+         */
         function getSchedule(id){
             return Course.schedule({id: id}).$promise
                 .then(getScheduleSuccess)

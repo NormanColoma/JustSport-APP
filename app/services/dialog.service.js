@@ -1,8 +1,6 @@
 /**
- * Created by Norman on 19/04/2016.
- */
-/**
- * Created by Norman on 17/04/2016.
+ * Dialog Service
+ * @namespace Services
  */
 angular
     .module('justSport')
@@ -10,6 +8,11 @@ angular
 
     dialogService.$inject = ['$mdDialog'];
 
+    /**
+     * @namespace dialogService
+     * @desc Service which handles the dialogs of the app
+     * @memberOf Services
+     */
     function dialogService($mdDialog){
         var service = {
             showDialog: showDialog
@@ -17,6 +20,14 @@ angular
 
         return service;
 
+        /**
+         * @name showDialog
+         * @desc Prompts the dialog
+         * @memberOf dialogService
+         * @param data-> JSON Object that contains the info to be prompted by the dialog
+         * @param ev-> Event captured
+         * @return {void}
+         */
         function showDialog(data,ev){
             $mdDialog.show(
                 $mdDialog.alert()
