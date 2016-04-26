@@ -27,6 +27,13 @@ angular
         vm.showSchedule = showSchedule;
         vm.timetable = null;
 
+        /**
+         * @name getCourse
+         * @desc Fetch the course
+         * @param id -> Id of the course
+         * @memberOf ShowScheduleController
+         * @return {void}
+         */
         function getCourse(id){
             getScheduleService.getCourse(id).then(function(data){
                 if(data.info !== undefined){
@@ -36,7 +43,7 @@ angular
         }
         /**
          * @name getSchedule
-         * @desc Fetch the full schedule and order it
+         * @desc Fetch the full schedule
          * @memberOf ShowScheduleController
          * @param id -> Id of the establishment
          * @param sport -> Id of the sport
