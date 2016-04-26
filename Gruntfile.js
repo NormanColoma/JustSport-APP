@@ -39,7 +39,8 @@ module.exports = function(grunt) {
                     'app/app.min.js': ['app/sports/sport.module.js', 'app/sports/sportList.controller.js',
                         'app/services/sportList.service.js', 'app/home/home.module.js', 'app/components/scrollTo.directive.js',
                         'app/components/filteredResults.directive.js', 'app/services/establishmentFiltered.service.js',
-                        'app/services/citySuggestions.service.js','app/home/home.controller.js', 'app/home/establishmentFiltered.controller.js',
+                        'app/services/getSchedule.service.js', 'app/services/citySuggestions.service.js','app/home/home.controller.js',
+                        'app/home/showSchedule.controller.js','app/home/establishmentFiltered.controller.js',
                         'app/login/login.module.js','app/services/login.service.js', 'app/login/login.controller.js',
                         'app/register/register.module.js', 'app/register/register.controller.js', 'app/services/register.service.js',
                         'app/app.module.js', 'app/services/dialog.service.js']
@@ -73,7 +74,10 @@ module.exports = function(grunt) {
                 }
             },
             dev:{
-
+                options: {
+                    script: 'bin/www.js',
+                    node_env: 'development'
+                }
             },production:{
                 options:{
                     script: 'bin/www.js',
@@ -93,5 +97,5 @@ module.exports = function(grunt) {
     grunt.registerTask('start', ['shell:start_server']);
     grunt.registerTask('e2e-test', ['express:test', 'shell:e2e_test']);
     grunt.registerTask('e2e-test-prod', ['express:production', 'shell:e2e_test']);
-    grunt.registerTask('e2e-travis', ['express:test', 'shell:e2e_travis']);
+    grunt.registerTask('e2e-travis', ['express:dev', 'shell:e2e_travis']);
 };

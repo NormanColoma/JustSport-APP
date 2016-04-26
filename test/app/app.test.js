@@ -22,6 +22,7 @@
         $httpBackend.whenGET('public/images/icons/ic_expand_more_black_36px.svg').passThrough();
         $httpBackend.whenGET('public/images/icons/date.svg').passThrough();
         $httpBackend.whenGET('public/images/icons/info.svg').passThrough();
+        $httpBackend.whenGET('public/images/icons/ic_close.svg').passThrough();
 
     }
 
