@@ -17,6 +17,7 @@ angular
     function ShowScheduleController(getScheduleService, dialogService, $mdDialog){
         var vm = this;
 
+        vm.backToSchedule = backToSchedule;
         vm.course = null;
         vm.estab = getScheduleService.getEstab();
         vm.sport = getScheduleService.getSport();
@@ -27,6 +28,10 @@ angular
         vm.showSchedule = showSchedule;
         vm.timetable = null;
 
+
+        function backToSchedule(){
+            vm.course = null;
+        }
         /**
          * @name getCourse
          * @desc Fetch the course

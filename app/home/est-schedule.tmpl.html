@@ -4,7 +4,8 @@
     <form ng-if="showScVm.timetable != null">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Horario</h2>
+                <h2 ng-if="showScVm.course == null">Horario</h2>
+                <h2 ng-if="showScVm.course != null">Información del Curso</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="showScVm.hideSchedule()">
                     <md-icon md-svg-src="public/images/icons/ic_close.svg" aria-label="Close dialog"></md-icon>
@@ -12,22 +13,30 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <md-list>
+            <md-list ng-if="showScVm.course == null">
                 <md-list-item class="md-3-line" ng-repeat="item in showScVm.timetable">
                     <div class="md-list-item-text">
                         <h3>{{item.day}}</h3>
                         <p>{{item.startTime}} - {{item.endTime}}</p>
                     </div>
-                    <md-button class="md-secondary">
+                    <md-button class="md-secondary" ng-click="showScVm.getCourse(item.courseId)">
                         Info Curso
                     </md-button>
                     <md-divider ng-if="!$last"></md-divider>
                 </md-list-item>
             </md-list>
+            <md-content ng-if="showScVm.course != null" class="padding-content">
+                <h2 class="md-title">{{showScVm.course.info}}</h2>
+                <p>Monitor: {{showScVm.course.instructor}} </p>
+                <p>Precio: {{showScVm.course.price | number:2 }} €</p>
+            </md-content>
         </md-dialog-content>
         <md-dialog-actions layout="row">
-            <md-button ng-click="showScVm.hideSchedule()" style="margin-right:20px;">
+            <md-button  ng-if="showScVm.course == null" ng-click="showScVm.hideSchedule()" style="margin-right:20px;">
                 Ok
+            </md-button>
+            <md-button  ng-if="showScVm.course != null" ng-click="showScVm.backToSchedule()" style="margin-right:20px;">
+                Volver a Horarios
             </md-button>
         </md-dialog-actions>
     </form>
