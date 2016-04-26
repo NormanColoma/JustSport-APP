@@ -32,10 +32,12 @@
             </md-content>
         </md-dialog-content>
         <md-dialog-actions layout="row">
-            <md-button  ng-if="showScVm.course == null" ng-click="showScVm.hideSchedule()" style="margin-right:20px;">
+            <md-button  ng-if="showScVm.course == null" ng-click="showScVm.hideSchedule()" style="margin-right:20px;"
+            id="hide-schedule-dialog">
                 Ok
             </md-button>
-            <md-button  ng-if="showScVm.course != null" ng-click="showScVm.backToSchedule()" style="margin-right:20px;">
+            <md-button  ng-if="showScVm.course != null" ng-click="showScVm.backToSchedule()" style="margin-right:20px;"
+            id="back-to-schedule">
                 Volver a Horarios
             </md-button>
         </md-dialog-actions>
@@ -46,7 +48,8 @@
         <p class="ng-binding">Aún no se ha establecido un horario para este establecimiento.</p>
     </md-dialog-content>
     <md-dialog-actions ng-if="showScVm.timetable == null">
-        <button class="md-primary md-button md-default-theme md-ink-ripple _md-autofocus" type="button" ng-click="showScVm.hideSchedule()" aria-label="Listo">
+        <button class="md-primary md-button md-default-theme md-ink-ripple _md-autofocus" type="button" ng-click="showScVm.hideSchedule()" aria-label="Listo"
+        id="dismiss-schedule-aler">
             <span class="ng-binding ng-scope">Listo</span>
         </button>
     </md-dialog-actions>
