@@ -76,7 +76,10 @@ module.exports = function(grunt) {
                 }
             },
             dev:{
-
+                options: {
+                    script: 'bin/www.js',
+                    node_env: 'development'
+                }
             },production:{
                 options:{
                     script: 'bin/www.js',
@@ -96,5 +99,5 @@ module.exports = function(grunt) {
     grunt.registerTask('start', ['shell:start_server']);
     grunt.registerTask('e2e-test', ['express:test', 'shell:e2e_test']);
     grunt.registerTask('e2e-test-prod', ['express:production', 'shell:e2e_test']);
-    grunt.registerTask('e2e-travis', ['express:test', 'shell:e2e_travis']);
+    grunt.registerTask('e2e-travis', ['express:dev', 'shell:e2e_travis']);
 };
