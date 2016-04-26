@@ -34,4 +34,14 @@ describe('Show Schedule Controller', function() {
         $httpBackend.flush();
         expect(controller.schedule).toEqual(schedule.Schedule.rows);
     });
+
+    it('Should fetch the course', function(){
+        var controller = createController();
+        var course1 = {Sport:{id: '1'},Establishment:{id:'1'},
+            instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
+        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
+        controller.getCourse(1);
+        $httpBackend.flush();
+        expect(controller.course).toEqual(course1);
+    });
 });
