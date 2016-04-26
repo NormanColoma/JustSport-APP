@@ -6,7 +6,7 @@ angular
     .module('homeModule')
     .controller('ShowScheduleController', ShowScheduleController);
 
-    ShowScheduleController.$inject = ['getScheduleService', '$mdDialog'];
+    ShowScheduleController.$inject = ['getScheduleService', 'dialogService', '$mdDialog'];
 
     /**
     *
@@ -14,19 +14,16 @@ angular
     * @desc Controller that manages the information about schedules from Home
     * @memberOf Home
     */
-    function ShowScheduleController(getScheduleService, $mdDialog){
+    function ShowScheduleController(getScheduleService, dialogService, $mdDialog){
         var vm = this;
 
         vm.estab = getScheduleService.getEstab();
         vm.sport = getScheduleService.getSport();
         vm.getSchedule = getSchedule;
         vm.hideSchedule = hideSchedule;
-        vm.isTimeGreater = isTimeGreater;
-        vm.orderSchedule = orderSchedule;
         vm.schedule = null;
         vm.showSchedule = showSchedule;
         vm.timetable = null;
-
 
         /**
          * @name getSchedule
@@ -38,8 +35,13 @@ angular
          */
         function getSchedule(id,sport){
             getScheduleService.getFullSchedule(id,sport).then(function(data){
-                vm.schedule = data;
-                vm.timetable = orderSchedule(vm.schedule);
+                if(data !== 'There is no schedule established yet') {
+                    vm.schedule = data;
+                    vm.timetable = vm.schedule;
+                }else{
+                    vm.schedule = null;
+                    vm.timetable = vm.schedule;
+                }
             });
         }
 
@@ -54,83 +56,17 @@ angular
         }
 
         /**
-         * @name isTimeGreater
-         * @desc Checks if current time of schedule activity, is greater than old time
+         * @name showSchedule
+         * @desc Sets the id of establishment, and show the schedule into dialog
          * @memberOf ShowScheduleController
-         * @param current-> String that represents current startTime
-         * @param old-> String that represents old startTime
-         * @returns {boolean}
+         * @param ev->Event captured
+         * @param estabId-> Represents the id of establishment to be stored in service
+         * @return {void}
          */
-        function isTimeGreater(current, old){
-            var current_t = current.split(":");
-            var old_t = old.split(":");
-            if(current_t[0] > old_t[0])
-                return true;
-            else if(current_t[0] === old_t[0]){
-                if(current_t[1] >= old_t[1])
-                    return true;
-                return false;
-            }else{
-                return false;
-            }
-
-        }
-
-        /**
-         * @name orderSchedule
-         * @desc Order the schedule ascending by day of week and time of day
-         * @memberOf ShowScheduleController
-         * @param schedule -> Array containing full schedule
-         * @returns {Array}
-         */
-        function orderSchedule(schedule){
-            var ordered_s = [];
-            ordered_s.push(schedule[0]);
-            for(var i=1;i<schedule.length;i++){
-                if(schedule[i].day === "Lunes" && ordered_s[i-1].day !== "Lunes"){
-                    ordered_s[i] = ordered_s[i-1];
-                    ordered_s[i-1] = schedule[i];
-                }else if(schedule[i].day === "Martes" && ordered_s[i-1].day !== "Martes" && ordered_s[i-1].day !== "Lunes"){
-                    ordered_s[i] = ordered_s[i-1];
-                    ordered_s[i-1] = schedule[i];
-                }else if(schedule[i].day === "Miércoles" && ordered_s[i-1].day !== "Miércoles" &&
-                    ordered_s[i-1].day !== "Martes" && ordered_s[i-1].day !== "Lunes"){
-                    ordered_s[i] = ordered_s[i-1];
-                    ordered_s[i-1] = schedule[i];
-                }else if(schedule[i].day === "Jueves" && ordered_s[i-1].day === "Viernes" &&
-                    ordered_s[i-1].day === "Sábado" && ordered_s[i-1].day === "Domingo"){
-                    ordered_s[i] = ordered_s[i-1];
-                    ordered_s[i-1] = schedule[i];
-                }else if(schedule[i].day === "Viernes" && ordered_s[i-1].day !== "Viernes" &&
-                    ordered_s[i-1].day !== "Jueves" && ordered_s[i-1].day !== "Miércoles" && ordered_s[i-1].day !== "Martes" &&
-                    ordered_s[i-1]-day!=="Lunes"){
-                    ordered_s[i] = ordered_s[i-1];
-                    ordered_s[i-1] = schedule[i];
-                }else if(schedule[i].day === "Sábado" && ordered_s[i-1].day === "Domingo"){
-                    ordered_s[i] = ordered_s[i-1];
-                    ordered_s[i-1] = schedule[i];
-                }else if(schedule[i].day === ordered_s[i-1].day){
-                    if(isTimeGreater(schedule[i].startTime,ordered_s[i-1].startTime)){
-                        ordered_s[i] = schedule[i];
-                    }else{
-                        ordered_s[i] = ordered_s[i-1];
-                        ordered_s[i-1] = schedule[i];
-                    }
-                }else{
-                    ordered_s[i] = schedule[i];
-                }
-            }
-            return ordered_s;
-        }
-
         function showSchedule(ev, estabId){
+            var template = 'app/home/est-schedule.tmpl.html';
             getScheduleService.setEstab(estabId);
-            $mdDialog.show({
-                templateUrl: 'app/home/est-schedule.tmpl.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true,
-            });
+            dialogService.showCustomDialog(ev,template);
         }
 
     }

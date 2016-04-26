@@ -15,6 +15,7 @@ angular
      */
     function dialogService($mdDialog){
         var service = {
+            showCustomDialog: showCustomDialog,
             showDialog: showDialog
         };
 
@@ -39,5 +40,22 @@ angular
                     .ok(data.textButton)
                     .targetEvent(ev)
             );
+        }
+
+        /**
+         * @name showCustomDialog
+         * @desc It recieves the path of template, and load it into the dialog
+         * @memberOf dialogService
+         * @param ev-> Event captured
+         * @param template-> The path to the custom template for the dialog
+         * @return {void}
+         */
+        function showCustomDialog(ev,template){
+            $mdDialog.show({
+                templateUrl: template,
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+            });
         }
     }
