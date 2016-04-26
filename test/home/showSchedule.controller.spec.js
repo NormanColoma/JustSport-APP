@@ -1,6 +1,6 @@
 describe('Show Schedule Controller', function() {
     var $httpBackend, $rootScope, createController;
-    var baseAPI = 'https://localhost:3000/api/';
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
 
     beforeEach(module('justSport'));
 
