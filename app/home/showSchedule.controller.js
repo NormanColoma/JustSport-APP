@@ -17,14 +17,23 @@ angular
     function ShowScheduleController(getScheduleService, dialogService, $mdDialog){
         var vm = this;
 
+        vm.course = null;
         vm.estab = getScheduleService.getEstab();
         vm.sport = getScheduleService.getSport();
+        vm.getCourse = getCourse;
         vm.getSchedule = getSchedule;
         vm.hideSchedule = hideSchedule;
         vm.schedule = null;
         vm.showSchedule = showSchedule;
         vm.timetable = null;
 
+        function getCourse(id){
+            getScheduleService.getCourse(id).then(function(data){
+                if(data.info !== undefined){
+                    vm.course = data;
+                }
+            });
+        }
         /**
          * @name getSchedule
          * @desc Fetch the full schedule and order it

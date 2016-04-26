@@ -42,6 +42,8 @@ describe('Show Schedule Controller', function() {
         $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
         controller.getCourse(1);
         $httpBackend.flush();
-        expect(controller.course).toEqual(course1);
+        var expected = {sportId: '1', establishmentId:'1',
+            instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
+        expect(controller.course).toEqual(expected);
     });
 });
