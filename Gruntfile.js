@@ -43,7 +43,7 @@ module.exports = function(grunt) {
                         'app/home/showSchedule.controller.js','app/home/establishmentFiltered.controller.js',
                         'app/login/login.module.js','app/services/login.service.js', 'app/login/login.controller.js',
                         'app/register/register.module.js', 'app/register/register.controller.js', 'app/services/register.service.js',
-                        'app/establishment-details/establishment.module.js','app/services/establishmentDetails.service.js',
+                        'app/establishment-details/establishment.module.js','app/establishment-details/establishmentDetails.controller.js','app/services/establishmentDetails.service.js',
                         'app/app.module.js', 'app/services/dialog.service.js','test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
                         'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js', 'test/app/register.module.test.js',
                         'test/app/showSchedule.module.test.js']

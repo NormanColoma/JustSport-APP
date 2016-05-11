@@ -28,9 +28,9 @@ describe('Establishment Details Controller', function() {
     it('Should fetch the establishment', function(){
         var controller = createController();
         $httpBackend.expectGET(baseAPI+'establishments/1').respond(estab);
-        expect(controller.establishment).toBe({});
-        expect(controller.votes).toBe([]);
-        expect(controller.commentaries).toBe([]);
+        expect(controller.establishment).toEqual({});
+        expect(controller.votes).toBe(0);
+        expect(controller.commentaries).toEqual([]);
         /* jshint ignore:start*/
         controller.getEstablishment(1);
         /*jshint ignore:end */
@@ -39,7 +39,15 @@ describe('Establishment Details Controller', function() {
             province: "Alicante", addr: "Esta es la dirección", phone: "965660427", website: "www.pagina.com",
             main_img:"default.jpg"};
         expect(controller.establishment).toEqual(expected_estab);
-        expect(controller.votes).toEqual(estab.Votes);
+        expect(controller.votes).toEqual(1);
         expect(controller.commentaries).toEqual(estab.Commentaries);
     });
+
+    it('Should format the date of commentaries', function(){
+        var date = "2016-05-11T09:02:45.000Z";
+        var controller = createController();
+        var real_date = controller.formatDate(date);
+        var expected_date = "11 de Mayo, 13:39";
+        expect(real_date).toEqual(expected_date);
+    })
 });
