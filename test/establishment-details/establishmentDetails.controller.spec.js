@@ -47,7 +47,16 @@ describe('Establishment Details Controller', function() {
         var date = "2016-05-11T09:02:45.000Z";
         var controller = createController();
         var real_date = controller.formatDate(date);
-        var expected_date = "11 de Mayo, 13:39";
+        var expected_date = "11 de Mayo 2016, 11:02:45";
         expect(real_date).toEqual(expected_date);
-    })
+    });
+
+    it('Should get the correct hour', function(){
+        var controller = createController();
+        expect('02').toEqual(controller.getHour('24'));
+        expect('00').toEqual(controller.getHour('22'));
+        expect('01').toEqual(controller.getHour('23'));
+        expect('09').toEqual(controller.getHour('07'));
+        expect('11').toEqual(controller.getHour('09'));
+    });
 });
