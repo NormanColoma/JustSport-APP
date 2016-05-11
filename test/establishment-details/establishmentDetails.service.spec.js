@@ -31,4 +31,18 @@ describe('Establishment Details Service that retrieves full establishment', func
         var expc_est = estab;
         expect(est).toEqual(expc_est);
     });
+
+    it('Should return error message',function(){
+        var message = {
+            message: "There was an error when loading establishment"
+        };
+        var m = null;
+        $httpBackend.expectGET(baseAPI+'establishments/1').respond(500,message);
+        estService.getEstablishment(1).then(function(data){
+            m = data;
+        });
+        $httpBackend.flush();
+
+        expect(message).toEqual(m);
+    });
 });
