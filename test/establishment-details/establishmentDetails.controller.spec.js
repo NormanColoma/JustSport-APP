@@ -64,4 +64,22 @@ describe('Establishment Details Controller', function() {
         expect('09').toEqual(controller.getHour('07'));
         expect('11').toEqual(controller.getHour('09'));
     });
+
+    it('Should add the new commentary and push it to array of commentaries', function(){
+        var controller = createController();
+        var expected_comm = {Commentary: {id: 5, text: "El ambiente del gimnasio es increíble", "createdAt": "2016-05-12T22:53:31.433Z",
+            User: {
+                name: "Norman",
+                img: "default.jpg"
+            }}};
+        $httpBackend.expectPOST(baseAPI+'establishments/1/commentaries/new').respond(201, expected_comm);
+        expect(controller.commentaries).toEqual([]);
+        expect(controller.commentaries.length).toEqual(0);
+        /* jshint ignore:start*/
+        controller.addCommentary(1, "Este es el comentario");
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.commentaries.length).toEqual(1);
+        expect(controller.commentaries[0]).toEqual("Este es el comentario");
+    });
 });
