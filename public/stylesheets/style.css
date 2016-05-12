@@ -10,6 +10,14 @@ body{
   cursor: pointer;
 }
 
+.underline{
+
+}
+
+.underline:hover{
+  text-decoration: underline;
+}
+
 .layout-center{
   margin:0 auto;
 }
@@ -51,7 +59,7 @@ body{
 }
 
 .color-primary{
-  color:rgb(16,108,200);
+  color:rgb(16,108,200) !important;
 }
 
 .margin-md{
@@ -148,4 +156,18 @@ md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-
     bottom: -1px;
     font-size: 11px;
   }
+}
+
+.justify{
+  text-align: justify;
+}
+
+.like-container{
+  margin-top: 5px;
+}
+.like-cnt{
+  position: absolute;
+  margin-left: 30px;
+  margin-top: 4px;
+  color: #757474;
 }

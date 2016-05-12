@@ -17,7 +17,6 @@ angular
             var scroll = $('#scroll');
             var results = $('#results');
             element.on('click', function(){
-                console.log(attrs.id);
                 if(attrs.id == "scrollResults"){
                     $('body').animate({scrollTop: results.offset().top}, "slow");
                 }else{

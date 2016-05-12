@@ -1,13 +1,13 @@
 <link rel="stylesheet" type="text/css" href="public/stylesheets/estab-details.css">
 <div>
-    <h1 class=".md-display-2">{{estDtVm.establishment.name}}</h1>
+    <h1 class="md-display-2">{{estDtVm.establishment.name}}</h1>
     <md-content layout="row" layout-margin layout-wrap style="background-color: inherit;">
         <div flex="45">
             <img flex="100" layout="row" ng-src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}"
                  alt="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}" src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}">
         </div>
         <div layout="column" flex="50">
-            <p>{{estDtVm.establishment.desc}}</p>
+            <p class="justify">{{estDtVm.establishment.desc}}</p>
             <ul>
                 <li>
                     <md-icon md-svg-icon='public/images/icons/location.svg'></md-icon>
@@ -22,6 +22,43 @@
                     <a class="link" href="{{estDtVm.establishment.website}}">{{estDtVm.establishment.website}}</a>
                 </li>
             </ul>
+            <div layout="row" layout-align="start end" class="like-container">
+                <span establishment-vote><p class="like-cnt">{{estDtVm.votes}}</p>
+                    <md-icon md-svg-icon='public/images/icons/thumb_up.svg' class="clickable"></md-icon>
+                </span>
+            </div>
         </div>
+    </md-content>
+    <md-content layout="column" layout-margin style="background-color: inherit;">
+        <h2 class="md-display-1 subheader">Cursos</h2>
+        <md-divider></md-divider>
+        <ul class="margin-left">
+            <li ng-repeat="item in estDtVm.courses">
+                <a class="clickable underline">Curso de {{item.Sport.name}}</a>
+            </li>
+        </ul>
+    </md-content>
+    <md-content layout="column" layout-margin style="background-color: inherit;">
+        <h2 class="md-display-1 subheader">Comentarios</h2>
+        <md-divider></md-divider>
+        <md-list>
+            <md-subheader class="md-no-sticky" style="background-color: inherit;">{{estDtVm.commentaries.length}} comentarios</md-subheader>
+            <md-list-item class="md-3-line" ng-repeat="item in estDtVm.commentaries">
+                <img ng-src="{{estDtVm.imgFolder+item.User.img}}?{{$index}}" class="md-avatar" alt="{{item.User.img}}" />
+                <div class="md-list-item-text" layout="column">
+                    <h3 class="color-primary">{{ item.User.name }}</h3>
+                    <h4 class="md-caption">{{ estDtVm.formatDate(item.createdAt) }}</h4>
+                    <p>{{ item.text }}</p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <form>
+            <h4 class="md-headline subheader">Deja tu comentario</h4>
+            <md-input-container class="md-block">
+                <label>Escribe aquí tu comentario</label>
+                <textarea ng-model="user.address"></textarea>
+            </md-input-container>
+            <md-button class="md-raised md-primary" type="submit">Comentar</md-button>
+        </form>
     </md-content>
 </div>

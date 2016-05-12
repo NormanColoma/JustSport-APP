@@ -55,4 +55,13 @@ describe('Establishment Details Service that retrieves full establishment', func
 
         expect(message).toEqual(m);
     });
+
+    it('Should return true when voting',function(){
+        $httpBackend.expectGET(baseAPI+'establishments/1/votes/new').respond(201);
+        var result = false;
+        estService.vote(1).then(function(data){
+            result = data;
+        });
+        expect(result).toBeTruthy();
+    });
 });

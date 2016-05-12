@@ -17,6 +17,13 @@ angular
                 query: {
                     isArray:false,
                     method: 'GET'
+                },
+                vote:{
+                    method: 'POST',
+                    url: server + '/:id/votes/new',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.token
+                    }
                 }
             }
         );

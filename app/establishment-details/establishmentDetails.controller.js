@@ -24,6 +24,7 @@ angular
         vm.getEstablishment = getEstablishment;
         vm.getHour = getHour;
         vm.getMonth = getMonth;
+        vm.imgFolder = server+"public/images/users/";
         vm.removeEstab = removeEstab;
         vm.votes = 0;
 
@@ -32,6 +33,7 @@ angular
                 if(data === "There was an error when loading establishment"){
 
                 }else{
+                    console.log(data);
                     vm.establishment = data.Establishment;
                     vm.commentaries = data.Commentaries;
                     vm.votes = data.Votes;
@@ -110,4 +112,5 @@ angular
             vm.votes = 0;
             vm.courses = [];
         }
+
     }
