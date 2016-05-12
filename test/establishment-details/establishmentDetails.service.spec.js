@@ -75,4 +75,18 @@ describe('Establishment Details Service that retrieves full establishment', func
         $httpBackend.flush();
         expect(result).toBeFalsy();
     });
+
+    it('Should add new commentary succesfully', function(){
+        $httpBackend.expectPOST(baseAPI+'establishments/1/commentaries/new').respond(201);
+        var comm = {text: "Este es el commentario"};
+        var commentary = null;
+        estService.addComm(comm).then(function(data){
+            commentary = data;
+        });
+        var expected_comm = {Commentary: {id: 5, text: "El ambiente del gimnasio es increíble", establishmentId: "2",
+            User: {
+                name: "Norman"
+            }}};
+        expect(commentary).toEqual(expected_comm);
+    });
 });
