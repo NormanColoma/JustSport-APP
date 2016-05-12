@@ -64,19 +64,4 @@ describe('Establishment Details Controller', function() {
         expect('09').toEqual(controller.getHour('07'));
         expect('11').toEqual(controller.getHour('09'));
     });
-
-    it('Should return true when voting', function(){
-        var controller = createController();
-        $httpBackend.expectPOST(baseAPI+'establishments/1/votes/new').respond(201);
-        controller.vote(1);
-        $httpBackend.flush();
-        expect(controller.voted).toBeTruthy();
-    });
-    it('Should return false when voting', function(){
-        var controller = createController();
-        $httpBackend.expectPOST(baseAPI+'establishments/1/votes/new').respond(500);
-        controller.vote(1);
-        $httpBackend.flush();
-        expect(controller.voted).toBeFalsy();
-    });
 });
