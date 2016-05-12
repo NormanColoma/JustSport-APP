@@ -36,7 +36,7 @@ angular
             function getEstablishmentSuccess(data){
                 var establishment={Establishment:{id: data.id, name: data.name, desc: data.desc, city: data.city,
                     province: data.province, addr: data.addr, phone: data.phone, website: data.website,
-                    main_img: data.main_img}, Votes: data.Votes, Commentaries: data.Commentaries
+                    main_img: data.main_img}, Votes: data.Votes.length, Commentaries: data.Commentaries, Courses: data.Courses
                 };
                 return establishment;
             }

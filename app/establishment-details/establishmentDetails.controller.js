@@ -18,6 +18,7 @@ angular
         var server = local_folder;
 
         vm.commentaries = [];
+        vm.courses = [];
         vm.establishment = null;
         vm.formatDate = formatDate;
         vm.getEstablishment = getEstablishment;
@@ -33,7 +34,8 @@ angular
                 }else{
                     vm.establishment = data.Establishment;
                     vm.commentaries = data.Commentaries;
-                    vm.votes = data.Votes.length;
+                    vm.votes = data.Votes;
+                    vm.courses = data.Courses;
                 }
             });
         }
@@ -106,5 +108,6 @@ angular
             vm.establishment = null;
             vm.commentaries = [];
             vm.votes = 0;
+            vm.courses = [];
         }
     }
