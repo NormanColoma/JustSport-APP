@@ -17,6 +17,7 @@ angular
         var server_folder = "https://justsport-api.herokuapp.com/";
         var server = local_folder;
 
+        vm.addCommentary = addCommentary;
         vm.commentaries = [];
         vm.courses = [];
         vm.establishment = null;
@@ -27,6 +28,12 @@ angular
         vm.imgFolder = server+"public/images/users/";
         vm.removeEstab = removeEstab;
         vm.votes = 0;
+
+        function addCommentary(id,text){
+            establishmentDetailsService.addComm(id,text).then(function(data){
+                vm.commentaries.push(data);
+            });
+        }
 
         function getEstablishment(id){
             establishmentDetailsService.getEstablishment(id).then(function(data){

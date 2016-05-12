@@ -80,6 +80,6 @@ describe('Establishment Details Controller', function() {
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.commentaries.length).toEqual(1);
-        expect(controller.commentaries[0]).toEqual("Este es el comentario");
+        expect(controller.commentaries[0]).toEqual(expected_comm);
     });
 });
