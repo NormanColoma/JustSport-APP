@@ -48,8 +48,9 @@ angular
                 return data.data;
             }
 
-            function addCommFailed(err){
-
+            function addCommFailed(){
+                var message = {message: "Something failed"};
+                return message;
             }
         }
         function getEstablishment(id){

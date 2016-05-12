@@ -90,4 +90,15 @@ describe('Establishment Details Service that retrieves full establishment', func
         $httpBackend.flush();
         expect(commentary).toEqual(expected_comm);
     });
+
+    it('Should failed when trying to add new commentary', function(){
+        var text = {message: "Something failed"};
+        $httpBackend.expectPOST(baseAPI+'establishments/1/commentaries/new').respond(500, text);
+        var text_r = null;
+        estService.addComm(1,"Pepe").then(function(data){
+            text_r = data;
+        });
+        $httpBackend.flush();
+        expect(text_r).toEqual(text);
+    });
 });
