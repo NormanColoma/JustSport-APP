@@ -1,0 +1,17 @@
+p{
+    margin:0;
+}
+
+ul{
+    list-style: none;
+    padding: 0px;
+    margin-top: 20px;
+}
+
+ul li{
+    margin-bottom: 15px;
+}
+
+.link{
+    color: #106CC8;
+}

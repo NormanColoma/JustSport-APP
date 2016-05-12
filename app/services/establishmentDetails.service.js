@@ -34,9 +34,9 @@ angular
                 .catch(getEstablishmentFailed);
 
             function getEstablishmentSuccess(data){
-                var establishment={id: data.id, name: data.name, desc: data.desc, city: data.city,
+                var establishment={Establishment:{id: data.id, name: data.name, desc: data.desc, city: data.city,
                     province: data.province, addr: data.addr, phone: data.phone, website: data.website,
-                    main_img: data.main_img, Votes: data.Votes, Commentaries: data.Commentaries
+                    main_img: data.main_img}, Votes: data.Votes, Commentaries: data.Commentaries
                 };
                 return establishment;
             }

@@ -18,11 +18,12 @@ angular
         var server = local_folder;
 
         vm.commentaries = [];
-        vm.establishment = {};
+        vm.establishment = null;
         vm.formatDate = formatDate;
         vm.getEstablishment = getEstablishment;
         vm.getHour = getHour;
         vm.getMonth = getMonth;
+        vm.removeEstab = removeEstab;
         vm.votes = 0;
 
         function getEstablishment(id){
@@ -30,15 +31,7 @@ angular
                 if(data === "There was an error when loading establishment"){
 
                 }else{
-                    vm.establishment.id = data.id;
-                    vm.establishment.name = data.name;
-                    vm.establishment.desc = data.desc;
-                    vm.establishment.city = data.city;
-                    vm.establishment.province = data.province;
-                    vm.establishment.addr = data.addr;
-                    vm.establishment.phone = data.phone;
-                    vm.establishment.website = data.website;
-                    vm.establishment.main_img = data.main_img;
+                    vm.establishment = data.Establishment;
                     vm.commentaries = data.Commentaries;
                     vm.votes = data.Votes.length;
                 }
@@ -109,4 +102,9 @@ angular
             return date;
         }
 
+        function removeEstab(){
+            vm.establishment = null;
+            vm.commentaries = [];
+            vm.votes = 0;
+        }
     }

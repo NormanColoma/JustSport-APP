@@ -28,7 +28,13 @@ describe('Establishment Details Service that retrieves full establishment', func
             est = data;
         });
         $httpBackend.flush();
-        var expc_est = estab;
+        var expc_est = {Establishment:{id: 1,name: "Nombre Gym", desc: "Esta es la desc",city: "Alicante",
+            province: "Alicante", addr: "Esta es la dirección", phone: "965660427", website: "www.pagina.com",
+            main_img:"default.jpg"}, Votes:[{user: "8a74a3aa-757d-46f1-ba86-a56a0f107735"}],
+            Commentaries:[{id: 1,
+                text: "El gimnasio tiene unas instalaciones increíbles",
+                createdAt: "2016-05-11T09:02:45.000Z"}]
+        };
         expect(est).toEqual(expc_est);
     });
 

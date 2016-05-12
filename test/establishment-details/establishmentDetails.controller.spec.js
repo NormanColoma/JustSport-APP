@@ -28,6 +28,7 @@ describe('Establishment Details Controller', function() {
     it('Should fetch the establishment', function(){
         var controller = createController();
         $httpBackend.expectGET(baseAPI+'establishments/1').respond(estab);
+        controller.establishment = {};
         expect(controller.establishment).toEqual({});
         expect(controller.votes).toBe(0);
         expect(controller.commentaries).toEqual([]);

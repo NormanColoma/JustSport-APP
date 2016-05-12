@@ -7,7 +7,8 @@ div(layout="row" layout-align-gt-sm="center center", layout-align-sm="center cen
         div(scroll-to)
             md-button.md-fab.md-primary.background-wh.btn-exp-more(aria-label='Comenzar', id="test")
                 md-icon(md-svg-icon='public/images/icons/ic_expand_more_black_36px.svg')
-div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin)
+div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
+ng-controller="EstablishmentDetailsController as estDtVm")
     div(flex="75" flex-md="95" flex-sm="95" id="scroll", ng-controller="EstablishmentFilteredController as estFlVm")
         h2.md-headline Encuentra tus centros
         p.
@@ -40,9 +41,8 @@ div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-s
                         div(ng-messages='searchForm.locationField.$error' ng-if="searchForm.locationField.$touched || searchForm.$submitted")
                             div(ng-message='required').location-message
                                 | Tienes que seleccionar un lugar
-                div(layout="row")
-                        md-button(type="submit").md-raised.md-primary.search-ests Buscar
-        filtered-results
-
+                div(layout="row" scroll-to id="scrollResults")
+                        md-button(type="submit", ng-click="estDtVm.removeEstab()").md-raised.md-primary.search-ests Buscar
+        filtered-results(id="results")
 include footer
 

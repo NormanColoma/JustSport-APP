@@ -15,8 +15,14 @@ angular
 
         function link(scope, element, attrs) {
             var scroll = $('#scroll');
+            var results = $('#results');
             element.on('click', function(){
-                $('body').animate({scrollTop: scroll.offset().top}, "slow");
+                console.log(attrs.id);
+                if(attrs.id == "scrollResults"){
+                    $('body').animate({scrollTop: results.offset().top}, "slow");
+                }else{
+                    $('body').animate({scrollTop: scroll.offset().top}, "slow");
+                }
             });
         }
     }
