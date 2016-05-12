@@ -20,7 +20,7 @@ angular
                 },
                 vote:{
                     method: 'POST',
-                    url: server + '/:id/votes/new',
+                    url: server + '/establishments/:id/votes/new',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.token
                     }
@@ -29,7 +29,8 @@ angular
         );
 
         var service={
-            getEstablishment: getEstablishment
+            getEstablishment: getEstablishment,
+            vote: vote
         };
 
         return service;
@@ -51,6 +52,20 @@ angular
             function getEstablishmentFailed(err){
                 var message = {message: "There was an error when loading establishment"};
                 return message;
+            }
+        }
+
+        function vote(id){
+            return Establishment.vote({id:id}).$promise
+                .then(voteEstablishmentSuccess)
+                .catch(voteEstablishmentFailed);
+
+            function voteEstablishmentSuccess(){
+                return true;
+            }
+
+            function voteEstablishmentFailed(){
+                return false;
             }
         }
     }

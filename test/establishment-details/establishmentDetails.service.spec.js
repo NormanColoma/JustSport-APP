@@ -57,11 +57,22 @@ describe('Establishment Details Service that retrieves full establishment', func
     });
 
     it('Should return true when voting',function(){
-        $httpBackend.expectGET(baseAPI+'establishments/1/votes/new').respond(201);
+        $httpBackend.expectPOST(baseAPI+'establishments/1/votes/new').respond(201);
         var result = false;
         estService.vote(1).then(function(data){
             result = data;
         });
+        $httpBackend.flush();
         expect(result).toBeTruthy();
+    });
+
+    it('Should return false when voting',function(){
+        $httpBackend.expectPOST(baseAPI+'establishments/1/votes/new').respond(500);
+        var result = true;
+        estService.vote(1).then(function(data){
+            result = data;
+        });
+        $httpBackend.flush();
+        expect(result).toBeFalsy();
     });
 });
