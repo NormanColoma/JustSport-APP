@@ -6,9 +6,9 @@ angular
     .module('establishmentModule')
     .factory('establishmentDetailsService', establishmentDetailsService);
 
-    establishmentDetailsService.$inject = ['$resource'];
+    establishmentDetailsService.$inject = ['$resource', '$http'];
 
-    function establishmentDetailsService($resource){
+    function establishmentDetailsService($resource, $http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
@@ -29,12 +29,29 @@ angular
         );
 
         var service={
+            addComm: addComm,
             getEstablishment: getEstablishment,
             vote: vote
         };
 
         return service;
 
+        function addComm(id, text){
+            var data ={
+                text: text
+            };
+            return $http.post(server+"/establishments/"+id+"/commentaries/new", data)
+                .then(addCommSuccess)
+                .catch(addCommFailed);
+
+            function  addCommSuccess(data){
+                return data.data;
+            }
+
+            function addCommFailed(err){
+
+            }
+        }
         function getEstablishment(id){
 
             return Establishment.get({id:id}).$promise
