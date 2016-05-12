@@ -7,17 +7,17 @@
                  alt="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}" src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}">
         </div>
         <div layout="column" flex="50">
-            <p class="justify">{{estDtVm.establishment.desc}}</p>
+            <p class="justify md-body-1">{{estDtVm.establishment.desc}}</p>
             <ul>
-                <li>
+                <li class="md-body-2">
                     <md-icon md-svg-icon='public/images/icons/location.svg'></md-icon>
                     {{estDtVm.establishment.addr}} , {{estDtVm.establishment.city}}
                 </li>
-                <li>
+                <li class="md-body-2">
                     <md-icon md-svg-icon='public/images/icons/phone.svg'></md-icon>
                     {{estDtVm.establishment.phone}}
                 </li>
-                <li>
+                <li class="md-body-2">
                     <md-icon md-svg-icon='public/images/icons/website.svg'></md-icon>
                     <a class="link" href="{{estDtVm.establishment.website}}">{{estDtVm.establishment.website}}</a>
                 </li>
@@ -32,9 +32,12 @@
     <md-content layout="column" layout-margin style="background-color: inherit;">
         <h2 class="md-display-1 subheader">Cursos</h2>
         <md-divider></md-divider>
+        <p class="md-body-1">Pincha sobre los cursos para poder ver la información de los mismos, y los horarios. Puede haber más de un curso para el mismo deporte,
+        pero recuerda que las <strong>condiciones</strong>, o el <strong>nivel</strong> del mismo, pueden ser distintos. Por eso, te recomendamos que consultes su información, antes de
+        decidirte por uno.</p>
         <ul class="margin-left">
             <li ng-repeat="item in estDtVm.courses">
-                <a class="clickable underline">Curso de {{item.Sport.name}}</a>
+                <a class="clickable underline md-body-2">Curso de {{item.Sport.name}}</a>
             </li>
         </ul>
     </md-content>
@@ -42,7 +45,9 @@
         <h2 class="md-display-1 subheader">Comentarios</h2>
         <md-divider></md-divider>
         <md-list>
-            <md-subheader class="md-no-sticky" style="background-color: inherit;">{{estDtVm.commentaries.length}} comentarios</md-subheader>
+            <md-subheader class="md-no-sticky" style="background-color: inherit;" ng-if="estDtVm.commentaries.length == 0">Todavía no se ha realizado ningún comentario.
+                Se el primero en dejar un comentario</md-subheader>
+            <md-subheader class="md-no-sticky" style="background-color: inherit;" ng-if="estDtVm.commentaries.length > 0">{{estDtVm.commentaries.length}} comentarios</md-subheader>
             <md-list-item class="md-3-line" ng-repeat="item in estDtVm.commentaries">
                 <img ng-src="{{estDtVm.imgFolder+item.User.img}}?{{$index}}" class="md-avatar" alt="{{item.User.img}}" />
                 <div class="md-list-item-text" layout="column">
@@ -54,11 +59,14 @@
         </md-list>
         <form>
             <h4 class="md-headline subheader">Deja tu comentario</h4>
-            <md-input-container class="md-block">
+            <md-input-container class="md-block" ng-if="loginVm.loggedIn">
                 <label>Escribe aquí tu comentario</label>
                 <textarea ng-model="user.address"></textarea>
             </md-input-container>
-            <md-button class="md-raised md-primary" type="submit">Comentar</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-if="loginVm.loggedIn">Comentar</md-button>
+            <md-input-container ng-if="!loginVm.loggedIn">
+                <p class="md-body-1">Para poder comentar, debes estar <a class="link" href="/account/">logueado</a>.</p>
+            </md-input-container>
         </form>
     </md-content>
 </div>
