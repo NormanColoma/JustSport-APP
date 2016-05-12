@@ -26,6 +26,8 @@ angular
         vm.getMonth = getMonth;
         vm.imgFolder = server+"public/images/users/";
         vm.removeEstab = removeEstab;
+        vm.vote = vote;
+        vm.voted = false;
         vm.votes = 0;
 
         function getEstablishment(id){
@@ -33,7 +35,6 @@ angular
                 if(data === "There was an error when loading establishment"){
 
                 }else{
-                    console.log(data);
                     vm.establishment = data.Establishment;
                     vm.commentaries = data.Commentaries;
                     vm.votes = data.Votes;
@@ -111,6 +112,16 @@ angular
             vm.commentaries = [];
             vm.votes = 0;
             vm.courses = [];
+        }
+
+        function vote(id){
+            establishmentDetailsService.vote(id).then(function(data){
+                if(data){
+                    vm.voted = true;
+                }else{
+
+                }
+            })
         }
 
     }
