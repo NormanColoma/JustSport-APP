@@ -57,11 +57,14 @@
                 </div>
             </md-list-item>
         </md-list>
-        <form>
+        <form name="commentaryForm", ng-submit="estDtVm.addCommentary(estDtVm.establishment.id,estDtVm.text, commentaryForm)", novalidate>
             <h4 class="md-headline subheader">Deja tu comentario</h4>
             <md-input-container class="md-block" ng-if="loginVm.loggedIn">
                 <label>Escribe aquí tu comentario</label>
-                <textarea ng-model="user.address"></textarea>
+                <textarea ng-model="estDtVm.text" name="textField" required></textarea>
+                <div ng-messages="commentaryForm.textField.$error" ng-if="commentaryForm.$submitted">
+                    <div ng-message="required" class="text-message">Tienes que introducir un mensaje</div>
+                </div>
             </md-input-container>
             <md-button class="md-raised md-primary" type="submit" ng-if="loginVm.loggedIn">Comentar</md-button>
             <md-input-container ng-if="!loginVm.loggedIn">

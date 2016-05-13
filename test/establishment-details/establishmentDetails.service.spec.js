@@ -77,17 +77,22 @@ describe('Establishment Details Service that retrieves full establishment', func
     });
 
     it('Should add new commentary succesfully', function(){
-        var expected_comm = {Commentary: {id: 5, text: "El ambiente del gimnasio es increíble", "createdAt": "2016-05-12T22:53:31.433Z",
+        var comm = {Commentary: {id: 5, text: "El ambiente del gimnasio es increíble", "createdAt": "2016-05-12T22:53:31.433Z",
             User: {
                 name: "Norman",
                 img: "default.jpg"
             }}};
-        $httpBackend.expectPOST(baseAPI+'establishments/1/commentaries/new').respond(201, expected_comm);
+        $httpBackend.expectPOST(baseAPI+'establishments/1/commentaries/new').respond(201, comm);
         var text = "Este es el commentario";
         var commentary = null;
         estService.addComm(1,text).then(function(data){
             commentary = data;
         });
+        var expected_comm = {id: 5, text: "El ambiente del gimnasio es increíble", "createdAt": "2016-05-12T22:53:31.433Z",
+            User: {
+                name: "Norman",
+                img: "default.jpg"
+            }};
         $httpBackend.flush();
         expect(commentary).toEqual(expected_comm);
     });

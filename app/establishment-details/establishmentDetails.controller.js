@@ -9,9 +9,9 @@ angular
     .module('establishmentModule')
     .controller('EstablishmentDetailsController', EstablishmentDetailsController);
 
-    EstablishmentDetailsController.$inject = ['establishmentDetailsService', 'dialogService'];
+    EstablishmentDetailsController.$inject = ['establishmentDetailsService', 'formResetService'];
 
-    function EstablishmentDetailsController(establishmentDetailsService, dialogService){
+    function EstablishmentDetailsController(establishmentDetailsService, formResetService){
         var vm=this;
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
@@ -29,10 +29,14 @@ angular
         vm.removeEstab = removeEstab;
         vm.votes = 0;
 
-        function addCommentary(id,text){
-            establishmentDetailsService.addComm(id,text).then(function(data){
-                vm.commentaries.push(data);
-            });
+        function addCommentary(id,text,form){
+            if(text !== undefined && text !== null) {
+                establishmentDetailsService.addComm(id, text).then(function (data) {
+                    vm.commentaries.push(data);
+                    formResetService.reset(form);
+                    vm.text = null;
+                });
+            }
         }
 
         function getEstablishment(id){

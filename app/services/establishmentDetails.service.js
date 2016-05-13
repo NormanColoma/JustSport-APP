@@ -40,15 +40,19 @@ angular
             var data ={
                 text: text
             };
-            return $http.post(server+"/establishments/"+id+"/commentaries/new", data)
+            return $http({method: 'POST', url: server + '/establishments/'+id+'/commentaries/new',
+                headers: {
+                'Authorization': 'Bearer ' + localStorage.token
+                },data: data
+            })
                 .then(addCommSuccess)
                 .catch(addCommFailed);
 
             function  addCommSuccess(data){
-                return data.data;
+                return data.data.Commentary;
             }
 
-            function addCommFailed(){
+            function addCommFailed(err){
                 var message = {message: "Something failed"};
                 return message;
             }
