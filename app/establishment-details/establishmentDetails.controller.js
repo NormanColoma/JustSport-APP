@@ -19,6 +19,7 @@ angular
 
         vm.addCommentary = addCommentary;
         vm.commentaries = [];
+        vm.course = null;
         vm.courses = [];
         vm.establishment = null;
         vm.formatDate = formatDate;
@@ -27,6 +28,7 @@ angular
         vm.getMonth = getMonth;
         vm.imgFolder = server+"public/images/users/";
         vm.removeEstab = removeEstab;
+        vm.schedule = [];
         vm.votes = 0;
 
         function addCommentary(id,text,form){
