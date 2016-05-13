@@ -91,15 +91,14 @@ describe('Establishment Details Controller', function() {
 
     it('Should fetch the course', function(){
         var controller = createController();
-        var course1 = {Sport:{id: '1'},Establishment:{id:'1'},
-            instructor: 'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
-        $httpBackend.expectGET(baseAPI+'courses/1').respond(course1);
+        var course1 = {id: 1, instructor: "Juan Domínguez",
+            price: 17.5, info: "Un curso muy completo", Sport: {"name": "Spinning"}};
+        var ev = undefined;
+        controller.courses.push(course1);
         /* jshint ignore:start*/
-        controller.getCourse(1);
+        controller.getCourse(1,ev);
         /*jshint ignore:end */
-        $httpBackend.flush();
-        var expc_c = {sportId:'1', establishmentId:'1',instructor:'Juan Domínguez',price:'17.50',info:'Un curso muy completo'};
-        expect(controller.course).toEqual(expc_c);
+        expect(controller.course).toEqual(course1);
     });
 
     it('Should fetch the schedule of course', function(){

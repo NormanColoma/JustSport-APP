@@ -62,6 +62,14 @@ body{
   color:rgb(16,108,200) !important;
 }
 
+.color-secondary{
+  color: rgb(255,64,129);
+}
+
+.background-colored{
+  background: rgb(255,64,129);;
+}
+
 .margin-md{
   margin-bottom: 15px;
 }

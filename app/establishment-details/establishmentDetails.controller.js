@@ -9,9 +9,9 @@ angular
     .module('establishmentModule')
     .controller('EstablishmentDetailsController', EstablishmentDetailsController);
 
-    EstablishmentDetailsController.$inject = ['establishmentDetailsService', 'formResetService', 'getScheduleService'];
+    EstablishmentDetailsController.$inject = ['establishmentDetailsService', 'formResetService', 'getScheduleService','dialogService'];
 
-    function EstablishmentDetailsController(establishmentDetailsService, formResetService, getScheduleService){
+    function EstablishmentDetailsController(establishmentDetailsService, formResetService, getScheduleService,dialogService){
         var vm=this;
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
@@ -19,7 +19,7 @@ angular
 
         vm.addCommentary = addCommentary;
         vm.commentaries = [];
-        vm.course = null;
+        vm.course = establishmentDetailsService.getCourse();
         vm.courses = [];
         vm.establishment = null;
         vm.formatDate = formatDate;
@@ -28,6 +28,7 @@ angular
         vm.getHour = getHour;
         vm.getMonth = getMonth;
         vm.getSchedule = getSchedule;
+        vm.hideSchedule = hideSchedule;
         vm.imgFolder = server+"public/images/users/";
         vm.removeEstab = removeEstab;
         vm.schedule = [];
@@ -43,6 +44,22 @@ angular
             }
         }
 
+        function formatDate(date){
+            var split_index = date.indexOf('T');
+            var full_date = date.slice(0,split_index);
+            var full_time = date.slice(split_index+1,date.indexOf('.'));
+            var month = full_date.slice(5,7);
+            var year = full_date.slice(0,4);
+            var day = full_date.slice(8,10);
+            var hour = getHour(full_time.slice(0,2));
+            var min = full_time.slice(3,5);
+            var secs = full_time.slice(6,8)
+            full_time = hour+":"+min+":"+secs;
+            month = getMonth(month);
+            date = day+" de "+month+" "+year+", "+full_time;
+            return date;
+        }
+
         function getEstablishment(id){
             establishmentDetailsService.getEstablishment(id).then(function(data){
                 if(data === "There was an error when loading establishment"){
@@ -56,15 +73,23 @@ angular
             });
         }
 
-        function getCourse(id){
-            getScheduleService.getCourse(id).then(function(data){
-                vm.course = data;
-            });
+        function getCourse(id,ev){
+            for(var i=0;i<vm.courses.length;i++){
+                if(vm.courses[i].id === id){
+                    establishmentDetailsService.setCourse(vm.courses[i]);
+                }
+            }
+            var template = 'app/establishment-details/course-schedule.tmpl.html';
+            dialogService.showCustomDialog(ev,template);
         }
 
         function getSchedule(id){
             getScheduleService.getSchedule(id).then(function(data){
-                vm.schedule = data;
+                if(data === "There are no schedules for this course")
+                    vm.schedule = [];
+                else
+                    vm.schedule = data;
+
             });
         }
 
@@ -116,20 +141,8 @@ angular
             return month;
         }
 
-        function formatDate(date){
-            var split_index = date.indexOf('T');
-            var full_date = date.slice(0,split_index);
-            var full_time = date.slice(split_index+1,date.indexOf('.'));
-            var month = full_date.slice(5,7);
-            var year = full_date.slice(0,4);
-            var day = full_date.slice(8,10);
-            var hour = getHour(full_time.slice(0,2));
-            var min = full_time.slice(3,5);
-            var secs = full_time.slice(6,8)
-            full_time = hour+":"+min+":"+secs;
-            month = getMonth(month);
-            date = day+" de "+month+" "+year+", "+full_time;
-            return date;
+        function hideSchedule(){
+            dialogService.hideDialog();
         }
 
         function removeEstab(){

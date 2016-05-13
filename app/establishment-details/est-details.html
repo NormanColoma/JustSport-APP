@@ -31,19 +31,19 @@
     </md-content>
     <md-content layout="column" layout-margin style="background-color: inherit;">
         <h2 class="md-display-1 subheader">Cursos</h2>
-        <md-divider></md-divider>
+        <md-divider class="background-colored"></md-divider>
         <p class="md-body-1">Pincha sobre los cursos para poder ver la información de los mismos, y los horarios. Puede haber más de un curso para el mismo deporte,
         pero recuerda que las <strong>condiciones</strong>, o el <strong>nivel</strong> del mismo, pueden ser distintos. Por eso, te recomendamos que consultes su información, antes de
         decidirte por uno.</p>
         <ul class="margin-left">
             <li ng-repeat="item in estDtVm.courses">
-                <a class="clickable underline md-body-2">Curso de {{item.Sport.name}}</a>
+                <a class="clickable underline md-body-2" ng-click="estDtVm.getCourse(item.id)">Curso de {{item.Sport.name}}</a>
             </li>
         </ul>
     </md-content>
     <md-content layout="column" layout-margin style="background-color: inherit;">
         <h2 class="md-display-1 subheader">Comentarios</h2>
-        <md-divider></md-divider>
+        <md-divider class="background-colored"></md-divider>
         <md-list>
             <md-subheader class="md-no-sticky" style="background-color: inherit;" ng-if="estDtVm.commentaries.length == 0">Todavía no se ha realizado ningún comentario.
                 Se el primero en dejar un comentario</md-subheader>

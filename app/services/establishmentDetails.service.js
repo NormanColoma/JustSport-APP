@@ -12,6 +12,8 @@ angular
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
+        var course = null;
+        var schedule = null;
 
         var Establishment = $resource(server+'/establishments/:id', {id:'@id'},{
                 query: {
@@ -30,7 +32,9 @@ angular
 
         var service={
             addComm: addComm,
+            getCourse: getCourse,
             getEstablishment: getEstablishment,
+            setCourse: setCourse,
             vote: vote
         };
 
@@ -57,6 +61,10 @@ angular
                 return message;
             }
         }
+
+        function getCourse(){
+            return course;
+        }
         function getEstablishment(id){
 
             return Establishment.get({id:id}).$promise
@@ -75,6 +83,10 @@ angular
                 var message = {message: "There was an error when loading establishment"};
                 return message;
             }
+        }
+
+        function setCourse(c){
+            course = c;
         }
 
         function vote(id){
