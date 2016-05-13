@@ -9,9 +9,9 @@ angular
     .module('establishmentModule')
     .controller('EstablishmentDetailsController', EstablishmentDetailsController);
 
-    EstablishmentDetailsController.$inject = ['establishmentDetailsService', 'formResetService'];
+    EstablishmentDetailsController.$inject = ['establishmentDetailsService', 'formResetService', 'getScheduleService'];
 
-    function EstablishmentDetailsController(establishmentDetailsService, formResetService){
+    function EstablishmentDetailsController(establishmentDetailsService, formResetService, getScheduleService){
         var vm=this;
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
@@ -23,9 +23,11 @@ angular
         vm.courses = [];
         vm.establishment = null;
         vm.formatDate = formatDate;
+        vm.getCourse = getCourse;
         vm.getEstablishment = getEstablishment;
         vm.getHour = getHour;
         vm.getMonth = getMonth;
+        vm.getSchedule = getSchedule;
         vm.imgFolder = server+"public/images/users/";
         vm.removeEstab = removeEstab;
         vm.schedule = [];
@@ -51,6 +53,18 @@ angular
                     vm.votes = data.Votes;
                     vm.courses = data.Courses;
                 }
+            });
+        }
+
+        function getCourse(id){
+            getScheduleService.getCourse(id).then(function(data){
+                vm.course = data;
+            });
+        }
+
+        function getSchedule(id){
+            getScheduleService.getSchedule(id).then(function(data){
+                vm.schedule = data;
             });
         }
 
