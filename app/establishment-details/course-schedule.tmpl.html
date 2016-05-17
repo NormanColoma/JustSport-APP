@@ -16,13 +16,13 @@
                         <h1 class="md-display-2">Información</h1>
                         <h3 class="md-subhead">La información sobre el curso, y sus condiciones podrán cambiar en cualquier momento.
                         Te recomendamos, que permanezcas al tanto.</h3>
-                        <p class="md-body-1">{{estDtVm.course.info}}</p>
+                        <p class="md-body-1 course-info">{{estDtVm.course.info}}</p>
                         <ul>
                             <li>
-                                <p><strong>Monitor: </strong>{{estDtVm.course.instructor}}</p>
+                                <p class="course-instructor"><strong>Monitor: </strong>{{estDtVm.course.instructor}}</p>
                             </li>
                             <li>
-                                <p><strong>Precio: </strong>{{estDtVm.course.price | number:2 }} €</p>
+                                <p class="course-price"><strong>Precio: </strong>{{estDtVm.course.price | number:2 }} €</p>
                             </li>
                         </ul>
                     </md-content>
@@ -30,9 +30,9 @@
                 <md-tab label="Horario">
                     <md-content class="md-padding">
                         <h1 class="md-display-2">Horario</h1>
-                        <p class="md-body-1" ng-if="estDtVm.schedule.length == 0">Todavía no se han establecido horarios para este curso. Permanece atento, ya que estos, podrán
+                        <p class="md-body-1 no-schedule-message" ng-if="estDtVm.schedule.length == 0">Todavía no se han establecido horarios para este curso. Permanece atento, ya que estos, podrán
                         estar disponibles en cualquier momento.</p>
-                        <p class="md-body-1" ng-if="estDtVm.schedule.length > 0">Esto son los horarios <strong>actualmente</strong> disponibles para el curso que has seleccionado. Recuerda que estos,
+                        <p class="md-body-1 schedule-message" ng-if="estDtVm.schedule.length > 0">Esto son los horarios <strong>actualmente</strong> disponibles para el curso que has seleccionado. Recuerda que estos,
                         variarán en función del curso seleccionado, aunque estos, sean de la misma actividad.</p>
                         <md-list id="schedule-list" ng-if="estDtVm.schedule.length > 0">
                             <md-list-item class="md-3-line" ng-repeat="item in estDtVm.schedule">

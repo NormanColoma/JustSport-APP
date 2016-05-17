@@ -1,24 +1,24 @@
 <link rel="stylesheet" type="text/css" href="public/stylesheets/estab-details.css">
 <div>
-    <h1 class="md-display-2">{{estDtVm.establishment.name}}</h1>
+    <h1 class="md-display-2 est-title">{{estDtVm.establishment.name}}</h1>
     <md-content layout="row" layout-margin layout-wrap style="background-color: inherit;">
         <div flex="45">
             <img flex="100" layout="row" ng-src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}"
                  alt="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}" src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}">
         </div>
         <div layout="column" flex="50">
-            <p class="justify md-body-1">{{estDtVm.establishment.desc}}</p>
+            <p class="justify md-body-1 est-desc">{{estDtVm.establishment.desc}}</p>
             <ul>
                 <li class="md-body-2">
-                    <md-icon md-svg-icon='public/images/icons/location.svg'></md-icon>
+                    <md-icon md-svg-icon='public/images/icons/location.svg' class="est-addr"></md-icon>
                     {{estDtVm.establishment.addr}} , {{estDtVm.establishment.city}}
                 </li>
                 <li class="md-body-2">
-                    <md-icon md-svg-icon='public/images/icons/phone.svg'></md-icon>
+                    <md-icon md-svg-icon='public/images/icons/phone.svg' class="est-phone"></md-icon>
                     {{estDtVm.establishment.phone}}
                 </li>
                 <li class="md-body-2">
-                    <md-icon md-svg-icon='public/images/icons/website.svg'></md-icon>
+                    <md-icon md-svg-icon='public/images/icons/website.svg' class="est-website"></md-icon>
                     <a class="link" href="{{estDtVm.establishment.website}}">{{estDtVm.establishment.website}}</a>
                 </li>
             </ul>
@@ -35,7 +35,7 @@
         <p class="md-body-1">Pincha sobre los cursos para poder ver la información de los mismos, y los horarios. Puede haber más de un curso para el mismo deporte,
         pero recuerda que las <strong>condiciones</strong>, o el <strong>nivel</strong> del mismo, pueden ser distintos. Por eso, te recomendamos que consultes su información, antes de
         decidirte por uno.</p>
-        <ul class="margin-left">
+        <ul class="margin-left est-courses">
             <li ng-repeat="item in estDtVm.courses">
                 <a class="clickable underline md-body-2" ng-click="estDtVm.getCourse(item.id)">Curso de {{item.Sport.name}}</a>
             </li>
@@ -44,16 +44,16 @@
     <md-content layout="column" layout-margin style="background-color: inherit;">
         <h2 class="md-display-1 subheader">Comentarios</h2>
         <md-divider class="background-colored"></md-divider>
-        <md-list>
-            <md-subheader class="md-no-sticky" style="background-color: inherit;" ng-if="estDtVm.commentaries.length == 0">Todavía no se ha realizado ningún comentario.
+        <md-list class="est-commentaries">
+            <md-subheader class="md-no-sticky est-no-commentaries" style="background-color: inherit;" ng-if="estDtVm.commentaries.length == 0">Todavía no se ha realizado ningún comentario.
                 Se el primero en dejar un comentario</md-subheader>
             <md-subheader class="md-no-sticky" style="background-color: inherit;" ng-if="estDtVm.commentaries.length > 0">{{estDtVm.commentaries.length}} comentarios</md-subheader>
             <md-list-item class="md-3-line" ng-repeat="item in estDtVm.commentaries">
                 <img ng-src="{{estDtVm.imgFolder+item.User.img}}?{{$index}}" class="md-avatar" alt="{{item.User.img}}" />
                 <div class="md-list-item-text" layout="column">
-                    <h3 class="color-primary">{{ item.User.name }}</h3>
-                    <h4 class="md-caption">{{ estDtVm.formatDate(item.createdAt) }}</h4>
-                    <p>{{ item.text }}</p>
+                    <h3 class="color-primary est-comm-user">{{ item.User.name }}</h3>
+                    <h4 class="md-caption est-comm-date">{{ estDtVm.formatDate(item.createdAt) }}</h4>
+                    <p class="est-comm-text">{{ item.text }}</p>
                 </div>
             </md-list-item>
         </md-list>
@@ -68,7 +68,7 @@
             </md-input-container>
             <md-button class="md-raised md-primary" type="submit" ng-if="loginVm.loggedIn">Comentar</md-button>
             <md-input-container ng-if="!loginVm.loggedIn">
-                <p class="md-body-1">Para poder comentar, debes estar <a class="link" href="/account/">logueado</a>.</p>
+                <p class="md-body-1 est-login-message">Para poder comentar, debes estar <a class="link" href="/account/">logueado</a>.</p>
             </md-input-container>
         </form>
     </md-content>
