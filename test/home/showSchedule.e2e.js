@@ -27,6 +27,7 @@ describe('Home Schedule Dialog', function() {
             sports[0].click();
         });
         location_field.sendKeys('Alicante');
+        browser.sleep(1500);
         var location_list = element(by.id('ul-1'));
         location_list.all(by.css('li')).then(function(location) {
             location[0].click();

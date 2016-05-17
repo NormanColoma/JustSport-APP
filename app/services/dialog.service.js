@@ -15,12 +15,16 @@ angular
      */
     function dialogService($mdDialog){
         var service = {
+            hideDialog: hideDialog,
             showCustomDialog: showCustomDialog,
             showDialog: showDialog
         };
 
         return service;
 
+        function hideDialog(){
+            $mdDialog.cancel();
+        }
         /**
          * @name showDialog
          * @desc Prompts the dialog

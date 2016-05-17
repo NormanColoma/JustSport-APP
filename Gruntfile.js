@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         jshint: {
-            files: ['Gruntfile.js','./app/**/*.js','./routes/*.js','./test/**/*.js', '!./app/app.min.js'],
+            files: ['Gruntfile.js','./app/**/*.js','./routes/*.js','./test/**/*.js', '!./app/app.min.js', '!./app/app.test.min.js'],
             options: {
                 globals: {
                     jQuery: true
@@ -43,7 +43,16 @@ module.exports = function(grunt) {
                         'app/home/showSchedule.controller.js','app/home/establishmentFiltered.controller.js',
                         'app/login/login.module.js','app/services/login.service.js', 'app/login/login.controller.js',
                         'app/register/register.module.js', 'app/register/register.controller.js', 'app/services/register.service.js',
-                        'app/app.module.js', 'app/services/dialog.service.js']
+                        'app/establishment-details/establishment.module.js','app/establishment-details/establishmentDetails.controller.js','app/services/establishmentDetails.service.js',
+                        'app/components/establishmentDetails.directive.js','app/components/establishmentVote.directive.js',
+                        'app/app.module.js', 'app/services/formReset.service.js','app/services/dialog.service.js']
+                }
+            },
+            test_app:{
+                files:{
+                    'app/app.test.min.js':['test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
+                        'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js', 'test/app/register.module.test.js',
+                        'test/app/showSchedule.module.test.js', 'test/app/establishmentDetails.module.test.js']
                 }
             }
         },
