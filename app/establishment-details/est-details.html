@@ -6,8 +6,8 @@
             <img flex="100" layout="row" ng-src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}"
                  alt="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}" src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}">
         </div>
-        <div layout="column" flex="50">
-            <p class="justify md-body-1 est-desc">{{estDtVm.establishment.desc}}</p>
+        <div layout="column" flex="50" flex-sm="45">
+            <p hide-sm hide-xs class="justify md-body-1 est-desc">{{estDtVm.establishment.desc}}</p>
             <ul>
                 <li class="md-body-2">
                     <md-icon md-svg-icon='public/images/icons/location.svg' class="est-addr"></md-icon>
@@ -23,10 +23,13 @@
                 </li>
             </ul>
             <div layout="row" layout-align="start end" class="like-container">
-                <span establishment-vote id="vote-{{estDtVm.establishment.id}}"><p class="like-cnt">{{estDtVm.votes}}</p>
-                    <md-icon md-svg-icon='public/images/icons/thumb_up.svg' class="clickable"></md-icon>
-                </span>
+                    <span establishment-vote id="vote-{{estDtVm.establishment.id}}"><p class="like-cnt">{{estDtVm.votes}}</p>
+                        <md-icon md-svg-icon='public/images/icons/thumb_up.svg' class="clickable"></md-icon>
+                    </span>
             </div>
+        </div>
+        <div show-sm hide-gt-sm hide-xs flex="100">
+            <p class="justify md-body-1 est-desc">{{estDtVm.establishment.desc}}</p>
         </div>
     </md-content>
     <md-content layout="column" layout-margin style="background-color: inherit;">

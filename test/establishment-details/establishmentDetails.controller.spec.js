@@ -80,9 +80,8 @@ describe('Establishment Details Controller', function() {
         $httpBackend.expectPOST(baseAPI+'establishments/1/commentaries/new').respond(201, comm);
         expect(controller.commentaries).toEqual([]);
         expect(controller.commentaries.length).toEqual(0);
-        var form = undefined;
         /* jshint ignore:start*/
-        controller.addCommentary(1, "Este es el comentario",form);
+        controller.addCommentary(1, "Este es el comentario",undefined);
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.commentaries.length).toEqual(1);
@@ -93,10 +92,9 @@ describe('Establishment Details Controller', function() {
         var controller = createController();
         var course1 = {id: 1, instructor: "Juan Domínguez",
             price: 17.5, info: "Un curso muy completo", Sport: {"name": "Spinning"}};
-        var ev = undefined;
         controller.courses.push(course1);
         /* jshint ignore:start*/
-        controller.getCourse(1,ev);
+        controller.getCourse(1,undefined);
         /*jshint ignore:end */
         expect(controller.course).toEqual(course1);
     });

@@ -33,7 +33,8 @@
                 </md-card-actions>
             </md-card>
         </div>
-        <div flex="100" show-sm hide-gt-sm hide-xs ng-repeat="item in estFlVm.items">
+        <div flex="100" show-sm hide-gt-sm hide-xs ng-repeat="item in estFlVm.items"
+             ng-controller="ShowScheduleController as showScVm" ng-if="estDtVm.establishment === null">
             <md-card>
                 <md-card-title>
                     <md-card-title-text>
@@ -47,11 +48,12 @@
                     </md-card-title-media>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
-                    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Información" title="Información sobre {{item.name}}">
+                    <button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Información"
+                            ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}" title="Información sobre {{item.name}}">
                         <md-icon md-svg-icon="public/images/icons/info.svg" aria-hidden="true"></md-icon>
                     </button>
                     <button class="md-icon-button md-button md-ink-ripple" type="button"  aria-label="Horarios"
-                            tille="Horarios clases">
+                            tille="Horarios clases" ng-click="showScVm.showSchedule(ev, item.id)">
                         <md-icon md-svg-icon="public/images/icons/date.svg" aria-hidden="true"></md-icon>
                     </button>
                 </md-card-actions>
