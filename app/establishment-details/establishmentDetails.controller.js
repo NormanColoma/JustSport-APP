@@ -77,6 +77,7 @@ angular
             for(var i=0;i<vm.courses.length;i++){
                 if(vm.courses[i].id === id){
                     establishmentDetailsService.setCourse(vm.courses[i]);
+                    vm.course = vm.courses[i];
                 }
             }
             var template = 'app/establishment-details/course-schedule.tmpl.html';
