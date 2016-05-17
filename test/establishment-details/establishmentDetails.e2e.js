@@ -115,7 +115,7 @@ describe('Destails of establishment', function() {
     it('should post new commentary and display it', function(){
         var email_field = element(by.css('[name="email"]'));
         var pass_field = element(by.css('[name="pass"]'));
-        var login_button = element(by.id('login_button'))
+        var login_button = element(by.id('login_button'));
         browser.get(host+'/account/');
         email_field.sendKeys('pepe@gmail.com');
         pass_field.sendKeys('pepe15');

@@ -8,6 +8,11 @@ angular
 
     establishmentDetailsService.$inject = ['$resource', '$http'];
 
+    /**
+     * @namespace establishmentDetailsService
+     * @desc Service that fetch the details of establishment
+     * @memberOf Services
+     */
     function establishmentDetailsService($resource, $http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
@@ -40,6 +45,14 @@ angular
 
         return service;
 
+        /**
+         * @name addComm
+         * @desc Add new commentary, and return the data posted.
+         * @memberOf establishmentDetailsService
+         * @param id -> Represents id of the establishments
+         * @param text -> Text of commentary
+         * @returns {Object || String}
+         */
         function addComm(id, text){
             var data ={
                 text: text
@@ -62,9 +75,25 @@ angular
             }
         }
 
+
+        /**
+         * @name getCourse
+         * @desc Return the current course
+         * @memberOf establishmentDetailsService
+         * @returns {Object}
+         */
         function getCourse(){
             return course;
         }
+
+
+        /**
+         * @name addComm
+         * @desc Fetch the establishment
+         * @memberOf establishmentDetailsService
+         * @param id -> Represents id of the establishments
+         * @returns {Object || String}
+         */
         function getEstablishment(id){
 
             return Establishment.get({id:id}).$promise
@@ -85,10 +114,26 @@ angular
             }
         }
 
+
+        /**
+         * @name setCourse
+         * @desc Set the current course to the course passed by parameter
+         * @memberOf establishmentDetailsService
+         * @param c -> Represents the course
+         * @returns {Void}
+         */
         function setCourse(c){
             course = c;
         }
 
+
+        /**
+         * @name vote
+         * @desc Add new vote to the establishment
+         * @memberOf establishmentDetailsService
+         * @param id -> Represents id of the establishments
+         * @returns {Boolean}
+         */
         function vote(id){
             return Establishment.vote({id:id}).$promise
                 .then(voteEstablishmentSuccess)
