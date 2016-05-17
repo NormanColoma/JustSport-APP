@@ -63,7 +63,7 @@
                 <label>Escribe aquí tu comentario</label>
                 <textarea ng-model="estDtVm.text" name="textField" required></textarea>
                 <div ng-messages="commentaryForm.textField.$error" ng-if="commentaryForm.$submitted">
-                    <div ng-message="required" class="text-message">Tienes que introducir un mensaje</div>
+                    <div ng-message="required" class="text-message comm-error">Tienes que introducir un mensaje</div>
                 </div>
             </md-input-container>
             <md-button class="md-raised md-primary new-commentary" type="submit" ng-if="loginVm.loggedIn">Comentar</md-button>

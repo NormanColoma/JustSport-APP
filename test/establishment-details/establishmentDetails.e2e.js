@@ -143,6 +143,17 @@ describe('Destails of establishment', function() {
             expect(comm[2].element(by.css('.est-comm-user')).getText(), "Norman");
             expect(comm[2].element(by.css('.est-comm-text')).getText(), "Esto es un comentario de prueba");
         });
+    });
+
+    it('should show error message when trying to post new commentary without text', function(){
+        element(by.css('.new-commentary')).click();
+        var commentaries = element(by.css('.est-commentaries'));
+        expect(commentaries.all(by.css('md-list-item')).count()).toBe(3);
+        commentaries.all(by.css('md-list-item')).then(function(comm) {
+            expect(comm[2].element(by.css('.est-comm-user')).getText(), "Norman");
+            expect(comm[2].element(by.css('.est-comm-text')).getText(), "Esto es un comentario de prueba");
+        });
+        expect(element(by.css('.comm-error')).getText()).toBe('Tienes que introducir un mensaje');
         element(by.css('.account-options')).click();
     });
 
