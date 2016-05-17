@@ -86,4 +86,10 @@ angular
         }};
         $httpBackend.whenGET('https://localhost:3000/api/courses/1/schedule').respond(schedule);
         $httpBackend.whenGET('https://localhost:3000/api/courses/2/schedule').respond(404);
+        var comm = {Commentary: {id: 5, text: "Esto es un comentario de prueba", "createdAt": "2016-05-12T22:53:31.433Z",
+            User: {
+                name: "Norman",
+                img: "default.jpg"
+        }}};
+        $httpBackend.whenPOST('https://localhost:3000/api/establishments/1/commentaries/new').respond(201,comm);
     }

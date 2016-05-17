@@ -4,7 +4,7 @@
 var express = require('express');
 var app = express();
 
-fdescribe('Destails of establishment', function() {
+describe('Destails of establishment', function() {
     var host = 'http://localhost:5000';
     if (app.get('env') === 'test') {
         host = 'https://localhost:5000';
@@ -110,6 +110,40 @@ fdescribe('Destails of establishment', function() {
         search_button.click();
         element(by.id('est-details-2')).click();
         expect(element(by.css('.est-no-commentaries')).getText()).toBe('Todavía no se ha realizado ningún comentario. Se el primero en dejar un comentario');
+    });
+
+    it('should post new commentary and display it', function(){
+        var email_field = element(by.css('[name="email"]'));
+        var pass_field = element(by.css('[name="pass"]'));
+        var login_button = element(by.id('login_button'))
+        browser.get(host+'/account/');
+        email_field.sendKeys('pepe@gmail.com');
+        pass_field.sendKeys('pepe15');
+        login_button.click();
+        browser.sleep(3000);
+        sport_field.click();
+        var sport_list = element(by.id('ul-0'));
+        sport_field.sendKeys('Spinning');
+        sport_list.all(by.css('li')).then(function(sports) {
+            sports[0].click();
+        });
+        location_field.sendKeys('Alicante');
+        browser.sleep(1500);
+        var location_list = element(by.id('ul-1'));
+        location_list.all(by.css('li')).then(function(location) {
+            location[0].click();
+        });
+        search_button.click();
+        element(by.id('est-details-1')).click();
+        element(by.css('[name="textField"]')).sendKeys('Esto es un comentario de prueba');
+        element(by.css('.new-commentary')).click();
+        var commentaries = element(by.css('.est-commentaries'));
+        expect(commentaries.all(by.css('md-list-item')).count()).toBe(3);
+        commentaries.all(by.css('md-list-item')).then(function(comm) {
+            expect(comm[2].element(by.css('.est-comm-user')).getText(), "Norman");
+            expect(comm[2].element(by.css('.est-comm-text')).getText(), "Esto es un comentario de prueba");
+        });
+        element(by.css('.account-options')).click();
     });
 
 });
