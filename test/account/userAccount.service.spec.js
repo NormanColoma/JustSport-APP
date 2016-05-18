@@ -58,4 +58,26 @@ describe('User Account Service that handles user operations', function() {
         $httpBackend.flush();
         expect(res).toBeFalsy();
     });
+
+    it('Should update the user account correctly', function(){
+        $httpBackend.expectPUT(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(204);
+        var data = {pass: "nuevo2015", role: "user", gender: "female"};
+        var res= false;
+        userService.updateAccount('8a74a3aa-757d-46f1-ba86-a56a0f107735', data).then(function(result){
+            res = result;
+        });
+        $httpBackend.flush();
+        expect(res).toBeTruthy();
+    });
+
+    it('Should not update the user account correctly', function(){
+        $httpBackend.expectPUT(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(500);
+        var data = {pass: "nuevo2015", role: "user", gender: "female"};
+        var res= false;
+        userService.updateAccount('8a74a3aa-757d-46f1-ba86-a56a0f107735', data).then(function(result){
+            res = result;
+        });
+        $httpBackend.flush();
+        expect(res).toBeFalsy();
+    });
 });
