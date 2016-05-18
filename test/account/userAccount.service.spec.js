@@ -16,14 +16,15 @@ describe('User Account Service that handles user operations', function() {
 
     it('Should return the info about user', function () {
         var user = {uuid: "8a74a3aa-757d-46f1-ba86-a56a0f107735", name: "Norman", lname: "Coloma García",
-            email: "ua.norman@gmail.com", gender: "male", role: "admin"
+            email: "ua.norman@gmail.com", gender: "male", role: "admin", img: "default.jpg"
         };
         $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(user);
         var real_user = null;
         userService.getUser('8a74a3aa-757d-46f1-ba86-a56a0f107735').then(function (user) {
             real_user = user;
         });
-        var expected_user = {name: "Norman", lname: "Coloma García", role: "male", img: "default.jpg"};
+        $httpBackend.flush();
+        var expected_user = {name: "Norman", lname: "Coloma García", role: "admin", gender:'male',img: "default.jpg"};
         expect(expected_user).toEqual(real_user);
     });
 
@@ -34,6 +35,7 @@ describe('User Account Service that handles user operations', function() {
         userService.getUser('8a74a3aa-757d-46f1-ba86-a56a0f107735').then(function (data) {
             real = data;
         });
+        $httpBackend.flush();
         expect(real).toEqual(message);
     });
 
@@ -43,7 +45,8 @@ describe('User Account Service that handles user operations', function() {
         userService.closeAccount('8a74a3aa-757d-46f1-ba86-a56a0f107735').then(function(result){
             res = result;
         });
-        expected(res).toBeTruthy();
+        $httpBackend.flush();
+        expect(res).toBeTruthy();
     });
 
     it('Should not close the user account correctly', function(){
@@ -52,6 +55,7 @@ describe('User Account Service that handles user operations', function() {
         userService.closeAccount('8a74a3aa-757d-46f1-ba86-a56a0f107735').then(function(result){
             res = result;
         });
-        expected(res).toBeFalsy();
+        $httpBackend.flush();
+        expect(res).toBeFalsy();
     });
 });
