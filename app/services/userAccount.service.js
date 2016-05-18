@@ -73,6 +73,7 @@ angular
         }
 
         function updateAccount(id,data){
+
             return Account.update({id:id}, data).$promise
                 .then(updateAccountSuccess)
                 .catch(updateAccountFailed);
@@ -81,7 +82,7 @@ angular
                 return true;
             }
 
-            function updateAccountFailed(){
+            function updateAccountFailed(err){
                 return false;
             }
         }
