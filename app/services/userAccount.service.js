@@ -37,6 +37,7 @@ angular
         var service = {
             closeAccount: closeAccount,
             getUser: getUser,
+            updateAccount: updateAccount
         };
 
         return service;
@@ -68,6 +69,20 @@ angular
             function  getUserFailed(error){
                 var message = {message: "An error occurred"};
                 return message;
+            }
+        }
+
+        function updateAccount(id,data){
+            return Account.update({id:id}, data).$promise
+                .then(updateAccountSuccess)
+                .catch(updateAccountFailed);
+
+            function updateAccountSuccess(){
+                return true;
+            }
+
+            function updateAccountFailed(){
+                return false;
             }
         }
     }
