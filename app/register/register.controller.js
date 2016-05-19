@@ -26,9 +26,6 @@ angular
         vm.registerView = false;
         vm.registeringUser = false;
         vm.resetForm = resetForm;
-        vm.selectView = selectView;
-
-        selectView();
 
         /**
          * @name changeView
@@ -104,22 +101,5 @@ angular
             }
         }
 
-        /**
-         * @name selectView
-         * @desc Redirects to register or login view
-         * @memberOf RegisterController
-         * @return {void}
-         */
-        function selectView(){
-            var path = $location.path();
-            if(path === '/register'){
-                vm.registerView = true;
-            }else if(path === ''){
-                $location.path('/login');
-            }
-            else{
-                vm.registerView = false;
-            }
-        }
 
     }

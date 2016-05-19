@@ -8,7 +8,7 @@ html(ng-app="justSport")
         link(rel="stylesheet",href="/public/stylesheets/style.css")
         link(href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
-    body(ng-cloak, ng-controller="LoginController as loginVm")
+    body(ng-controller="LoginController as loginVm" ng-init="loginVm.isLoggedIn()" ng-show="!loginVm.stop" ng-cloak)
             md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right')
                 md-toolbar.md-theme-light
                     h1.md-toolbar-tools Mi Cuenta
@@ -23,7 +23,7 @@ html(ng-app="justSport")
                             h2
                                 a(href='/') JustSport
                             span(flex='')
-                            a(href='/account/' ng-show="!loginVm.loggedIn").md-body-1 Login
+                            a(href='/account/#/login' ng-show="!loginVm.loggedIn").md-body-1 Login
                             a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
                         div(layout='row', show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
                             h2

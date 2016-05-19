@@ -30,6 +30,8 @@ angular
         vm.name = null;
         vm.openMenu = openMenu;
         vm.role = null;
+        vm.selectView = selectView;
+        vm.stop = false;
 
         isLoggedIn();
 
@@ -53,10 +55,18 @@ angular
          * @return {void}
          */
         function isLoggedIn(){
+            vm.stop = false;
             if(loginService.isLoggedIn()){
                 vm.loggedIn = true;
                 vm.name= localStorage.username;
                 vm.role = localStorage.role;
+                if($location.url() === "/login" || $location.absUrl() === "https://justsportapp.herokuapp.com/account" ||
+                    $location.absUrl() === "https://localhost:5000/account" || $location.absUrl() === "http://localhost:5000/account"){
+                    vm.stop = true;
+                    $window.location.href = url;
+                }
+            }else{
+                selectView();
             }
         }
 
@@ -91,9 +101,7 @@ angular
                         vm.loggedIn = true;
                         vm.name = data.username;
                         vm.role = data.role;
-                        $http.post(url + 'token/' + data.access_token).then(function (data) {
-                            $window.location.href = url;
-                        });
+                        $window.location.href = url;
                     }
                 });
             }
@@ -114,12 +122,28 @@ angular
             localStorage.removeItem("role");
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
-            $http.delete(url+'token');
             $mdSidenav('right').close();
         }
 
         function openMenu(){
-            console.log("entro");
             $mdSidenav('right').toggle();
+        }
+
+        /**
+         * @name selectView
+         * @desc Redirects to register or login view
+         * @memberOf RegisterController
+         * @return {void}
+         */
+        function selectView(){
+            var path = $location.path();
+            if(path === '/register'){
+                vm.registerView = true;
+            }else if(path === ''){
+                $location.path('/login');
+            }
+            else{
+                vm.registerView = false;
+            }
         }
     }
