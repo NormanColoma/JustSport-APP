@@ -6,14 +6,14 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$window','$location', '$http', 'dialogService'];
+    LoginController.$inject = ['loginService', '$window','$location', '$http', 'dialogService', '$mdSidenav'];
 
     /**
     * @namespace LoginController
     * @desc Manages the log in/log out of user into the application
     * @memberOf LoginController
     */
-    function LoginController(loginService, $window, $location, $http, dialogService){
+    function LoginController(loginService, $window, $location, $http, dialogService, $mdSidenav){
         var vm = this;
         var base_api = 'https://localhost:3000/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
@@ -28,6 +28,7 @@ angular
         vm.loginProgress = false;
         vm.logout = logout;
         vm.name = null;
+        vm.openMenu = openMenu;
         vm.role = null;
 
         isLoggedIn();
@@ -114,5 +115,11 @@ angular
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
             $http.delete(url+'token');
+            $mdSidenav('right').close();
+        }
+
+        function openMenu(){
+            console.log("entro");
+            $mdSidenav('right').toggle();
         }
     }
