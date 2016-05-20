@@ -6,14 +6,14 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$window','$location', '$http', 'dialogService', '$mdSidenav'];
+    LoginController.$inject = ['loginService', '$window','$location', 'dialogService', '$mdSidenav'];
 
     /**
     * @namespace LoginController
     * @desc Manages the log in/log out of user into the application
     * @memberOf LoginController
     */
-    function LoginController(loginService, $window, $location, $http, dialogService, $mdSidenav){
+    function LoginController(loginService, $window, $location,dialogService, $mdSidenav){
         var vm = this;
         var base_api = 'https://localhost:3000/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
@@ -30,10 +30,10 @@ angular
         vm.name = null;
         vm.openMenu = openMenu;
         vm.role = null;
+        vm.reload = true;
         vm.selectView = selectView;
         vm.stop = false;
 
-        isLoggedIn();
 
         /**
          * @name checkToken
@@ -63,7 +63,8 @@ angular
                 if($location.url() === "/login" || $location.absUrl() === "https://justsportapp.herokuapp.com/account" ||
                     $location.absUrl() === "https://localhost:5000/account" || $location.absUrl() === "http://localhost:5000/account"){
                     vm.stop = true;
-                    $window.location.href = url;
+                    if(vm.reload)
+                        $window.location.href = url;
                 }
             }else{
                 selectView();
@@ -101,7 +102,8 @@ angular
                         vm.loggedIn = true;
                         vm.name = data.username;
                         vm.role = data.role;
-                        $window.location.href = url;
+                        if(vm.reload)
+                            $window.location.href = url;
                     }
                 });
             }

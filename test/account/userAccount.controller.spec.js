@@ -28,9 +28,10 @@ describe('User Account Controller', function() {
         var controller = createController();
         $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(user);
         controller.establishment = {};
+        controller.user_id="8a74a3aa-757d-46f1-ba86-a56a0f107735";
         expect(controller.user).toEqual({});
         /* jshint ignore:start*/
-        controller.getUser('8a74a3aa-757d-46f1-ba86-a56a0f107735');
+        controller.getUser();
         /*jshint ignore:end */
         $httpBackend.flush();
         var expected_user = {name: "Norman", lname: "Coloma García", role: "admin", gender:'male',img: "default.jpg"};
@@ -52,11 +53,12 @@ describe('User Account Controller', function() {
     it('Should update the account', function(){
         var data = {pass: "nuevo2015", role: "user", gender: "female"};
         var controller = createController();
+        controller.user_id="8a74a3aa-757d-46f1-ba86-a56a0f107735";
         $httpBackend.expectPUT(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(204);
         controller.establishment = {};
         expect(controller.updated).toEqual(false);
         /* jshint ignore:start*/
-        controller.updateAccount('8a74a3aa-757d-46f1-ba86-a56a0f107735',data);
+        controller.updateAccount(data,undefined,undefined);
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.updated).toBeTruthy();

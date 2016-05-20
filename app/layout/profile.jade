@@ -1,5 +1,38 @@
 include header
+link(rel="stylesheet" type="text/css" href="public/stylesheets/user-account.css")
 div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
-ng-controller="UserAccountController as usAccVm")
-    div(flex="90", flex-sm="100")
-        h2.md-display-2 Perfil
+ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-cloak)
+    div(flex="95", flex-sm="100", layout="column")
+        h2.md-display-2.font-header Perfil
+        div(layout="row")
+            div(layout="row", flex="20").profile-img-container
+                img(layout="column" ng-src="{{usAccVm.imgFolder+usAccVm.user.img}}"
+                alt="{{usAccVm.imgFolder+usAccVm.user.img}}" src="{{usAccVm.imgFolder+usAccVm.user.img}}").profile-img
+            p Pulsa sobre la imagen si quieres actualizar tu foto de perfil, o elimar la actual.
+        div(layout="column")
+            form(novalidate, name="accountForm",ng-submit="usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
+                h2.md-headline Contraseña
+                md-input-container(flex="40").md-block
+                    label Contraseña Actual
+                    input(required='', name='cpass', ng-model='usAccVm.acc.current', type="password")
+                    div(ng-messages='accountForm.cpass.$error' ng-show="accountForm.$submitted || accountForm.cpass.$touched")
+                        div(ng-message='required') El campo es obligatorio.
+                md-input-container(flex="40").md-block
+                    label Contraseña Nueva
+                    input(required='', name='npass', ng-model='usAccVm.account.pass', type="password"
+                    ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
+                    .hint(ng-if="!accountForm.npass.$touched && !accountForm.$submitted") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
+                    div(ng-messages='accountForm.npass.$error' ng-show="accountForm.$submitted || accountForm.npass.$touched")
+                        div(ng-message='required') El campo es obligatorio.
+                        div(ng-show="accountForm.npass.$error.pattern") La contraseña no es correcta.
+                md-input-container(flex="40", layout="column").md-block
+                    h2.md-headline Nivel Cuenta
+                    p
+                        | Podras cambiar tu nivel de cuenta entre <strong>Propietario</strong> y <strong> Usuario</strong>
+                    md-checkbox(ng-model='usAccVm.account.role', aria-label='Account Level',
+                    ng-true-value="'Propietario'", ng-false-value="'Usuario'", flex=''){{ usAccVm.account.role }}
+                md-input-container(flex="40", layout="column").md-block
+                    md-button(type="submit")#update_acc.md-raised.md-primary Actualizar
+
+
+include footer

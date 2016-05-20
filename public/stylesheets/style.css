@@ -48,6 +48,11 @@ body{
   text-align: center;
 }
 
+.font-header{
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin-bottom: 0px;
+}
+
 .background-wh{
   background-color: white !important;
 }

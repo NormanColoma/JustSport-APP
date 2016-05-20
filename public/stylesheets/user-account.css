@@ -1,0 +1,10 @@
+.profile-img-container{
+    padding: 20px;
+}
+.profile-img-container img{
+    height:200px;
+    background-color: rgba(66, 65, 65, 0.87);
+    border: 4px solid rgba(66, 65, 65, 0.87);
+    border-radius: 2px;
+    cursor: pointer;
+}
