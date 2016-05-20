@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                         'app/register/register.module.js', 'app/register/register.controller.js', 'app/services/register.service.js',
                         'app/establishment-details/establishment.module.js','app/establishment-details/establishmentDetails.controller.js','app/services/establishmentDetails.service.js',
                         'app/components/establishmentDetails.directive.js','app/components/establishmentVote.directive.js', 'app/account/userAccount.module.js',
-                        'app/account/userAccount.controller.js','app/services/userAccount.service.js',
+                        'app/account/userAccount.controller.js','app/services/userAccount.service.js', 'app/components/uploadButton.directive.js',
                         'app/app.module.js', 'app/services/formReset.service.js','app/services/dialog.service.js']
                 }
             },

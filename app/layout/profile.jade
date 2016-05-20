@@ -6,8 +6,10 @@ ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-
         h2.md-display-2.font-header Perfil
         div(layout="row")
             div(layout="row", flex="20").profile-img-container
-                img(layout="column" ng-src="{{usAccVm.imgFolder+usAccVm.user.img}}"
-                alt="{{usAccVm.imgFolder+usAccVm.user.img}}" src="{{usAccVm.imgFolder+usAccVm.user.img}}").profile-img
+                input(id="fileInput" name="file" type="file" class="ng-hide")
+                md-button(id="uploadButton" upload-btn aria-label="Upload button").img-upload-btn
+                    img(layout="column" id="userProfileImg" ng-src="{{imgFolder}}"
+                    alt="{{imgFolder}}").profile-img
             p Pulsa sobre la imagen si quieres actualizar tu foto de perfil, o elimar la actual.
         div(layout="column")
             form(novalidate, name="accountForm",ng-submit="usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
@@ -27,10 +29,9 @@ ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-
                         div(ng-show="accountForm.npass.$error.pattern") La contraseña no es correcta.
                 md-input-container(flex="40", layout="column").md-block
                     h2.md-headline Nivel Cuenta
-                    p
-                        | Podras cambiar tu nivel de cuenta entre <strong>Propietario</strong> y <strong> Usuario</strong>
+                    p Podras cambiar tu nivel de cuenta entre <strong>Propietario</strong> y <strong> Usuario</strong>
                     md-checkbox(ng-model='usAccVm.account.role', aria-label='Account Level',
-                    ng-true-value="'Propietario'", ng-false-value="'Usuario'", flex=''){{ usAccVm.account.role }}
+                    ng-true-value="'Propietario'", ng-false-value="'Usuario'", flex='') {{ usAccVm.account.role }}
                 md-input-container(flex="40", layout="column").md-block
                     md-button(type="submit")#update_acc.md-raised.md-primary Actualizar
 

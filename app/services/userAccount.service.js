@@ -5,9 +5,9 @@ angular
     .module('userAccountModule')
     .factory('userAccountService', userAccountService);
 
-    userAccountService.$inject = ['$resource'];
+    userAccountService.$inject = ['$resource', '$http'];
 
-    function userAccountService($resource){
+    function userAccountService($resource,$http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
@@ -37,7 +37,8 @@ angular
         var service = {
             closeAccount: closeAccount,
             getUser: getUser,
-            updateAccount: updateAccount
+            updateAccount: updateAccount,
+            uploadImg: uploadImg
         };
 
         return service;
@@ -83,6 +84,26 @@ angular
             }
 
             function updateAccountFailed(err){
+                return false;
+            }
+        }
+
+        function uploadImg(file){
+            var payload = new FormData();
+            payload.append("user_profile", file);
+            return $http({
+                method  : 'PUT',
+                url     : server+'/users/me/profile/image',
+                data    : payload, //forms user object
+                headers : { 'Authorization': 'Bearer ' + localStorage.token,'Content-Type': undefined}
+            })
+                .then(uploadImgSuccess)
+                .catch(uploadImgFailed);
+
+            function uploadImgSuccess(){
+                return true;
+            }
+            function uploadImgFailed(){
                 return false;
             }
         }

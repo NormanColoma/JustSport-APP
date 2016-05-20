@@ -6,9 +6,9 @@ angular
     .module('userAccountModule')
     .controller('UserAccountController', UserAccountController);
 
-    UserAccountController.$inject = ['userAccountService','formResetService', 'dialogService'];
+    UserAccountController.$inject = ['userAccountService','formResetService', 'dialogService', '$scope'];
 
-    function UserAccountController(userAccountService,formResetService, dialogService){
+    function UserAccountController(userAccountService,formResetService, dialogService, $scope){
         var vm=this;
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
@@ -18,12 +18,28 @@ angular
         vm.closeAccount = closeAccount;
         vm.closed = false;
         vm.getUser = getUser;
-        vm.imgFolder = server+"public/images/users/";
+        $scope.imgFolder = server+"public/images/users/";
         vm.updateAccount = updateAccount;
+        vm.uploadImg = uploadImg;
         vm.updated = false;
         vm.user = {};
         vm.user_id = localStorage.user_id;
 
+        function uploadImg(file,ev){
+            var dataDialog={};
+            userAccountService.uploadImg(file).then(function(data){
+                if(data){
+                    $scope.imgFolder = server+"public/images/users/"+file.name;
+                    dataDialog = {
+                        title: '¡Imagen Subida!', text: 'Tu nueva imagen de perfil ha sido actualizada',
+                        aria: 'Updated IMG User Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
+                }else{
+
+                }
+            });
+        }
 
         function closeAccount(id){
             userAccountService.closeAccount(id).then(function(data){
@@ -45,6 +61,7 @@ angular
                         vm.account.role = "Usuario";
                     }
                     vm.user = user;
+                    $scope.imgFolder = $scope.imgFolder+vm.user.img;
                 }else{
 
                 }
