@@ -3,7 +3,7 @@
  */
 describe('User Account Service that handles user operations', function() {
     var $httpBackend;
-    var baseAPI = 'https://localhost:3000/api/';
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
     var userService;
     // Set up the module
     beforeEach(module('justSport'));

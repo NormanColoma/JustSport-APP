@@ -12,7 +12,7 @@ angular
         var vm=this;
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
-        var server = local_folder;
+        var server = server_folder;
 
         vm.account = {};
         vm.closeAccount = closeAccount;

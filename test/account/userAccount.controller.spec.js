@@ -3,7 +3,7 @@
  */
 describe('User Account Controller', function() {
     var $httpBackend, $rootScope, createController;
-    var baseAPI = 'https://localhost:3000/api/';
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
     var user = {uuid: "8a74a3aa-757d-46f1-ba86-a56a0f107735", name: "Norman", lname: "Coloma García",
         email: "ua.norman@gmail.com", gender: "male", role: "admin", img: "default.jpg"
     };
