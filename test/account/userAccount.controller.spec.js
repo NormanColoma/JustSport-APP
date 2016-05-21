@@ -27,7 +27,6 @@ describe('User Account Controller', function() {
     it('Should fetch the user info', function(){
         var controller = createController();
         $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(user);
-        controller.establishment = {};
         controller.user_id="8a74a3aa-757d-46f1-ba86-a56a0f107735";
         expect(controller.user).toEqual({});
         /* jshint ignore:start*/
@@ -41,7 +40,6 @@ describe('User Account Controller', function() {
     it('Should close the account', function(){
         var controller = createController();
         $httpBackend.expectDELETE(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(204);
-        controller.establishment = {};
         expect(controller.closed).toEqual(false);
         /* jshint ignore:start*/
         controller.closeAccount('8a74a3aa-757d-46f1-ba86-a56a0f107735');
@@ -53,9 +51,9 @@ describe('User Account Controller', function() {
     it('Should update the account', function(){
         var data = {pass: "nuevo2015", role: "user", gender: "female"};
         var controller = createController();
+        controller.acc = {current:"123"};
         controller.user_id="8a74a3aa-757d-46f1-ba86-a56a0f107735";
         $httpBackend.expectPUT(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(204);
-        controller.establishment = {};
         expect(controller.updated).toEqual(false);
         /* jshint ignore:start*/
         controller.updateAccount(data,undefined,undefined);
