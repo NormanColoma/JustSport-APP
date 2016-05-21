@@ -155,6 +155,7 @@ describe('Destails of establishment', function() {
         });
         expect(element(by.css('.comm-error')).getText()).toBe('Tienes que introducir un mensaje');
         element(by.css('.account-options')).click();
+        element(by.css('[name="logout"]')).click();
     });
 
 });

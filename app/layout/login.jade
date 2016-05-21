@@ -1,7 +1,7 @@
 include header
 link(rel="stylesheet",href="/public/stylesheets/login.css")
 div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
-ng-controller="RegisterController as registerVm" ng-cloak)
+ng-controller="RegisterController as registerVm")
     div(flex="40", flex-sm="65")
         h2.md-display-2.login-title(ng-show="!registerVm.registerView") Accede a tu cuenta
         h2.md-display-2.register-title(ng-show="registerVm.registerView") Crea tu cuenta

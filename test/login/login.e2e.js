@@ -31,7 +31,9 @@ describe('Home', function() {
     it('Should log out correctly', function(){
         expect(element(by.css('.account-options')).isDisplayed()).toBeTruthy();
         element(by.css('.account-options')).click();
+        element(by.css('[name="logout"]')).click();
         expect(element(by.css('.account-options')).isDisplayed()).toBeFalsy();
+        expect(browser.getCurrentUrl()).toBe(host+'/');
     });
 
     it('should failed when trying to log in with incorrect user', function(){
@@ -40,7 +42,7 @@ describe('Home', function() {
         email_field.sendKeys('pepis@gmail.com');
         pass_field.sendKeys('pepe23');
         login_button.click();
-        expect(browser.getCurrentUrl()).toBe(host+'/account/#/login');
+        expect(browser.getCurrentUrl()).toBe(host+'/account/');
         expect(element(by.css('md-dialog')).isPresent()).toBeTruthy();
         expect(element(by.css('md-dialog')).isDisplayed()).toBeTruthy();
     });

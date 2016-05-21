@@ -48,6 +48,11 @@ body{
   text-align: center;
 }
 
+.font-header{
+  font-family: 'Open Sans Condensed', sans-serif;
+  margin-bottom: 0px;
+}
+
 .background-wh{
   background-color: white !important;
 }
@@ -178,4 +183,15 @@ md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-
   margin-left: 30px;
   margin-top: 4px;
   color: #757474;
+}
+
+.input-error{
+  color: rgb(221,44,0);
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+  opacity: 1;
+  margin-top: 0;
+  padding-top: 5px;
 }
