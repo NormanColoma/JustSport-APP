@@ -89,7 +89,6 @@ angular
         }
 
         function uploadImg(file){
-            console.log(file);
             var payload = new FormData();
             payload.append("user_profile", file);
             return $http({
@@ -104,8 +103,7 @@ angular
             function uploadImgSuccess(){
                 return true;
             }
-            function uploadImgFailed(err){
-                console.log(err);
+            function uploadImgFailed(){
                 return false;
             }
         }

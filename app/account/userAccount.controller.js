@@ -36,7 +36,11 @@ angular
                     };
                     dialogService.showDialog(dataDialog, ev);
                 }else{
-
+                    dataDialog = {
+                        title: '¡Error de Subida!', text: 'La imagen es demasiado pesada. No puede pesar más de 512Kb',
+                        aria: 'Updated IMG User Error Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
