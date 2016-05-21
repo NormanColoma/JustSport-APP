@@ -69,32 +69,36 @@ angular
         }
 
         function updateAccount(data,form,ev){
-            var dataDialog = {};
-            var data_updated = data;
-            var role = data.role;
-            if(data_updated.role === "Usuario")
-                data_updated.role = "user";
-            else
-                data_updated.role = "owner";
-           userAccountService.updateAccount(vm.user_id,data_updated).then(function(data){
-                if(data){
-                    vm.updated = true;
-                    formResetService.reset(form);
-                    vm.account = {role:role};
-                    vm.acc = {};
-                    dataDialog = {
-                        title: '¡Información Actualizada!', text: 'Tu cuenta ha sido actualizada '+vm.user.name,
-                        aria: 'Updated User Alert', textButton: 'Listo'
-                    };
-                    dialogService.showDialog(dataDialog, ev);
-                }else{
-                    vm.updated = false;
-                    dataDialog = {
-                        title: '¡Error!', text: 'Se ha encontrado un error durante la actualización. Por favor, intentalo de nuevo',
-                        aria: 'Updated User Error Alert', textButton: 'Listo'
-                    };
-                    dialogService.showDialog(dataDialog, ev);
-                }
-            });
+            if(data.pass != undefined && vm.acc.current !== undefined) {
+                var dataDialog = {};
+                var data_updated = data;
+                var role = data.role;
+                if (data_updated.role === "Usuario")
+                    data_updated.role = "user";
+                else
+                    data_updated.role = "owner";
+                userAccountService.updateAccount(vm.user_id, data_updated).then(function (data) {
+                    if (data) {
+                        vm.updated = true;
+                        formResetService.reset(form);
+                        vm.account = {role: role};
+                        vm.acc = {};
+                        dataDialog = {
+                            title: '¡Información Actualizada!', text: 'Tu cuenta ha sido actualizada ' + vm.user.name,
+                            aria: 'Updated User Alert', textButton: 'Listo'
+                        };
+                        dialogService.showDialog(dataDialog, ev);
+                    } else {
+                        vm.updated = false;
+                        dataDialog = {
+                            title: '¡Error!',
+                            text: 'Se ha encontrado un error durante la actualización. Por favor, intentalo de nuevo',
+                            aria: 'Updated User Error Alert',
+                            textButton: 'Listo'
+                        };
+                        dialogService.showDialog(dataDialog, ev);
+                    }
+                });
+            }
         }
     }

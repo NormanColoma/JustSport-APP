@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="justSport")
+html(ng-app="justSportTest")
     head
         meta(name='viewport', content='width=device-width')
         base(href="/")
@@ -13,8 +13,8 @@ html(ng-app="justSport")
                 md-toolbar.md-theme-light
                     h1.md-toolbar-tools Mi Cuenta
                 md-content(layout-padding='', layout="column", layout-align="start none")
-                    md-button(ng-href="/account/profile").md-primary Perfil
-                    md-button(ng-href="",ng-click="loginVm.logout()").md-primary Salir
+                    md-button(ng-href="/account/profile" name="profile").md-primary Perfil
+                    md-button(ng-href="",ng-click="loginVm.logout()" name="logout").md-primary Salir
             md-content
                 div(layout='row')
                     br

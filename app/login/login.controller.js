@@ -29,9 +29,9 @@ angular
         vm.logout = logout;
         vm.name = null;
         vm.openMenu = openMenu;
-        vm.role = null;
+        vm.registerView = false;
         vm.reload = true;
-        vm.selectView = selectView;
+        vm.role = null;
         vm.stop = false;
 
 
@@ -67,7 +67,12 @@ angular
                         $window.location.href = url;
                 }
             }else{
-                selectView();
+                if($location.url() === "/account/profile" || $location.absUrl() === "https://justsportapp.herokuapp.com/account/profile" ||
+                    $location.absUrl() === "https://localhost:5000/account/profile" || $location.absUrl() === "http://localhost:5000/account/profile"){
+                    vm.stop = true;
+                    if(vm.reload)
+                        $window.location.href = url+'account/#/login';
+                }
             }
         }
 
@@ -125,27 +130,11 @@ angular
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
             $mdSidenav('right').close();
+            if(vm.reload)
+                $window.location.href = url;
         }
 
         function openMenu(){
             $mdSidenav('right').toggle();
-        }
-
-        /**
-         * @name selectView
-         * @desc Redirects to register or login view
-         * @memberOf RegisterController
-         * @return {void}
-         */
-        function selectView(){
-            var path = $location.path();
-            if(path === '/register'){
-                vm.registerView = true;
-            }else if(path === ''){
-                $location.path('/login');
-            }
-            else{
-                vm.registerView = false;
-            }
         }
     }

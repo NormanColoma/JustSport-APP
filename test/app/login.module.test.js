@@ -9,7 +9,7 @@ angular
 
     function loginTest($httpBackend) {
         var local_api = "https://localhost:3000";
-        var token = {access_token: "eyJ0", role: "owner", username: 'Pepe', expires: 1460805614894};
+        var token = {access_token: "eyJ0", role: "owner", username: 'Pepe', expires: 1460805614894, user_id:"1234-567"};
         var error = {error: 'Faking error'};
         $httpBackend.whenPOST(local_api + '/api/oauth2/token').respond(function(method, url, data) {
             var user = angular.fromJson(data);
