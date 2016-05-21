@@ -23,7 +23,6 @@ describe('Home', function() {
         email_field.sendKeys('pepe@gmail.com');
         pass_field.sendKeys('pepe15');
         login_button.click();
-        browser.sleep(3000);
         expect(element(by.css('.account-options')).isDisplayed()).toBeTruthy();
         expect(browser.getCurrentUrl()).toBe(host+'/');
     });
