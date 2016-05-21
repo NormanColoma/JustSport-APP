@@ -69,7 +69,7 @@ angular
         }
 
         function updateAccount(data,form,ev){
-            if(data.pass != undefined && vm.acc.current !== undefined) {
+            if(data.pass !== undefined && vm.acc.current !== undefined) {
                 var dataDialog = {};
                 var data_updated = data;
                 var role = data.role;
