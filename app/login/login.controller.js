@@ -6,14 +6,14 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$window','$location', '$http', 'dialogService'];
+    LoginController.$inject = ['loginService', '$window','$location', 'dialogService', '$mdSidenav'];
 
     /**
     * @namespace LoginController
     * @desc Manages the log in/log out of user into the application
     * @memberOf LoginController
     */
-    function LoginController(loginService, $window, $location, $http, dialogService){
+    function LoginController(loginService, $window, $location,dialogService, $mdSidenav){
         var vm = this;
         var base_api = 'https://justsport-api.herokuapp.com/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
@@ -28,9 +28,12 @@ angular
         vm.loginProgress = false;
         vm.logout = logout;
         vm.name = null;
+        vm.openMenu = openMenu;
+        vm.registerView = false;
+        vm.reload = true;
         vm.role = null;
+        vm.stop = false;
 
-        isLoggedIn();
 
         /**
          * @name checkToken
@@ -52,10 +55,24 @@ angular
          * @return {void}
          */
         function isLoggedIn(){
+            vm.stop = false;
             if(loginService.isLoggedIn()){
                 vm.loggedIn = true;
                 vm.name= localStorage.username;
                 vm.role = localStorage.role;
+                if($location.url() === "/login" || $location.absUrl() === "https://justsportapp.herokuapp.com/account" ||
+                    $location.absUrl() === "https://localhost:5000/account" || $location.absUrl() === "http://localhost:5000/account"){
+                    vm.stop = true;
+                    if(vm.reload)
+                        $window.location.href = url;
+                }
+            }else{
+                if($location.url() === "/account/profile" || $location.absUrl() === "https://justsportapp.herokuapp.com/account/profile" ||
+                    $location.absUrl() === "https://localhost:5000/account/profile" || $location.absUrl() === "http://localhost:5000/account/profile"){
+                    vm.stop = true;
+                    if(vm.reload)
+                        $window.location.href = url+'account/#/login';
+                }
             }
         }
 
@@ -90,9 +107,8 @@ angular
                         vm.loggedIn = true;
                         vm.name = data.username;
                         vm.role = data.role;
-                        $http.post(url + 'token/' + data.access_token).then(function (data) {
+                        if(vm.reload)
                             $window.location.href = url;
-                        });
                     }
                 });
             }
@@ -113,6 +129,12 @@ angular
             localStorage.removeItem("role");
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
-            $http.delete(url+'token');
+            $mdSidenav('right').close();
+            if(vm.reload)
+                $window.location.href = url;
+        }
+
+        function openMenu(){
+            $mdSidenav('right').toggle();
         }
     }

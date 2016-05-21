@@ -31,7 +31,6 @@ describe('Destails of establishment', function() {
             sports[0].click();
         });
         location_field.sendKeys('Alicante');
-        browser.sleep(1500);
         var location_list = element(by.id('ul-1'));
         location_list.all(by.css('li')).then(function(location) {
             location[0].click();
@@ -102,7 +101,6 @@ describe('Destails of establishment', function() {
             sports[0].click();
         });
         location_field.sendKeys('Alicante');
-        browser.sleep(1500);
         var location_list = element(by.id('ul-1'));
         location_list.all(by.css('li')).then(function(location) {
             location[0].click();
@@ -120,7 +118,6 @@ describe('Destails of establishment', function() {
         email_field.sendKeys('pepe@gmail.com');
         pass_field.sendKeys('pepe15');
         login_button.click();
-        browser.sleep(3000);
         sport_field.click();
         var sport_list = element(by.id('ul-0'));
         sport_field.sendKeys('Spinning');
@@ -128,7 +125,6 @@ describe('Destails of establishment', function() {
             sports[0].click();
         });
         location_field.sendKeys('Alicante');
-        browser.sleep(1500);
         var location_list = element(by.id('ul-1'));
         location_list.all(by.css('li')).then(function(location) {
             location[0].click();
@@ -155,6 +151,7 @@ describe('Destails of establishment', function() {
         });
         expect(element(by.css('.comm-error')).getText()).toBe('Tienes que introducir un mensaje');
         element(by.css('.account-options')).click();
+        element(by.css('[name="logout"]')).click();
     });
 
 });

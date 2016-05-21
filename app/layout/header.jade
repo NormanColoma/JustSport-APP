@@ -8,7 +8,13 @@ html(ng-app="justSport")
         link(rel="stylesheet",href="/public/stylesheets/style.css")
         link(href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
-    body(ng-cloak, ng-controller="LoginController as loginVm")
+    body(ng-controller="LoginController as loginVm" ng-init="loginVm.isLoggedIn()" ng-show="!loginVm.stop" ng-cloak)
+            md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right')
+                md-toolbar.md-theme-light
+                    h1.md-toolbar-tools Mi Cuenta
+                md-content(layout-padding='', layout="column", layout-align="start none")
+                    md-button(ng-href="/account/profile" name="profile").md-primary Perfil
+                    md-button(ng-href="",ng-click="loginVm.logout()" name="logout").md-primary Salir
             md-content
                 div(layout='row')
                     br
@@ -17,13 +23,14 @@ html(ng-app="justSport")
                             h2
                                 a(href='/') JustSport
                             span(flex='')
-                            a(href='/account/' ng-show="!loginVm.loggedIn").md-body-1 Login
-                            a(ng-show="loginVm.loggedIn" ng-click="loginVm.logout()").md-body-1.clickable.account-options Salir
+                            a(href='/account/#/login' ng-show="!loginVm.loggedIn").md-body-1 Login
+                            a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
                         div(layout='row', show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
                             h2
                                 span JustSport
                             span(flex='')
                             md-button.md-icon-button(aria-label='More')
-                                a(href='/account/' ng-show="!loginVm.loggedIn")
+                                a( ng-click="loginVm.openMenu()" ng-show="loginVm.loggedIn")
                                     md-icon(md-svg-icon='./public/images/icons/account.svg')
+                                a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Mi cuenta
 

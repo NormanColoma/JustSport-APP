@@ -27,11 +27,11 @@ describe('Login Controller', function() {
         controller.name = null;
         controller.role = null;
         controller.loggedIn = false;
+        controller.reload = false;
         expect(controller.name).toBe(null);
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
-        $httpBackend.expectPOST(baseAPI+'token/eyJ0').respond(404);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
@@ -50,6 +50,7 @@ describe('Login Controller', function() {
         controller.name = null;
         controller.role = null;
         controller.loggedIn = false;
+        controller.reload = false;
         expect(controller.name).toBe(null);
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
@@ -67,6 +68,7 @@ describe('Login Controller', function() {
         controller.name = "Pepe";
         controller.role = "owner";
         controller.loggedIn = true;
+        controller.reload = false;
         /* jshint ignore:start*/
         controller.logout();
         /*jshint ignore:end */
@@ -77,12 +79,12 @@ describe('Login Controller', function() {
 
     it('should return valid token expiration', function(){
         var controller = createController();
+        controller.reload = false;
         var date = new Date();
         date.setTime( date.getTime() + 7 * 86400000 );
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735',
             expires: date};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
-        $httpBackend.expectPOST(baseAPI+'token/eyJ0').respond(404);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
@@ -92,9 +94,9 @@ describe('Login Controller', function() {
 
     it('should return invalid token expiration', function(){
         var controller = createController();
+        controller.reload = false;
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
-        $httpBackend.expectPOST(baseAPI+'token/eyJ0').respond(404);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */

@@ -117,16 +117,9 @@ angular
             var path = $location.path();
             if(path === '/register'){
                 vm.registerView = true;
-            }else if(path === ''){
+            }else if(path === 'login'){
                 $location.path('/login');
-            }
-            else{
                 vm.registerView = false;
             }
         }
-
-        function userIsNull(){
-
-        }
-
     }
