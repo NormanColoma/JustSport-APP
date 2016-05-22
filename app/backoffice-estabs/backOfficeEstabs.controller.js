@@ -9,7 +9,7 @@ angular
     .module('backOfficeModule')
     .controller('BackOfficeEstabController', BackOfficeEstabController);
 
-    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService'];
+    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService'];
 
     /**
     *
@@ -18,7 +18,7 @@ angular
     * @memberOf BackOffice Estabs
     *
     */
-    function BackOfficeEstabController(backOfficeEstabService, dialogService) {
+    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService) {
         var vm = this;
 
         var local_folder = "https://localhost:3000/";
@@ -39,10 +39,12 @@ angular
          * @returns {void}
          */
         function getEstabs(ev){
-            backOfficeEstabService.getEstabs(vm.after).then(angular.bind(this, function (data){
-                vm.after = data.paging.cursors.after;
-                vm.estabs = vm.estabs.concat(data.Establishments);
-            }));
+            if(loginService.isLoggedIn()) {
+                backOfficeEstabService.getEstabs(vm.after).then(angular.bind(this, function (data) {
+                    vm.after = data.paging.cursors.after;
+                    vm.estabs = vm.estabs.concat(data.Establishments);
+                }));
+            }
         }
 
     }
