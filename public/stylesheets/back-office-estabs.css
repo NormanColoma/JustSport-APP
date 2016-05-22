@@ -1,0 +1,39 @@
+.est-owner-container{
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.est-owner-container.ng-enter, .est-owner-container.ng-move, .est-owner-container.ng-leave{
+    opacity: 0;
+    transform: scale(0.001);
+    transition-property: transform, opacity;
+    /*transform: translate3d(-759px,0px,0px);
+    transition-property: transform, opacity;*/
+}
+
+.est-owner-container.ng-hide{
+    opacity: 0;
+    transform: scale(0.001);
+    transition-property: transform, opacity;
+}
+
+
+.est-owner-container md-card{
+
+    margin-bottom: 40px;
+}
+
+
+.est-owner-container md-card img{
+    padding: 5px;
+    height: 270px;
+}
+
+.est-owner-container md-card md-card-actions{
+    border-top: 1px solid rgba(0,0,0,0.12);
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+

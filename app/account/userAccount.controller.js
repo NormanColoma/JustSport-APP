@@ -6,9 +6,9 @@ angular
     .module('userAccountModule')
     .controller('UserAccountController', UserAccountController);
 
-    UserAccountController.$inject = ['userAccountService','formResetService', 'dialogService', '$scope'];
+    UserAccountController.$inject = ['userAccountService','formResetService', 'dialogService', '$scope', 'loginService'];
 
-    function UserAccountController(userAccountService,formResetService, dialogService, $scope){
+    function UserAccountController(userAccountService,formResetService, dialogService, $scope, loginService){
         var vm=this;
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
@@ -53,19 +53,21 @@ angular
         }
 
         function getUser(){
-            userAccountService.getUser(vm.user_id).then(function (user) {
-                if(user.message === undefined){
-                    if(user.role === "owner"){
-                        vm.account.role = "Propietario";
-                    }else{
-                        vm.account.role = "Usuario";
-                    }
-                    vm.user = user;
-                    $scope.imgFolder = $scope.imgFolder+vm.user.img;
-                }else{
+            if(loginService.isLoggedIn()) {
+                userAccountService.getUser(vm.user_id).then(function (user) {
+                    if (user.message === undefined) {
+                        if (user.role === "owner") {
+                            vm.account.role = "Propietario";
+                        } else {
+                            vm.account.role = "Usuario";
+                        }
+                        vm.user = user;
+                        $scope.imgFolder = $scope.imgFolder + vm.user.img;
+                    } else {
 
-                }
-            });
+                    }
+                });
+            }
         }
 
         function updateAccount(data,form,ev){
