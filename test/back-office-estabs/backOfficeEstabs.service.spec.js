@@ -172,7 +172,7 @@ describe('Back Office Estab Service that handles establishments', function() {
     }));
 
     it('Should retrieve the establishment that belongs to the user', function () {
-        $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
+        $httpBackend.expectGET(baseAPI+'establishments/me/all?limit=3').respond(data);
         var real = null;
         backOEstService.getEstabs("none").then(function(data){
             real = data;
