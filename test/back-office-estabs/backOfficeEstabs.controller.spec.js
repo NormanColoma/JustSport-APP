@@ -21,6 +21,46 @@ fdescribe('Back Office Estab Controller', function() {
         };
     }));
 
+    var data_2 = {
+        "Establishments": {
+            "count": 5,
+            "rows": [
+                {
+                    "id": 7,
+                    "name": "Gym Pepe",
+                    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                    "city": "San Vicente del Raspeig",
+                    "province": "Alicante",
+                    "addr": "Calle San Franciso nº15",
+                    "phone": "965660427",
+                    "website": "http://wwww.gymatope.es",
+                    "main_img": "default.jpg",
+                    "Courses": []
+                },
+                {
+                    "id": 10,
+                    "name": "Gym Pepinoo",
+                    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                    "city": "Santa Pola",
+                    "province": "Alicante",
+                    "addr": "Calle Falsa nº34",
+                    "phone": "965665347",
+                    "website": "http://wwww.noraygym.com",
+                    "main_img": "default.jpg",
+                    "Courses": []
+                }
+            ]
+        },
+        "paging": {
+            "cursors": {
+                "before": 0,
+                "after": 0
+            },
+            "previous": "none",
+            "next": "none"
+        }
+    }
+
     var data ={
         "Establishments": {
             "count": 5,
@@ -172,7 +212,7 @@ fdescribe('Back Office Estab Controller', function() {
         "paging": {
             "cursors": {
                 "before": 0,
-                "after": 0
+                "after": 'MQ'
             },
             "previous": "none",
             "next": "none"
@@ -182,6 +222,8 @@ fdescribe('Back Office Estab Controller', function() {
     it('Should fetch all the establishment that belongs to the owner', function(){
         var controller = createController();
         $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
+        expect(controller.estabs).toEqual([]);
+        expect(controller.after).toEqual("none");
         var expected_data = {Establishments: [{
             id: 1, name: "Gym A Tope",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor " +
@@ -207,13 +249,84 @@ fdescribe('Back Office Estab Controller', function() {
             "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
             "city": "Valencia", "province": "Valencia", "addr": "Calle Arco nº32", "phone": "965663057", "website": "http://wwww.masport.es",
             "main_img": "crossfit.jpg",
-        }], paging: data.paging};
-        expect(controller.estabs).toBe([]);
+        }]};
         /* jshint ignore:start*/
         controller.getEstabs();
         /*jshint ignore:end */
         $httpBackend.flush();
-        expect(controller.estabs).toEqual(expected_data);
+        expect(controller.estabs).toEqual(expected_data.Establishments);
+        expect(controller.after).toEqual("MQ");
+    });
+
+    it('Should add the new establishments to the collection', function(){
+        var controller = createController();
+        $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
+        expect(controller.estabs).toEqual([]);
+        expect(controller.after).toEqual("none");
+        var expected_data = {Establishments: [{
+            id: 1, name: "Gym A Tope",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor " +
+            "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, " +
+            "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con" +
+            "sequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum" +
+            " dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, su" +
+            "nt in culpa qui officia deserunt mollit anim id est laborum",
+            city: "San Vicente del Raspeig", province: "Alicante", addr: "Calle San Franciso nº15", phone: "965660327",
+            website: "http://wwww.gymatope.es", main_img: "default.jpg",
+        },{
+            id: 2, name: "Gym Noray",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+            city: "Santa Pola", province: "Alicante", addr: "Calle Falsa nº34", phone: "965662347", website: "http://wwww.noraygym.com",
+            main_img: "default.jpg",
+        },{
+            "id": 4, "name": "Montemar",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+            "city": "Alicante", "province": "Alicante", "addr": "Avenida Novelda Km 14", "phone": "965662268",
+            "website": "http://wwww.montemar.es", "main_img": "default.jpg",
+        },{
+            "id": 3, "name": "Más Sport",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+            "city": "Valencia", "province": "Valencia", "addr": "Calle Arco nº32", "phone": "965663057", "website": "http://wwww.masport.es",
+            "main_img": "crossfit.jpg",
+        }]};
+        /* jshint ignore:start*/
+        controller.getEstabs();
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.estabs).toEqual(expected_data.Establishments);
+        expect(controller.after).toEqual("MQ");
+        expect(controller.estabs.length).toEqual(4);
+        expected_data.Establishments.push(
+            { "id": 7,
+                "name": "Gym Pepe",
+                "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                "city": "San Vicente del Raspeig",
+                "province": "Alicante",
+                "addr": "Calle San Franciso nº15",
+                "phone": "965660427",
+                "website": "http://wwww.gymatope.es",
+                "main_img": "default.jpg"
+            },
+            {
+                "id": 10,
+                "name": "Gym Pepinoo",
+                "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+                "city": "Santa Pola",
+                "province": "Alicante",
+                "addr": "Calle Falsa nº34",
+                "phone": "965665347",
+                "website": "http://wwww.noraygym.com",
+                "main_img": "default.jpg"
+            }
+        );
+        $httpBackend.expectGET(baseAPI+'establishments/me/all?after=MQ').respond(data_2);
+        /* jshint ignore:start*/
+        controller.getEstabs();
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.estabs.length).toEqual(6);
+        expect(controller.estabs).toEqual(expected_data.Establishments);
+        expect(controller.after).toEqual(0);
     });
 
 });

@@ -48,8 +48,10 @@ angular
          * @memberOf backOfficeEstabService
          * @returns {Array || Object}
          */
-        function getEstabs(){
-            return Establishment.getEsts().$promise
+        function getEstabs(after){
+            if(after === "none")
+                after = undefined;
+            return Establishment.getEsts({after: after}).$promise
                 .then(getEstsSuccess)
                 .catch(getEstsFailed);
 

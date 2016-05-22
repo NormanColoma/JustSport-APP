@@ -174,7 +174,7 @@ describe('Back Office Estab Service that handles establishments', function() {
     it('Should retrieve the establishment that belongs to the user', function () {
         $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
         var real = null;
-        backOEstService.getEstabs().then(function(data){
+        backOEstService.getEstabs("none").then(function(data){
             real = data;
         });
         var expected_data = {Establishments: [{
@@ -206,5 +206,4 @@ describe('Back Office Estab Service that handles establishments', function() {
         $httpBackend.flush();
         expect(expected_data).toEqual(real);
     });
-
 });

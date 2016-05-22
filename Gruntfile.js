@@ -47,6 +47,7 @@ module.exports = function(grunt) {
                         'app/components/establishmentDetails.directive.js','app/components/establishmentVote.directive.js', 'app/account/userAccount.module.js',
                         'app/account/userAccount.controller.js','app/services/userAccount.service.js', 'app/components/uploadButton.directive.js',
                         'app/backoffice/backoffice.module.js','app/components/backOfficeTabs.directive.js','app/services/backOfficeEstabs.service.js',
+                        'app/backoffice-estabs/backOfficeEstabs.controller.js',
                         'app/app.module.js', 'app/services/formReset.service.js','app/services/dialog.service.js']
                 }
             },
