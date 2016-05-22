@@ -22,6 +22,8 @@ angular
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
 
+        var estabs = null;
+
         var Establishment = $resource(server+'/establishments/:id', {id:'@id'},{
                 getEsts: {
                     isArray:false,
@@ -52,7 +54,15 @@ angular
                 .catch(getEstsFailed);
 
             function getEstsSuccess(data){
-                var data = {Establishments: data.Establishments, paging: data.paging};
+                estabs = data.Establishments;
+                var ests = [];
+                for(var i=0;i<estabs.rows.length;i++){
+                    var est = {id: estabs.rows[i].id, name: estabs.rows[i].name, desc: estabs.rows[i].desc,
+                    city:estabs.rows[i].city,province: estabs.rows[i].province, addr: estabs.rows[i].addr,
+                    phone:estabs.rows[i].phone,website: estabs.rows[i].website, main_img: estabs.rows[i].main_img};
+                    ests.push(est);
+                }
+                var data = {Establishments: ests, paging: data.paging};
                 return data;
             }
 

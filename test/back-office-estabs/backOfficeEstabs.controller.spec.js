@@ -1,10 +1,26 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-describe('Back Office Estab Service that handles establishments', function() {
-    var $httpBackend;
+fdescribe('Back Office Estab Controller', function() {
+    var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
-    var backOEstService;
+
+    // Set up the module
+    beforeEach(module('justSport'));
+
+    beforeEach(inject(function ($injector) {
+        // Set up the mock http service responses
+        $httpBackend = $injector.get('$httpBackend');
+        // Get hold of a scope (i.e. the root scope)
+        $rootScope = $injector.get('$rootScope');
+        // The $controller service is used to create instances of controllers
+        var $controller = $injector.get('$controller');
+
+        createController = function () {
+            return $controller('BackOfficeEstabController', {'$scope': $rootScope});
+        };
+    }));
+
     var data ={
         "Establishments": {
             "count": 5,
@@ -162,21 +178,10 @@ describe('Back Office Estab Service that handles establishments', function() {
             "next": "none"
         }
     };
-    // Set up the module
-    beforeEach(module('justSport'));
 
-    beforeEach(inject(function ($injector, backOfficeEstabService) {
-        // Set up the mock http service responses
-        $httpBackend = $injector.get('$httpBackend');
-        backOEstService = backOfficeEstabService;
-    }));
-
-    it('Should retrieve the establishment that belongs to the user', function () {
+    it('Should fetch all the establishment that belongs to the owner', function(){
+        var controller = createController();
         $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
-        var real = null;
-        backOEstService.getEstabs().then(function(data){
-            real = data;
-        });
         var expected_data = {Establishments: [{
             id: 1, name: "Gym A Tope",
             desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor " +
@@ -203,8 +208,12 @@ describe('Back Office Estab Service that handles establishments', function() {
             "city": "Valencia", "province": "Valencia", "addr": "Calle Arco nº32", "phone": "965663057", "website": "http://wwww.masport.es",
             "main_img": "crossfit.jpg",
         }], paging: data.paging};
+        expect(controller.estabs).toBe([]);
+        /* jshint ignore:start*/
+        controller.getEstabs();
+        /*jshint ignore:end */
         $httpBackend.flush();
-        expect(expected_data).toEqual(real);
+        expect(controller.estabs).toEqual(expected_data);
     });
 
 });
