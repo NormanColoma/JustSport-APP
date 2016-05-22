@@ -42,6 +42,8 @@ describe('Destails of establishment', function() {
         element(by.id('fetch-more-btn')).click();
         estabs = element(by.id('establishments-list-container')).all(by.css('.est-owner-container')).count();
         expect(estabs).toBe(6);
+        element(by.css('.account-options')).click();
+        element(by.css('[name="logout"]')).click();
     });
 
 });
