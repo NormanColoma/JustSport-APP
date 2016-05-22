@@ -177,6 +177,7 @@ fdescribe('Back Office Estab Service that handles establishments', function() {
         backOEstService.getEstabs().then(function(data){
             real = data;
         });
+        $httpBackend.flush();
         expect(data).toEqual(real);
     });
 
