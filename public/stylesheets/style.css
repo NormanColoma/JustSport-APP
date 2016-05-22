@@ -6,6 +6,19 @@ body{
   background-color: #FBFAFA;
 }
 
+blockquote{
+  border-left: 5px solid rgb(255,64,129);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  padding-left: 10px;
+  line-height: 30px;
+}
+
+blockquote p{
+  padding: 5px;
+}
+
 .clickable{
   cursor: pointer;
 }
@@ -72,7 +85,7 @@ body{
 }
 
 .background-colored{
-  background: rgb(255,64,129);;
+  background: rgb(16,108,200);
 }
 
 .margin-md{
@@ -194,4 +207,8 @@ md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-
   opacity: 1;
   margin-top: 0;
   padding-top: 5px;
+}
+
+.md-button span{
+  padding: 15px
 }
