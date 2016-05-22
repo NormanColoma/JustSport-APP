@@ -58,7 +58,7 @@ describe('Establishment Filtered Controller', function() {
         controller.fetchMore();
         /*jshint ignore:end */
         $httpBackend.flush();
-        expect(controller.items.length).toBe(3);
+        expect(controller.items.length).toBe(0);
         expect(controller.items).toEqual([]);
     });
 
