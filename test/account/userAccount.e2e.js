@@ -3,7 +3,6 @@
  */
 var express = require('express');
 var app = express();
-
 describe('User Account', function() {
     var host = 'http://localhost:5000';
     if (app.get('env') === 'test') {

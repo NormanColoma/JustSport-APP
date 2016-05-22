@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="public/stylesheets/back-office-estabs.css">
+<md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container">
+    <div class="est-owner-container" flex="33" hide-sm hide-xs ng-repeat="item in backOEstVM.estabs">
+        <md-card>
+            <img ng-src="{{backOEstVM.imgFolder+item.main_img}}" class="md-card-image" alt="{{backOEstVM.imgFolder+item.main_img}}" src="{{backOEstVM.imgFolder+item.main_img}}">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline color-primary">{{item.name}}</span>
+                    <div layout="row">
+                        <p class="md-body-1">{{item.city}}</p>
+                    </div>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
+                <md-divider></md-divider>
+                <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
+                           id="delete-estab"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                    <md-icon md-svg-icon="public/images/icons/delete.svg" aria-hidden="true" id="est-delete-{{item.id}}"></md-icon>
+                    <md-tooltip md-direction="top">
+                        Eliminar {{item.name}}
+                    </md-tooltip>
+                </md-button>
+                <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Actualizar"
+                           id="update-estab"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                    <md-icon md-svg-icon="public/images/icons/edit.svg" aria-hidden="true" id="update-{{item.id}}"></md-icon>
+                    <md-tooltip md-direction="top">
+                        Actualizar información
+                    </md-tooltip>
+                </md-button>
+                <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Subir Imagen perfil"
+                           id="update-img-estab"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                    <md-icon md-svg-icon="public/images/icons/add_photo.svg" aria-hidden="true" id="update-img-{{item.id}}"></md-icon>
+                    <md-tooltip md-direction="top">
+                        Cambiar imagen de perfil
+                    </md-tooltip>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <div>
+        <md-button ng-show="backOEstVM.after != 'none' && backOEstVM.after != 0" class="md-raised default-button" ng-click="backOEstVM.getEstabs(ev)"
+        id="fetch-more-btn">
+            Ver Más
+        </md-button>
+    </div>
+</md-content>

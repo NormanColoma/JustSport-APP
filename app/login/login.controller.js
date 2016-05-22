@@ -6,14 +6,14 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$window','$location', 'dialogService', '$mdSidenav'];
+    LoginController.$inject = ['loginService', '$window','$location', 'dialogService', '$mdSidenav', 'redirectService'];
 
     /**
     * @namespace LoginController
     * @desc Manages the log in/log out of user into the application
     * @memberOf LoginController
     */
-    function LoginController(loginService, $window, $location,dialogService, $mdSidenav){
+    function LoginController(loginService, $window, $location,dialogService, $mdSidenav, redirectService){
         var vm = this;
         var base_api = 'https://justsport-api.herokuapp.com/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
@@ -60,15 +60,13 @@ angular
                 vm.loggedIn = true;
                 vm.name= localStorage.username;
                 vm.role = localStorage.role;
-                if($location.url() === "/login" || $location.absUrl() === "https://justsportapp.herokuapp.com/account" ||
-                    $location.absUrl() === "https://localhost:5000/account" || $location.absUrl() === "http://localhost:5000/account"){
+                if(redirectService.checkRedirect($location.url(), $location.absUrl(), vm.loggedIn, vm.role)){
                     vm.stop = true;
                     if(vm.reload)
                         $window.location.href = url;
                 }
             }else{
-                if($location.url() === "/account/profile" || $location.absUrl() === "https://justsportapp.herokuapp.com/account/profile" ||
-                    $location.absUrl() === "https://localhost:5000/account/profile" || $location.absUrl() === "http://localhost:5000/account/profile"){
+                if(redirectService.checkRedirect($location.url(), $location.absUrl(),vm.loggedIn,vm.role)){
                     vm.stop = true;
                     if(vm.reload)
                         $window.location.href = url+'account/#/login';

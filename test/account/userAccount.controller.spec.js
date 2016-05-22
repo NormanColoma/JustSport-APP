@@ -26,6 +26,7 @@ describe('User Account Controller', function() {
 
     it('Should fetch the user info', function(){
         var controller = createController();
+        localStorage.setItem('username','Norman');
         $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(user);
         controller.user_id="8a74a3aa-757d-46f1-ba86-a56a0f107735";
         expect(controller.user).toEqual({});
@@ -35,6 +36,7 @@ describe('User Account Controller', function() {
         $httpBackend.flush();
         var expected_user = {name: "Norman", lname: "Coloma García", role: "admin", gender:'male',img: "default.jpg"};
         expect(expected_user).toEqual(controller.user);
+        localStorage.removeItem('username');
     });
 
     it('Should close the account', function(){
