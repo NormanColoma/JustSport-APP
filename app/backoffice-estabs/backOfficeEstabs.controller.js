@@ -25,12 +25,24 @@ angular
         var server_folder = "https://justsport-api.herokuapp.com/";
         var server = local_folder;
 
+        vm.addEstablishment = addEstablishment;
         vm.after = "none";
         vm.estabs = [];
         vm.getEstabs = getEstabs;
         vm.imgFolder = server+"public/images/ests/";
 
 
+        function addEstablishment(data,ev){
+            if(vm.estab !== undefined){
+                backOfficeEstabService.addEstablishment(data).then(function(data){
+                    if(data.message === undefined){
+                        vm.estabs.push(data);
+                    }else{
+
+                    }
+                });
+            }
+        };
         /**
          * @name getEstabs
          * @desc Fetch the establishments that belong to owner
