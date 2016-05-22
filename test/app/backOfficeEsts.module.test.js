@@ -47,7 +47,7 @@ function backOfficeEstsTest($httpBackend) {
             "previous": "none",
             "next": "none"
         }
-    }
+    };
 
     var data ={
         "Establishments": {

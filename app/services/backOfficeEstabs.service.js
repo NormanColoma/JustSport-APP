@@ -64,8 +64,8 @@ angular
                     phone:estabs.rows[i].phone,website: estabs.rows[i].website, main_img: estabs.rows[i].main_img};
                     ests.push(est);
                 }
-                var data = {Establishments: ests, paging: data.paging};
-                return data;
+                var d = {Establishments: ests, paging: data.paging};
+                return d;
             }
 
             function  getEstsFailed(error){

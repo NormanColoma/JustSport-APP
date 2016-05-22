@@ -59,7 +59,7 @@ describe('Back Office Estab Controller', function() {
             "previous": "none",
             "next": "none"
         }
-    }
+    };
 
     var data ={
         "Establishments": {
@@ -221,6 +221,7 @@ describe('Back Office Estab Controller', function() {
 
     it('Should fetch all the establishment that belongs to the owner', function(){
         var controller = createController();
+        localStorage.setItem('username','Norman');
         $httpBackend.expectGET(baseAPI+'establishments/me/all?limit=3').respond(data);
         expect(controller.estabs).toEqual([]);
         expect(controller.after).toEqual("none");
@@ -327,6 +328,7 @@ describe('Back Office Estab Controller', function() {
         expect(controller.estabs.length).toEqual(6);
         expect(controller.estabs).toEqual(expected_data.Establishments);
         expect(controller.after).toEqual(0);
+        localStorage.removeItem('username');
     });
 
 });
