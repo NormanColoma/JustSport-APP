@@ -3,6 +3,6 @@ link(rel="stylesheet" type="text/css" href="public/stylesheets/back-office.css")
 div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center" ng-cloak)
     div(flex="95", flex-sm="100", layout="column")
         h2.md-display-2.font-header Panel de Control
-        backoffice-tabs
+        backoffice-tabs(ng-controller="BackOfficeEstabController as backOEstVM" ng-init="backOEstVM.getEstabs(ev)")
 include footer
 

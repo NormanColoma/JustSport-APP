@@ -51,7 +51,7 @@ angular
         function getEstabs(after){
             if(after === "none")
                 after = undefined;
-            return Establishment.getEsts({after: after}).$promise
+            return Establishment.getEsts({limit: 3, after: after}).$promise
                 .then(getEstsSuccess)
                 .catch(getEstsFailed);
 

@@ -28,6 +28,8 @@ angular
         vm.after = "none";
         vm.estabs = [];
         vm.getEstabs = getEstabs;
+        vm.imgFolder = server+"public/images/ests/";
+
 
         /**
          * @name getEstabs

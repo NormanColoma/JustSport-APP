@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-fdescribe('Back Office Estab Controller', function() {
+describe('Back Office Estab Controller', function() {
     var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
 
@@ -221,7 +221,7 @@ fdescribe('Back Office Estab Controller', function() {
 
     it('Should fetch all the establishment that belongs to the owner', function(){
         var controller = createController();
-        $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
+        $httpBackend.expectGET(baseAPI+'establishments/me/all?limit=3').respond(data);
         expect(controller.estabs).toEqual([]);
         expect(controller.after).toEqual("none");
         var expected_data = {Establishments: [{
@@ -260,7 +260,7 @@ fdescribe('Back Office Estab Controller', function() {
 
     it('Should add the new establishments to the collection', function(){
         var controller = createController();
-        $httpBackend.expectGET(baseAPI+'establishments/me/all').respond(data);
+        $httpBackend.expectGET(baseAPI+'establishments/me/all?limit=3').respond(data);
         expect(controller.estabs).toEqual([]);
         expect(controller.after).toEqual("none");
         var expected_data = {Establishments: [{
@@ -319,7 +319,7 @@ fdescribe('Back Office Estab Controller', function() {
                 "main_img": "default.jpg"
             }
         );
-        $httpBackend.expectGET(baseAPI+'establishments/me/all?after=MQ').respond(data_2);
+        $httpBackend.expectGET(baseAPI+'establishments/me/all?after=MQ&limit=3').respond(data_2);
         /* jshint ignore:start*/
         controller.getEstabs();
         /*jshint ignore:end */
