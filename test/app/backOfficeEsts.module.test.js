@@ -207,7 +207,7 @@ function backOfficeEstsTest($httpBackend) {
         }
     };
     $httpBackend.whenGET('app/backoffice-estabs/back-office-estabs.html').passThrough();
-    $httpBackend.whenGET(local_api + '/establishments/me/all?limit=3').respond(data);
-    $httpBackend.whenGET(local_api + '/establishments/me/all?after=MQ&limit=3').respond(data_2);
+    $httpBackend.whenGET(local_api + '/api/establishments/me/all?limit=3').respond(data);
+    $httpBackend.whenGET(local_api + '/api/establishments/me/all?after=MQ&limit=3').respond(data_2);
 
 }
