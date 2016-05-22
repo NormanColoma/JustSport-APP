@@ -13,4 +13,8 @@ router.get('/account/profile', function(req, res, next) {
   res.render('profile', { title: 'Just Sport' });
 });
 
+router.get('/backoffice', function(req, res, next) {
+  res.render('backoffice', { title: 'Just Sport' });
+});
+
 module.exports = router;
