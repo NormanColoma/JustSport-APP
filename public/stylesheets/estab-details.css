@@ -12,6 +12,19 @@ ul li{
     margin-bottom: 15px;
 }
 
+.est-courses li{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.est-courses li a{
+    color: rgb(16,108,200) !important;
+}
+
+.est-courses li a:hover{
+    color: inherit !important;
+}
+
 
 .link{
     color: #106CC8;
@@ -27,4 +40,12 @@ ul li{
 
 .subheader{
     font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.est-commentaries md-list-item.md-3-line, .est-commentaries md-list-item.md-3-line > .md-no-style {
+    height: auto;
+    min-height: 88px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    margin-bottom: 25px;
 }

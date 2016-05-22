@@ -1,12 +1,24 @@
+.est-search-container{
+    transition-duration: 0.4s;
+}
+
+.est-search-container.ng-hide{
+    transform: scale(0.001);
+    transition-property: transform, opacity;
+
+}
+
 .flex-33 img{
     height: 250px;
 }
-
+.md-card-image{
+    padding: 5px;
+}
 .flex-100 md-card{
     min-height: 255px;
 }
 
-.flex-100 md-card md-card-title md-card-title-media .md-media-lg {
+.flex-100 md-card .md-card-title .md-card-title-media .md-media-lg {
     height: 252px;
     width: 252px;
 }
@@ -15,7 +27,7 @@ md-card{
     min-height: 508px;
 }
 
-md-card-actions md-icon{
+.md-card-actions md-icon{
     color: rgba(0,0,0,0.87);
 }
 
