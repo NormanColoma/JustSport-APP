@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="public/stylesheets/back-office-estabs.css">
-<md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container">
+<md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container" ng-show="backOEstVM.view == 'listEstabs'" ng-cloak>
     <div class="est-owner-container" flex="33" hide-sm hide-xs ng-repeat="item in backOEstVM.estabs">
         <md-card>
             <img ng-src="{{backOEstVM.imgFolder+item.main_img}}" class="md-card-image" alt="{{backOEstVM.imgFolder+item.main_img}}" src="{{backOEstVM.imgFolder+item.main_img}}">
@@ -43,4 +43,62 @@
             Ver Más
         </md-button>
     </div>
+</md-content>
+<md-content layout="row" layout-sm="column" layout-wrap  id="establishments-add-container" ng-show="backOEstVM.view == 'addEstab'">
+    <form name="addEstabForm" novalidate layout="row" layout-wrap flex="100">
+        <md-input-container layout="row" flex="100">
+            <md-input-container class="md-block margin-input-right" flex="40">
+                <label>Nombre Establecimiento</label>
+                <input required="" name="ename" ng-model="backOEstVM.estab.name" flex="100"/>
+                <div ng-messages="addEstabForm.ename.$error" ng-show="addEstabForm.ename.$touched || addEstabForm.$submitted">
+                    <div ng-message="required" class="email-message">El nombre es obligatorio.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex="40">
+                <label>Teléfono</label>
+                <input required="" name="ephone" ng-model="backOEstVM.estab.phone" flex="100"/>
+                <div ng-messages="addEstabForm.ephone.$error" ng-show="addEstabForm.ephone.$touched || addEstabForm.$submitted">
+                    <div ng-message="required" class="email-message">El teléfono es obligatorio.</div>
+                </div>
+            </md-input-container>
+        </md-input-container>
+        <md-input-container layout="row" flex="100">
+            <md-autocomplete flex="40" md-selected-item="backOEstVM.selectedItem" md-search-text="backOEstVM.searchText"
+                             md-items="item in backOEstVM.querySearch(backOEstVM.searchText)" md-item-text="item"
+                             md-floating-label="¿En qué ciudad se encuentra el establecimiento?" md-input-name="ecity"
+                             ng-model="backOEstVM.estab.city" md-search-text-change="backOEstVM.searchCityChange(backOEstVM.searchText)" required="required">
+                <md-item-template><span md-highlight-text="backOEstVM.searchText" md-highlight-flags="^i">{{item}}</span></md-item-template>
+                <md-not-found>No hay resultados para "{{backOEstVM.searchText}}".</md-not-found>
+                <div ng-messages="addEstabForm.ecity.$error" ng-if="addEstabForm.ecity.$touched || addEstabForm.$submitted">
+                    <div ng-message="required" class="sport-message">Tienes que seleccionar una ciudad</div>
+                </div>
+            </md-autocomplete>
+            <md-autocomplete flex="40" md-selected-item="backOEstVM.selectedItemProvince" md-search-text="backOEstVM.searchTextProvince"
+                             md-items="item in backOEstVM.querySearch(backOEstVM.searchTextProvince)" md-item-text="item"
+                             md-floating-label="¿A qué provincia pertenece la ciudad?" md-input-name="eprovince"
+                             ng-model="backOEstVM.estab.province" md-search-text-change="backOEstVM.searchProvinceChange(backOEstVM.searchTextProvince)" required="required">
+                <md-item-template><span md-highlight-text="backOEstVM.searchTextProvince" md-highlight-flags="^i">{{item}}</span></md-item-template>
+                <md-not-found>No hay resultados para "{{backOEstVM.searchTextProvince}}".</md-not-found>
+                <div ng-messages="addEstabForm.eprovince.$error" ng-if="addEstabForm.eprovince.$touched || addEstabForm.$submitted">
+                    <div ng-message="required" class="sport-message">Tienes que seleccionar una provincia</div>
+                </div>
+            </md-autocomplete>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+            <label>Dirección Establecimiento</label>
+            <input required="" name="eaddr" ng-model="backOEstVM.estab.addr" flex="100"/>
+            <div ng-messages="addEstabForm.eaddr.$error" ng-show="addEstabForm.eaddr.$touched || addEstabForm.$submitted">
+                <div ng-message="required" class="email-message">La dirección es obligatorio.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex="40">
+            <label>Teléfono</label>
+            <input name="eweb" ng-model="backOEstVM.estab.phone" flex="100"/>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+            <md-button type="submit" class="md-raised md-primary" id="add-est-btn">
+                Añadir
+            </md-button>
+        </md-input-container>
+    </form>
 </md-content>

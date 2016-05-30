@@ -1,13 +1,21 @@
-<md-tabs md-dynamic-height md-border-bottom>
+<md-tabs md-dynamic-height md-border-bottom ng-cloak>
     <md-tab label="Establecimietos">
         <md-content class="md-padding">
-            <h1 class="md-display-2">Mis Establecimietos</h1>
-            <p>Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
+            <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-display-2">Mis Establecimietos</h1>
+            <p ng-show="backOEstVM.view == 'listEstabs'">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
+            <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-display-2">Añadir Establecimiento</h1>
+            <p ng-show="backOEstVM.view == 'addEstab'">Complete los campos con la información sobre su nuevo establecimiento. Después dale al botón <strog>Añadir</strog>.</p>
             <backoffice-estabs></backoffice-estabs>
-            <md-button class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addEst"  ng-click="" name="add-est">
+            <md-button ng-show="backOEstVM.view == 'listEstabs'" class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addEst"  ng-click="backOEstVM.changeView('addEstab')" name="add-est">
                 <md-icon md-svg-icon="public/images/icons/add.svg" aria-hidden="true""></md-icon>
                 <md-tooltip md-direction="right">
                     Añadir Establecimiento
+                </md-tooltip>
+            </md-button>
+            <md-button ng-show="backOEstVM.view == 'addEstab'" class="md-fab md-default add-btn" aria-label="Añadir Nuevo" id="listEst"  ng-click="backOEstVM.changeView('listEstabs')" name="list-est">
+                <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
+                <md-tooltip md-direction="right">
+                    Volver a Lista
                 </md-tooltip>
             </md-button>
         </md-content>

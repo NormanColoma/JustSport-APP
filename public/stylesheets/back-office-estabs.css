@@ -16,6 +16,31 @@
     transform: scale(0.001);
     transition-property: transform, opacity;
 }
+#establishments-list-container{
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+#establishments-list-container.ng-hide{
+    opacity: 0;
+    transform: scale(0.001);
+    transition-property: transform, opacity;
+}
+
+#establishments-add-container{
+    opacity: 1;
+    transform: scale(1);
+    transition-property: transform, opacity;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+#establishments-add-container.ng-hide{
+    opacity: 0;
+    transform: scale(0.001);
+    transition-property: transform, opacity;
+    -webkit-transition: 0s;
+    transition: 0s;
+}
 
 
 .est-owner-container md-card{
@@ -37,3 +62,12 @@
     margin-top: 5px;
 }
 
+
+/*Add est form*/
+.margin-input-right{
+    margin-right: 15px;
+}
+form[name='addEstabForm'] md-autocomplete{
+    margin-right: 15px;
+    height: 90px !important;
+}

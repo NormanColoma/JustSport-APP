@@ -9,7 +9,7 @@ angular
     .module('backOfficeModule')
     .controller('BackOfficeEstabController', BackOfficeEstabController);
 
-    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService'];
+    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService','citySuggestionsService'];
 
     /**
     *
@@ -18,7 +18,7 @@ angular
     * @memberOf BackOffice Estabs
     *
     */
-    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService) {
+    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService, citySuggestionsService) {
         var vm = this;
 
         var local_folder = "https://localhost:3000/";
@@ -27,11 +27,27 @@ angular
 
         vm.addEstablishment = addEstablishment;
         vm.after = "none";
+        vm.changeView = changeView;
+        vm.city = "";
         vm.estabs = [];
         vm.getEstabs = getEstabs;
         vm.imgFolder = server+"public/images/ests/";
+        vm.province = "";
+        vm.querySearch = querySearch;
+        vm.searchCityChange = searchCityChange;
+        vm.searchProvinceChange = searchProvinceChange;
+        vm.view = 'listEstabs';
 
 
+
+        /**
+         * @name addEstablishment
+         * @desc Add new establishment and push it to the array of estabs
+         * @param data. Information about the new establishment
+         * @param ev. Even captured
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function addEstablishment(data,ev){
             if(vm.estab !== undefined){
                 backOfficeEstabService.addEstablishment(data).then(function(data){
@@ -43,6 +59,11 @@ angular
                 });
             }
         };
+
+        function changeView(view){
+            vm.view = view;
+        }
+
         /**
          * @name getEstabs
          * @desc Fetch the establishments that belong to owner
@@ -57,6 +78,20 @@ angular
                     vm.estabs = vm.estabs.concat(data.Establishments);
                 }));
             }
+        }
+
+        function querySearch(query){
+            return citySuggestionsService.getCities(query).then(function(data){
+                return data;
+            });
+        }
+
+        function searchCityChange(city){
+            vm.city = city;
+        }
+
+        function searchProvinceChange(province){
+            vm.province = province;
         }
 
     }
