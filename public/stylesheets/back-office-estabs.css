@@ -68,6 +68,5 @@
     margin-right: 15px;
 }
 form[name='addEstabForm'] md-autocomplete{
-    margin-right: 15px;
     height: 90px !important;
 }
