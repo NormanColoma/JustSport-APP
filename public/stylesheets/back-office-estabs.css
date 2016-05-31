@@ -70,3 +70,7 @@
 form[name='addEstabForm'] md-autocomplete{
     height: 90px !important;
 }
+
+form[name='addEstabForm'] textarea{
+    min-height: 100px;
+}
