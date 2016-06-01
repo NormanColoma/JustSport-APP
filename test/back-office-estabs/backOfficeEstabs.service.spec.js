@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-fdescribe('Back Office Estab Service that handles establishments', function() {
+describe('Back Office Estab Service that handles establishments', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOEstService;

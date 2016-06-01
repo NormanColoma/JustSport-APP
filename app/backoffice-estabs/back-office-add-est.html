@@ -8,8 +8,8 @@
             <input required="" name="ename" ng-model="backOEstVM.estab.name" flex="100"
                    ng-pattern="/^([ \u00c0-\u01ffa-zA-Z-0-9'\-])+$/i"/>
             <div ng-messages="addEstabForm.ename.$error" ng-show="addEstabForm.ename.$touched || addEstabForm.$submitted">
-                <div ng-message="required" class="input-error">El nombre es obligatorio.</div>
-                <div ng-show="addEstabForm.ename.$error.pattern" class="input-error">El nombre no es correcto. Solo admite caracteres alfanuméricos.</div>
+                <div ng-message="required" class="input-error" name="rname">El nombre es obligatorio.</div>
+                <div ng-show="addEstabForm.ename.$error.pattern" class="input-error" name="pname">El nombre no es correcto. Solo admite caracteres alfanuméricos.</div>
             </div>
         </md-input-container>
         <div flex="5"></div>
@@ -18,8 +18,8 @@
             <input required="" name="ephone" ng-model="backOEstVM.estab.phone" flex="100" type="tel"
                    ng-pattern="/^[9|6|7|8][0-9]{8}$/"/>
             <div ng-messages="addEstabForm.ephone.$error" ng-show="addEstabForm.ephone.$touched || addEstabForm.$submitted">
-                <div ng-message="required" class="input-error">El teléfono es obligatorio.</div>
-                <div ng-show="addEstabForm.ephone.$error.pattern" class="input-error">El teléfono no es correcto.</div>
+                <div ng-message="required" class="input-error" name="rphone">El teléfono es obligatorio.</div>
+                <div ng-show="addEstabForm.ephone.$error.pattern" class="input-error" name="pphone">El teléfono no es correcto.</div>
             </div>
         </md-input-container>
         <md-autocomplete flex="40" md-selected-item="backOEstVM.selectedItem" md-search-text="backOEstVM.searchText"
@@ -29,7 +29,7 @@
             <md-item-template><span md-highlight-text="backOEstVM.searchText" md-highlight-flags="^i">{{item}}</span></md-item-template>
             <md-not-found>No hay resultados para "{{backOEstVM.searchText}}".</md-not-found>
             <div ng-messages="addEstabForm.ecity.$error" ng-if="addEstabForm.ecity.$touched || addEstabForm.$submitted">
-                <div ng-message="required" class="input-error">Tienes que seleccionar una ciudad</div>
+                <div ng-message="required" class="input-error" name="rcity">Tienes que seleccionar una ciudad.</div>
             </div>
         </md-autocomplete>
         <div flex="5"></div>
@@ -40,28 +40,28 @@
             <md-item-template><span md-highlight-text="backOEstVM.searchTextProvince" md-highlight-flags="^i">{{item}}</span></md-item-template>
             <md-not-found>No hay resultados para "{{backOEstVM.searchTextProvince}}".</md-not-found>
             <div ng-messages="addEstabForm.eprovince.$error" ng-if="addEstabForm.eprovince.$touched || addEstabForm.$submitted">
-                <div ng-message="required" class="input-error">Tienes que seleccionar una provincia</div>
+                <div ng-message="required" class="input-error" name="rprovince">Tienes que seleccionar una provincia.</div>
             </div>
         </md-autocomplete>
         <md-input-container class="md-block" flex="100">
             <label>Dirección del Establecimiento</label>
             <input required="" name="eaddr" ng-model="backOEstVM.estab.addr" flex="100"/>
             <div ng-messages="addEstabForm.eaddr.$error" ng-show="addEstabForm.eaddr.$touched || addEstabForm.$submitted">
-                <div ng-message="required" class="input-error">La dirección es obligatorio.</div>
+                <div ng-message="required" class="input-error" name="raddr">La dirección es obligatoria.</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex="100">
             <label>Descripcción</label>
             <textarea required="" name="edesc" ng-model="backOEstVM.estab.desc" flex="100"></textarea>
             <div ng-messages="addEstabForm.edesc.$error" ng-show="addEstabForm.edesc.$touched || addEstabForm.$submitted">
-                <div ng-message="required" class="input-error">La descripción es obligatoria.</div>
+                <div ng-message="required" class="input-error" name="rdesc">La descripción es obligatoria.</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex="40">
             <label>¿El establecimiento tiene sitio web?</label>
             <input name="eweb" ng-model="backOEstVM.estab.website" flex="100" type="url"/>
             <div ng-messages="addEstabForm.eweb.$error" ng-show="addEstabForm.eweb.$touched || addEstabForm.$submitted">
-                <div ng-show="addEstabForm.$error.url" class="input-error">La url del sitio web no es correcta.</div>
+                <div ng-show="addEstabForm.$error.url" class="input-error" name="purl">La url del sitio web no es correcta.</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex="100">

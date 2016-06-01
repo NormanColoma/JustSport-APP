@@ -1,9 +1,9 @@
 <md-tabs md-dynamic-height md-border-bottom ng-cloak>
     <md-tab label="Establecimietos">
         <md-content class="md-padding">
-            <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-display-2">Mis Establecimietos</h1>
+            <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-display-2 est-t">Mis Establecimietos</h1>
             <p ng-show="backOEstVM.view == 'listEstabs'">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
-            <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-display-2">Añadir Establecimiento</h1>
+            <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-display-2 add-t">Añadir Establecimiento</h1>
             <p ng-show="backOEstVM.view == 'addEstab'">Complete los campos con la información sobre su nuevo establecimiento. Después dale al botón <strog>Añadir</strog>.</p>
             <backoffice-estabs></backoffice-estabs>
             <md-button ng-show="backOEstVM.view == 'listEstabs'" class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addEst"  ng-click="backOEstVM.changeView('addEstab')" name="add-est">

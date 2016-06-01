@@ -49,7 +49,6 @@ angular
         function addEstablishment(data,ev, form){
             vm.estab.owner = localStorage.user_id;
             vm.estab.main_img = 'default.jpg';
-            console.log(vm.estab);
             var dataDialog = {};
             backOfficeEstabService.addEstablishment(data).then(function(data){
                 if(data.message === undefined){

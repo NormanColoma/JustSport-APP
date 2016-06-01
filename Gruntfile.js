@@ -56,7 +56,7 @@ module.exports = function(grunt) {
                     'app/app.test.min.js':['test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
                         'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js', 'test/app/register.module.test.js',
                         'test/app/showSchedule.module.test.js', 'test/app/establishmentDetails.module.test.js','test/app/userAccount.module.test.js',
-                        'test/app/backOffice.module.test.js','test/app/backOfficeEsts.module.test.js'
+                        'test/app/backOffice.module.test.js','test/app/backOfficeEsts.module.test.js','test/app/backOfficeAddEst.module.test.js'
                     ]
                 }
             }

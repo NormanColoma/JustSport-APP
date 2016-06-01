@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-fdescribe('Back Office Estab Controller', function() {
+describe('Back Office Estab Controller', function() {
     var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
 
