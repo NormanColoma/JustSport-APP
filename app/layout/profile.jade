@@ -22,7 +22,7 @@ ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-
         blockquote.align-img
             p Pulsa sobre la imagen si quieres actualizar tu foto de perfil. Podrás cambiar tu foto de perfil, tantas veces como quieras.
         div(layout="column")
-            form(novalidate, name="accountForm",ng-submit="usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
+            form(novalidate, name="accountForm",ng-submit="accountForm.cpass.$valid && accountForm.npass.$valid && usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
                 h2.md-headline Contraseña
                 md-input-container(flex="50" flex-sm="70").md-block
                     label Contraseña Actual
