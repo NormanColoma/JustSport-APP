@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="public/stylesheets/back-office-estabs.css">
-<md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container">
+<md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container" ng-show="backOEstVM.view == 'listEstabs'" ng-cloak>
     <div class="est-owner-container" flex="33" hide-sm hide-xs ng-repeat="item in backOEstVM.estabs">
         <md-card>
             <img ng-src="{{backOEstVM.imgFolder+item.main_img}}" class="md-card-image" alt="{{backOEstVM.imgFolder+item.main_img}}" src="{{backOEstVM.imgFolder+item.main_img}}">
@@ -44,3 +44,4 @@
         </md-button>
     </div>
 </md-content>
+<backoffice-add-est></backoffice-add-est>

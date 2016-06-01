@@ -25,6 +25,13 @@ angular
         var estabs = null;
 
         var Establishment = $resource(server+'/establishments/:id', {id:'@id'},{
+                addEstab:{
+                    method: 'POST',
+                    url: server + '/establishments/new',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.token
+                    }
+                },
                 getEsts: {
                     isArray:false,
                     method: 'GET',
@@ -37,10 +44,35 @@ angular
         );
 
         var service = {
+            addEstablishment: addEstablishment,
             getEstabs: getEstabs
         };
 
         return service;
+
+        /**
+         * @name addEstablishment
+         * @desc It posts the new establishment and returns it back
+         * @param Data-> It contains the information about the new establishment to be posted
+         * @memberOf backOfficeEstabService
+         * @returns {Object}
+         */
+        function addEstablishment(data){
+            return Establishment.addEstab(data).$promise
+                .then(addEstablishmentSuccess)
+                .catch(addEstablishmentFailed);
+
+            function addEstablishmentSuccess(data){
+                var d = {id: data.id, name: data.name, desc:data.desc, city: data.city, province: data.province, addr: data.addr,
+                phone: data.phone, website: data.website, main_img: data.main_img};
+                return d;
+            }
+
+            function addEstablishmentFailed(err){
+                var message = {message: "An error occurred when posting establishment"};
+                return message;
+            }
+        }
 
         /**
          * @name getEstabs

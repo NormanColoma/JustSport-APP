@@ -7,7 +7,7 @@ ng-controller="RegisterController as registerVm")
         h2.md-display-2.register-title(ng-show="registerVm.registerView") Crea tu cuenta
         div.login-container(ng-show="!registerVm.registerView")
             form(layout-align="space-between", layout-padding, novalidate, name="loginForm",
-            ng-submit="loginVm.login(registerVm.user.email,registerVm.user.password)", ng-hide="loginVm.loginProgress")
+            ng-submit="loginForm.email.$valid && loginForm.pass.$valid && loginVm.login(registerVm.user.email,registerVm.user.password)", ng-hide="loginVm.loginProgress")
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='registerVm.user.email')
@@ -29,7 +29,7 @@ ng-controller="RegisterController as registerVm")
                     md-progress-circular(md-mode='indeterminate')
         div.register-container(ng-show="registerVm.registerView")
             form(layout-align="space-between", layout-padding, novalidate, name="registerForm",
-            ng-submit="registerVm.register(e,registerForm)", ng-hide="registerVm.registeringUser")
+            ng-submit="registerForm.email.$valid && registerForm.pass.$valid && registerForm.name.$valid && registerForm.lname.$valid && registerForm.gender.$valid && registerVm.register(e)", ng-hide="registerVm.registeringUser")
                 md-input-container.md-block
                     label Email
                     input(required='', name='email', ng-model='registerVm.user.email', type="email")
