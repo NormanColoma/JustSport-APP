@@ -334,13 +334,13 @@ describe('Back Office Estab Controller', function() {
         var controller = createController();
         var expected_data = {id: 1, name: "Gym A Tope", desc: "descripción del establecimiento", city: "San Vicente del Raspeig",
             province: "Alicante", addr: "Calle San Franciso nº15", phone: "965660327", website: "http://wwww.gymatope.es",
-            main_img: "default.jpg"}
+            main_img: "default.jpg"};
         $httpBackend.expectPOST(baseAPI+'establishments/new').respond(201,expected_data);
         var post_data = {
             name: "Gym A Tope", desc: "descripción del establecimiento", city: "San Vicente del Raspeig",
             province: "Alicante", addr: "Calle San Franciso nº15", phone: "965660327", website: "http://wwww.gymatope.es",
             main_img: "default.jpg"
-        }
+        };
         expect(controller.estabs).toEqual([]);
         controller.estab = post_data;
         /* jshint ignore:start*/

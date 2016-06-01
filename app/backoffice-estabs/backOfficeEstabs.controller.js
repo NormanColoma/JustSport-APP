@@ -71,8 +71,15 @@ angular
                     };
                 }
             });
-        };
+        }
 
+        /**
+         * @name changeView
+         * @desc Change between the list view or add view
+         * @param view. The name of the view to be loaded
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function changeView(view){
             vm.view = view;
         }
@@ -100,17 +107,37 @@ angular
             }
         }
 
-
+        /**
+         * @name querySearch
+         * @desc Search the city using google services
+         * @param query. The name of the city
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {Array}
+         */
         function querySearch(query){
             return citySuggestionsService.getCities(query).then(function(data){
                 return data;
             });
         }
 
+        /**
+         * @name searchCityChange
+         * @desc Sets the city of the establishment once is selected
+         * @param city. The name of the city
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function searchCityChange(city){
             vm.estab.city = city;
         }
 
+        /**
+         * @name searchProvinceChange
+         * @desc Sets the province of the establishment once is selected
+         * @param province. The name of the province
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function searchProvinceChange(province){
             vm.estab.province = province;
         }
