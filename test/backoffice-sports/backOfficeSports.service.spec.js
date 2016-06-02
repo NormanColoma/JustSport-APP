@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 02/06/2016.
  */
-fdescribe('Back Office Sport Service that handle operations relative to sports', function() {
+describe('Back Office Sport Service that handle operations relative to sports', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOSpService;

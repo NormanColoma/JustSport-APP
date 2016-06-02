@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-describe('Back Office Estab Controller', function() {
+fdescribe('Back Office Estab Controller', function() {
     var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
 
@@ -349,6 +349,28 @@ describe('Back Office Estab Controller', function() {
         $httpBackend.flush();
         expect(controller.estabs[0]).toEqual(expected_data);
         localStorage.removeItem('username');
+    });
+
+    fit('Should associate the sports to the establishment correctly', function(){
+        var controller = createController();
+        $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
+        $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
+        $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
+        var array = [
+            {id: 1, name: "Spinning"},
+            {id: 2, name: "Corssfit"},
+            {id: 3, name: "Zumna"}
+        ];
+        var expected = [
+            {id: 1, name: "Spinning"},
+            {id: 2, name: "Corssfit"},
+            {id: 3, name: "Zumna"}
+        ];
+        /* jshint ignore:start*/
+        controller.associateSport(1,array)
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.sports).toEqual(expected);
     });
 
 });
