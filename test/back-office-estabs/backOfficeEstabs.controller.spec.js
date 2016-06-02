@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-fdescribe('Back Office Estab Controller', function() {
+describe('Back Office Estab Controller', function() {
     var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
 
@@ -351,7 +351,7 @@ fdescribe('Back Office Estab Controller', function() {
         localStorage.removeItem('username');
     });
 
-    fit('Should associate the sports to the establishment correctly', function(){
+    it('Should associate the sports to the establishment correctly', function(){
         var controller = createController();
         $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
         $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
