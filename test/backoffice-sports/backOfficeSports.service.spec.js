@@ -19,18 +19,20 @@ fdescribe('Back Office Sport Service that handle operations relative to sports',
     it('Should associate the sport to establishment', function(){
         $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
         var real = null;
-        backOSpService.associateSport(1,data).then(function(data){
+        backOSpService.associateSp(1,data).then(function(data){
             real = data;
         });
+        $httpBackend.flush();
         expect(real).toBeTruthy();
     });
 
     it('Should not associate the sport to establishment', function(){
         $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(500);
         var real = null;
-        backOSpService.associateSport(1,data).then(function(data){
+        backOSpService.associateSp(1,data).then(function(data){
             real = data;
         });
+        $httpBackend.flush();
         expect(real).toBeFalsy();
     });
 });
