@@ -9,7 +9,8 @@ angular
     .module('backOfficeModule')
     .controller('BackOfficeEstabController', BackOfficeEstabController);
 
-    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService','citySuggestionsService','formResetService'];
+    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService','citySuggestionsService',
+        'formResetService', 'backOfficeSportService'];
 
     /**
     *
@@ -18,14 +19,18 @@ angular
     * @memberOf BackOffice Estabs
     *
     */
-    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService, citySuggestionsService,formResetService) {
+    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService, citySuggestionsService,
+                                       formResetService, backOfficeSportService) {
         var vm = this;
 
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
         var server = local_folder;
 
+
         vm.addEstablishment = addEstablishment;
+        vm.addSport = addSport;
+        vm.associateSport = associateSport;
         vm.after = "none";
         vm.changeView = changeView;
         vm.estabs = [];
@@ -34,6 +39,7 @@ angular
         vm.querySearch = querySearch;
         vm.searchCityChange = searchCityChange;
         vm.searchProvinceChange = searchProvinceChange;
+        vm.sports = [];
         vm.view = 'listEstabs';
 
 
@@ -70,6 +76,29 @@ angular
                         aria: 'Estab Added Alert Failed', textButton: 'Listo'
                     };
                 }
+            });
+        }
+
+        function associateSport(id,sps){
+            for(var i=0;i<sps.length;i++){
+                var data = {id: sps[i].id};
+                var sp = sps[i];
+                if(assocSport(id,data))
+                    vm.sports.push(sp);
+
+            }
+            if(sps === vm.sports){
+
+            }else{
+
+            }
+        }
+
+        function addSport(id,sport){
+            return backOfficeSportService.associateSp(id,sport).then(function(result){
+                if(result)
+                    return true;
+                return false;
             });
         }
 

@@ -367,7 +367,7 @@ fdescribe('Back Office Estab Controller', function() {
             {id: 3, name: "Zumna"}
         ];
         /* jshint ignore:start*/
-        controller.associateSport(1,array)
+        controller.associateSport(1,array);
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.sports).toEqual(expected);
