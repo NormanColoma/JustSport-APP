@@ -21,10 +21,10 @@
                     </md-tooltip>
                 </md-button>
                 <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
-                           id="add-sport"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                           id="add-sport"  ng-click="backOEstVM.changeView('assocSp', item.id)" name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/add_s.svg" aria-hidden="true" id="est-add-sport-{{item.id}}"></md-icon>
                     <md-tooltip md-direction="top">
-                        Añadir deporte a {{item.name}}
+                        Impartir deporte en {{item.name}}
                     </md-tooltip>
                 </md-button>
                 <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Actualizar"
@@ -52,3 +52,32 @@
     </div>
 </md-content>
 <backoffice-add-est></backoffice-add-est>
+<md-content layout="column" layout-wrap  id="establishments-ass-sp-container" ng-show="backOEstVM.view == 'assocSp'"
+            ng-controller="SportListController as spList" flex="100" ng-cloak>
+    <form novalidate name="estSpForm" ng-submit="backOEstVM.associateSport(backOEstVM.id,backOEstVM.selectedSports,ev)">
+        <md-chips ng-model="backOEstVM.selectedSports" md-autocomplete-snap
+                  md-transform-chip="spList.transformChip($chip)" md-require-match="true"
+                  class="chipsdemoCustomInputs" flex="70">
+            <md-autocomplete
+                    md-selected-item="spList.selectedItem"
+                    md-search-text="spList.searchText"
+                    md-items="item in spList.querySearch(spList.searchText)"
+                    md-item-text="item.name"
+                    placeholder="Busca tus deportes">
+                <span md-highlight-text="spList.searchText">{{item.display}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+            <span>
+              <strong>{{$chip.name}}</strong>
+            </span>
+            </md-chip-template>
+            <md-chip ng-repeat="sp in backOEstVM.currentSports">{{sp.name}}</md-chip>
+        </md-chips>
+        <md-input-container class="md-block" flex="40">
+            <md-button class="md-raised md-primary"
+                       id="assoc-sp-btn" type="submit">
+                Impartir
+            </md-button>
+        </md-input-container>
+    </form>
+</md-content>

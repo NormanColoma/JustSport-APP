@@ -33,10 +33,14 @@ angular
         vm.associateSport = associateSport;
         vm.after = "none";
         vm.changeView = changeView;
+        vm.currentSports = [];
         vm.estabs = [];
         vm.getEstabs = getEstabs;
+        vm.getSports = getSports;
+        vm.id = 0;
         vm.imgFolder = server+"public/images/ests/";
         vm.querySearch = querySearch;
+        vm.selectedSports = [];
         vm.searchCityChange = searchCityChange;
         vm.searchProvinceChange = searchProvinceChange;
         vm.sports = [];
@@ -79,26 +83,44 @@ angular
             });
         }
 
-        function associateSport(id,sps){
-            for(var i=0;i<sps.length;i++){
-                var data = {id: sps[i].id};
-                var sp = sps[i];
-                if(assocSport(id,data))
-                    vm.sports.push(sp);
-
-            }
-            if(sps === vm.sports){
-
+        function associateSport(id,sps, ev){
+            var dataDialog = {};
+            if(sps.length === 0){
+                dataDialog = {
+                    title: 'Selecciona un Deporte', text: 'Debes seleccionar como mínimo un deporte.',
+                    aria: 'Estab Added Alert', textButton: 'Listo'
+                };
+                dialogService.showDialog(dataDialog, ev);
             }else{
+                for(var i=0;i<sps.length;i++){
+                     var data = {id: sps[i].id};
+                     var sp = sps[i];
+                     addSport(id,data, sp);
+                 }
+                 vm.selectedSports = [];
+                 if(vm.sports.length > 0){
+                     dataDialog = {
+                         title: 'Deportes ya impartidos', text: 'Los deportes seleccionados ya están impartidos para este establecimiento',
+                         aria: 'Sport Added Alert', textButton: 'Listo'
+                     };
 
+                     dialogService.showDialog(dataDialog, ev);
+                 }else{
+                     dataDialog = {
+                         title: 'Deportes Impartidos', text: 'Los deportes se han impartido correctamente',
+                         aria: 'Sport Added Alert', textButton: 'Listo'
+                     };
+                     dialogService.showDialog(dataDialog, ev);
+                 }
             }
         }
 
-        function addSport(id,sport){
-            return backOfficeSportService.associateSp(id,sport).then(function(result){
-                if(result)
-                    return true;
-                return false;
+        function addSport(id,data,sp){
+            backOfficeSportService.associateSp(id,data).then(function(result){
+                if(result) {
+                    vm.sports.push(sp);
+                    vm.currentSports.push(sp);
+                }
             });
         }
 
@@ -109,8 +131,12 @@ angular
          * @memberOf BackOffice Estabs.BackOfficeEstabController
          * @returns {void}
          */
-        function changeView(view){
+        function changeView(view,id){
             vm.view = view;
+            vm.id = id;
+            if(view === 'assocSp'){
+                getSports(id);
+            }
         }
 
         /**
@@ -134,6 +160,13 @@ angular
                     vm.estabs = vm.estabs.concat(data.Establishments);
                 }));
             }
+        }
+
+        function getSports(id){
+            backOfficeSportService.getSports(id).then(function(data){
+                vm.currentSports = data;
+            });
+
         }
 
         /**

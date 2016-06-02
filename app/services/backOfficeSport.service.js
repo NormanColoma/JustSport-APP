@@ -29,12 +29,18 @@ angular
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.token
                     }
+                },
+                getSports:{
+                    isArray:false,
+                    method: 'GET',
+                    url: server + '/establishments/:id/sports',
                 }
             }
         );
 
         var service = {
-            associateSp: associateSp
+            associateSp: associateSp,
+            getSports: getSports
         };
 
         return service;
@@ -58,6 +64,20 @@ angular
 
             function associateSpFailed(data){
                 return false;
+            }
+        }
+
+        function getSports(id){
+            return SportEst.getSports({id: id, limit: 200}).$promise
+                .then(getSportsSuccess)
+                .catch(getSportsFailed);
+
+            function getSportsSuccess(data){
+                return data.Sports.rows;
+            }
+
+            function getSportsFailed(data){
+                return [];
             }
         }
     }
