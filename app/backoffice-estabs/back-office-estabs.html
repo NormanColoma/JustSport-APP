@@ -20,6 +20,13 @@
                         Eliminar {{item.name}}
                     </md-tooltip>
                 </md-button>
+                <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
+                           id="add-sport"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                    <md-icon md-svg-icon="public/images/icons/add_s.svg" aria-hidden="true" id="est-add-sport-{{item.id}}"></md-icon>
+                    <md-tooltip md-direction="top">
+                        Añadir deporte a {{item.name}}
+                    </md-tooltip>
+                </md-button>
                 <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Actualizar"
                            id="update-estab"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/edit.svg" aria-hidden="true" id="update-{{item.id}}"></md-icon>
