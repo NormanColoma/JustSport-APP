@@ -1,0 +1,29 @@
+<md-content layout="column" layout-wrap  id="establishments-ass-sp-container" ng-show="backOEstVM.view == 'assocSp'"
+            ng-controller="SportListController as spList" flex="100" ng-cloak>
+    <form novalidate name="estSpForm" ng-submit="backOEstVM.associateSport(backOEstVM.id,backOEstVM.selectedSports,ev)">
+        <md-chips ng-model="backOEstVM.selectedSports" md-autocomplete-snap
+                  md-transform-chip="spList.transformChip($chip)" md-require-match="true"
+                  class="chipsdemoCustomInputs" flex="70">
+            <md-autocomplete
+                    md-selected-item="spList.selectedItem"
+                    md-search-text="spList.searchText"
+                    md-items="item in spList.querySearch(spList.searchText)"
+                    md-item-text="item.name"
+                    placeholder="Busca tus deportes" id="sp-list">
+                <span md-highlight-text="spList.searchText">{{item.display}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+            <span>
+              <strong>{{$chip.name}}</strong>
+            </span>
+            </md-chip-template>
+            <md-chip ng-repeat="sp in backOEstVM.currentSports">{{sp.name}}</md-chip>
+        </md-chips>
+        <md-input-container class="md-block" flex="40">
+            <md-button class="md-raised md-primary"
+                       id="assoc-sp-btn" type="submit">
+                Impartir
+            </md-button>
+        </md-input-container>
+    </form>
+</md-content>

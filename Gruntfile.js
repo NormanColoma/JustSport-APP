@@ -47,7 +47,8 @@ module.exports = function(grunt) {
                         'app/components/establishmentDetails.directive.js','app/components/establishmentVote.directive.js', 'app/account/userAccount.module.js',
                         'app/account/userAccount.controller.js','app/services/userAccount.service.js', 'app/components/uploadButton.directive.js',
                         'app/backoffice/backoffice.module.js','app/components/backOfficeTabs.directive.js','app/components/backOfficeEstabs.directive.js',
-                        'app/components/backOfficeAddEstab.directive.js','app/services/backOfficeEstabs.service.js', 'app/backoffice-estabs/backOfficeEstabs.controller.js',
+                        'app/components/backOfficeAddEstab.directive.js','app/components/backOfficeImpartSp.directive.js','app/services/backOfficeEstabs.service.js',
+                        'app/services/backOfficeSport.service.js', 'app/backoffice-estabs/backOfficeEstabs.controller.js',
                         'app/app.module.js', 'app/services/formReset.service.js','app/services/dialog.service.js', 'app/services/redirectTo.service.js']
                 }
             },
@@ -56,7 +57,8 @@ module.exports = function(grunt) {
                     'app/app.test.min.js':['test/app/app.test.js', 'test/app/citySuggestions.module.test.js', 'test/app/sports.module.test.js',
                         'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js', 'test/app/register.module.test.js',
                         'test/app/showSchedule.module.test.js', 'test/app/establishmentDetails.module.test.js','test/app/userAccount.module.test.js',
-                        'test/app/backOffice.module.test.js','test/app/backOfficeEsts.module.test.js','test/app/backOfficeAddEst.module.test.js'
+                        'test/app/backOffice.module.test.js','test/app/backOfficeEsts.module.test.js','test/app/backOfficeAddEst.module.test.js',
+                        'test/app/backOfficeImpartSp.module.test.js'
                     ]
                 }
             }

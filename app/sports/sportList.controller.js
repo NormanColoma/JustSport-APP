@@ -33,6 +33,7 @@ angular
          * @type {Array}
          */
         vm.sports = [];
+        vm.transformChip = transformChip;
 
         loadAll();
 
@@ -81,6 +82,10 @@ angular
             return function filterFn(sport) {
                 return (sport.value.indexOf(lowercaseQuery) === 0);
             };
+        }
+
+        function transformChip(chip) {
+            return { name: chip.display, id: establishmentFilteredService.getIndexOf(chip.display) };
         }
 
     }

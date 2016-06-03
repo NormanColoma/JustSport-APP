@@ -13,5 +13,8 @@ angular
         $httpBackend.whenGET('public/images/icons/add.svg').passThrough();
         $httpBackend.whenGET('public/images/icons/add_photo.svg').passThrough();
         $httpBackend.whenGET('public/images/icons/delete.svg').passThrough();
+        $httpBackend.whenGET('public/images/icons/add_s.svg').passThrough();
+        $httpBackend.whenGET('public/images/icons/edit.svg').passThrough();
+        $httpBackend.whenGET('public/images/icons/arrow_back.svg').passThrough();
         $httpBackend.whenGET('app/backoffice/back-office-tabs.html').passThrough();
     }
