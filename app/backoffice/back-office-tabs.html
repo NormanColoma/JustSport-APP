@@ -5,10 +5,11 @@
             <p ng-show="backOEstVM.view == 'listEstabs'">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
             <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-display-2 add-t">Añadir Establecimiento</h1>
             <p ng-show="backOEstVM.view == 'addEstab'">Complete los campos con la información sobre su nuevo establecimiento. Después dale al botón <strog>Añadir</strog>.</p>
-            <h1 ng-show="backOEstVM.view == 'assocSp'" class="md-display-2 add-t">Impartir Deportes</h1>
+            <h1 ng-show="backOEstVM.view == 'assocSp'" class="md-display-2 impart-t">Impartir Deportes</h1>
             <blockquote ng-show="backOEstVM.view == 'assocSp'">
                 <p>Desde aquí podrás seleccionar los deportes que deseas impartir en el establecimiento. Por defecto, se te mostrarán los que ya
-                estás impartiendo actualmente (si lo estás haciendo).</p>
+                estás impartiendo actualmente (si lo estás haciendo). Será necesario que selecciones los deportes que se impartirán en el establecimiento,
+                antes de poner añadir un <strong>Curso</strong> al mismo</p>
             </blockquote>
             <backoffice-estabs></backoffice-estabs>
             <md-button ng-show="backOEstVM.view == 'listEstabs'" class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addEst"  ng-click="backOEstVM.changeView('addEstab')" name="add-est">

@@ -162,6 +162,13 @@ angular
             }
         }
 
+        /**
+         * @name getSports
+         * @desc Fetch the current sports which are being imparted in the estab
+         * @param id. The id of the establishment
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function getSports(id){
             backOfficeSportService.getSports(id).then(function(data){
                 vm.currentSports = data;
