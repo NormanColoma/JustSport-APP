@@ -3,7 +3,7 @@
  */
 describe('Back Office Sport Service that handle operations relative to sports', function() {
     var $httpBackend;
-    var baseAPI = 'https://justsport-api.herokuapp.com/api/';;
+    var baseAPI = 'https://justsport-api.herokuapp.com/api/';
     var backOSpService;
 
     var data = {id: 1};
