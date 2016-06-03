@@ -67,6 +67,13 @@ angular
             }
         }
 
+        /**
+         * @name getSports
+         * @desc It retrieves a collection of sports that are being imparted at the specified establishment
+         * @param id-> It represents the id of the establishment
+         * @memberOf backOfficeSportService
+         * @returns {Array}
+         */
         function getSports(id){
             return SportEst.getSports({id: id, limit: 200}).$promise
                 .then(getSportsSuccess)

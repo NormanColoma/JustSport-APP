@@ -83,6 +83,15 @@ angular
             });
         }
 
+        /**
+         * @name associateSport
+         * @desc Impart a list of sport in the establishment
+         * @param id. Id of establishment
+         * @param sps. Array of sports that are going to be imparted
+         * @param ev. Event captured
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function associateSport(id,sps, ev){
             var dataDialog = {};
             if(sps.length === 0){
@@ -115,6 +124,15 @@ angular
             }
         }
 
+        /**
+         * @name addSport
+         * @desc Impart new sport in the establishment
+         * @param id. Id of establishment
+         * @param data. Sport to be imparted
+         * @param sp. Sport object that will be pushed to currentSports array
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
         function addSport(id,data,sp){
             backOfficeSportService.associateSp(id,data).then(function(result){
                 if(result) {
