@@ -85,7 +85,7 @@ angular
         }
 
         function transformChip(chip) {
-            return { name: chip.display, id: establishmentFilteredService.getIndexOf(chip.display) }
+            return { name: chip.display, id: establishmentFilteredService.getIndexOf(chip.display) };
         }
 
     }

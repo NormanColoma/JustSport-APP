@@ -6,7 +6,7 @@ describe('Back Office Sport Service that handle operations relative to sports', 
     var baseAPI = 'https://localhost:3000/api/';
     var backOSpService;
 
-    var data = {id: 1}
+    var data = {id: 1};
     // Set up the module
     beforeEach(module('justSport'));
 
