@@ -17,6 +17,8 @@ blockquote{
   font-weight: 400;
   padding-left: 10px;
   line-height: 30px;
+  background: rgb(243, 243, 243);
+  border-radius: 2px;
 }
 
 blockquote p{

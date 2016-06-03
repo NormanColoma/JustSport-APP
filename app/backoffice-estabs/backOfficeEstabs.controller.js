@@ -9,7 +9,8 @@ angular
     .module('backOfficeModule')
     .controller('BackOfficeEstabController', BackOfficeEstabController);
 
-    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService','citySuggestionsService','formResetService'];
+    BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService','citySuggestionsService',
+        'formResetService', 'backOfficeSportService'];
 
     /**
     *
@@ -18,22 +19,31 @@ angular
     * @memberOf BackOffice Estabs
     *
     */
-    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService, citySuggestionsService,formResetService) {
+    function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService, citySuggestionsService,
+                                       formResetService, backOfficeSportService) {
         var vm = this;
 
         var local_folder = "https://localhost:3000/";
         var server_folder = "https://justsport-api.herokuapp.com/";
         var server = server_folder;
 
+
         vm.addEstablishment = addEstablishment;
+        vm.addSport = addSport;
+        vm.associateSport = associateSport;
         vm.after = "none";
         vm.changeView = changeView;
+        vm.currentSports = [];
         vm.estabs = [];
         vm.getEstabs = getEstabs;
+        vm.getSports = getSports;
+        vm.id = 0;
         vm.imgFolder = server+"public/images/ests/";
         vm.querySearch = querySearch;
+        vm.selectedSports = [];
         vm.searchCityChange = searchCityChange;
         vm.searchProvinceChange = searchProvinceChange;
+        vm.sports = [];
         vm.view = 'listEstabs';
 
 
@@ -74,14 +84,77 @@ angular
         }
 
         /**
+         * @name associateSport
+         * @desc Impart a list of sport in the establishment
+         * @param id. Id of establishment
+         * @param sps. Array of sports that are going to be imparted
+         * @param ev. Event captured
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
+        function associateSport(id,sps, ev){
+            var dataDialog = {};
+            if(sps.length === 0){
+                dataDialog = {
+                    title: 'Selecciona un Deporte', text: 'Debes seleccionar como mínimo un deporte.',
+                    aria: 'Estab Added Alert', textButton: 'Listo'
+                };
+                dialogService.showDialog(dataDialog, ev);
+            }else{
+                for(var i=0;i<sps.length;i++){
+                     var data = {id: sps[i].id};
+                     var sp = sps[i];
+                     addSport(id,data, sp);
+                 }
+                 vm.selectedSports = [];
+                 if(vm.sports.length > 0){
+                     dataDialog = {
+                         title: 'Deportes ya impartidos', text: 'Los deportes seleccionados ya están impartidos para este establecimiento',
+                         aria: 'Sport Added Alert', textButton: 'Listo'
+                     };
+
+                     dialogService.showDialog(dataDialog, ev);
+                 }else{
+                     dataDialog = {
+                         title: 'Deportes Impartidos', text: 'Los deportes se han impartido correctamente',
+                         aria: 'Sport Added Alert', textButton: 'Listo'
+                     };
+                     dialogService.showDialog(dataDialog, ev);
+                 }
+            }
+        }
+
+        /**
+         * @name addSport
+         * @desc Impart new sport in the establishment
+         * @param id. Id of establishment
+         * @param data. Sport to be imparted
+         * @param sp. Sport object that will be pushed to currentSports array
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
+        function addSport(id,data,sp){
+            backOfficeSportService.associateSp(id,data).then(function(result){
+                if(result) {
+                    vm.sports.push(sp);
+                    vm.currentSports.push(sp);
+                }
+            });
+        }
+
+        /**
          * @name changeView
          * @desc Change between the list view or add view
          * @param view. The name of the view to be loaded
          * @memberOf BackOffice Estabs.BackOfficeEstabController
          * @returns {void}
          */
-        function changeView(view){
+        function changeView(view,id){
             vm.view = view;
+            vm.id = id;
+            if(view === 'assocSp'){
+                getSports(id);
+            }
         }
 
         /**
@@ -105,6 +178,20 @@ angular
                     vm.estabs = vm.estabs.concat(data.Establishments);
                 }));
             }
+        }
+
+        /**
+         * @name getSports
+         * @desc Fetch the current sports which are being imparted in the estab
+         * @param id. The id of the establishment
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
+        function getSports(id){
+            backOfficeSportService.getSports(id).then(function(data){
+                vm.currentSports = data;
+            });
+
         }
 
         /**

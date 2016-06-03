@@ -351,4 +351,26 @@ describe('Back Office Estab Controller', function() {
         localStorage.removeItem('username');
     });
 
+    it('Should associate the sports to the establishment correctly', function(){
+        var controller = createController();
+        $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
+        $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
+        $httpBackend.expectPUT(baseAPI+'establishments/1/sports/new').respond(204);
+        var array = [
+            {id: 1, name: "Spinning"},
+            {id: 2, name: "Corssfit"},
+            {id: 3, name: "Zumna"}
+        ];
+        var expected = [
+            {id: 1, name: "Spinning"},
+            {id: 2, name: "Corssfit"},
+            {id: 3, name: "Zumna"}
+        ];
+        /* jshint ignore:start*/
+        controller.associateSport(1,array);
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.sports).toEqual(expected);
+    });
+
 });
