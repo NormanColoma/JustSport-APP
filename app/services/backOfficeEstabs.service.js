@@ -39,12 +39,19 @@ angular
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.token
                     }
+                },deleteEstablishment:{
+                    method: 'DELETE',
+                    url: server + '/establishments/:id',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.token
+                    }
                 }
             }
         );
 
         var service = {
             addEstablishment: addEstablishment,
+            deleteEstablishment: deleteEstablishment,
             getEstabs: getEstabs
         };
 
@@ -71,6 +78,27 @@ angular
             function addEstablishmentFailed(err){
                 var message = {message: "An error occurred when posting establishment"};
                 return message;
+            }
+        }
+
+        /**
+         * @name deleteEstablishment
+         * @desc It deletes the establishment passed by its id
+         * @param Id-> It represents the id of establishment to be removed
+         * @memberOf backOfficeEstabService
+         * @returns {Boolean}
+         */
+        function deleteEstablishment(id){
+            return Establishment.deleteEstablishment({id:id}).$promise
+                .then(deleteEstablishmentSuccess)
+                .catch(deleteEstablishmentFailed);
+
+            function deleteEstablishmentSuccess(data){
+                return true;
+            }
+
+            function deleteEstablishmentFailed(data){
+                return false;
             }
         }
 
