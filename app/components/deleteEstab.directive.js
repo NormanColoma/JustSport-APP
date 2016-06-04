@@ -18,7 +18,6 @@ function deleteEstab($mdDialog) {
     function linkFunc(scope, el, attr, ctrl,ev) {
         el.on('click', function(){
             var id = parseInt(attr.name);
-            console.log(id);
             var confirm = $mdDialog.confirm()
                 .title('¿Quieres eliminar el establecimiento?')
                 .textContent('Al eliminar el establecimiento, se eliminarán también todos sus cursos y horarios.')

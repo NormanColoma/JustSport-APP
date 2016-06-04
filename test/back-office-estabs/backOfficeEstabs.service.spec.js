@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-fdescribe('Back Office Estab Service that handles establishments', function() {
+describe('Back Office Estab Service that handles establishments', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOEstService;
@@ -236,8 +236,8 @@ fdescribe('Back Office Estab Service that handles establishments', function() {
         expect(expected_data).toEqual(real);
     });
 
-    fit('Should delete the establishment correctly', function(){
-        $httpBackend.expectPOST(baseAPI+'establishments/1').respond(204);
+    it('Should delete the establishment correctly', function(){
+        $httpBackend.expectDELETE(baseAPI+'establishments/1').respond(204);
         var real = null;
         backOEstService.deleteEstablishment(1).then(function(data){
             real = data;
@@ -246,8 +246,8 @@ fdescribe('Back Office Estab Service that handles establishments', function() {
         expect(real).toBeTruthy();
     });
 
-    fit('Should not delete the establishment', function(){
-        $httpBackend.expectPOST(baseAPI+'establishments/1').respond(500);
+    it('Should not delete the establishment', function(){
+        $httpBackend.expectDELETE(baseAPI+'establishments/1').respond(500);
         var real = null;
         backOEstService.deleteEstablishment(1).then(function(data){
             real = data;
