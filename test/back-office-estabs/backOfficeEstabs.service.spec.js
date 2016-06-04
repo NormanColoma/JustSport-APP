@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-describe('Back Office Estab Service that handles establishments', function() {
+fdescribe('Back Office Estab Service that handles establishments', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOEstService;
@@ -234,5 +234,25 @@ describe('Back Office Estab Service that handles establishments', function() {
         });
         $httpBackend.flush();
         expect(expected_data).toEqual(real);
+    });
+
+    fit('Should delete the establishment correctly', function(){
+        $httpBackend.expectPOST(baseAPI+'establishments/1').respond(204);
+        var real = null;
+        backOEstService.deleteEstablishment(1).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeTruthy();
+    });
+
+    fit('Should not delete the establishment', function(){
+        $httpBackend.expectPOST(baseAPI+'establishments/1').respond(500);
+        var real = null;
+        backOEstService.deleteEstablishment(1).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeFalsy();
     });
 });

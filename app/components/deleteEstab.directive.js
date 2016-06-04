@@ -11,9 +11,6 @@ function deleteEstab($mdDialog) {
     var directive = {
         restrict: 'EA',
         link: linkFunc,
-        controller: BackOfficeDeleteEstabController,
-        controllerAs: 'vm',
-        bindToController: true
     };
 
     return directive;
