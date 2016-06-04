@@ -5,9 +5,9 @@ angular
     .module('backOfficeModule')
     .directive('deleteEstab', deleteEstab);
 
-deleteEstab.$inject = ['$mdDialog'];
+deleteEstab.$inject = ['$mdDialog','backOfficeEstabService'];
 
-function deleteEstab($mdDialog) {
+function deleteEstab($mdDialog,backOfficeEstabService) {
     var directive = {
         restrict: 'EA',
         link: linkFunc,
@@ -27,7 +27,10 @@ function deleteEstab($mdDialog) {
                 .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
                 var estab = $("#estab-"+id);
-                estab.fadeOut("normal", function() { $(this).remove(); } );
+                backOfficeEstabService.deleteEstablishment(id).then(function(data){
+                    if(data === true)
+                        estab.fadeOut("normal", function() { $(this).remove(); } );
+                });
             }, function() {
 
             });
