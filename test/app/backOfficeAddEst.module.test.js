@@ -12,4 +12,5 @@ angular
 
         $httpBackend.whenGET('app/backoffice-estabs/back-office-add-est.html').passThrough();
         $httpBackend.whenPOST(local_api+'/api/establishments/new').respond(201);
+        $httpBackend.whenDELETE(local_api+'/api/establishments/1').respond(204);
     }

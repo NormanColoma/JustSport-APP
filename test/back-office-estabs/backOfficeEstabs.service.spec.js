@@ -235,4 +235,24 @@ describe('Back Office Estab Service that handles establishments', function() {
         $httpBackend.flush();
         expect(expected_data).toEqual(real);
     });
+
+    it('Should delete the establishment correctly', function(){
+        $httpBackend.expectDELETE(baseAPI+'establishments/1').respond(204);
+        var real = null;
+        backOEstService.deleteEstablishment(1).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeTruthy();
+    });
+
+    it('Should not delete the establishment', function(){
+        $httpBackend.expectDELETE(baseAPI+'establishments/1').respond(500);
+        var real = null;
+        backOEstService.deleteEstablishment(1).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeFalsy();
+    });
 });
