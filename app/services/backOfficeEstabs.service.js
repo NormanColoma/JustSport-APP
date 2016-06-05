@@ -45,6 +45,12 @@ angular
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.token
                     }
+                }, updateEstab:{
+                    method: 'PUT',
+                    url: server + '/establishments/:id',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.token
+                    }
                 }
             }
         );
@@ -52,7 +58,8 @@ angular
         var service = {
             addEstablishment: addEstablishment,
             deleteEstablishment: deleteEstablishment,
-            getEstabs: getEstabs
+            getEstabs: getEstabs,
+            updateEstablishment: updateEstablishment
         };
 
         return service;
@@ -131,6 +138,28 @@ angular
             function  getEstsFailed(error){
                 var message = {message: "An error occurred"};
                 return message;
+            }
+        }
+
+        /**
+         * @name updateEstablishment
+         * @desc It updates the specified establishment
+         * @param id. It represents the id of the establisment to be updated
+         * @param data. It contains the new data for the establishment
+         * @memberOf backOfficeEstabService
+         * @returns {Boolean}
+         */
+        function updateEstablishment(id,data){
+            return Establishment.updateEstab({id:id}, data).$promise
+                .then(updateEstablishmentSuccess)
+                .catch(updateEstablishmentFailed);
+
+            function updateEstablishmentSuccess(res){
+                return true;
+            }
+
+            function updateEstablishmentFailed(res){
+                return false;
             }
         }
     }

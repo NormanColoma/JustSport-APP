@@ -255,4 +255,26 @@ describe('Back Office Estab Service that handles establishments', function() {
         $httpBackend.flush();
         expect(real).toBeFalsy();
     });
+
+    it('Should update the establishent correctly', function(){
+        var data = {name: "Xtreme Deporte"};
+        $httpBackend.expectPUT(baseAPI+'establishments/1').respond(204);
+        var real = null;
+        backOEstService.updateEstablishment(1,data).then(function(d){
+            real = d;
+        });
+        $httpBackend.flush();
+        expect(real).toBeTruthy();
+    });
+
+    it('Should not update the establishent correctly', function(){
+        var data = {name: "Xtreme Deporte"};
+        $httpBackend.expectPUT(baseAPI+'establishments/2').respond(500);
+        var real = null;
+        backOEstService.updateEstablishment(2,data).then(function(d){
+            real = d;
+        });
+        $httpBackend.flush();
+        expect(real).toBeFalsy();
+    });
 });

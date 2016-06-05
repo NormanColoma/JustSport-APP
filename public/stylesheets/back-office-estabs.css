@@ -14,35 +14,19 @@
     transform: scale(0.001);
     transition-property: transform, opacity;
 }
-#establishments-list-container,  #establishments-ass-sp-container{
+#establishments-list-container,  #establishments-ass-sp-container, #establishments-update-container{
     -webkit-transition: 0.4s;
     transition: 0.4s;
 }
-#establishments-list-container.ng-hide{
+#establishments-list-container.ng-hide, #establishments-update-container.ng-hide, #establishments-ass-sp-container.ng-hide{
     opacity: 0;
     transform: scale(0.001);
     transition-property: transform, opacity;
 }
 
-#establishments-add-container, #establishments-ass-sp-container{
-    opacity: 1;
-    transform: scale(1);
-    transition-property: transform, opacity;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-}
-
-#establishments-add-container.ng-hide, #establishments-ass-sp-container.ng-hide{
-    opacity: 0;
-    transform: scale(0.001);
-    transition-property: transform, opacity;
-    -webkit-transition: 0s;
-    transition: 0s;
-}
 
 
 .est-owner-container md-card{
-
     margin-bottom: 40px;
 }
 
