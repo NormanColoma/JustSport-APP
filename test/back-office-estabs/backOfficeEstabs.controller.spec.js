@@ -373,7 +373,7 @@ describe('Back Office Estab Controller', function() {
         expect(controller.sports).toEqual(expected);
     });
 
-    fit('Should update the establishment correctly', function(){
+    it('Should update the establishment correctly', function(){
         var controller = createController();
         localStorage.setItem('username','Norman');
         var est1 = {
