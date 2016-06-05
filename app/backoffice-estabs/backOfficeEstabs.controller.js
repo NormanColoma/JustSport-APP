@@ -169,7 +169,7 @@ angular
         function getEstab(id){
             for(var i=0;i<vm.estabs.length;i++){
                 if(vm.estabs[i].id === id){
-                    vm.selectedEst = vm.estabs[i];
+                    vm.selectedEst = angular.copy(vm.estabs[i]);
                     vm.selectedItem = vm.estabs[i].city;
                     vm.searchText = vm.estabs[i].city;
                     vm.selectedItemProvince = vm.estabs[i].province;
@@ -273,7 +273,7 @@ angular
                         }
                     }
                     dataDialog = {
-                        title: '¡Establecimiento Actualizado!', text: 'La información del establecimiento ha sido actualizada.',
+                        title: '¡Establecimiento Actualizadp!', text: 'La información del establecimiento ha sido actualizada.',
                         aria: 'Estab Updated Alert', textButton: 'Listo'
                     };
                     changeView('listEstabs');
@@ -281,7 +281,7 @@ angular
                 }else{
                     dataDialog = {
                         title: '¡Error durante la Actualización!', text: 'Se ha producido un error durante la actualziación. Por favor, inténtalo de nuevo.',
-                        aria: 'Estab Updated Failed Alert', textButton: 'Listo'
+                        aria: 'Estab Failed Alert', textButton: 'Listo'
                     };
                     dialogService.showDialog(dataDialog, ev);
                 }

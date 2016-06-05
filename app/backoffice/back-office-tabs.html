@@ -12,8 +12,9 @@
                 antes de poner añadir un <strong>Curso</strong> al mismo</p>
             </blockquote>
             <h1 ng-show="backOEstVM.view == 'updateEstab'" class="md-display-2 update-t">Actualizar Establecimiento</h1>
-            <blockquote ng-show="backOEstVM.view == 'assocSp'">
-                <p>Desde aquí podrás actualizar la información del Establecimiento.</p>
+            <blockquote ng-show="backOEstVM.view == 'updateEstab'">
+                <p>Desde aquí podrás actualizar la información del Establecimiento. Por defecto, se te mostrará, la información que
+                actualmente has proporcionado para el Establecimiento en cuestión.</p>
             </blockquote>
             <backoffice-estabs></backoffice-estabs>
             <md-button scroll-to ng-show="backOEstVM.view == 'listEstabs'" class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addEst"  ng-click="backOEstVM.changeView('addEstab')" name="add-est">
