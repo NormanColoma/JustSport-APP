@@ -35,6 +35,7 @@ angular
         vm.changeView = changeView;
         vm.currentSports = [];
         vm.estabs = [];
+        vm.getEstab = getEstab;
         vm.getEstabs = getEstabs;
         vm.getSports = getSports;
         vm.id = 0;
@@ -43,8 +44,10 @@ angular
         vm.selectedSports = [];
         vm.searchCityChange = searchCityChange;
         vm.searchProvinceChange = searchProvinceChange;
+        vm.selectedEst = null;
         vm.sports = [];
         vm.view = 'listEstabs';
+        vm.updateEstab = updateEstab;
 
 
 
@@ -152,8 +155,26 @@ angular
         function changeView(view,id){
             vm.view = view;
             vm.id = id;
+            vm.selectedItem = null;
+            vm.searchText = null;
+            vm.selectedItemProvince = null;
+            vm.searchTextProvince = null;
             if(view === 'assocSp'){
                 getSports(id);
+            }else if(view === 'updateEstab'){
+                getEstab(id);
+            }
+        }
+
+        function getEstab(id){
+            for(var i=0;i<vm.estabs.length;i++){
+                if(vm.estabs[i].id === id){
+                    vm.selectedEst = angular.copy(vm.estabs[i]);
+                    vm.selectedItem = vm.estabs[i].city;
+                    vm.searchText = vm.estabs[i].city;
+                    vm.selectedItemProvince = vm.estabs[i].province;
+                    vm.searchTextProvince = vm.estabs[i].province;
+                }
             }
         }
 
@@ -229,4 +250,41 @@ angular
             vm.estab.province = province;
         }
 
+        /**
+         * @name updateEstab
+         * @desc Update the values of establsihment
+         * @param id. Id of establishment
+         * @param data. New establishment values
+         * @param ev. Event captured
+         * @param form. Form to be cleaned
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
+        function updateEstab(id,data,ev,form){
+            var dataDialog = {};
+            var new_est = data;
+            data.owner = localStorage.user_id;
+            backOfficeEstabService.updateEstablishment(id,data).then(function(res){
+                if(res){
+                    for(var i=0;i<vm.estabs.length;i++){
+                        if(vm.estabs[i].id === id){
+                            delete new_est.owner;
+                            vm.estabs[i] = new_est;
+                        }
+                    }
+                    dataDialog = {
+                        title: '¡Establecimiento Actualizado!', text: 'La información del establecimiento ha sido actualizada.',
+                        aria: 'Estab Updated Alert', textButton: 'Listo'
+                    };
+                    changeView('listEstabs');
+                    dialogService.showDialog(dataDialog, ev);
+                }else{
+                    dataDialog = {
+                        title: '¡Error durante la Actualización!', text: 'Se ha producido un error durante la actualziación. Por favor, inténtalo de nuevo.',
+                        aria: 'Estab Failed Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
+                }
+            });
+        }
     }
