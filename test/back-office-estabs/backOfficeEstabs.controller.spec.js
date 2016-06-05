@@ -375,7 +375,28 @@ fdescribe('Back Office Estab Controller', function() {
 
     fit('Should update the establishment correctly', function(){
         var controller = createController();
-        var data = {name: "Xtreme Deporte"};
+        localStorage.setItem('username','Norman');
+        var est1 = {
+            "id": 1,
+            "name": "Gym A Tope",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+            "city": "San Vicente del Raspeig",
+            "province": "Alicante",
+            "addr": "Calle San Franciso nº15",
+            "phone": "965660327",
+            "website": "http://wwww.gymatope.es",
+            "main_img": "default.jpg"
+        };
+        controller.estabs.push(est1);
+        var data = {"id": 1,
+            "name": "Xtreme Deporte",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+            "city": "San Vicente del Raspeig",
+            "province": "Alicante",
+            "addr": "Calle San Franciso nº15",
+            "phone": "965660327",
+            "website": "http://wwww.gymatope.es",
+            "main_img": "default.jpg"};
         var expected_est = {
             "id": 1,
             "name": "Xtreme Deporte",
@@ -385,12 +406,10 @@ fdescribe('Back Office Estab Controller', function() {
             "addr": "Calle San Franciso nº15",
             "phone": "965660327",
             "website": "http://wwww.gymatope.es",
-            "main_img": "default.jpg",
-        }
+            "main_img": "default.jpg"
+        };
         $httpBackend.expectPUT(baseAPI+'establishments/1').respond(204);
-        $httpBackend.expectGET(baseAPI+'establishments/me/all?limit=3').respond(data);
         /* jshint ignore:start*/
-        controller.getEstabs();
         controller.updateEstab(1,data);
         /*jshint ignore:end */
         $httpBackend.flush();

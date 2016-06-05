@@ -35,6 +35,7 @@ angular
         vm.changeView = changeView;
         vm.currentSports = [];
         vm.estabs = [];
+        vm.getEstab = getEstab;
         vm.getEstabs = getEstabs;
         vm.getSports = getSports;
         vm.id = 0;
@@ -43,8 +44,10 @@ angular
         vm.selectedSports = [];
         vm.searchCityChange = searchCityChange;
         vm.searchProvinceChange = searchProvinceChange;
+        vm.selectedEst = null;
         vm.sports = [];
         vm.view = 'listEstabs';
+        vm.updateEstab = updateEstab;
 
 
 
@@ -157,6 +160,14 @@ angular
             }
         }
 
+        function getEstab(id){
+            for(var i=0;i<vm.estabs.length;i++){
+                if(vm.estabs[i].id === id){
+                    vm.selectedEst = vm.estabs[i];
+                }
+            }
+        }
+
         /**
          * @name getEstabs
          * @desc Fetch the establishments that belong to owner
@@ -230,4 +241,28 @@ angular
             vm.estab.province = province;
         }
 
+        /**
+         * @name updateEstab
+         * @desc Update the values of establsihment
+         * @param id. Id of establishment
+         * @param data. New establishment values
+         * @param ev. Event captured
+         * @param form. Form to be cleaned
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
+        function updateEstab(id,data,ev,form){
+            var new_est = data;
+            data.owner = localStorage.user_id;
+            backOfficeEstabService.updateEstablishment(id,data).then(function(res){
+                if(res){
+                    for(var i=0;i<vm.estabs.length;i++){
+                        if(vm.estabs[i].id === id){
+                            delete new_est.owner;
+                            vm.estabs[i] = new_est;
+                        }
+                    }
+                }
+            });
+        }
     }
