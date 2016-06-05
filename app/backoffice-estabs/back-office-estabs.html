@@ -29,7 +29,7 @@
                     </md-tooltip>
                 </md-button>
                 <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Actualizar"
-                           id="update-estab"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                           id="update-estab"  ng-click="backOEstVM.changeView('updateEstab', item.id)" name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/edit.svg" aria-hidden="true" id="update-{{item.id}}"></md-icon>
                     <md-tooltip md-direction="top">
                         Actualizar información
@@ -54,3 +54,4 @@
 </md-content>
 <backoffice-add-est></backoffice-add-est>
 <impart-sport></impart-sport>
+<update-estab></update-estab>

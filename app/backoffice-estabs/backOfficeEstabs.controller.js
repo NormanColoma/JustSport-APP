@@ -155,8 +155,14 @@ angular
         function changeView(view,id){
             vm.view = view;
             vm.id = id;
+            vm.selectedItem = null;
+            vm.searchText = null;
+            vm.selectedItemProvince = null;
+            vm.searchTextProvince = null;
             if(view === 'assocSp'){
                 getSports(id);
+            }else if(view === 'updateEstab'){
+                getEstab(id);
             }
         }
 
@@ -164,6 +170,10 @@ angular
             for(var i=0;i<vm.estabs.length;i++){
                 if(vm.estabs[i].id === id){
                     vm.selectedEst = vm.estabs[i];
+                    vm.selectedItem = vm.estabs[i].city;
+                    vm.searchText = vm.estabs[i].city;
+                    vm.selectedItemProvince = vm.estabs[i].province;
+                    vm.searchTextProvince = vm.estabs[i].province;
                 }
             }
         }
@@ -251,6 +261,7 @@ angular
          * @returns {void}
          */
         function updateEstab(id,data,ev,form){
+            var dataDialog = {};
             var new_est = data;
             data.owner = localStorage.user_id;
             backOfficeEstabService.updateEstablishment(id,data).then(function(res){
@@ -261,6 +272,18 @@ angular
                             vm.estabs[i] = new_est;
                         }
                     }
+                    dataDialog = {
+                        title: '¡Establecimiento Actualizado!', text: 'La información del establecimiento ha sido actualizada.',
+                        aria: 'Estab Updated Alert', textButton: 'Listo'
+                    };
+                    changeView('listEstabs');
+                    dialogService.showDialog(dataDialog, ev);
+                }else{
+                    dataDialog = {
+                        title: '¡Error durante la Actualización!', text: 'Se ha producido un error durante la actualziación. Por favor, inténtalo de nuevo.',
+                        aria: 'Estab Updated Failed Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
