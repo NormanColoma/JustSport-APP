@@ -176,6 +176,7 @@ angular
                         }
                     }
                     vm.estabs = vm.estabs.concat(data.Establishments);
+                    console.log(vm.estabs);
                 }));
             }
         }

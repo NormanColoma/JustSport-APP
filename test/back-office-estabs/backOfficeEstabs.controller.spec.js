@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 22/05/2016.
  */
-describe('Back Office Estab Controller', function() {
+fdescribe('Back Office Estab Controller', function() {
     var $httpBackend, $rootScope, createController;
     var baseAPI = 'https://localhost:3000/api/';
 
@@ -371,6 +371,30 @@ describe('Back Office Estab Controller', function() {
         /*jshint ignore:end */
         $httpBackend.flush();
         expect(controller.sports).toEqual(expected);
+    });
+
+    fit('Should update the establishment correctly', function(){
+        var controller = createController();
+        var data = {name: "Xtreme Deporte"};
+        var expected_est = {
+            "id": 1,
+            "name": "Xtreme Deporte",
+            "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+            "city": "San Vicente del Raspeig",
+            "province": "Alicante",
+            "addr": "Calle San Franciso nº15",
+            "phone": "965660327",
+            "website": "http://wwww.gymatope.es",
+            "main_img": "default.jpg",
+        }
+        $httpBackend.expectPUT(baseAPI+'establishments/1').respond(204);
+        $httpBackend.expectGET(baseAPI+'establishments/me/all?limit=3').respond(data);
+        /* jshint ignore:start*/
+        controller.getEstabs();
+        controller.updateEstab(1,data);
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(expected_est).toEqual(controller.estabs[0]);
     });
 
 });
