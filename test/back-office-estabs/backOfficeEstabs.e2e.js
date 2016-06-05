@@ -44,6 +44,29 @@ describe('Backoffice Panel', function() {
         expect(estabs).toBe(6);
     });
 
+    it('Should update the establishment correctly',function(){
+        var estab = element(by.id('estab-1'));
+        var update_btn = estab.element(by.id('update-estab'));
+        update_btn.click();
+        var form = element(by.css('[name="updateEstabForm"'));
+        form.element(by.css('[name="ename"]')).sendKeys('Gym Prueba');
+        element(by.id('update-est-btn')).click();
+        expect(estab.element(by.css('.md-headline')).getText()).toEqual('Gym A TopeGym Prueba');
+        var accept_dialog = element(by.css('md-dialog')).element(by.css('button'));
+        accept_dialog.click();
+    });
+
+    it('Should show validations messages when trying to update the establishment',function(){
+        var estab = element(by.id('estab-2'));
+        var update_btn = estab.element(by.id('update-estab'));
+        update_btn.click();
+        var form = element(by.css('[name="updateEstabForm"'));
+        form.element(by.css('[name="ename"]')).clear();
+        element(by.id('update-est-btn')).click();
+        expect(form.element(by.css('[name="rname"]')).getText()).toEqual('El nombre es obligatorio.');
+        element(by.id('listEst')).click();
+    });
+
     it('Should delete the establishment correctly', function(){
         var estab = element(by.id('estab-1'));
         var delete_btn = estab.element(by.id('delete-estab'));

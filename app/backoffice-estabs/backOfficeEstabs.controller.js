@@ -273,7 +273,7 @@ angular
                         }
                     }
                     dataDialog = {
-                        title: '¡Establecimiento Actualizadp!', text: 'La información del establecimiento ha sido actualizada.',
+                        title: '¡Establecimiento Actualizado!', text: 'La información del establecimiento ha sido actualizada.',
                         aria: 'Estab Updated Alert', textButton: 'Listo'
                     };
                     changeView('listEstabs');
