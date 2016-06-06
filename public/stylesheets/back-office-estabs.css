@@ -60,3 +60,7 @@ form[name='addEstabForm'] textarea{
 blockquote{
     margin: 0 !important;
 }
+
+.md-button label{
+    cursor:pointer;
+}

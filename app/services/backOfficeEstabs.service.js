@@ -9,7 +9,7 @@ angular
     .module('backOfficeModule')
     .factory('backOfficeEstabService', backOfficeEstabService);
 
-    backOfficeEstabService.$inject = ['$resource'];
+    backOfficeEstabService.$inject = ['$resource','$http'];
 
     /**
     *
@@ -17,7 +17,7 @@ angular
     * @desc Service that manages the operations related to establishments in the back office
     * @memberOf Services
     */
-    function backOfficeEstabService($resource){
+    function backOfficeEstabService($resource,$http){
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
@@ -59,7 +59,8 @@ angular
             addEstablishment: addEstablishment,
             deleteEstablishment: deleteEstablishment,
             getEstabs: getEstabs,
-            updateEstablishment: updateEstablishment
+            updateEstablishment: updateEstablishment,
+            uploadImg: uploadImg
         };
 
         return service;
@@ -159,6 +160,26 @@ angular
             }
 
             function updateEstablishmentFailed(res){
+                return false;
+            }
+        }
+
+        function uploadImg(file,id){
+            var payload = new FormData();
+            payload.append("est_profile", file);
+            return $http({
+                method  : 'PUT',
+                url     : server+'/establishments/'+id+"/new/image",
+                data    : payload, //forms user object
+                headers : { 'Authorization': 'Bearer ' + localStorage.token,'Content-Type': undefined}
+            })
+                .then(uploadImgSuccess)
+                .catch(uploadImgFailed);
+
+            function uploadImgSuccess(){
+                return true;
+            }
+            function uploadImgFailed(){
                 return false;
             }
         }
