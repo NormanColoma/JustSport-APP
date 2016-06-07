@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 02/06/2016.
  */
-describe('Back Office Sport Service that handle operations relative to sports', function() {
+fdescribe('Back Office Sport Service that handle operations relative to sports', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOSpService;
@@ -34,5 +34,37 @@ describe('Back Office Sport Service that handle operations relative to sports', 
         });
         $httpBackend.flush();
         expect(real).toBeFalsy();
+    });
+
+    fit('Should add the new sport correctly', function(){
+        var expected_sp = {id: 8, name: "Natación"};
+        $httpBackend.expectPOST(baseAPI+'sports/new').respond(201, expected_sp);
+        var real = null;
+        var d = {name: "Natación"};
+        backOSpService.addSp(d).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(expected_sp).toEqual(real);
+    });
+
+    fit('Should not add the sport when it is already added', function(){
+        var expected_data = {
+            errors: [
+                {
+                    type: "Duplicated entry",
+                    field: "name",
+                    message: "The value: 'Spinning' is already taken"
+                }
+            ]
+        };
+        $httpBackend.expectPOST(baseAPI+'sports/new').respond(500,expected_data);
+        var real = null;
+        var d = {name: "Spinning"};
+        backOSpService.addSp(d).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect("The value: 'Spinning' is already taken").toEqual(real);
     });
 });
