@@ -34,16 +34,46 @@ angular
                     isArray:false,
                     method: 'GET',
                     url: server + '/establishments/:id/sports',
+                },addSp:{
+                    method: 'POST',
+                    url: server + '/sports/new',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.token
+                    }
                 }
             }
         );
 
         var service = {
+            addSp: addSp,
             associateSp: associateSp,
             getSports: getSports
         };
 
         return service;
+
+
+        /**
+         * @name addSp
+         * @desc It adds new sport
+         * @param data-> It contains the name of the sport to be added
+         * @memberOf backOfficeSportService
+         * @returns {Object||String}
+         */
+        function addSp(data){
+            return SportEst.addSp(data).$promise
+                .then(addSpSuccess)
+                .catch(addSpFailed);
+
+            function addSpSuccess(data){
+                var sp = {id: data.id, name: data.name};
+                return sp;
+            }
+
+            function addSpFailed(data){
+                return data.data.errors[0].message;
+            }
+        }
 
         /**
          * @name associateSp

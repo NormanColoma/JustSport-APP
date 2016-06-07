@@ -35,4 +35,36 @@ describe('Back Office Sport Service that handle operations relative to sports', 
         $httpBackend.flush();
         expect(real).toBeFalsy();
     });
+
+    it('Should add the new sport correctly', function(){
+        var expected_sp = {id: 8, name: "Natación"};
+        $httpBackend.expectPOST(baseAPI+'sports/new').respond(201, expected_sp);
+        var real = null;
+        var d = {name: "Natación"};
+        backOSpService.addSp(d).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(expected_sp).toEqual(real);
+    });
+
+    it('Should not add the sport when it is already added', function(){
+        var expected_data = {
+            errors: [
+                {
+                    type: "Duplicated entry",
+                    field: "name",
+                    message: "The value: 'Spinning' is already taken"
+                }
+            ]
+        };
+        $httpBackend.expectPOST(baseAPI+'sports/new').respond(500,expected_data);
+        var real = null;
+        var d = {name: "Spinning"};
+        backOSpService.addSp(d).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect("The value: 'Spinning' is already taken").toEqual(real);
+    });
 });
