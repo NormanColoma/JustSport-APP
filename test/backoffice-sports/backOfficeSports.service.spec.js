@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 02/06/2016.
  */
-fdescribe('Back Office Sport Service that handle operations relative to sports', function() {
+describe('Back Office Sport Service that handle operations relative to sports', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOSpService;
@@ -36,7 +36,7 @@ fdescribe('Back Office Sport Service that handle operations relative to sports',
         expect(real).toBeFalsy();
     });
 
-    fit('Should add the new sport correctly', function(){
+    it('Should add the new sport correctly', function(){
         var expected_sp = {id: 8, name: "Natación"};
         $httpBackend.expectPOST(baseAPI+'sports/new').respond(201, expected_sp);
         var real = null;
@@ -48,7 +48,7 @@ fdescribe('Back Office Sport Service that handle operations relative to sports',
         expect(expected_sp).toEqual(real);
     });
 
-    fit('Should not add the sport when it is already added', function(){
+    it('Should not add the sport when it is already added', function(){
         var expected_data = {
             errors: [
                 {
