@@ -53,6 +53,13 @@ angular
         return service;
 
 
+        /**
+         * @name addSp
+         * @desc It adds new sport
+         * @param data-> It contains the name of the sport to be added
+         * @memberOf backOfficeSportService
+         * @returns {Object||String}
+         */
         function addSp(data){
             return SportEst.addSp(data).$promise
                 .then(addSpSuccess)
