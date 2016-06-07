@@ -49,7 +49,8 @@ module.exports = function(grunt) {
                         'app/backoffice/backoffice.module.js','app/components/backOfficeTabs.directive.js','app/components/backOfficeEstabs.directive.js',
                         'app/components/backOfficeAddEstab.directive.js','app/components/backOfficeImpartSp.directive.js','app/components/deleteEstab.directive.js',
                         'app/components/updateEstab.directive.js','app/components/uploadImgEstab.directive.js','app/services/backOfficeEstabs.service.js',
-                        'app/services/backOfficeSport.service.js', 'app/backoffice-estabs/backOfficeEstabs.controller.js', 'app/backoffice-sports/backOfficeSports.controller.js',
+                        'app/services/backOfficeSport.service.js', 'app/backoffice-estabs/backOfficeEstabs.controller.js',
+                        'app/components/addSport.directive.js','app/backoffice-sports/backOfficeSports.controller.js',
                         'app/app.module.js', 'app/services/formReset.service.js','app/services/dialog.service.js', 'app/services/redirectTo.service.js']
                 }
             },

@@ -25,12 +25,25 @@ angular
         vm.addSport = addSport;
         vm.sport = {};
 
-        function addSport(sport){
-            backOfficeSportService.addSp(sport).then(function(data){
+        function addSport(sport,form,ev){
+            var dataDialog = {};
+            var d = {name: sport};
+            backOfficeSportService.addSp(d).then(function(data){
                 if(data.name){
                     vm.sport = data;
+                    formResetService.reset(form);
+                    vm.sp = {};
+                    dataDialog = {
+                        title: '¡Deporte Añadido!', text: 'El deporte con nombre "'+sport+'" ha sido añadido correctamente.',
+                        aria: 'Added Sp Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }else{
-
+                    dataDialog = {
+                        title: '¡Deporte Añadido!', text: 'El deporte con nombre "'+sport+'" ya existe en JustSport.',
+                        aria: 'Added Sp Alert Failed', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
