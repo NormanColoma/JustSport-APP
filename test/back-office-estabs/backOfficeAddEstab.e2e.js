@@ -63,12 +63,12 @@ describe('Backoffice Add Establishment', function() {
         phone.clear();
         phone.sendKeys('655142922');
         city.sendKeys('Alicante');
-        var city_list = element(by.id('ul-6'));
+        var city_list = element(by.id('ul-7'));
         city_list.all(by.css('li')).then(function(location) {
             location[0].click();
         });
         province.sendKeys('Alicante');
-        var province_list = element(by.id('ul-7'));
+        var province_list = element(by.id('ul-8'));
         province_list.all(by.css('li')).then(function(location) {
             location[0].click();
         });

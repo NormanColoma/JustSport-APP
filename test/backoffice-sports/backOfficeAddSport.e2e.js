@@ -4,7 +4,7 @@
 var express = require('express');
 var app = express();
 
-describe('Backoffice Add Establishment', function() {
+describe('Backoffice Add Sport', function() {
     var host = 'http://localhost:5000';
     if (app.get('env') === 'test') {
         host = 'https://localhost:5000';
