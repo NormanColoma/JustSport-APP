@@ -48,7 +48,27 @@
     <md-tab label="Deportes">
         <md-content class="md-padding">
             <h1 class="md-display-2">Deportes</h1>
-            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+            <p>¿No has encontrado el deporte que quieres impartir en tu establecimento?. Desde aquí podrás añadirlo, y posteriomente,
+            comenzar a impartir sus cursos.</p>
+            <md-content layout="row" layout-sm="column" layout-wrap  id="sports-add-container">
+                <form name="addSportForm" layout="row" layout-wrap flex="100" novalidate
+                      ng-submit="addSportForm.sport-name.$valid">
+                    <md-input-container class="md-block" flex="40">
+                        <label>Nombre del Deporte</label>
+                        <input required="" name="sport-name" ng-model="backOEstVM.estab.name" flex="100"
+                               ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i"/>
+                        <div ng-messages="addSportForm.sport-name.$error" ng-show="addSportForm.sport-name.$touched || addSportForm.$submitted">
+                            <div ng-message="required" class="input-error" name="rname">El nombre es obligatorio.</div>
+                            <div ng-show="addSportForm.sport-name.$error.pattern" class="input-error" name="pname">El nombre del deporte solo puede contener letras.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex="100">
+                        <md-button type="submit" class="md-raised md-primary" id="add-sport-btn" name="add-sport-btn">
+                            Añadir
+                        </md-button>
+                    </md-input-container>
+                </form>
+            </md-content>
         </md-content>
     </md-tab>
 </md-tabs>
