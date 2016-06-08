@@ -35,8 +35,10 @@ angular
         vm.changeView = changeView;
         vm.currentSports = [];
         vm.estabs = [];
+        vm.fullEstabs = [];
         vm.getEstab = getEstab;
         vm.getEstabs = getEstabs;
+        vm.getFullEstabs = getFullEstabs;
         vm.getSports = getSports;
         vm.id = 0;
         vm.imgFolder = server+"public/images/ests/";
@@ -49,7 +51,7 @@ angular
         vm.view = 'listEstabs';
         vm.updateEstab = updateEstab;
 
-
+        getFullEstabs();
 
         /**
          * @name addEstablishment
@@ -198,6 +200,20 @@ angular
                     }
                     vm.estabs = vm.estabs.concat(data.Establishments);
                 }));
+            }
+        }
+
+        /**
+         * @name getEstabs
+         * @desc Fetch all the establishments
+         * @memberOf BackOffice Estabs.BackOfficeEstabController
+         * @returns {void}
+         */
+        function getFullEstabs(){
+            if(loginService.isLoggedIn()) {
+                backOfficeEstabService.getFullEsts().then(function(data){
+                    vm.fullEstabs = data;
+                });
             }
         }
 
