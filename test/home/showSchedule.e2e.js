@@ -23,14 +23,11 @@ describe('Home Schedule Dialog', function() {
         sport_field.click();
         var sport_list = element(by.id('ul-0'));
         sport_field.sendKeys('Spinning');
-        sport_list.all(by.css('li')).then(function(sports) {
-            sports[0].click();
-        });
+        sport_field.sendKeys(protractor.Key.ARROW_UP);
+        sport_field.sendKeys(protractor.Key.ENTER);
         location_field.sendKeys('Alicante');
-        var location_list = element(by.id('ul-1'));
-        location_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        location_field.sendKeys(protractor.Key.ARROW_UP);
+        location_field.sendKeys(protractor.Key.ENTER);
         search_button.click();
         browser.executeScript('window.scrollTo(0,0);');
         var estabContainer = element(by.id('establishments-list-container'));

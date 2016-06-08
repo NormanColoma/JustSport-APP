@@ -33,16 +33,12 @@ describe('Home', function() {
         var sport_list = element(by.id('ul-0'));
         var sports = sport_list.all(by.css('li')).count();
         sport_field.sendKeys('Spinning');
-        sport_list.all(by.css('li')).then(function(sports) {
-            expect(sports.length).toBe(1);
-            sports[0].click();
-        });
+        sport_field.sendKeys(protractor.Key.ARROW_UP);
+        sport_field.sendKeys(protractor.Key.ENTER);
         expect(sport_field.getAttribute('value')).toBe('Spinning');
         location_field.sendKeys('Valencia');
-        var location_list = element(by.id('ul-1'));
-        location_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        location_field.sendKeys(protractor.Key.ARROW_UP);
+        location_field.sendKeys(protractor.Key.ENTER);
         expect(location_field.getAttribute('value')).toBe('Valencia');
         search_button.click();
         expect(element(by.css('md-dialog')).isPresent()).toBeTruthy();
@@ -60,14 +56,11 @@ describe('Home', function() {
         sport_field.click();
         var sport_list = element(by.id('ul-0'));
         sport_field.sendKeys('Spinning');
-        sport_list.all(by.css('li')).then(function(sports) {
-            sports[0].click();
-        });
+        sport_field.sendKeys(protractor.Key.ARROW_UP);
+        sport_field.sendKeys(protractor.Key.ENTER);
         location_field.sendKeys('Alicante');
-        var location_list = element(by.id('ul-1'));
-        location_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        location_field.sendKeys(protractor.Key.ARROW_UP);
+        location_field.sendKeys(protractor.Key.ENTER);
         var estabContainer = element(by.id('establishments-list-container'));
         expect(estabContainer.all(by.css('md-card')).count()).toBe(0);
         search_button.click();

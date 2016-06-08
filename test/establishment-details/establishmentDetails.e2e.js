@@ -25,16 +25,12 @@ describe('Destails of establishment', function() {
             "velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa " +
             "qui officia deserunt mollit anim id est laborum";
         sport_field.click();
-        var sport_list = element(by.id('ul-0'));
         sport_field.sendKeys('Spinning');
-        sport_list.all(by.css('li')).then(function(sports) {
-            sports[0].click();
-        });
+        sport_field.sendKeys(protractor.Key.ARROW_UP);
+        sport_field.sendKeys(protractor.Key.ENTER);
         location_field.sendKeys('Alicante');
-        var location_list = element(by.id('ul-1'));
-        location_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        location_field.sendKeys(protractor.Key.ARROW_UP);
+        location_field.sendKeys(protractor.Key.ENTER);
         search_button.click();
         element(by.id('est-details-1')).click();
         expect(element(by.css('.est-title')).getText(),"Nombre Gym");
@@ -95,16 +91,12 @@ describe('Destails of establishment', function() {
     it('should show no commentaries found message', function(){
         browser.get(host);
         sport_field.click();
-        var sport_list = element(by.id('ul-0'));
         sport_field.sendKeys('Spinning');
-        sport_list.all(by.css('li')).then(function(sports) {
-            sports[0].click();
-        });
+        sport_field.sendKeys(protractor.Key.ARROW_UP);
+        sport_field.sendKeys(protractor.Key.ENTER);
         location_field.sendKeys('Alicante');
-        var location_list = element(by.id('ul-1'));
-        location_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        location_field.sendKeys(protractor.Key.ARROW_UP);
+        location_field.sendKeys(protractor.Key.ENTER);
         search_button.click();
         element(by.id('est-details-2')).click();
         expect(element(by.css('.est-no-commentaries')).getText()).toBe('Todavía no se ha realizado ningún comentario. Se el primero en dejar un comentario');
@@ -119,16 +111,12 @@ describe('Destails of establishment', function() {
         pass_field.sendKeys('pepe15');
         login_button.click();
         sport_field.click();
-        var sport_list = element(by.id('ul-0'));
         sport_field.sendKeys('Spinning');
-        sport_list.all(by.css('li')).then(function(sports) {
-            sports[0].click();
-        });
+        sport_field.sendKeys(protractor.Key.ARROW_UP);
+        sport_field.sendKeys(protractor.Key.ENTER);
         location_field.sendKeys('Alicante');
-        var location_list = element(by.id('ul-1'));
-        location_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        location_field.sendKeys(protractor.Key.ARROW_UP);
+        location_field.sendKeys(protractor.Key.ENTER);
         search_button.click();
         element(by.id('est-details-1')).click();
         element(by.css('[name="textField"]')).sendKeys('Esto es un comentario de prueba');
