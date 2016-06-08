@@ -63,15 +63,9 @@ describe('Backoffice Add Establishment', function() {
         phone.clear();
         phone.sendKeys('655142922');
         city.sendKeys('Alicante');
-        var city_list = element(by.id('ul-7'));
-        city_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        city.sendKeys(protractor.Key.ENTER);
         province.sendKeys('Alicante');
-        var province_list = element(by.id('ul-8'));
-        province_list.all(by.css('li')).then(function(location) {
-            location[0].click();
-        });
+        province.sendKeys(protractor.Key.ENTER);
         addr.sendKeys('Calle Falsa nº14');
         desc.sendKeys('Estab es la descripción de prueba del establecimiento de prueba');
         website.clear();

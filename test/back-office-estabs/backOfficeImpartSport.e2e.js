@@ -27,8 +27,8 @@ describe('Backoffice Impart Sport', function() {
     });
 
     it('Should add the new sport imparted to list', function(){
-        element(by.id('input-12')).sendKeys('CrossFit');
-        var sp_selected = element(by.id('ul-12'));
+        element(by.css('md-chips')).element(by.css('input')).sendKeys('CrossFit');
+        var sp_selected = element(by.id('ul-16'));
         sp_selected.all(by.css('li')).then(function(sp) {
             sp[0].click();
         });
@@ -41,8 +41,8 @@ describe('Backoffice Impart Sport', function() {
     });
 
     it('Should not add sport that is already added', function(){
-        element(by.id('input-12')).sendKeys('Spinning');
-        var sp_selected = element(by.id('ul-12'));
+        element(by.css('md-chips')).element(by.css('input')).sendKeys('Spinning');
+        var sp_selected = element(by.id('ul-16'));
         sp_selected.all(by.css('li')).then(function(sp) {
             sp[0].click();
         });

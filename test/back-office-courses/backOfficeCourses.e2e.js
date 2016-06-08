@@ -22,7 +22,7 @@ describe('Courses Backoffice', function() {
         email_field.sendKeys('pepe@gmail.com');
         pass_field.sendKeys('pepe15');
         login_button.click();
-        element(by.css('.account-options')).click();
+        var acc = element(by.css('.account-options')).click();
         element(by.css('[name="backoffice"]')).click();
         var tab_list = element(by.css('md-tabs'));
         tab_list.all(by.css('md-tab-item')).then(function(tabs) {
@@ -30,7 +30,7 @@ describe('Courses Backoffice', function() {
         });
         var select = element(by.id('list-ests'));
         select.click();
-        var ests = element(by.id('select_container_6')).all(by.css('md-option'));
+        var ests = element(by.css('.md-select-menu-container.md-active')).all(by.css('md-option'));
         ests.then(function(l_ests){
             expect(l_ests.length).toBe(3);
             l_ests[0].click();
@@ -39,11 +39,15 @@ describe('Courses Backoffice', function() {
         var courses_select = element(by.id('list-courses'));
         courses_select.click();
         expect(courses_select.isPresent()).toBeTruthy();
-        var courses = element(by.id('select_container_7')).all(by.css('md-option'));
+        var courses = element(by.css('.md-select-menu-container.md-active')).all(by.css('md-option'));
         courses.then(function(l_courses){
             expect(l_courses.length).toBe(3);
+            l_courses[1].click();
         });
 
+        acc.click();
+        element(by.css('[name="logout"]')).click();
     });
+
 
 });
