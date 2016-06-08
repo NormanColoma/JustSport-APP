@@ -23,6 +23,7 @@ angular
         var server = local_api;
 
         var estabs = null;
+        var courses = [];
 
         var Establishment = $resource(server+'/establishments/:id', {id:'@id'},{
                 addEstab:{
@@ -58,6 +59,7 @@ angular
         var service = {
             addEstablishment: addEstablishment,
             deleteEstablishment: deleteEstablishment,
+            getCourses: getCourses,
             getEstabs: getEstabs,
             getFullEsts: getFullEsts,
             updateEstablishment: updateEstablishment,
@@ -111,6 +113,10 @@ angular
             }
         }
 
+        function getCourses(){
+            return courses;
+        }
+
         /**
          * @name getFullEsts
          * @desc It retrieves all the establishments. It will only return the id and name (we'll use them for courses view)
@@ -127,7 +133,9 @@ angular
                 var ests = [];
                 for(var i=0;i<estabs.rows.length;i++){
                     var est = {id: estabs.rows[i].id, name: estabs.rows[i].name};
+                    var c = {establishmentId:estabs.rows[i].id, rows: estabs.rows[i].Courses};
                     ests.push(est);
+                    courses.push(c);
                 }
                 return ests;
             }

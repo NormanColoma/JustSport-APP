@@ -9,7 +9,8 @@ angular
     .module('backOfficeModule')
     .controller('BackOfficeCoursesController', BackOfficeCoursesController);
 
-    BackOfficeCoursesController.$inject = ['dialogService', 'formResetService', 'backOfficeSportService'];
+    BackOfficeCoursesController.$inject = ['dialogService', 'formResetService', 'backOfficeSportService', 'loginService',
+        'backOfficeEstabService'];
 
     /**
      *
@@ -18,13 +19,49 @@ angular
      * @memberOf BackOffice Courses
      *
      */
-    function BackOfficeCoursesController(dialogService,formResetService, backOfficeSportService) {
+    function BackOfficeCoursesController(dialogService,formResetService, backOfficeSportService, loginService,
+                                         backOfficeEstabService) {
         var vm = this;
 
+        vm.courses = [];
+        vm.currentCourses = [];
         vm.getCourses = getCourses;
+        vm.getFullEstabs = getFullEstabs;
 
+        getFullEstabs();
 
-        function getCourses(id){
-            console.log(id);
+        function getCourses(id,ev){
+            vm.currentCourses = [];
+            var dataDialog = {};
+            for(var i=0;i<vm.courses.length;i++){
+                if(vm.courses[i].establishmentId === parseInt(id)){
+                    for(var j=0;j<vm.courses[i].rows.length;j++){
+                        vm.currentCourses.push(vm.courses[i].rows[j]);
+                    }
+                }
+            }
+
+            if(vm.currentCourses.length === 0){
+                dataDialog = {
+                    title: '¡Sin resultados!', text: 'El establecimiento seleccionado no tiene cursos asignados todavía.',
+                    aria: 'Search Courses Alert', textButton: 'Listo'
+                };
+                dialogService.showDialog(dataDialog, ev);
+            }
+        }
+
+        /**
+         * @name getEstabs
+         * @desc Fetch all the establishments
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function getFullEstabs(){
+            if(loginService.isLoggedIn()) {
+                backOfficeEstabService.getFullEsts().then(function(data){
+                    vm.fullEstabs = data;
+                    vm.courses = backOfficeEstabService.getCourses();
+                });
+            }
         }
     }

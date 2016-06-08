@@ -1,0 +1,18 @@
+<md-content layout="row" layout-sm="column" layout-wrap  id="establishments-courses-container"
+            ng-controller="BackOfficeCoursesController as coursesVM">
+    <md-input-container class="md-block" flex="40">
+        <label>Establecimiento</label>
+        <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
+                   flex="100">
+            <md-option ng-repeat="est in coursesVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
+        </md-select >
+    </md-input-container>
+    <div flex="5"></div>
+    <md-input-container class="md-block" flex="40"  ng-show="coursesVM.currentCourses.length > 0">
+        <label>Curso</label>
+        <md-select ng-model="coursesVM.selectedCourse"
+                   flex="100">
+            <md-option ng-repeat="course in coursesVM.currentCourses" value="{{course.id}}">{{course.info}}</md-option>
+        </md-select>
+    </md-input-container>
+</md-content>

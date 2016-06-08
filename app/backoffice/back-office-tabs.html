@@ -36,15 +36,7 @@
             <h1 class="md-display-2">Horarios</h1>
             <p>Desde aquí podrás ver los hrarios de tus establecimientos, modificarlos, eliminarlos, y añadir nuevos. Primero deberás
                 seleccionar el establecimiento del cual quieres gestionar los horarios.</p>
-            <md-content layout="row" layout-sm="column" layout-wrap  id="establishments-courses-container"
-                        ng-controller="BackOfficeCoursesController as coursesVM">
-                <md-input-container class="md-block" flex="40">
-                    <label>Establecimiento</label>
-                    <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst)">
-                        <md-option ng-repeat="est in backOEstVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-            </md-content>
+            <list-courses></list-courses>
         </md-content>
     </md-tab>
     <md-tab label="Horarios">
