@@ -23,6 +23,7 @@ angular
         var server = local_api;
 
         var estabs = null;
+        var courses = [];
 
         var Establishment = $resource(server+'/establishments/:id', {id:'@id'},{
                 addEstab:{
@@ -58,7 +59,9 @@ angular
         var service = {
             addEstablishment: addEstablishment,
             deleteEstablishment: deleteEstablishment,
+            getCourses: getCourses,
             getEstabs: getEstabs,
+            getFullEsts: getFullEsts,
             updateEstablishment: updateEstablishment,
             uploadImg: uploadImg
         };
@@ -107,6 +110,39 @@ angular
 
             function deleteEstablishmentFailed(data){
                 return false;
+            }
+        }
+
+        function getCourses(){
+            return courses;
+        }
+
+        /**
+         * @name getFullEsts
+         * @desc It retrieves all the establishments. It will only return the id and name (we'll use them for courses view)
+         * @memberOf backOfficeEstabService
+         * @returns {Array || Object}
+         */
+        function getFullEsts(){
+            return Establishment.getEsts({limit: 200}).$promise
+                .then(getEstsSuccess)
+                .catch(getEstsFailed);
+
+            function getEstsSuccess(data){
+                estabs = data.Establishments;
+                var ests = [];
+                for(var i=0;i<estabs.rows.length;i++){
+                    var est = {id: estabs.rows[i].id, name: estabs.rows[i].name};
+                    var c = {establishmentId:estabs.rows[i].id, rows: estabs.rows[i].Courses};
+                    ests.push(est);
+                    courses.push(c);
+                }
+                return ests;
+            }
+
+            function  getEstsFailed(error){
+                var message = {message: "An error occurred"};
+                return message;
             }
         }
 

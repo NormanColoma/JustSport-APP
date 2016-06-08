@@ -50,7 +50,8 @@ module.exports = function(grunt) {
                         'app/components/backOfficeAddEstab.directive.js','app/components/backOfficeImpartSp.directive.js','app/components/deleteEstab.directive.js',
                         'app/components/updateEstab.directive.js','app/components/uploadImgEstab.directive.js','app/services/backOfficeEstabs.service.js',
                         'app/services/backOfficeSport.service.js', 'app/backoffice-estabs/backOfficeEstabs.controller.js',
-                        'app/components/addSport.directive.js','app/backoffice-sports/backOfficeSports.controller.js',
+                        'app/components/addSport.directive.js','app/backoffice-sports/backOfficeSports.controller.js','app/components/listCourses.directive.js',
+                        'app/backoffice-courses/backOfficeCourses.controller.js',
                         'app/app.module.js', 'app/services/formReset.service.js','app/services/dialog.service.js', 'app/services/redirectTo.service.js']
                 }
             },
@@ -60,7 +61,8 @@ module.exports = function(grunt) {
                         'test/app/estabsFiltered.module.test.js', 'test/app/login.module.test.js', 'test/app/register.module.test.js',
                         'test/app/showSchedule.module.test.js', 'test/app/establishmentDetails.module.test.js','test/app/userAccount.module.test.js',
                         'test/app/backOffice.module.test.js','test/app/backOfficeEsts.module.test.js','test/app/backOfficeAddEst.module.test.js',
-                        'test/app/backOfficeImpartSp.module.test.js', 'test/app/backOfficeUpdateEst.module.test.js', 'test/app/backOfficeAddSport.module.test.js'
+                        'test/app/backOfficeImpartSp.module.test.js', 'test/app/backOfficeUpdateEst.module.test.js', 'test/app/backOfficeAddSport.module.test.js',
+                        'test/app/backOfficeCourses.module.test.js'
                     ]
                 }
             }

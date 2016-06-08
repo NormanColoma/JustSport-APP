@@ -35,6 +35,7 @@ angular
         vm.changeView = changeView;
         vm.currentSports = [];
         vm.estabs = [];
+        vm.fullEstabs = [];
         vm.getEstab = getEstab;
         vm.getEstabs = getEstabs;
         vm.getSports = getSports;
@@ -48,7 +49,6 @@ angular
         vm.sports = [];
         vm.view = 'listEstabs';
         vm.updateEstab = updateEstab;
-
 
 
         /**
