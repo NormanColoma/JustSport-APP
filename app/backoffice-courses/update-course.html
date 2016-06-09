@@ -35,7 +35,8 @@
             <md-button type="submit" class="md-raised md-primary" id="update-course-btn" name="update-course-btn">
                 Actualizar
             </md-button>
-            <md-button type="button" class="md-raised md-primary" id="delete-course-btn" name="delete-course-btn">
+            <md-button type="button" class="md-raised md-primary" id="delete-course-btn" name="delete-course-btn"
+            ng-click="coursesVM.deleteCourse(coursesVM.course.id,ev)">
                 Eliminar
             </md-button>
         </md-input-container>

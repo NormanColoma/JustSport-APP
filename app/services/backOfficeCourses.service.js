@@ -29,10 +29,17 @@ angular
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.token
                 }
+            },delete: {
+                method: 'DELETE',
+                url: server + '/courses/:id',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.token
+                }
             },
         });
 
         var service = {
+            deleteCourse: deleteCourse,
             update: update
         };
 
@@ -56,6 +63,27 @@ angular
             }
 
             function updateCourseFailed(data){
+                return false;
+            }
+        }
+
+        /**
+         * @name delete
+         * @desc It deletes the specified course
+         * @param id-> The id of the course
+         * @memberOf backOfficeCoursesService
+         * @returns {Boolean}
+         */
+        function deleteCourse(id){
+            return Course.delete({id:id}).$promise
+                .then(deleteCourseSuccess)
+                .catch(deleteCourseFailed);
+
+            function deleteCourseSuccess(data){
+                return true;
+            }
+
+            function deleteCourseFailed(data){
                 return false;
             }
         }
