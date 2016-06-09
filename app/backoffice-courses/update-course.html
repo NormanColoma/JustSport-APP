@@ -16,7 +16,7 @@
             <input required="" name="cins" ng-model="coursesVM.selectedC.instructor" flex="100"
                    ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i"/>
             <div ng-messages="updateCourseForm.cins.$error" ng-show="updateCourseForm.cins.$touched || updateCourseForm.$submitted">
-                <div ng-message="required" class="input-error" name="rins">La información es obligatoria.</div>
+                <div ng-message="required" class="input-error" name="rins">El nombre del instructor es obligatorio.</div>
                 <div ng-show="updateCourseForm.cins.$error.pattern" class="input-error" name="pins">El nombre del instructor no es correcto.
                     Solo admite caracteres alfanuméricos.</div>
             </div>
@@ -25,8 +25,8 @@
             <label>Precio del curso</label>
             <input required="" name="cprice" ng-model="coursesVM.selectedC.price" flex="100" type="number" min="1">
             <div ng-messages="updateCourseForm.cprice.$error" ng-show="updateCourseForm.cprice.$touched || updateCourseForm.$submitted">
-                <div ng-message="required" class="input-error" name="rins">El precio es obligatoria.</div>
-                <div ng-message="min">
+                <div ng-message="required" class="input-error" name="rins">El precio es obligatorio.</div>
+                <div ng-message="min" name="pprice">
                     El precio del curso debe ser por lo menos 1.
                 </div>
             </div>
