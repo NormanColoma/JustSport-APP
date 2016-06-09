@@ -18,7 +18,7 @@ fdescribe('Back Office Courses Service that handles courses', function() {
         var data = {info: "La información ha cambiado"};
         $httpBackend.expectPUT(baseAPI+'courses/1').respond(204);
         var real = null;
-        backOCService.modifyCourse(1,data).then(function(data){
+        backOCService.update(1,data).then(function(data){
             real = data;
         });
         $httpBackend.flush();
@@ -29,7 +29,7 @@ fdescribe('Back Office Courses Service that handles courses', function() {
         var data = {info: "La información ha cambiado"};
         $httpBackend.expectPUT(baseAPI+'courses/1').respond(500);
         var real = null;
-        backOCService.modifyCourse(1,data).then(function(data){
+        backOCService.update(1,data).then(function(data){
             real = data;
         });
         $httpBackend.flush();
