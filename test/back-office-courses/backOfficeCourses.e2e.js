@@ -53,7 +53,7 @@ describe('Courses Backoffice', function() {
         var p_price = element(by.css('[name="pprice"]'));
         ins.clear();
         price.clear();
-        ins.sendKeys('Pepe12')
+        ins.sendKeys('Pepe12');
         price.sendKeys('-1');
         expect(p_ins.getText()).toEqual("El nombre del instructor no es correcto. Solo admite caracteres alfanuméricos.");
         expect(p_price.getText()).toEqual("El precio del curso debe ser por lo menos 1.");
@@ -65,7 +65,7 @@ describe('Courses Backoffice', function() {
         var update_btn = element(by.id('update-course-btn'));
         ins.clear();
         price.clear();
-        ins.sendKeys('Pepe Castaño')
+        ins.sendKeys('Pepe Castaño');
         price.sendKeys('20.75');
         update_btn.click();
         var alert_content = element(by.css('md-dialog-content'));
