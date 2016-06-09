@@ -72,6 +72,32 @@ describe('Courses Backoffice', function() {
         var alert_text = alert_content.element(by.css('p')).getText();
         expect(alert_text).toEqual('La información del curso ha sido actualizada.');
         element(by.css('md-dialog-actions')).element(by.css('button')).click();
+    });
+
+    it('Should delete the course correctly', function(){
+        var tab_list = element(by.css('md-tabs'));
+        tab_list.all(by.css('md-tab-item')).then(function(tabs) {
+            tabs[1].click();
+        });
+        var select = element(by.id('list-ests'));
+        select.click();
+        var ests = element(by.css('.md-select-menu-container.md-active')).all(by.css('md-option'));
+        ests.then(function(l_ests){
+            l_ests[0].click();
+        });
+
+        var courses_select = element(by.id('list-courses'));
+        courses_select.click();
+        expect(courses_select.isPresent()).toBeTruthy();
+        var courses = element(by.css('.md-select-menu-container.md-active')).all(by.css('md-option'));
+        courses.then(function(l_courses){
+            l_courses[1].click();
+        });
+        element(by.id('delete-course-btn')).click();
+        var alert_content = element(by.css('md-dialog-content'));
+        var alert_text = alert_content.element(by.css('p')).getText();
+        expect(alert_text).toEqual('El curso y sus horarios asociados, han sido eliminados correctamente.');
+        element(by.css('md-dialog-actions')).element(by.css('button')).click();
         element(by.css('.account-options')).click();
         element(by.css('[name="logout"]')).click();
     });

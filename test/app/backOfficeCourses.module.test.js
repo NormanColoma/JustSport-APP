@@ -90,4 +90,5 @@ function backOfficeCourses($httpBackend) {
     $httpBackend.whenGET(local_api+"/api/establishments/me/all?limit=200").respond(200,data);
     $httpBackend.whenPUT(local_api+"/api/courses/2").respond(204);
     $httpBackend.whenGET('app/backoffice-courses/update-course.html').passThrough();
+    $httpBackend.whenDELETE(local_api+"/api/courses/2").respond(204);
 }
