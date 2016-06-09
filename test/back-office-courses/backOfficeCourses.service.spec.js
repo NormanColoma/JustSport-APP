@@ -1,7 +1,7 @@
 /**
  * Created by Norman on 08/06/2016.
  */
-fdescribe('Back Office Courses Service that handles courses', function() {
+describe('Back Office Courses Service that handles courses', function() {
     var $httpBackend;
     var baseAPI = 'https://localhost:3000/api/';
     var backOCService;
