@@ -39,7 +39,7 @@ describe('Back Office Courses Service that handles courses', function() {
     it('Should delete the course correctly', function(){
         $httpBackend.expectDELETE(baseAPI+'courses/1').respond(204);
         var real = null;
-        backOCService.delete(1).then(function(data){
+        backOCService.deleteCourse(1).then(function(data){
             real = data;
         });
         $httpBackend.flush();
@@ -49,7 +49,7 @@ describe('Back Office Courses Service that handles courses', function() {
     it('Should not delete the course correctly', function(){
         $httpBackend.expectDELETE(baseAPI+'courses/1').respond(500);
         var real = null;
-        backOCService.delete(1).then(function(data){
+        backOCService.deleteCourse(1).then(function(data){
             real = data;
         });
         $httpBackend.flush();
