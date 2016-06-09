@@ -37,8 +37,16 @@ angular
 
         getFullEstabs();
 
-
-        function addCourse(data,ev,fornm){
+        /**
+         * @name addCourse
+         * @desc Add new course and push it to courses array
+         * @param data-> Contains the data of the new course to be added
+         * @param ev -> Event captured
+         * @param form-> Add Form Course (it will be reseted)
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function addCourse(data,ev,form){
             backOfficeCoursesService.add(data).then(function(res){
                 if(res === false){
 
@@ -51,6 +59,13 @@ angular
                 }
             });
         }
+
+        /**
+         * @name backToList
+         * @desc It changes the view back to list of courses
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
         function backToList(){
             vm.selectedC = null;
             vm.selectedEst = null;
