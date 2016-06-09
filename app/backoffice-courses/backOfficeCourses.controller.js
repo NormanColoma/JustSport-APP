@@ -23,8 +23,10 @@ angular
                                          backOfficeEstabService,backOfficeCoursesService) {
         var vm = this;
 
+        vm.course = null;
         vm.courses = [];
         vm.currentCourses = [];
+        vm.getCourse = getCourse;
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
         vm.modifyValues = modifyValues;
@@ -32,6 +34,22 @@ angular
 
         getFullEstabs();
 
+        /**
+         * @name getCourse
+         * @desc Looks up the course into courses array and sets course property
+         * @param id-> Id of the course
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function getCourse(id){
+            for(var i=0;i<vm.courses.length;i++) {
+                for (var j = 0; j < vm.courses[i].rows.length; j++) {
+                    if (vm.courses[i].rows[j].id === id) {
+                        vm.course = vm.courses[i].rows[j];
+                    }
+                }
+            }
+        }
         /**
          * @name getCourses
          * @desc Get the courses from the specified estab, and push all of them to currentCourses array
@@ -75,6 +93,14 @@ angular
             }
         }
 
+        /**
+         * @name updateCourse
+         * @desc Update the specified course
+         * @param id-> Id of course
+         * @param data-> Data of course to be updated
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
         function updateCourse(id,data,ev){
 
             backOfficeCoursesService.update(id,data).then(function(res){
@@ -86,21 +112,24 @@ angular
             });
         }
 
+        /**
+         * @name modifyValues
+         * @desc Looks up for the course and modifies its values
+         * @param id-> Id of the course
+         * @data data-> New values of the course
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
         function modifyValues(id,data){
-            for(var i=0;i<vm.courses.length;i++){
-                for(var j=0;j<vm.courses[i].rows.length;j++){
-                    if(vm.courses[i].rows[j].id === id){
-                        if(data.info !== undefined){
-                            vm.courses[i].rows[j].info = data.info;
-                        }
-                        if(data.price !== undefined){
-                            vm.courses[i].rows[j].price = data.price;
-                        }
-                        if(data.instructor !== undefined){
-                            vm.courses[i].rows[j].instructor = data.instructor;
-                        }
-                    }
-                }
+            getCourse(id);
+            if(data.info !== undefined){
+                vm.course.info = data.info;
+            }
+            if(data.price !== undefined){
+                vm.course.price = data.price;
+            }
+            if(data.instructor !== undefined){
+                vm.course.instructor = data.instructor;
             }
         }
 
