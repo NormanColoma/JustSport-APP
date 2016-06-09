@@ -61,4 +61,41 @@ describe('Back Office Courses Controller', function() {
     });
 
 
+    it('Should delete the course', function(){
+        var controller = createController();
+        localStorage.setItem('username','Norman');
+        var id = 1;
+        $httpBackend.expectDELETE(baseAPI+'courses/1').respond(204);
+        controller.courses = [
+            {establishmentId: 1, rows:[
+                {
+                    "id": 1,
+                    "info": "Un curso muy completo",
+                    "price": 17.5,
+                    "instructor": "Juan Domínguez",
+                },
+                {
+                    "id": 2,
+                    "info": "Un curso no tan completo",
+                    "price": 20,
+                    "instructor": "Pepe Castaño",
+                },
+                {
+                    "id": 3,
+                    "info": "Un curso poco completo",
+                    "price": 15,
+                    "instructor": "María Castro",
+                }
+            ]}
+        ]
+        ;
+        expect(controller.courses.length).toBe(1);
+        /* jshint ignore:start*/
+        controller.deleteCourse(id);
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.courses.length).toBe(0);
+        localStorage.removeItem('username');
+    });
+
 });
