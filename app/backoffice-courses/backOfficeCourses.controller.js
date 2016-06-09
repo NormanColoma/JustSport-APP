@@ -23,6 +23,7 @@ angular
                                          backOfficeEstabService,backOfficeCoursesService) {
         var vm = this;
 
+        vm.addCourse = addCourse;
         vm.backToList = backToList;
         vm.course = null;
         vm.courses = [];
@@ -36,6 +37,20 @@ angular
 
         getFullEstabs();
 
+
+        function addCourse(data,ev,fornm){
+            backOfficeCoursesService.add(data).then(function(res){
+                if(res === false){
+
+                }else{
+                    for(var i=0;i<vm.courses.length;i++) {
+                        if(vm.courses[i].establishmentId === data.establishmentId){
+                            vm.courses[i].rows.push(res);
+                        }
+                    }
+                }
+            });
+        }
         function backToList(){
             vm.selectedC = null;
             vm.selectedEst = null;
