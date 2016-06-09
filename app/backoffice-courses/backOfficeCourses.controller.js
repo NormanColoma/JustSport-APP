@@ -27,6 +27,7 @@ angular
         vm.course = null;
         vm.courses = [];
         vm.currentCourses = [];
+        vm.deleteCourse = deleteCourse;
         vm.getCourse = getCourse;
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
@@ -40,6 +41,29 @@ angular
             vm.selectedEst = null;
             vm.selectedCourse = null;
             vm.currentCourses = [];
+        }
+
+        /**
+         * @name deleteCourse
+         * @desc Looks up the course into courses array and deletes it
+         * @param id-> Id of the course
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function deleteCourse(id,ev){
+            backOfficeCoursesService.deleteCourse(id).then(function(res){
+                if(res) {
+                    for (var i = 0; i < vm.courses.length; i++) {
+                        for (var j = 0; j < vm.courses[i].rows.length; j++) {
+                            if (vm.courses[i].rows[j].id === parseInt(id)) {
+                                vm.courses[i].rows.splice(j,1);
+                            }
+                        }
+                    }
+                }else{
+
+                }
+            });
         }
 
         /**

@@ -65,6 +65,20 @@ describe('Back Office Courses Controller', function() {
         var controller = createController();
         localStorage.setItem('username','Norman');
         var id = 1;
+        var expected = [
+            {
+                "id": 2,
+                "info": "Un curso no tan completo",
+                "price": 20,
+                "instructor": "Pepe Castaño",
+            },
+            {
+                "id": 3,
+                "info": "Un curso poco completo",
+                "price": 15,
+                "instructor": "María Castro",
+            }
+        ]
         $httpBackend.expectDELETE(baseAPI+'courses/1').respond(204);
         controller.courses = [
             {establishmentId: 1, rows:[
@@ -89,12 +103,13 @@ describe('Back Office Courses Controller', function() {
             ]}
         ]
         ;
-        expect(controller.courses.length).toBe(1);
+        expect(controller.courses[0].rows.length).toBe(3);
         /* jshint ignore:start*/
         controller.deleteCourse(id);
         /*jshint ignore:end */
         $httpBackend.flush();
-        expect(controller.courses.length).toBe(0);
+        expect(controller.courses[0].rows.length).toBe(2);
+        expect(controller.courses[0].rows).toEqual(expected);
         localStorage.removeItem('username');
     });
 
