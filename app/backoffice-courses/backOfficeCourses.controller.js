@@ -23,6 +23,7 @@ angular
                                          backOfficeEstabService,backOfficeCoursesService) {
         var vm = this;
 
+        vm.backToList = backToList;
         vm.course = null;
         vm.courses = [];
         vm.currentCourses = [];
@@ -34,6 +35,13 @@ angular
 
         getFullEstabs();
 
+        function backToList(){
+            vm.selectedC = null;
+            vm.selectedEst = null;
+            vm.selectedCourse = null;
+            vm.currentCourses = [];
+        }
+
         /**
          * @name getCourse
          * @desc Looks up the course into courses array and sets course property
@@ -44,8 +52,9 @@ angular
         function getCourse(id){
             for(var i=0;i<vm.courses.length;i++) {
                 for (var j = 0; j < vm.courses[i].rows.length; j++) {
-                    if (vm.courses[i].rows[j].id === id) {
+                    if (vm.courses[i].rows[j].id === parseInt(id)) {
                         vm.course = vm.courses[i].rows[j];
+                        vm.selectedC = angular.copy(vm.courses[i].rows[j]);
                     }
                 }
             }
@@ -102,12 +111,23 @@ angular
          * @returns {void}
          */
         function updateCourse(id,data,ev){
-
-            backOfficeCoursesService.update(id,data).then(function(res){
+            var d = {info: data.info,instructor: data.instructor,price:data.price};
+            var dataDialog={};
+           backOfficeCoursesService.update(id,d).then(function(res){
                 if(res){
-                    modifyValues(id,data);
+                    modifyValues(id,d);
+                    dataDialog = {
+                        title: '¡Curso Actualizado!', text: 'La información del curso ha sido actualizada.',
+                        aria: 'Course Updated Alert', textButton: 'Listo'
+                    };
+                    backToList();
+                    dialogService.showDialog(dataDialog, ev);
                 }else{
-
+                    dataDialog = {
+                        title: '¡Error!', text: 'Se ha producido un error durante la actualización. Por favor, inténtalo de nuevo.',
+                        aria: 'Course Updated Failed Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
