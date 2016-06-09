@@ -51,17 +51,28 @@ angular
          * @returns {void}
          */
         function deleteCourse(id,ev){
+            var dataDialog = {};
             backOfficeCoursesService.deleteCourse(id).then(function(res){
                 if(res) {
                     for (var i = 0; i < vm.courses.length; i++) {
                         for (var j = 0; j < vm.courses[i].rows.length; j++) {
-                            if (vm.courses[i].rows[j].id === parseInt(id)) {
+                            if (vm.courses[i].rows[j].id === id) {
                                 vm.courses[i].rows.splice(j,1);
                             }
                         }
                     }
+                    dataDialog = {
+                        title: '¡Curso eliminado!', text: 'El curso y sus horarios asociados, han sido eliminados correctamente.',
+                        aria: 'Deleted Courses Alert', textButton: 'Listo'
+                    };
+                    backToList();
+                    dialogService.showDialog(dataDialog, ev);
                 }else{
-
+                    dataDialog = {
+                        title: '¡Error!', text: 'El curso no se ha podido eliminar. Por favor, inténtalo de nuevo.',
+                        aria: 'Deleted Courses Alert Failed', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
