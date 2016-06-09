@@ -55,4 +55,39 @@ describe('Back Office Courses Service that handles courses', function() {
         $httpBackend.flush();
         expect(real).toBeFalsy();
     });
+
+    it('Should add the course correctly', function(){
+        var data = {
+            id: 2, sportId: 3, establishmentId: 1,
+            instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
+        };
+        var expected_data = {
+            id: 2, instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
+        };
+        var d = {
+            sportId: 3, establishmentId: 1,
+            instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
+        }
+        $httpBackend.expectPOST(baseAPI+'courses/new').respond(201,data);
+        var real = null;
+        backOCService.add(d).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(expected_data).toEqual(real);
+    });
+
+    it('Should not add the course correctly', function(){
+        var d = {
+            sportId: 3, establishmentId: 1,
+            instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
+        }
+        $httpBackend.expectPOST(baseAPI+'courses/new').respond(500);
+        var real = null;
+        backOCService.add(d).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeFalsy();
+    });
 });
