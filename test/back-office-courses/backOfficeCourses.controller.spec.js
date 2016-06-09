@@ -78,7 +78,7 @@ describe('Back Office Courses Controller', function() {
                 "price": 15,
                 "instructor": "María Castro",
             }
-        ]
+        ];
         $httpBackend.expectDELETE(baseAPI+'courses/1').respond(204);
         controller.courses = [
             {establishmentId: 1, rows:[
