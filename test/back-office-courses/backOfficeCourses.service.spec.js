@@ -13,4 +13,26 @@ describe('Back Office Courses Service that handles courses', function() {
         $httpBackend = $injector.get('$httpBackend');
         backOCService = backOfficeCoursesService;
     }));
+
+    it('Should modify the course correctly', function(){
+        var data = {info: "La información ha cambiado"};
+        $httpBackend.expectPUT(baseAPI+'courses/1').respond(204);
+        var real = null;
+        backOCService.update(1,data).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeTruthy();
+    });
+
+    it('Should not modify the course correctly', function(){
+        var data = {info: "La información ha cambiado"};
+        $httpBackend.expectPUT(baseAPI+'courses/1').respond(500);
+        var real = null;
+        backOCService.update(1,data).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeFalsy();
+    });
 });

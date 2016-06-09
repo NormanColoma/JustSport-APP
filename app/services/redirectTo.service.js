@@ -50,7 +50,7 @@ angular
                         return true;
             }else if(url === "/backoffice" || absUrl === "https://justsportapp.herokuapp.com/backoffice" ||
                 absUrl === "https://localhost:5000/backoffice" || absUrl === "http://localhost:5000/backoffice") {
-                if (logged && role === 'owner')
+                if (logged && (role === 'owner' || role === 'admin'))
                     return false;
                 else
                     return true;

@@ -1,0 +1,43 @@
+<md-content layout="row" layout-sm="column" layout-wrap  id="update-course-container" ng-show="coursesVM.selectedC != null" flex="100">
+    <h1 class="md-display-2">Información del Curso</h1>
+    <form name="updateCourseForm" layout="row" layout-wrap flex="100" novalidate
+    ng-submit="updateCourseForm.cinfo.$valid && updateCourseForm.cins.$valid && updateCourseForm.cprice.$valid
+    && coursesVM.updateCourse(coursesVM.selectedC.id,coursesVM.selectedC,ev)">
+        <md-input-container class="md-block" flex="40">
+            <label>Información del Curso (Breve descripción del curso)</label>
+            <input required="" name="cinfo" ng-model="coursesVM.selectedC.info" flex="100">
+            <div ng-messages="updateCourseForm.cinfo.$error" ng-show="updateCourseForm.cinfo.$touched || updateCourseForm.$submitted">
+                <div ng-message="required" class="input-error" name="rinfo">La información es obligatoria.</div>
+            </div>
+        </md-input-container>
+        <div flex="5"></div>
+        <md-input-container class="md-block" flex="40">
+            <label>Nombre del Instructor</label>
+            <input required="" name="cins" ng-model="coursesVM.selectedC.instructor" flex="100"
+                   ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i"/>
+            <div ng-messages="updateCourseForm.cins.$error" ng-show="updateCourseForm.cins.$touched || updateCourseForm.$submitted">
+                <div ng-message="required" class="input-error" name="rins">El nombre del instructor es obligatorio.</div>
+                <div ng-show="updateCourseForm.cins.$error.pattern" class="input-error" name="pins">El nombre del instructor no es correcto.
+                    Solo admite caracteres alfanuméricos.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex="40">
+            <label>Precio del curso</label>
+            <input required="" name="cprice" ng-model="coursesVM.selectedC.price" flex="100" type="number" min="1">
+            <div ng-messages="updateCourseForm.cprice.$error" ng-show="updateCourseForm.cprice.$touched || updateCourseForm.$submitted">
+                <div ng-message="required" class="input-error" name="rins">El precio es obligatorio.</div>
+                <div ng-message="min" name="pprice">
+                    El precio del curso debe ser por lo menos 1.
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+            <md-button type="submit" class="md-raised md-primary" id="update-course-btn" name="update-course-btn">
+                Actualizar
+            </md-button>
+            <md-button type="button" class="md-raised md-primary" id="delete-course-btn" name="delete-course-btn">
+                Eliminar
+            </md-button>
+        </md-input-container>
+    </form>
+</md-content>
