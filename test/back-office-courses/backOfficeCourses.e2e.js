@@ -107,5 +107,7 @@ describe('Courses Backoffice', function() {
         expect(element(by.css('[name="rprice"]')).getText()).toEqual("El precio es obligatorio.");
         expect(element(by.css('[name="rest"]')).getText()).toEqual("El establecimiento es obligatorio.");
         expect(element(by.css('[name="rsp"]')).getText()).toEqual("El deporte es obligatorio.");
+        element(by.css('.account-options')).click();
+        element(by.css('[name="logout"]')).click();
     });
 });
