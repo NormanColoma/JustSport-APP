@@ -30,6 +30,7 @@ angular
         vm.courses = [];
         vm.currentCourses = [];
         vm.deleteCourse = deleteCourse;
+        vm.deleteSchedule = deleteSchedule;
         vm.getCourse = getCourse;
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
@@ -88,6 +89,7 @@ angular
             vm.selectedEst = null;
             vm.selectedCourse = null;
             vm.currentCourses = [];
+            vm.schedule = [];
             vm.addView = false;
         }
 
@@ -123,6 +125,28 @@ angular
                     dialogService.showDialog(dataDialog, ev);
                 }
             });
+        }
+
+        /**
+         * @name deleteSchedule
+         * @desc Looks up the schedule into schedule array and deletes it
+         * @param id-> Id of the schedule
+         * @param ev-> Event captued
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function deleteSchedule(id,ev){
+            var dataDialog = {};
+            for (var i = 0; i < vm.schedule.length; i++) {
+                if (vm.schedule[i].id === id) {
+                    vm.schedule.splice(i,1);
+                }
+            }
+            dataDialog = {
+                title: '¡Horario eliminado!', text: 'El horario seleccionado, ha sido eliminado correctamente.',
+                aria: 'Deleted Schedule Alert', textButton: 'Listo'
+            };
+            dialogService.showDialog(dataDialog, ev);
         }
 
         /**

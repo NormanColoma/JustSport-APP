@@ -9,7 +9,7 @@ angular
     .module('backOfficeModule')
     .factory('backOfficeScheduleService', backOfficeScheduleService);
 
-    backOfficeScheduleService.$inject = ['$resource'];
+    backOfficeScheduleService.$inject = ['$resource','$http'];
 
     /**
      *
@@ -17,7 +17,7 @@ angular
      * @desc Service that manages the operations related to schedules in the back office
      * @memberOf Services
      */
-    function backOfficeScheduleService($resource) {
+    function backOfficeScheduleService($resource,$http) {
         var local_api = "https://localhost:3000/api";
         var server_api = "https://justsport-api.herokuapp.com/api";
         var server = local_api;
@@ -42,11 +42,18 @@ angular
          * @name deleteSchedule
          * @desc It deletes the specified schedule
          * @param id-> The id of the schedule
+         * @param idCourse-> The id of the course which has the shcedule
          * @memberOf backOfficeScheduleService
          * @returns {Boolean}
          */
-        function deleteSchedule(id){
-            return Schedule.delete({id:id}).$promise
+        function deleteSchedule(id,idCourse){
+            var data = {courseId: idCourse};
+            return $http({
+                method  : 'DELETE',
+                url     : server+'/schedules/'+id,
+                data    : data,
+                headers : { 'Authorization': 'Bearer ' + localStorage.token, 'Content-Type': 'application/json;charset=utf-8'}
+            })
                 .then(deleteScheduleSuccess)
                 .catch(deleteScheduleFailed);
 

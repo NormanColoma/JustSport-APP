@@ -21,14 +21,15 @@
     <md-content layout="row" layout-sm="column" layout-wrap  id="establishments-list-schedule-container"
                 ng-show="coursesVM.schedule.length > 0" flex="100">
         <md-list id="schedule-list-backoffice" flex="100">
-            <md-list-item class="md-3-line" ng-repeat="item in coursesVM.schedule">
+            <md-list-item class="md-3-line" ng-repeat="item in coursesVM.schedule" id="schedule-{{item.id}}">
                 <div class="md-list-item-text">
                     <h3>{{item.day}}</h3>
                     <p>{{item.startTime}} - {{item.endTime}}</p>
                 </div>
                 <div layout-align="right">
-                    <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
-                               id="delete-schedule" style="margin-top: 20px">
+                    <md-button delete-sc class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
+                               id="delete-schedule-{{coursesVM.selectedCourse}}" name="{{item.id}}" style="margin-top: 20px"
+                    ng-click="coursesVM.deleteSchedule(item.id,ev)">
                         <md-icon md-svg-icon="public/images/icons/delete.svg" aria-hidden="true" id="est-schedule-delete-{{item.id}}"></md-icon>
                         <md-tooltip md-direction="top">
                             Eliminar hora
@@ -39,4 +40,13 @@
             </md-list-item>
         </md-list>
     </md-content>
+    <md-input-container flex="100" style="padding: 0px">
+        <md-button class="md-fab md-default add-btn" aria-label="Volver a Cursos" id="listSchedule"
+                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0">
+            <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
+            <md-tooltip md-direction="right">
+                Volver a selección de Horario
+            </md-tooltip>
+        </md-button>
+    </md-input-container>
 </md-content>
