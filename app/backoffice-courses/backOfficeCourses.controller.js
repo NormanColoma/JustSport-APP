@@ -23,6 +23,8 @@ angular
                                          backOfficeEstabService,backOfficeCoursesService) {
         var vm = this;
 
+        vm.addCourse = addCourse;
+        vm.addView = false;
         vm.backToList = backToList;
         vm.course = null;
         vm.courses = [];
@@ -32,15 +34,59 @@ angular
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
         vm.modifyValues = modifyValues;
+        vm.sports = [];
         vm.updateCourse = updateCourse;
 
         getFullEstabs();
 
+        /**
+         * @name addCourse
+         * @desc Add new course and push it to courses array
+         * @param data-> Contains the data of the new course to be added
+         * @param ev -> Event captured
+         * @param form-> Add Form Course (it will be reseted)
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function addCourse(data,ev,form){
+            var dataDialog = {}
+            backOfficeCoursesService.add(data).then(function(res){
+                if(res === false){
+                    dataDialog = {
+                        title: '¡Error!', text: 'El curso no ha podido ser añadido. Por favor, inténtalo de nuevo.',
+                        aria: 'Added Course Failed Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
+                }else{
+                    for(var i=0;i<vm.courses.length;i++) {
+                        if(vm.courses[i].establishmentId === parseInt(data.establishmentId)){
+                            vm.courses[i].rows.push(res);
+                        }
+                    }
+                    dataDialog = {
+                        title: '¡Curso Añadido!', text: 'El curso ha sido añadido correctamente.',
+                        aria: 'Added Course Alert', textButton: 'Listo'
+                    };
+                    formResetService.reset(form);
+                    data = {};
+                    backToList();
+                    dialogService.showDialog(dataDialog, ev);
+                }
+            });
+        }
+
+        /**
+         * @name backToList
+         * @desc It changes the view back to list of courses
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
         function backToList(){
             vm.selectedC = null;
             vm.selectedEst = null;
             vm.selectedCourse = null;
             vm.currentCourses = [];
+            vm.addView = false;
         }
 
         /**

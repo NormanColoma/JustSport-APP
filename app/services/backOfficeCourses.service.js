@@ -35,15 +35,44 @@ angular
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.token
                 }
-            },
+            },add: {
+                method: 'POST',
+                url: server + '/courses/new',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.token
+                }
+            }
         });
 
         var service = {
+            add:add,
             deleteCourse: deleteCourse,
             update: update
         };
 
         return service;
+
+        /**
+         * @name add
+         * @desc It adds new course
+         * @param data-> It contains the data of the new course
+         * @memberOf backOfficeCoursesService
+         * @returns {Boolean}
+         */
+        function add(data){
+            return Course.add(data).$promise
+                .then(addCourseSuccess)
+                .catch(addCourseFailed);
+
+            function addCourseSuccess(data){
+                var d = {id: data.id,info: data.info,instructor: data.instructor, price: data.price};
+                return d;
+            }
+
+            function addCourseFailed(data){
+                return false;
+            }
+        }
 
         /**
          * @name update
