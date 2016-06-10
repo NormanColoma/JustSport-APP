@@ -33,7 +33,9 @@ angular
         vm.getCourse = getCourse;
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
+        vm.getSchedule = getSchedule;
         vm.modifyValues = modifyValues;
+        vm.schedule = [];
         vm.sports = [];
         vm.updateCourse = updateCourse;
 
@@ -180,6 +182,24 @@ angular
                     vm.fullEstabs = data;
                     vm.courses = backOfficeEstabService.getCourses();
                 });
+            }
+        }
+
+        /**
+         * @name getSchedule
+         * @desc Looks up the schedule into courses array
+         * @param id-> Id of the course
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function getSchedule(id){
+            getCourse(id);
+            for(var i=0;i<vm.courses.length;i++) {
+                for (var j = 0; j < vm.courses[i].rows.length; j++) {
+                    if (vm.courses[i].rows[j].id === parseInt(id)) {
+                        vm.schedule = vm.courses[i].rows[j].Schedule;
+                    }
+                }
             }
         }
 

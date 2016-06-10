@@ -1,0 +1,42 @@
+<md-content layout="row" layout-sm="column" layout-wrap  id="establishments-schedule-container"
+            ng-controller="BackOfficeCoursesController as coursesVM">
+    <h1 class="md-display-2">Horarios</h1>
+    <p>Desde aquí podrás ver los horarios de los curos, eliminarlos, y añadir nuevos. Primero deberás seleccionar el
+    establecimiento y curso, del cual quieres consultar los horarios.</p>
+    <md-input-container class="md-block" flex="40" ng-show="coursesVM.selectedC == null && !coursesVM.addView">
+        <label>Establecimiento</label>
+        <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
+                   flex="100" id="list-ests">
+            <md-option ng-repeat="est in coursesVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
+        </md-select >
+    </md-input-container>
+    <div flex="5" ng-if="coursesVM.selectedC == null && !coursesVM.addView"></div>
+    <md-input-container class="md-block" flex="40"  ng-show="coursesVM.currentCourses.length > 0 && coursesVM.selectedC == null">
+        <label>Curso</label>
+        <md-select ng-model="coursesVM.selectedCourse"
+                   flex="100" id="list-courses" md-on-close="coursesVM.getSchedule(coursesVM.selectedCourse)">
+            <md-option ng-repeat="course in coursesVM.currentCourses" value="{{course.id}}">{{course.info}}({{course.Sport.name}})</md-option>
+        </md-select>
+    </md-input-container>
+    <md-content layout="row" layout-sm="column" layout-wrap  id="establishments-list-schedule-container"
+                ng-show="coursesVM.schedule.length > 0" flex="100">
+        <md-list id="schedule-list-backoffice" flex="100">
+            <md-list-item class="md-3-line" ng-repeat="item in coursesVM.schedule">
+                <div class="md-list-item-text">
+                    <h3>{{item.day}}</h3>
+                    <p>{{item.startTime}} - {{item.endTime}}</p>
+                </div>
+                <div layout-align="right">
+                    <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
+                               id="delete-schedule" style="margin-top: 20px">
+                        <md-icon md-svg-icon="public/images/icons/delete.svg" aria-hidden="true" id="est-schedule-delete-{{item.id}}"></md-icon>
+                        <md-tooltip md-direction="top">
+                            Eliminar hora
+                        </md-tooltip>
+                    </md-button>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-content>
