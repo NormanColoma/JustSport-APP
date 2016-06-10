@@ -49,7 +49,7 @@ angular
          * @returns {void}
          */
         function addCourse(data,ev,form){
-            var dataDialog = {}
+            var dataDialog = {};
             backOfficeCoursesService.add(data).then(function(res){
                 if(res === false){
                     dataDialog = {

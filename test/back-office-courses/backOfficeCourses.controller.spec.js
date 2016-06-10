@@ -126,7 +126,7 @@ describe('Back Office Courses Controller', function() {
         var d = {
             sportId: 3, establishmentId: 1,
             instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
-        }
+        };
         $httpBackend.expectPOST(baseAPI+'courses/new').respond(201,data);
         controller.courses = [
             {establishmentId: 1, rows:[

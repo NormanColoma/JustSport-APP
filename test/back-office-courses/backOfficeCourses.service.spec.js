@@ -67,7 +67,7 @@ describe('Back Office Courses Service that handles courses', function() {
         var d = {
             sportId: 3, establishmentId: 1,
             instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
-        }
+        };
         $httpBackend.expectPOST(baseAPI+'courses/new').respond(201,data);
         var real = null;
         backOCService.add(d).then(function(data){
@@ -81,7 +81,7 @@ describe('Back Office Courses Service that handles courses', function() {
         var d = {
             sportId: 3, establishmentId: 1,
             instructor: "Juan Castaño", price: 20.75, info: "Un curso muy completo"
-        }
+        };
         $httpBackend.expectPOST(baseAPI+'courses/new').respond(500);
         var real = null;
         backOCService.add(d).then(function(data){

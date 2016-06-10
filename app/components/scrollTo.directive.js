@@ -20,8 +20,7 @@ angular
             element.on('click', function(){
                 if(attrs.id == "scrollResults"){
                     $('body').animate({scrollTop: results.offset().top}, "slow");
-                }else if(attrs.id == "update-estab" || attrs.id === "addEst" || attrs.id === "listEst" || attrs.id === "addCourse"
-                || attrs.id === "listCourses"){
+                }else if(attrs.id == "update-estab" || attrs.id === "addEst" || attrs.id === "listEst" || attrs.id === "addCourse" || attrs.id === "listCourses"){
                     $('body').animate({scrollTop: $('body').offset().top}, "slow");
                 }
                 else{
