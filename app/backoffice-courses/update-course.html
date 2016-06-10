@@ -1,5 +1,5 @@
 <md-content layout="row" layout-sm="column" layout-wrap  id="update-course-container" ng-show="coursesVM.selectedC != null" flex="100">
-    <h1 class="md-display-2">Información del Curso</h1>
+    <h1 class="md-display-2">Curso de {{coursesVM.selectedC.Sport.name}}</h1>
     <form name="updateCourseForm" layout="row" layout-wrap flex="100" novalidate
     ng-submit="updateCourseForm.cinfo.$valid && updateCourseForm.cins.$valid && updateCourseForm.cprice.$valid
     && coursesVM.updateCourse(coursesVM.selectedC.id,coursesVM.selectedC,ev)">

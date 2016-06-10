@@ -24,6 +24,7 @@ angular
         var vm = this;
 
         vm.addCourse = addCourse;
+        vm.addView = false;
         vm.backToList = backToList;
         vm.course = null;
         vm.courses = [];
@@ -33,6 +34,7 @@ angular
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
         vm.modifyValues = modifyValues;
+        vm.sports = [];
         vm.updateCourse = updateCourse;
 
         getFullEstabs();
@@ -47,15 +49,28 @@ angular
          * @returns {void}
          */
         function addCourse(data,ev,form){
+            var dataDialog = {}
             backOfficeCoursesService.add(data).then(function(res){
                 if(res === false){
-
+                    dataDialog = {
+                        title: '¡Error!', text: 'El curso no ha podido ser añadido. Por favor, inténtalo de nuevo.',
+                        aria: 'Added Course Failed Alert', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }else{
                     for(var i=0;i<vm.courses.length;i++) {
-                        if(vm.courses[i].establishmentId === data.establishmentId){
+                        if(vm.courses[i].establishmentId === parseInt(data.establishmentId)){
                             vm.courses[i].rows.push(res);
                         }
                     }
+                    dataDialog = {
+                        title: '¡Curso Añadido!', text: 'El curso ha sido añadido correctamente.',
+                        aria: 'Added Course Alert', textButton: 'Listo'
+                    };
+                    formResetService.reset(form);
+                    data = {};
+                    backToList();
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
@@ -71,6 +86,7 @@ angular
             vm.selectedEst = null;
             vm.selectedCourse = null;
             vm.currentCourses = [];
+            vm.addView = false;
         }
 
         /**
