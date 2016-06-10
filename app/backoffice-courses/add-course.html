@@ -48,7 +48,7 @@
             <label>Precio del curso</label>
             <input required="" name="cprice" ng-model="coursesVM.newCourse.price" flex="100" type="number" min="1">
             <div ng-messages="addCourseForm.cprice.$error" ng-show="addCourseForm.cprice.$touched || addCourseForm.$submitted">
-                <div ng-message="required" class="input-error" name="rins">El precio es obligatorio.</div>
+                <div ng-message="required" class="input-error" name="rprice">El precio es obligatorio.</div>
                 <div ng-message="min" name="pprice">
                     El precio del curso debe ser por lo menos 1.
                 </div>

@@ -98,8 +98,14 @@ describe('Courses Backoffice', function() {
         var alert_text = alert_content.element(by.css('p')).getText();
         expect(alert_text).toEqual('El curso y sus horarios asociados, han sido eliminados correctamente.');
         element(by.css('md-dialog-actions')).element(by.css('button')).click();
-        element(by.css('.account-options')).click();
-        element(by.css('[name="logout"]')).click();
     });
 
+    it('Should show establishment errors', function(){
+        element(by.id('addCourse')).click();
+        var add_btn = element(by.css('[name="add-course-btn"]'));
+        add_btn.click();
+        expect(element(by.css('[name="rprice"]')).getText()).toEqual("El precio es obligatorio.");
+        expect(element(by.css('[name="rest"]')).getText()).toEqual("El establecimiento es obligatorio.");
+        expect(element(by.css('[name="rsp"]')).getText()).toEqual("El deporte es obligatorio.");
+    });
 });
