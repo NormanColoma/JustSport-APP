@@ -10,7 +10,7 @@ angular
     .controller('BackOfficeCoursesController', BackOfficeCoursesController);
 
     BackOfficeCoursesController.$inject = ['dialogService', 'formResetService', 'backOfficeSportService', 'loginService',
-        'backOfficeEstabService','backOfficeCoursesService'];
+        'backOfficeEstabService','backOfficeCoursesService','backOfficeScheduleService'];
 
     /**
      *
@@ -20,10 +20,11 @@ angular
      *
      */
     function BackOfficeCoursesController(dialogService,formResetService, backOfficeSportService, loginService,
-                                         backOfficeEstabService,backOfficeCoursesService) {
+                                         backOfficeEstabService,backOfficeCoursesService,backOfficeScheduleService) {
         var vm = this;
 
         vm.addCourse = addCourse;
+        vm.addSchedule = addSchedule;
         vm.addView = false;
         vm.backToList = backToList;
         vm.course = null;
@@ -74,6 +75,16 @@ angular
                     data = {};
                     backToList();
                     dialogService.showDialog(dataDialog, ev);
+                }
+            });
+        }
+
+        function addSchedule(data,form,ev){
+            backOfficeScheduleService.add(data).then(function(res){
+                if(res === true){
+                    vm.schedule.push(data);
+                }else{
+
                 }
             });
         }

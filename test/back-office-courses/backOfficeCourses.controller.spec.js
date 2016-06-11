@@ -172,7 +172,7 @@ describe('Back Office Courses Controller', function() {
             day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
         };
         localStorage.setItem('username','Norman');
-        $httpBackend.expectPOST(baseAPI+'courses/new').respond(201,data);
+        $httpBackend.expectPOST(baseAPI+'schedules/new').respond(201,data);
         controller.courses = [
             {establishmentId: 1, rows:[
                 {
@@ -198,8 +198,8 @@ describe('Back Office Courses Controller', function() {
                 establishmentId: 2,
                 rows: []
             }
-        ]
-        ;
+        ];
+        controller.schedule = controller.courses[0].rows[0].Schedule;
         expect(controller.courses[0].rows[0].Schedule.length).toBe(0);
         /* jshint ignore:start*/
         controller.addSchedule(data);
