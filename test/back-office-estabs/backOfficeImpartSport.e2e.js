@@ -27,11 +27,10 @@ describe('Backoffice Impart Sport', function() {
     });
 
     it('Should add the new sport imparted to list', function(){
-        element(by.id('input-11')).sendKeys('CrossFit');
-        var sp_selected = element(by.id('ul-11'));
-        sp_selected.all(by.css('li')).then(function(sp) {
-            sp[0].click();
-        });
+        var input = element(by.css('md-chips')).element(by.css('input'));
+        input.sendKeys('CrossFit');
+        input.sendKeys(protractor.Key.ARROW_UP);
+        input.sendKeys(protractor.Key.ENTER);
         element(by.id('assoc-sp-btn')).click();
         var alert_content = element(by.css('md-dialog-content'));
         var alert_text = alert_content.element(by.css('p')).getText();
@@ -41,11 +40,10 @@ describe('Backoffice Impart Sport', function() {
     });
 
     it('Should not add sport that is already added', function(){
-        element(by.id('input-11')).sendKeys('Spinning');
-        var sp_selected = element(by.id('ul-11'));
-        sp_selected.all(by.css('li')).then(function(sp) {
-            sp[0].click();
-        });
+        var input = element(by.css('md-chips')).element(by.css('input'));
+        input.sendKeys('Spinning');
+        input.sendKeys(protractor.Key.ARROW_UP);
+        input.sendKeys(protractor.Key.ENTER);
         element(by.id('assoc-sp-btn')).click();
         var alert_content = element(by.css('md-dialog-content'));
         var alert_text = alert_content.element(by.css('p')).getText();

@@ -1,0 +1,39 @@
+<md-content layout="row" layout-sm="column" layout-wrap  id="establishments-courses-container"
+            ng-controller="BackOfficeCoursesController as coursesVM" >
+    <h1 class="md-display-2" ng-show="coursesVM.selectedC == null && !coursesVM.addView">Cursos</h1>
+    <p ng-show="coursesVM.selectedC == null && !coursesVM.addView">Desde aquí podrás ver los hrarios de tus establecimientos, modificarlos, eliminarlos, y añadir nuevos. Primero deberás
+        seleccionar el establecimiento del cual quieres gestionar los horarios.</p>
+    <md-input-container class="md-block" flex="40" ng-show="coursesVM.selectedC == null && !coursesVM.addView">
+        <label>Establecimiento</label>
+        <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
+                   flex="100" id="list-ests">
+            <md-option ng-repeat="est in coursesVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
+        </md-select >
+    </md-input-container>
+    <div flex="5" ng-if="coursesVM.selectedC == null && !coursesVM.addView"></div>
+    <md-input-container class="md-block" flex="40"  ng-show="coursesVM.currentCourses.length > 0 && coursesVM.selectedC == null">
+        <label>Curso</label>
+        <md-select ng-model="coursesVM.selectedCourse"
+                   flex="100" id="list-courses" md-on-close="coursesVM.getCourse(coursesVM.selectedCourse)">
+            <md-option ng-repeat="course in coursesVM.currentCourses" value="{{course.id}}">{{course.info}}({{course.Sport.name}})</md-option>
+        </md-select>
+    </md-input-container>
+    <update-course></update-course>
+    <add-course></add-course>
+    <md-input-container flex="100" style="padding: 0px">
+        <md-button scroll-to class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addCourse"
+                   ng-click="coursesVM.addView=true" name="add-course" ng-show="!coursesVM.addView && coursesVM.selectedC == null">
+            <md-icon md-svg-icon="public/images/icons/add.svg" aria-hidden="true""></md-icon>
+            <md-tooltip md-direction="right">
+                Añadir Curso
+            </md-tooltip>
+        </md-button>
+        <md-button scroll-to class="md-fab md-default add-btn" aria-label="Volver a Cursos" id="listCourses"
+                   ng-click="coursesVM.backToList()" name="list-courses" ng-show="coursesVM.selectedC != null || coursesVM.addView">
+            <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
+            <md-tooltip md-direction="right">
+                Volver a lista de Cursos
+            </md-tooltip>
+        </md-button>
+    </md-input-container>
+</md-content>

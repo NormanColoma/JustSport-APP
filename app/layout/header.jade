@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="justSportTest")
+html(ng-app="justSport")
     head
         meta(name='viewport', content='width=device-width')
         base(href="/")
@@ -14,7 +14,7 @@ html(ng-app="justSportTest")
                     h1.md-toolbar-tools Mi Cuenta
                 md-content(layout-padding='', layout="column", layout-align="start none")
                     md-button(ng-href="/account/profile" name="profile").md-primary Perfil
-                    md-button(ng-show="loginVm.role == 'owner'" ng-href="/backoffice" name="backoffice").md-primary Administrar Establecimientos
+                    md-button(ng-show="loginVm.role == 'owner' || loginVm.role == 'admin'" ng-href="/backoffice" name="backoffice").md-primary Administrar Establecimientos
                     md-button(ng-href="",ng-click="loginVm.logout()" name="logout").md-primary Salir
             md-content
                 div(layout='row')
