@@ -28,11 +28,13 @@ angular
         vm.addSchedView = false;
         vm.addView = false;
         vm.backToList = backToList;
+        vm.changeView = changeView;
         vm.course = null;
         vm.courses = [];
         vm.currentCourses = [];
         vm.deleteCourse = deleteCourse;
         vm.deleteSchedule = deleteSchedule;
+        vm.emptySchedule = false;
         vm.getCourse = getCourse;
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
@@ -80,7 +82,15 @@ angular
             });
         }
 
-
+        /**
+         * @name addSchedule
+         * @desc Add new schedule and push it to schedule array
+         * @param data-> Contains the data of the new schedule to be added
+         * @param ev -> Event captured
+         * @param form-> Add Schedule Form (it will be reseted)
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
         function addSchedule(data,form,ev){
             var dataDialog = {};
             data.courseId = vm.selectedCourse;
@@ -118,6 +128,13 @@ angular
             vm.currentCourses = [];
             vm.schedule = [];
             vm.addView = false;
+            vm.addSchedView = false;
+            vm.emptySchedule = false;
+        }
+
+        function changeView(){
+            vm.addSchedView = true;
+            vm.emptySchedule = false;
         }
 
         /**
@@ -248,10 +265,14 @@ angular
             for(var i=0;i<vm.courses.length;i++) {
                 for (var j = 0; j < vm.courses[i].rows.length; j++) {
                     if (vm.courses[i].rows[j].id === parseInt(id)) {
-                        vm.schedule = vm.courses[i].rows[j].Schedule;
+                        if(vm.courses[i].rows[j].Schedule.length > 0)
+                            vm.schedule = vm.courses[i].rows[j].Schedule;
+                        else
+                            vm.emptySchedule = true;
                     }
                 }
             }
+            console.log(vm.emptySchedule);
         }
 
         /**
