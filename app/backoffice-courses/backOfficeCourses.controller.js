@@ -30,10 +30,13 @@ angular
         vm.courses = [];
         vm.currentCourses = [];
         vm.deleteCourse = deleteCourse;
+        vm.deleteSchedule = deleteSchedule;
         vm.getCourse = getCourse;
         vm.getCourses = getCourses;
         vm.getFullEstabs = getFullEstabs;
+        vm.getSchedule = getSchedule;
         vm.modifyValues = modifyValues;
+        vm.schedule = [];
         vm.sports = [];
         vm.updateCourse = updateCourse;
 
@@ -86,6 +89,7 @@ angular
             vm.selectedEst = null;
             vm.selectedCourse = null;
             vm.currentCourses = [];
+            vm.schedule = [];
             vm.addView = false;
         }
 
@@ -121,6 +125,28 @@ angular
                     dialogService.showDialog(dataDialog, ev);
                 }
             });
+        }
+
+        /**
+         * @name deleteSchedule
+         * @desc Looks up the schedule into schedule array and deletes it
+         * @param id-> Id of the schedule
+         * @param ev-> Event captued
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function deleteSchedule(id,ev){
+            var dataDialog = {};
+            for (var i = 0; i < vm.schedule.length; i++) {
+                if (vm.schedule[i].id === id) {
+                    vm.schedule.splice(i,1);
+                }
+            }
+            dataDialog = {
+                title: '¡Horario eliminado!', text: 'El horario seleccionado, ha sido eliminado correctamente.',
+                aria: 'Deleted Schedule Alert', textButton: 'Listo'
+            };
+            dialogService.showDialog(dataDialog, ev);
         }
 
         /**
@@ -180,6 +206,24 @@ angular
                     vm.fullEstabs = data;
                     vm.courses = backOfficeEstabService.getCourses();
                 });
+            }
+        }
+
+        /**
+         * @name getSchedule
+         * @desc Looks up the schedule into courses array
+         * @param id-> Id of the course
+         * @memberOf BackOffice Estabs.BackOfficeCoursesController
+         * @returns {void}
+         */
+        function getSchedule(id){
+            getCourse(id);
+            for(var i=0;i<vm.courses.length;i++) {
+                for (var j = 0; j < vm.courses[i].rows.length; j++) {
+                    if (vm.courses[i].rows[j].id === parseInt(id)) {
+                        vm.schedule = vm.courses[i].rows[j].Schedule;
+                    }
+                }
             }
         }
 
