@@ -25,6 +25,7 @@ angular
 
         vm.addCourse = addCourse;
         vm.addSchedule = addSchedule;
+        vm.addSchedView = false;
         vm.addView = false;
         vm.backToList = backToList;
         vm.course = null;
@@ -79,12 +80,27 @@ angular
             });
         }
 
+
         function addSchedule(data,form,ev){
+            var dataDialog = {};
+            data.courseId = vm.selectedCourse;
             backOfficeScheduleService.add(data).then(function(res){
                 if(res === true){
                     vm.schedule.push(data);
+                    vm.addSchedView = false;
+                    dataDialog = {
+                        title: '¡Hora Añadida!', text: 'La hora ha sido correctamente añadida al horario.',
+                        aria: 'Added Schedule Alert', textButton: 'Listo'
+                    };
+                    formResetService.reset(form);
+                    vm.newSchedule = {};
+                    dialogService.showDialog(dataDialog, ev);
                 }else{
-
+                    dataDialog = {
+                        title: '¡Error!', text: 'No se ha podido añadir la hora al horario. Por favor, inténtalo de nuevo.',
+                        aria: 'Added Schedule Alert Failed', textButton: 'Listo'
+                    };
+                    dialogService.showDialog(dataDialog, ev);
                 }
             });
         }
