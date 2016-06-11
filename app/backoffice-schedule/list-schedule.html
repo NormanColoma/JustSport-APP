@@ -1,7 +1,7 @@
 <md-content layout="row" layout-sm="column" layout-wrap  id="establishments-schedule-container"
             ng-controller="BackOfficeCoursesController as coursesVM">
-    <h1 class="md-display-2">Horarios</h1>
-    <p>Desde aquí podrás ver los horarios de los curos, eliminarlos, y añadir nuevos. Primero deberás seleccionar el
+    <h1 class="md-display-2" ng-show="!coursesVM.addSchedView">Horarios</h1>
+    <p ng-show="!coursesVM.addSchedView">Desde aquí podrás ver los horarios de los curos, eliminarlos, y añadir nuevos. Primero deberás seleccionar el
     establecimiento y curso, del cual quieres consultar los horarios.</p>
     <md-input-container class="md-block" flex="40" ng-show="coursesVM.selectedC == null && !coursesVM.addView">
         <label>Establecimiento</label>
@@ -18,8 +18,9 @@
             <md-option ng-repeat="course in coursesVM.currentCourses" value="{{course.id}}">{{course.info}}({{course.Sport.name}})</md-option>
         </md-select>
     </md-input-container>
+
     <md-content layout="row" layout-sm="column" layout-wrap  id="establishments-list-schedule-container"
-                ng-show="coursesVM.schedule.length > 0" flex="100">
+                ng-show="coursesVM.schedule.length > 0 && !coursesVM.addSchedView" flex="100">
         <md-list id="schedule-list-backoffice" flex="100">
             <md-list-item class="md-3-line" ng-repeat="item in coursesVM.schedule" id="schedule-{{item.id}}">
                 <div class="md-list-item-text">
@@ -40,9 +41,17 @@
             </md-list-item>
         </md-list>
     </md-content>
+    <add-schedule></add-schedule>
     <md-input-container flex="100" style="padding: 0px">
+        <md-button ng-show="coursesVM.emptySchedule || (coursesVM.schedule.length > 0 && !coursesVM.addSchedView)" class="md-fab md-primary add-btn" aria-label="Añadir Nuevo"
+                   id="addSched"  ng-click="coursesVM.changeView()" name="add-sched">
+            <md-icon md-svg-icon="public/images/icons/add.svg" aria-hidden="true""></md-icon>
+            <md-tooltip md-direction="right">
+                Añadir Nueva Hora
+            </md-tooltip>
+        </md-button>
         <md-button class="md-fab md-default add-btn" aria-label="Volver a Cursos" id="listSchedule"
-                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0">
+                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0 || coursesVM.addSchedView">
             <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
             <md-tooltip md-direction="right">
                 Volver a selección de Horario

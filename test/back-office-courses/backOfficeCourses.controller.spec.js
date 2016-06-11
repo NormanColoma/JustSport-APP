@@ -166,4 +166,47 @@ describe('Back Office Courses Controller', function() {
         localStorage.removeItem('username');
     });
 
+    it('Should add new schedule correctly', function(){
+        var controller = createController();
+        var data = {
+            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
+        };
+        localStorage.setItem('username','Norman');
+        $httpBackend.expectPOST(baseAPI+'schedules/new').respond(201,data);
+        controller.courses = [
+            {establishmentId: 1, rows:[
+                {
+                    "id": 1,
+                    "info": "Un curso muy completo",
+                    "price": 17.5,
+                    "instructor": "Juan Domínguez",
+                     Schedule:[]
+                },
+                {
+                    "id": 2,
+                    "info": "Un curso no tan completo",
+                    "price": 20,
+                    "instructor": "Pepe Castaño",
+                },
+                {
+                    "id": 3,
+                    "info": "Un curso poco completo",
+                    "price": 15,
+                    "instructor": "María Castro",
+                }
+            ]},{
+                establishmentId: 2,
+                rows: []
+            }
+        ];
+        controller.schedule = controller.courses[0].rows[0].Schedule;
+        expect(controller.courses[0].rows[0].Schedule.length).toBe(0);
+        /* jshint ignore:start*/
+        controller.addSchedule(data);
+        /*jshint ignore:end */
+        $httpBackend.flush();
+        expect(controller.courses[0].rows[0].Schedule.length).toBe(1);
+        expect(controller.courses[0].rows[0].Schedule[0]).toEqual(data);
+        localStorage.removeItem('username');
+    });
 });

@@ -23,9 +23,9 @@ angular
         var server = local_api;
 
         var Schedule = $resource(server+'/schedules/:id', {id:'@id'}, {
-            delete: {
-                method: 'DELETE',
-                url: server + '/schedules/:id',
+            add: {
+                method: 'POST',
+                url: server + '/schedules/new',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.token
                 }
@@ -33,10 +33,32 @@ angular
         });
 
         var service = {
+            add: add,
             deleteSchedule: deleteSchedule
         };
 
         return service;
+
+        /**
+         * @name add
+         * @desc It adds the new schedule
+         * @param data-> Data of new schedule
+         * @memberOf backOfficeScheduleService
+         * @returns {Boolean}
+         */
+        function add(data){
+            return Schedule.add(data).$promise
+                .then(addScheduleSuccess)
+                .catch(addScheduleFailed);
+
+            function addScheduleSuccess(data){
+                return true;
+            }
+
+            function addScheduleFailed(data){
+                return false;
+            }
+        }
 
         /**
          * @name deleteSchedule

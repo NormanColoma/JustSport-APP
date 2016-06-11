@@ -1,0 +1,52 @@
+<md-content layout="row" layout-sm="column" layout-wrap  id="establishments-add-schedule-container" flex="100"
+            ng-show="coursesVM.addSchedView">
+    <h1 class="md-display-2">Añadir Nueva Hora</h1>
+    <form name="addScheduleForm" novalidate layout="row" layout-wrap flex="100"
+          ng-submit="addScheduleForm.sday.$valid && addScheduleForm.sstar.$valid && addScheduleForm.send.$valid &&
+        coursesVM.addSchedule(coursesVM.newSchedule,addScheduleForm,ev)">
+        <md-input-container class="md-block" flex="100">
+            <label>Día (En el que se impartirá el curso)</label>
+            <md-select ng-model="coursesVM.newSchedule.day" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
+                       flex="100" id="sday" name="sday" required>
+                <md-option value="Lunes">Lunes</md-option>
+                <md-option value="Martes">Martes</md-option>
+                <md-option value="Miércoles">Miércoles</md-option>
+                <md-option value="Jueves">Jueves</md-option>
+                <md-option value="Viernes">Viernes</md-option>
+                <md-option value="Sábado">Sábado</md-option>
+                <md-option value="Domingo">Domingo</md-option>
+            </md-select>
+            <div ng-messages="addScheduleForm.sday.$error" ng-show="addScheduleForm.sday.$touched || addScheduleForm.$submitted">
+                <div ng-message="required" class="input-error" name="rday">El día es obligatorio.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+            <label>Inicio (La hora de inicio de la clase p.ej 10:00)</label>
+            <input required="" name="sstar" ng-model="coursesVM.newSchedule.startTime" flex="40"
+                   ng-pattern="/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/"/>
+            <div ng-messages="addScheduleForm.sstar.$error" ng-show="addScheduleForm.sstar.$touched || addScheduleForm.$submitted">
+                <div ng-message="required" class="input-error" name="rstart">La hora de incio es obligatoria.</div>
+                <div ng-show="addScheduleForm.sstar.$error.pattern" class="input-error" name="pstart">
+                    <p>El formato de hora no es correcto. Debe ser hh:mm</p>
+                </div>
+            </div>
+        </md-input-container>
+        <div flex="5"></div>
+        <md-input-container class="md-block" flex="100">
+            <label>Final (La hora en que termina la clase p.ej 11:00)</label>
+            <input required="" name="send" ng-model="coursesVM.newSchedule.endTime" flex="40"
+                   ng-pattern="/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/"/>
+            <div ng-messages="addScheduleForm.send.$error" ng-show="addScheduleForm.send.$touched || addScheduleForm.$submitted">
+                <div ng-message="required" class="input-error" name="rstart">La hora de finalicación es obligatoria.</div>
+                <div ng-show="addScheduleForm.send.$error.pattern" class="input-error" name="pend">
+                    <p>El formato de hora no es correcto. Debe ser hh:mm</p>
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block" flex="100">
+            <md-button type="submit" class="md-raised md-primary" id="add-schedule-btn" name="add-schedule-btn">
+                Añadir
+            </md-button>
+        </md-input-container>
+    </form>
+</md-content>
