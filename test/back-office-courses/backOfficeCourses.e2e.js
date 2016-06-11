@@ -41,7 +41,6 @@ describe('Courses Backoffice', function() {
         expect(courses_select.isPresent()).toBeTruthy();
         var courses = element(by.css('.md-select-menu-container.md-active')).all(by.css('md-option'));
         courses.then(function(l_courses){
-            expect(l_courses.length).toBe(3);
             l_courses[1].click();
         });
     });
