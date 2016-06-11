@@ -38,7 +38,7 @@ describe('Back Office Schedule Service that handles schedules', function() {
         var data = {
             day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
         };
-        $httpBackend.expectDELETE(baseAPI+'schedules/new').respond(201);
+        $httpBackend.expectPOST(baseAPI+'schedules/new').respond(201);
         var real = null;
         backOSService.add(data).then(function(data){
             real = data;
@@ -51,7 +51,7 @@ describe('Back Office Schedule Service that handles schedules', function() {
         var data = {
             day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
         };
-        $httpBackend.expectDELETE(baseAPI+'schedules/new').respond(500);
+        $httpBackend.expectPOST(baseAPI+'schedules/new').respond(500);
         var real = null;
         backOSService.add(data).then(function(data){
             real = data;
