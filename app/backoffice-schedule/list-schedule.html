@@ -6,7 +6,7 @@
     <md-input-container class="md-block" flex="40" ng-show="coursesVM.selectedC == null && !coursesVM.addView">
         <label>Establecimiento</label>
         <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
-                   flex="100" id="list-ests">
+                   flex="100" id="list-ests-sched">
             <md-option ng-repeat="est in coursesVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
         </md-select >
     </md-input-container>
@@ -14,7 +14,7 @@
     <md-input-container class="md-block" flex="40"  ng-show="coursesVM.currentCourses.length > 0 && coursesVM.selectedC == null">
         <label>Curso</label>
         <md-select ng-model="coursesVM.selectedCourse"
-                   flex="100" id="list-courses" md-on-close="coursesVM.getSchedule(coursesVM.selectedCourse)">
+                   flex="100" id="list-courses-sched" md-on-close="coursesVM.getSchedule(coursesVM.selectedCourse)">
             <md-option ng-repeat="course in coursesVM.currentCourses" value="{{course.id}}">{{course.info}}({{course.Sport.name}})</md-option>
         </md-select>
     </md-input-container>

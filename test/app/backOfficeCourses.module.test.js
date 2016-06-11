@@ -29,6 +29,44 @@ function backOfficeCourses($httpBackend) {
                             "info": "Un curso muy completo",
                             "price": 17.5,
                             "instructor": "Juan Domínguez",
+                            "Schedule": [
+                                {
+                                    "id": 1,
+                                    "day": "Martes",
+                                    "startTime": "10:00",
+                                    "endTime": "11:00"
+                                },
+                                {
+                                    "id": 2,
+                                    "day": "Lunes",
+                                    "startTime": "11:00",
+                                    "endTime": "12:00"
+                                },
+                                {
+                                    "id": 3,
+                                    "day": "Miércoles",
+                                    "startTime": "17:00",
+                                    "endTime": "18:00"
+                                },
+                                {
+                                    "id": 4,
+                                    "day": "Jueves",
+                                    "startTime": "12:00",
+                                    "endTime": "13:00"
+                                },
+                                {
+                                    "id": 5,
+                                    "day": "Jueves",
+                                    "startTime": "20:00",
+                                    "endTime": "21:00"
+                                },
+                                {
+                                    "id": 6,
+                                    "day": "Viernes",
+                                    "startTime": "09:00",
+                                    "endTime": "10:00"
+                                }
+                            ]
                         },
                         {
                             "id": 2,
@@ -93,4 +131,7 @@ function backOfficeCourses($httpBackend) {
     $httpBackend.whenDELETE(local_api+"/api/courses/2").respond(204);
     $httpBackend.whenPOST(local_api+"/api/courses/new").respond(201);
     $httpBackend.whenGET('app/backoffice-courses/add-course.html').passThrough();
+    $httpBackend.whenGET('app/backoffice-schedule/list-schedule.html').passThrough();
+    $httpBackend.whenDELETE(local_api+"/schedules/1").respond(204);
+
 }
