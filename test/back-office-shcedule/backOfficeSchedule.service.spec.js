@@ -34,4 +34,29 @@ describe('Back Office Schedule Service that handles schedules', function() {
         expect(real).toBeFalsy();
     });
 
+    it('Should add the schedule correctly', function(){
+        var data = {
+            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
+        };
+        $httpBackend.expectDELETE(baseAPI+'schedules/new').respond(201);
+        var real = null;
+        backOSService.add(data).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeTruthy();
+    });
+
+    it('Should not add the schedule correctly', function(){
+        var data = {
+            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
+        };
+        $httpBackend.expectDELETE(baseAPI+'schedules/new').respond(500);
+        var real = null;
+        backOSService.add(data).then(function(data){
+            real = data;
+        });
+        $httpBackend.flush();
+        expect(real).toBeFalsy();
+    });
 });
