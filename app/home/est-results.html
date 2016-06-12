@@ -65,6 +65,38 @@
                 </md-card-actions>
             </md-card>
         </div>
+        <div class="est-search-container" flex="100" hide-gt-lg hide-gt hide-gt-sm hide-sm show-xs ng-repeat="item in estFlVm.items" ng-controller="ShowScheduleController as showScVm"
+             ng-show="estDtVm.establishment === null">
+            <md-card>
+                <img ng-src="{{estFlVm.imgFolder+item.main_img}}" class="md-card-image" alt="{{estFlVm.imgFolder+item.main_img}}" src="{{estFlVm.imgFolder+item.main_img}}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline color-primary">{{item.name}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p class="md-body-1">
+                        {{estFlVm.shortenDesc(item.desc)}}
+                    </p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
+                    <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Información" scroll-to
+                               id="scrollResults"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
+                        <md-icon md-svg-icon="public/images/icons/info.svg" aria-hidden="true" id="est-details-{{item.id}}"></md-icon>
+                        <md-tooltip md-direction="top">
+                            Información sobre {{item.name}}
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class="md-icon-button md-button md-ink-ripple" type="button"  aria-label="Horarios"
+                               ng-click="showScVm.showSchedule(ev, item.id)">
+                        <md-tooltip md-direction="top">
+                            Horario clases
+                        </md-tooltip>
+                        <md-icon md-svg-icon="public/images/icons/date.svg" aria-hidden="true" id="showSchedule"></md-icon>
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
         <establishment-details ng-show="estDtVm.establishment !== null",flex="95" flex-md="95" flex-sm="95" class="est-container"></establishment-details>
     </md-content>
     <a class="md-caption fetch-more-link" ng-click="estFlVm.fetchMore()" ng-show="estFlVm.after != 'none' && estFlVm.after != 0">Cargar más resultados</a>
