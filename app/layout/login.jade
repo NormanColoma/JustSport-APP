@@ -2,7 +2,7 @@ include header
 link(rel="stylesheet",href="/public/stylesheets/login.css")
 div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
 ng-controller="RegisterController as registerVm")
-    div(flex="40", flex-sm="65")
+    div(flex="40", flex-sm="65" flex-xs="100")
         h2.md-display-2.login-title(ng-show="!registerVm.registerView") Accede a tu cuenta
         h2.md-display-2.register-title(ng-show="registerVm.registerView") Crea tu cuenta
         div.login-container(ng-show="!registerVm.registerView")
@@ -27,8 +27,8 @@ ng-controller="RegisterController as registerVm")
                     p Accediendo a la cuenta
                 div(layout='row', layout-sm='column', layout-align='space-around')
                     md-progress-circular(md-mode='indeterminate')
-        div.register-container(ng-show="registerVm.registerView")
-            form(layout-align="space-between", layout-padding, novalidate, name="registerForm",
+        div.register-container(ng-show="registerVm.registerView" flex-xs="100")
+            form(layout-align="space-between", layout-padding, novalidate, name="registerForm", flex-xs="100"
             ng-submit="registerForm.email.$valid && registerForm.pass.$valid && registerForm.name.$valid && registerForm.lname.$valid && registerForm.gender.$valid && registerVm.register(e)", ng-hide="registerVm.registeringUser")
                 md-input-container.md-block
                     label Email
@@ -40,7 +40,7 @@ ng-controller="RegisterController as registerVm")
                     label Password
                     input(required='', name='pass', ng-model='registerVm.user.password', type="password",
                     ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
-                    .hint(ng-if="!registerForm.pass.$touched && !registerForm.$submitted") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
+                    .hint(ng-if="!registerForm.pass.$touched && !registerForm.$submitted" hide-xs) Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
                     div(ng-messages='registerForm.pass.$error' ng-show="registerForm.pass.$touched || registerForm.$submitted")
                         div(ng-message='required').pass-register-message La contraseña es obligatoria.
                         div(ng-show="registerForm.pass.$error.pattern").pass-register-message.error-message La contraseña no es correcta.

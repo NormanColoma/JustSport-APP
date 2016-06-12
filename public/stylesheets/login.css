@@ -32,6 +32,7 @@
 .register-container, .register-title{
     transform: translateX(0%);
     transition: 0.5s;
+    margin-bottom: 10px;
 }
 
 .login-title, .register-title{

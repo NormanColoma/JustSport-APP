@@ -224,3 +224,11 @@ md-checkbox.md-default-theme:not([disabled]).md-checked .md-icon:after { border-
 .default-button{
   color: #727272 !important;
 }
+
+md-sidenav{
+  position: fixed !important;
+}
+
+md-sidenav md-content{
+  background-color: white !important;
+}
