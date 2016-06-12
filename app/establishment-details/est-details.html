@@ -2,11 +2,11 @@
 <div>
     <h1 class="md-display-2 est-title subheader">{{estDtVm.establishment.name}}</h1>
     <md-content layout="row" layout-margin layout-wrap style="background-color: inherit;">
-        <div flex="45">
+        <div flex="45" flex-sm="100" flex-xs="100">
             <img flex="100" layout="row" ng-src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}"
                  alt="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}" src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}">
         </div>
-        <div layout="column" flex="50" flex-sm="45">
+        <div layout="column" flex="50" flex-sm="100" flex-xs="100">
             <p hide-sm hide-xs class="justify md-body-1 est-desc">{{estDtVm.establishment.desc}}</p>
             <ul>
                 <li class="md-body-2">

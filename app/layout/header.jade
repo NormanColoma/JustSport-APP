@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="justSportTest")
+html(ng-app="justSport")
     head
         meta(name='viewport', content='width=device-width')
         base(href="/")
@@ -28,10 +28,13 @@ html(ng-app="justSportTest")
                             a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
                         div(layout='row', show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
                             h2
-                                span JustSport
+                                a(href='/') JustSport
                             span(flex='')
-                            md-button.md-icon-button(aria-label='More')
-                                a( ng-click="loginVm.openMenu()" ng-show="loginVm.loggedIn")
+                            md-button.md-icon-button(aria-label='More',ng-show="loginVm.loggedIn")
+                                a(ng-click="loginVm.openMenu()")
                                     md-icon(md-svg-icon='./public/images/icons/account.svg')
-                                a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Mi cuenta
+                            a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Login
+
+
+
 
