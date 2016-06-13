@@ -46,7 +46,7 @@ angular
         function getEstablishments(sport_id, location, after){
             if(after === "none")
                 after = undefined;
-            return Establishment.get({id: sport_id, location: location, after: after}).$promise
+            return Establishment.get({id: sport_id, location: location, after: after, limit: 5}).$promise
                 .then(getEstabsSuccess)
                 .catch(getEstabsFailed);
 

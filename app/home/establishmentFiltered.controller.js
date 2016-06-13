@@ -27,6 +27,7 @@ angular
             vm.imgFolder = server+"public/images/ests/";
             vm.items = [];
             vm.location = null;
+            vm.more = false;
             vm.prevLocation = null;
             vm.prevSport = null;
             vm.selectedItemChange = selectedItemChange;
@@ -50,17 +51,25 @@ angular
                     }
                     establishmentFilteredService.getEstablishments(vm.sport, vm.location, vm.after).then(angular.bind(this, function (data) {
                         if(data === "There no more rows to retrieve") {
+                            vm.more = false;
                             vm.activated = true;
                         }else if(data === "There are no establishments that match the current filter"){
                             vm.activated = true;
-                            dataDialog = {
-                                title: 'Sin resultados', text: 'No se han encontrado establecimientos para la búsqueda introducida.',
-                                aria: 'Establishment Dialog', textButton: 'Listo'
-                            };
-                            dialogService.showDialog(dataDialog,ev);
-                        }else {
+                            if(vm.after !== "none"){
+                                vm.more = false;
+                                dataDialog = {
+                                    title: 'Sin resultados', text: 'No se han encontrado establecimientos para la búsqueda introducida.',
+                                    aria: 'Establishment Dialog', textButton: 'Listo'
+                                };
+                                dialogService.showDialog(dataDialog,ev);
+                            }
+                        }else if(data === "Wrong parameters, limit parameter must be set for paging"){
+                            vm.activated = true;
+                        }
+                        else{
                             getScheduleService.setSport(vm.sport);
                             vm.activated = true;
+                            vm.more = true;
                             vm.after = data.paging.cursors.after;
                             vm.items = vm.items.concat(data.Establishments.rows);
                             vm.prevLocation = vm.location;
