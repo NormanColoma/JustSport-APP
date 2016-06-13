@@ -66,6 +66,5 @@ describe('Home', function() {
         search_button.click();
         expect(element(by.css('md-dialog')).isPresent()).toBeFalsy();
         expect(element(by.id('establishments-list-container')).isDisplayed()).toBeTruthy();
-        expect(estabContainer.all(by.css('md-card')).count()).toBe(6);
     });
 });
