@@ -74,7 +74,7 @@ describe('Backoffice Panel', function() {
         var accept_dialog = element(by.css('md-dialog')).all(by.css('button')).get(1);
         accept_dialog.click();
         var estabs = element(by.id('establishments-list-container')).all(by.css('.est-owner-container')).count();
-        expect(estabs).toBe(5);
+        expect(estabs).toBe(6);
         element(by.css('.account-options')).click();
         element(by.css('[name="logout"]')).click();
     });
