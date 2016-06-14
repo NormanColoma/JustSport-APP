@@ -33,7 +33,7 @@ describe('Service that fetch all the establishment filtered by location and spor
 
     it('Should fetch all the establishment filtered', function(){
         var establishments = {Establishments: data};
-        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante').respond(establishments);
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?limit=5').respond(establishments);
         var ests= [];
         homeService.getEstablishments(1, "Alicante").then(function(estabs){
             ests = estabs;
@@ -44,7 +44,7 @@ describe('Service that fetch all the establishment filtered by location and spor
     });
 
     it('Should return empty array', function(){
-        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Madrid')
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Madrid?limit=5')
             .respond(404,{
                 message: "There are no establishments that match the current filter"
             });

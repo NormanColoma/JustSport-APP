@@ -32,7 +32,7 @@ describe('Establishment Filtered Controller', function() {
 
     it('Should fetch all the establishments that match the filter given', function(){
         var controller = createController();
-        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante').respond(estabs);
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?limit=5').respond(estabs);
         controller.sport = 1;
         controller.location = "Alicante";
         expect(controller.items.length).toBe(0);
@@ -46,7 +46,7 @@ describe('Establishment Filtered Controller', function() {
 
     it('Should not add more establishments, when after cursor given is set to 0', function(){
         var controller = createController();
-        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?after=0')
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?after=0&limit=5')
             .respond(404, {message: 'There no more rows to retrieve'});
         controller.sport = 1;
         controller.prevSport = 1;
@@ -64,7 +64,7 @@ describe('Establishment Filtered Controller', function() {
 
     it('Should add more establishments', function(){
         var controller = createController();
-        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante')
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?limit=5')
             .respond(estabs);
         controller.sport = 1;
         controller.prevSport = 1;
@@ -77,7 +77,7 @@ describe('Establishment Filtered Controller', function() {
         $httpBackend.flush();
         expect(controller.items.length).toBe(3);
         controller.after = "NE";
-        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?after=NE')
+        $httpBackend.expectGET(baseAPI+'establishments/sport/1/location/Alicante?after=NE&limit=5')
             .respond(estabs);
         /* jshint ignore:start*/
         controller.fetchMore();
