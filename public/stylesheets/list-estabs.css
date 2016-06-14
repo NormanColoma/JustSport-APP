@@ -46,4 +46,8 @@ md-card{
     .input-search md-input-container{
         padding: 0px !important;
     }
+
+    .input-search label{
+        font-size: 18px;
+    }
 }
