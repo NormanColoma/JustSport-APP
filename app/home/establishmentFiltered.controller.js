@@ -50,6 +50,7 @@ angular
                         vm.after = "none";
                     }
                     establishmentFilteredService.getEstablishments(vm.sport, vm.location, vm.after).then(angular.bind(this, function (data) {
+                        console.log(data);
                         if(data === "There no more rows to retrieve") {
                             vm.more = false;
                             vm.activated = true;
@@ -65,8 +66,7 @@ angular
                             }
                         }else if(data === "Wrong parameters, limit parameter must be set for paging"){
                             vm.activated = true;
-                        }
-                        else{
+                        }else {
                             getScheduleService.setSport(vm.sport);
                             vm.activated = true;
                             vm.more = true;

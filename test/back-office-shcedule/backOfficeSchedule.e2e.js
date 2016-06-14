@@ -59,7 +59,7 @@ describe('Schedule Backoffice', function() {
         var schedule = element(by.id('schedule-list-backoffice'));
         var schedules = schedule.all(by.css('md-list-item'));
         schedules.then(function(l_sched){
-            expect(l_sched.length).toBe(5);
+            expect(l_sched.length).toBe(6);
         });
         element(by.css('.account-options')).click();
         element(by.css('[name="logout"]')).click();
