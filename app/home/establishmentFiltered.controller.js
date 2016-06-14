@@ -22,6 +22,7 @@ angular
             var server = local_folder;
 
             vm.activated = true;
+            vm.addItems = addItems;
             vm.after= "none";
             vm.fetchMore = fetchMore;
             vm.imgFolder = server+"public/images/ests/";
@@ -29,11 +30,24 @@ angular
             vm.location = null;
             vm.prevLocation = null;
             vm.prevSport = null;
+            vm.searchItem = searchItem;
             vm.selectedItemChange = selectedItemChange;
             vm.selectedLocationChange = selectedLocationChange;
             vm.shortenDesc = shortenDesc;
             vm.sport = null;
 
+
+            function addItems(items){
+                if(vm.items.length > 0) {
+                    var add = false;
+                    for (var i = 0; i < items.length; i++) {
+                        if(!searchItem(items[i]))
+                            vm.items = vm.items.concat(items[i]);
+                    }
+                }else{
+                    vm.items = vm.items.concat(items);
+                }
+            }
             /**
              * @name fetchMore
              * @desc Fetch more establishments. Furthermore it shows alerts if needed
@@ -49,27 +63,41 @@ angular
                         vm.after = "none";
                     }
                     establishmentFilteredService.getEstablishments(vm.sport, vm.location, vm.after).then(angular.bind(this, function (data) {
-                        console.log(data);
                         if(data === "There no more rows to retrieve") {
                             vm.activated = true;
                         }else if(data === "There are no establishments that match the current filter"){
                             vm.activated = true;
+                            if(vm.after === "none") {
+                                dataDialog = {
+                                    title: 'Sin resultados',
+                                    text: 'No se han encontrado establecimientos para la búsqueda introducida.',
+                                    aria: 'Establishment Dialog',
+                                    textButton: 'Listo'
+                                };
+                                dialogService.showDialog(dataDialog, ev);
+                            }
                             vm.after = "none";
-                            dataDialog = {
-                                title: 'Sin resultados', text: 'No se han encontrado establecimientos para la búsqueda introducida.',
-                                aria: 'Establishment Dialog', textButton: 'Listo'
-                            };
-                            dialogService.showDialog(dataDialog,ev);
                         }else {
                             getScheduleService.setSport(vm.sport);
                             vm.activated = true;
                             vm.after = data.paging.cursors.after;
-                            vm.items = vm.items.concat(data.Establishments.rows);
+                            addItems(data.Establishments.rows);
                             vm.prevLocation = vm.location;
                             vm.prevSport = vm.sport;
                         }
                     }));
                 }
+
+            function searchItem(item){
+                var found = false;
+                for (var i = 0; i < vm.items.length; i++) {
+                    if(vm.items[i].id === item.id){
+                        found = true;
+                        break;
+                    }
+                }
+                return found;
+            }
 
             /**
              * @name selectedItemChange
