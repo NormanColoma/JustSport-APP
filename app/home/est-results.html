@@ -99,6 +99,6 @@
         </div>
         <establishment-details ng-show="estDtVm.establishment !== null",flex="95" flex-md="95" flex-sm="95" class="est-container"></establishment-details>
     </md-content>
-    <a class="md-caption fetch-more-link" ng-click="estFlVm.fetchMore()" ng-show="estFlVm.after != 'none' && estFlVm.after != 0 && estFlVm.more">Cargar más resultados</a>
+    <a class="md-caption fetch-more-link" ng-click="estFlVm.fetchMore()" ng-show="estFlVm.after != 'none' && estFlVm.after != 0 && estDtVm.establishment === null">Cargar más resultados</a>
 </div>
 
