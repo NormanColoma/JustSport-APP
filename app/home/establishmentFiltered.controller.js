@@ -49,13 +49,12 @@ angular
                         vm.after = "none";
                     }
                     establishmentFilteredService.getEstablishments(vm.sport, vm.location, vm.after).then(angular.bind(this, function (data) {
+                        console.log(data);
                         if(data === "There no more rows to retrieve") {
                             vm.activated = true;
                         }else if(data === "There are no establishments that match the current filter"){
                             vm.activated = true;
                             vm.after = "none";
-                        }else if(data === "There are no establishments that match the current filter"){
-                            vm.activated = true;
                             dataDialog = {
                                 title: 'Sin resultados', text: 'No se han encontrado establecimientos para la búsqueda introducida.',
                                 aria: 'Establishment Dialog', textButton: 'Listo'

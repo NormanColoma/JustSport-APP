@@ -16,7 +16,7 @@ function estabsFilteredTest($httpBackend) {
     var message_1 = {
         message: "There are no establishments that match the current filter"
     };
-    $httpBackend.whenGET(local_api + '/establishments/sport/1/location/Valencia').respond(404,message_1);
+    $httpBackend.whenGET(local_api + '/establishments/sport/1/location/Valencia?limit=5').respond(404,message_1);
 
     /**
      *
@@ -36,7 +36,7 @@ function estabsFilteredTest($httpBackend) {
     var paging= {cursors: cursor, previous: 'none', next: 'none'};
     var estabs = {Establishments: data, paging: paging};
 
-    $httpBackend.whenGET(local_api + '/establishments/sport/1/location/Alicante').respond(estabs);
+    $httpBackend.whenGET(local_api + '/establishments/sport/1/location/Alicante?limit=5').respond(estabs);
 
 
     /**
