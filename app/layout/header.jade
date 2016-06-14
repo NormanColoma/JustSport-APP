@@ -1,5 +1,5 @@
 doctype html
-html(ng-app="justSportTest")
+html(ng-app="justSport")
     head
         meta(name='viewport', content='width=device-width')
         base(href="/")
@@ -19,7 +19,7 @@ html(ng-app="justSportTest")
             md-content
                 div(layout='row')
                     br
-                    md-toolbar
+                    md-toolbar(md-scroll-shrink ng-if="true")
                         div(layout='row', flex='95', hide-sm, hide-xs).md-toolbar-tools.layout-center.md-toolbar-tools-notpading
                             h2
                                 a(href='/') JustSport

@@ -18,7 +18,7 @@ ng-controller="EstablishmentDetailsController as estDtVm")
             form(layout="column" layout-align="space-between", layout-padding, name="searchForm",
             ng-submit="searchForm.sportField.$valid && searchForm.locationField.$valid && estFlVm.fetchMore()", novalidate)
                 div(ng-controller="SportListController as spList")
-                    md-autocomplete(md-selected-item='spList.selectedItem',md-search-text='spList.searchText',
+                    md-autocomplete(class="input-search" md-selected-item='spList.selectedItem',md-search-text='spList.searchText',
                     md-items='item in spList.querySearch(spList.searchText)',md-item-text='item.display',md-min-length='0',
                     md-floating-label='¿Qué deporte te apetece practicar?', md-input-name="sportField",
                     ng-model="sport", md-selected-item-change="estFlVm.selectedItemChange(item)",required)
@@ -30,7 +30,7 @@ ng-controller="EstablishmentDetailsController as estDtVm")
                             div(ng-message='required').sport-message
                                 | Tienes que seleccionar un deporte
                 div(ng-controller="HomeController as homeVm")
-                    md-autocomplete(md-selected-item='homeVm.selectedItem',md-search-text='homeVm.searchText',
+                    md-autocomplete(class="input-search" md-selected-item='homeVm.selectedItem',md-search-text='homeVm.searchText',
                     md-items='item in homeVm.querySearch(homeVm.searchText)', md-item-text='item',
                     md-floating-label='¿Dónde quieres hacerlo?', md-input-name="locationField",
                     ng-model="location",md-selected-item-change="estFlVm.selectedLocationChange(item)" required)
