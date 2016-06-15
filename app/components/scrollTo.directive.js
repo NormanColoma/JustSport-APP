@@ -16,7 +16,7 @@ angular
         function link(scope, element, attrs) {
             var scroll = $('#scroll');
             var results = $('#results');
-            var results2 = $('#results2')
+            var results2 = $('#results2');
             var title = $('.est-title');
             element.on('click', function(){
                 if(attrs.id == "scrollResults"){
