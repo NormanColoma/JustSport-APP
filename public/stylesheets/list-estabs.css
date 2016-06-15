@@ -40,6 +40,16 @@ md-card{
     color: rgb(16,108,200);
 }
 
+#est-details-container{
+    transition-duration: 0.4s;
+}
+
+#est-details-container.ng-hide{
+    transform: scale(0.001);
+    transition-property: transform, opacity;
+
+}
+
 /*Responsive*/
 
 @media screen and (min-width: 0px) and (max-width: 599px){

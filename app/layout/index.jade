@@ -22,7 +22,7 @@ div(ng-controller="EstablishmentDetailsController as estDtVm")
             md-button(aria-label='Go Back', ng-click="estDtVm.removeEstab()")
                 a(href='/')
                     md-icon(md-svg-icon='./public/images/icons/arrow_back.svg')
-            h2 Información {{estDtVm.establishment.name}}
+            h2 Información
             span(flex='')
             md-button(aria-label='More',ng-show="loginVm.loggedIn")
                 a(ng-click="loginVm.openMenu()")

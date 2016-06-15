@@ -11,7 +11,6 @@ ul{
 ul li{
     margin-bottom: 15px;
 }
-
 .est-courses li{
     padding-bottom: 10px;
     border-bottom: 1px solid #eeeeee;
@@ -64,5 +63,9 @@ ul li{
         -webkit-border-radius:2px;
         -moz-border-radius:2px;
         border-radius:2px;
+    }
+
+    .est-commentaries .md-list-item-text{
+        padding: 5px;
     }
 }

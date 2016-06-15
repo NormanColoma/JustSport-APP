@@ -97,7 +97,7 @@
                 </md-card-actions>
             </md-card>
         </div>
-        <establishment-details ng-show="estDtVm.establishment !== null",flex="95" flex-md="95" flex-sm="95" class="est-container"></establishment-details>
+        <establishment-details id="est-details-container" ng-show="estDtVm.establishment !== null",flex="95" flex-md="95" flex-sm="95" class="est-container"></establishment-details>
     </md-content>
     <a class="md-caption fetch-more-link" ng-click="estFlVm.fetchMore()" ng-show="estFlVm.after != 'none' && estFlVm.after != 0 && estDtVm.establishment === null">Cargar más resultados</a>
 </div>
