@@ -16,24 +16,6 @@ html(ng-app="justSport")
                     md-button(ng-href="/account/profile" name="profile").md-primary Perfil
                     md-button(ng-show="loginVm.role == 'owner' || loginVm.role == 'admin'" ng-href="/backoffice" name="backoffice").md-primary Administrar Establecimientos
                     md-button(ng-href="",ng-click="loginVm.logout()" name="logout").md-primary Salir
-            md-content
-                div(layout='row')
-                    br
-                    md-toolbar(md-scroll-shrink ng-if="true")
-                        div(layout='row', flex='95', hide-sm, hide-xs).md-toolbar-tools.layout-center.md-toolbar-tools-notpading
-                            h2
-                                a(href='/') JustSport
-                            span(flex='')
-                            a(href='/account/#/login' ng-show="!loginVm.loggedIn").md-body-1 Login
-                            a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
-                        div(layout='row', show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
-                            h2
-                                a(href='/') JustSport
-                            span(flex='')
-                            md-button.md-icon-button(aria-label='More',ng-show="loginVm.loggedIn")
-                                a(ng-click="loginVm.openMenu()")
-                                    md-icon(md-svg-icon='./public/images/icons/account.svg')
-                            a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Login
 
 
 
