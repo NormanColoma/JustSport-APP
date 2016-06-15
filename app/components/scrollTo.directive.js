@@ -16,11 +16,14 @@ angular
         function link(scope, element, attrs) {
             var scroll = $('#scroll');
             var results = $('#results');
-            var title = $('.update-t');
+            var title = $('.est-title');
             element.on('click', function(){
                 if(attrs.id == "scrollResults"){
                     $('body').animate({scrollTop: results.offset().top}, "slow");
                 }else if(attrs.id == "update-estab" || attrs.id === "addEst" || attrs.id === "listEst" || attrs.id === "addCourse" || attrs.id === "listCourses"){
+                    $('body').animate({scrollTop: $('body').offset().top}, "slow");
+                }else if(attrs.id == "getDetails"){
+                    console.log("me pinchas");
                     $('body').animate({scrollTop: $('body').offset().top}, "slow");
                 }
                 else{
