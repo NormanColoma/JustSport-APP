@@ -232,3 +232,7 @@ md-sidenav{
 md-sidenav md-content{
   background-color: white !important;
 }
+
+md-menu span{
+  padding: 0px !important;
+}

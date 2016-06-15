@@ -9,14 +9,24 @@ html(ng-app="justSportTest")
         link(href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
     body(ng-controller="LoginController as loginVm" ng-init="loginVm.isLoggedIn()" ng-show="!loginVm.stop" ng-cloak)
-            md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right')
+            md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right', layout="column")
                 md-toolbar.md-theme-light
-                    h1.md-toolbar-tools Mi Cuenta
-                md-content(layout-padding='', layout="column", layout-align="start none")
-                    md-button(ng-href="/account/profile" name="profile").md-primary Perfil
-                    md-button(ng-show="loginVm.role == 'owner' || loginVm.role == 'admin'" ng-href="/backoffice" name="backoffice").md-primary Administrar Establecimientos
-                    md-button(ng-href="",ng-click="loginVm.logout()" name="logout").md-primary Salir
-
+                    h3(style="margin-bottom: 0px;margin-left:15px;").md-headline Mi Cuenta
+                    p(style="margin-left:15px;margin-bottom:15px;").md-caption {{loginVm.name}}
+                md-menu
+                    md-menu-content(width='4')
+                        md-menu-item
+                            md-button(ng-href="/account/profile" name="profile")
+                                md-icon(md-svg-icon='./public/images/icons/profile.svg')
+                                |             Perfil
+                        md-menu-item
+                            md-button(ng-show="loginVm.role == 'owner' || loginVm.role == 'admin'" ng-href="/backoffice" name="backoffice")
+                                md-icon(md-svg-icon='./public/images/icons/panel.svg')
+                                |             Administrar Establecimientos
+                        md-menu-item
+                            md-button(ng-href="",ng-click="loginVm.logout()" name="logout")
+                                md-icon(md-svg-icon='./public/images/icons/logout.svg')
+                                |             Salir
 
 
 
