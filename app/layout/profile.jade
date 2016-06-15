@@ -2,22 +2,25 @@ include header
 link(rel="stylesheet" type="text/css" href="public/stylesheets/user-account.css")
 div(ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-cloak)
     md-toolbar
-        div(layout='row', flex='95',show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-toolbar-tools.layout-center.md-toolbar-tools-notpading
-            h2
+        div(show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-toolbar-tools.layout-center
+            md-button(aria-label='Home')
                 a(href='/') JustSport
             span(flex='')
-            a(href='/account/#/login' ng-show="!loginVm.loggedIn").md-body-1 Login
-            a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
-        div(ng-show="estDtVm.establishment == null",layout='row', show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
-            md-button.md-icon-button(aria-label='More')
+            md-button(aria-label='Login',ng-show="!loginVm.loggedIn")
+                a(href='/account/#/login').md-body-1 Login
+            md-button(aria-label='Login',ng-show="loginVm.loggedIn")
+                a(ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
+        div(ng-show="estDtVm.establishment == null",show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
+            md-button(aria-label='More')
                 a(href='/')
                     md-icon(md-svg-icon='./public/images/icons/arrow_back.svg')
             h2 Perfil
             span(flex='')
-            md-button.md-icon-button(aria-label='More',ng-show="loginVm.loggedIn")
+            md-button(aria-label='More',ng-show="loginVm.loggedIn")
                 a(ng-click="loginVm.openMenu()")
                     md-icon(md-svg-icon='./public/images/icons/account.svg')
-            a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Login
+            md-button(aria-label='More',ng-show="!loginVm.loggedIn")
+                a(href='/account/').md-body-1.clickable.account-options Login
     md-content(layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin)
         div(flex="95", flex-sm="100", layout="column")
             h2.md-display-2.font-header Perfil
