@@ -1,48 +1,67 @@
 include header
-div(layout="row" layout-align-gt-sm="center center", layout-align-sm="center center",hide-xs,style="background:url('public/images/background/background-1.jpg') no-repeat center center / cover;height:550px")
-    div(flex="100" layout="row" layout-align-gt-sm="center center", layout-align-sm="center center").overlay
-        div(flex="100").main-header-container
-            h1.main-header= title
-                p.md-body-2 Bienvenido a Just Sport ya puedes comenzar a buscar los centros más cercanos {{main.name}}
-        div(scroll-to)
-            md-button.md-fab.md-primary.background-wh.btn-exp-more(aria-label='Comenzar', id="test")
-                md-icon(md-svg-icon='public/images/icons/ic_expand_more_black_36px.svg')
-div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
-ng-controller="EstablishmentDetailsController as estDtVm")
-    div(flex="75" flex-md="95" flex-sm="95" flex-xs="100" id="scroll", ng-controller="EstablishmentFilteredController as estFlVm")
-        h2.md-headline Encuentra tus centros
-        p.md-subhead.
-            Busca los centros que ofertan el deporte que quieres realizar. Solo tienes que decirnos que deporte te apetece practicar,
-            y en que lugar quieres realizarlo. ¿A qué estás esperando?. ¡Comienza a buscar ya!
-        div(layout="column", flex="100")
-            form(layout="column" layout-align="space-between", layout-padding, name="searchForm",
-            ng-submit="searchForm.sportField.$valid && searchForm.locationField.$valid && estFlVm.fetchMore()", novalidate)
-                div(ng-controller="SportListController as spList")
-                    md-autocomplete(class="input-search" md-selected-item='spList.selectedItem',md-search-text='spList.searchText',
-                    md-items='item in spList.querySearch(spList.searchText)',md-item-text='item.display',md-min-length='0',
-                    md-floating-label='¿Qué deporte te apetece practicar?', md-input-name="sportField",
-                    ng-model="sport", md-selected-item-change="estFlVm.selectedItemChange(item)",required)
-                        md-item-template
-                            span(md-highlight-text='spList.searchText', md-highlight-flags='^i') {{item.display}}
-                        md-not-found
-                            | No hay resultados para "{{spList.searchText}}".
-                        div(ng-messages='searchForm.sportField.$error' ng-if="searchForm.sportField.$touched || searchForm.$submitted")
-                            div(ng-message='required').sport-message
-                                | Tienes que seleccionar un deporte
-                div(ng-controller="HomeController as homeVm")
-                    md-autocomplete(class="input-search" md-selected-item='homeVm.selectedItem',md-search-text='homeVm.searchText',
-                    md-items='item in homeVm.querySearch(homeVm.searchText)', md-item-text='item',
-                    md-floating-label='¿Dónde quieres hacerlo?', md-input-name="locationField",
-                    ng-model="location",md-selected-item-change="estFlVm.selectedLocationChange(item)" required)
-                        md-item-template
-                            span(md-highlight-text='homeVm.searchText', md-highlight-flags='^i') {{item}}
-                        md-not-found
-                            | No hay resultados para "{{homeVm.searchText}}".
-                        div(ng-messages='searchForm.locationField.$error' ng-if="searchForm.locationField.$touched || searchForm.$submitted")
-                            div(ng-message='required').location-message
-                                | Tienes que seleccionar un lugar
-                div(layout="row" scroll-to id="scrollResults" flex="100")
-                        md-button(type="submit", ng-click="estDtVm.removeEstab()" flex-xs="100").md-raised.md-primary.search-ests Buscar
-        filtered-results(id="results")
+div(ng-controller="EstablishmentDetailsController as estDtVm")
+    md-toolbar
+        div(layout='row', flex='95',show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-toolbar-tools.layout-center.md-toolbar-tools-notpading
+            h2
+                a(href='/') JustSport
+            span(flex='')
+            a(href='/account/#/login' ng-show="!loginVm.loggedIn").md-body-1 Login
+            a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
+        div(ng-show="estDtVm.establishment == null",layout='row', show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
+            h2
+                a(href='/') JustSport
+            span(flex='')
+            md-button.md-icon-button(aria-label='More',ng-show="loginVm.loggedIn")
+                a(ng-click="loginVm.openMenu()")
+                    md-icon(md-svg-icon='./public/images/icons/account.svg')
+            a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Login
+    md-toolbar(md-scroll-shrink ng-if="true" ng-show="estDtVm.establishment != null")
+        div(layout='row', flex='95').md-toolbar-tools.layout-center.md-toolbar-tools-notpading
+            h2 Prueba
+            span(flex='')
+    div(layout="row" layout-align-gt-sm="center center", layout-align-sm="center center",hide-xs,style="background:url('public/images/background/background-1.jpg') no-repeat center center / cover;height:550px")
+        div(flex="100" layout="row" layout-align-gt-sm="center center", layout-align-sm="center center").overlay
+            div(flex="100").main-header-container
+                h1.main-header= title
+                    p.md-body-2 Bienvenido a Just Sport ya puedes comenzar a buscar los centros más cercanos {{main.name}}
+            div(scroll-to)
+                md-button.md-fab.md-primary.background-wh.btn-exp-more(aria-label='Comenzar', id="test")
+                    md-icon(md-svg-icon='public/images/icons/ic_expand_more_black_36px.svg')
+    md-content(flex layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,)
+            div(flex="75" flex-md="95" flex-sm="95" flex-xs="100" id="scroll", ng-controller="EstablishmentFilteredController as estFlVm")
+                h2(ng-show="estDtVm.establishment == null").md-headline Encuentra tus centros
+                p(ng-show="estDtVm.establishment == null").md-subhead.
+                    Busca los centros que ofertan el deporte que quieres realizar. Solo tienes que decirnos que deporte te apetece practicar,
+                    y en que lugar quieres realizarlo. ¿A qué estás esperando?. ¡Comienza a buscar ya!
+                div(layout="column", flex="100", ng-show="estDtVm.establishment == null")
+                    form(layout="column" layout-align="space-between", layout-padding, name="searchForm",
+                    ng-submit="searchForm.sportField.$valid && searchForm.locationField.$valid && estFlVm.fetchMore()", novalidate)
+                        div(ng-controller="SportListController as spList")
+                            md-autocomplete(class="input-search" md-selected-item='spList.selectedItem',md-search-text='spList.searchText',
+                            md-items='item in spList.querySearch(spList.searchText)',md-item-text='item.display',md-min-length='0',
+                            md-floating-label='¿Qué deporte te apetece practicar?', md-input-name="sportField",
+                            ng-model="sport", md-selected-item-change="estFlVm.selectedItemChange(item)",required)
+                                md-item-template
+                                    span(md-highlight-text='spList.searchText', md-highlight-flags='^i') {{item.display}}
+                                md-not-found
+                                    | No hay resultados para "{{spList.searchText}}".
+                                div(ng-messages='searchForm.sportField.$error' ng-if="searchForm.sportField.$touched || searchForm.$submitted")
+                                    div(ng-message='required').sport-message
+                                        | Tienes que seleccionar un deporte
+                        div(ng-controller="HomeController as homeVm")
+                            md-autocomplete(class="input-search" md-selected-item='homeVm.selectedItem',md-search-text='homeVm.searchText',
+                            md-items='item in homeVm.querySearch(homeVm.searchText)', md-item-text='item',
+                            md-floating-label='¿Dónde quieres hacerlo?', md-input-name="locationField",
+                            ng-model="location",md-selected-item-change="estFlVm.selectedLocationChange(item)" required)
+                                md-item-template
+                                    span(md-highlight-text='homeVm.searchText', md-highlight-flags='^i') {{item}}
+                                md-not-found
+                                    | No hay resultados para "{{homeVm.searchText}}".
+                                div(ng-messages='searchForm.locationField.$error' ng-if="searchForm.locationField.$touched || searchForm.$submitted")
+                                    div(ng-message='required').location-message
+                                        | Tienes que seleccionar un lugar
+                        div(layout="row" scroll-to id="scrollResults" flex="100")
+                                md-button(type="submit", ng-click="estDtVm.removeEstab()" flex-xs="100").md-raised.md-primary.search-ests Buscar
+                filtered-results(id="results")
 include footer
 

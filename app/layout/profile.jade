@@ -1,49 +1,65 @@
 include header
 link(rel="stylesheet" type="text/css" href="public/stylesheets/user-account.css")
-div(md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin,
-ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-cloak)
-    div(flex="95", flex-sm="100", layout="column")
-        h2.md-display-2.font-header Perfil
-        div(layout="row")
-            div(layout="row", flex="30" flex-sm="35").profile-img-container
-                input(id="fileInput" name="file" type="file" class="ng-hide")
-                md-button(id="uploadButton" upload-btn aria-label="Upload button").img-upload-btn
-                    img(layout="column" id="userProfileImg" ng-src="{{imgFolder}}"
-                    alt="{{imgFolder}}").profile-img
+div(ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()" ng-cloak)
+    md-toolbar
+        div(layout='row', flex='95',show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-toolbar-tools.layout-center.md-toolbar-tools-notpading
+            h2
+                a(href='/') JustSport
+            span(flex='')
+            a(href='/account/#/login' ng-show="!loginVm.loggedIn").md-body-1 Login
+            a(ng-show="loginVm.loggedIn" ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
+        div(ng-show="estDtVm.establishment == null",layout='row', show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
+            md-button.md-icon-button(aria-label='More')
+                a(href='/')
+                    md-icon(md-svg-icon='./public/images/icons/arrow_back.svg')
+            h2 Perfil
+            span(flex='')
+            md-button.md-icon-button(aria-label='More',ng-show="loginVm.loggedIn")
+                a(ng-click="loginVm.openMenu()")
+                    md-icon(md-svg-icon='./public/images/icons/account.svg')
+            a(ng-show="!loginVm.loggedIn" href='/account/').md-body-1.clickable.account-options Login
+    md-content(layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin)
+        div(flex="95", flex-sm="100", layout="column")
+            h2.md-display-2.font-header Perfil
+            div(layout="row")
+                div(layout="row", flex="30" flex-sm="35").profile-img-container
+                    input(id="fileInput" name="file" type="file" class="ng-hide")
+                    md-button(id="uploadButton" upload-btn aria-label="Upload button").img-upload-btn
+                        img(layout="column" id="userProfileImg" ng-src="{{imgFolder}}"
+                        alt="{{imgFolder}}").profile-img
+                div(layout="column")
+                    h2.md-display-1.no-bottom Información Personal
+                    ul.user-info-list
+                        li
+                            p Nombre: {{ usAccVm.user.name }}
+                        li
+                            p Apellidos: {{ usAccVm.user.lname }}
+                        li
+                            p Nivel Cuenta: {{ usAccVm.account.role}}
+            blockquote.align-img
+                p Pulsa sobre la imagen si quieres actualizar tu foto de perfil. Podrás cambiar tu foto de perfil, tantas veces como quieras.
             div(layout="column")
-                h2.md-display-1.no-bottom Información Personal
-                ul.user-info-list
-                    li
-                        p Nombre: {{ usAccVm.user.name }}
-                    li
-                        p Apellidos: {{ usAccVm.user.lname }}
-                    li
-                        p Nivel Cuenta: {{ usAccVm.account.role}}
-        blockquote.align-img
-            p Pulsa sobre la imagen si quieres actualizar tu foto de perfil. Podrás cambiar tu foto de perfil, tantas veces como quieras.
-        div(layout="column")
-            form(novalidate, name="accountForm",ng-submit="accountForm.cpass.$valid && accountForm.npass.$valid && usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
-                h2.md-headline Contraseña
-                md-input-container(flex="50" flex-sm="70").md-block
-                    label Contraseña Actual
-                    input(required='', name='cpass', ng-model='usAccVm.acc.current', type="password")
-                    div(ng-messages='accountForm.cpass.$error' ng-show="accountForm.$submitted || accountForm.cpass.$touched")
-                        div(ng-message='required').required-opass El campo es obligatorio.
-                md-input-container(flex="50" flex-sm="70").md-block
-                    label Contraseña Nueva
-                    input(required='', name='npass', ng-model='usAccVm.account.pass', type="password"
-                    ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
-                    .hint(ng-if="!accountForm.npass.$touched && !accountForm.$submitted") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
-                    div(ng-messages='accountForm.npass.$error' ng-show="accountForm.$submitted || accountForm.npass.$touched")
-                        div(ng-message='required').required-npass El campo es obligatorio.
-                        div(ng-show="accountForm.npass.$error.pattern").input-error.pattern-pass La contraseña no es correcta.
-                md-input-container(flex="50", flex-sm="70" layout="column").md-block
-                    h2.md-headline Nivel Cuenta
-                    p Podras cambiar tu nivel de cuenta entre <strong>Propietario</strong> y <strong> Usuario</strong>
-                    md-checkbox(ng-model='usAccVm.account.role', aria-label='Account Level',
-                    ng-true-value="'Propietario'", ng-false-value="'Usuario'", flex='', name="account-level") {{ usAccVm.account.role }}
-                md-input-container(flex="50", layout="column").md-block
-                    md-button(type="submit")#update_acc.md-raised.md-primary Actualizar
-
+                form(novalidate, name="accountForm",ng-submit="accountForm.cpass.$valid && accountForm.npass.$valid && usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
+                    h2.md-headline Contraseña
+                    md-input-container(flex="50" flex-sm="70").md-block
+                        label Contraseña Actual
+                        input(required='', name='cpass', ng-model='usAccVm.acc.current', type="password")
+                        div(ng-messages='accountForm.cpass.$error' ng-show="accountForm.$submitted || accountForm.cpass.$touched")
+                            div(ng-message='required').required-opass El campo es obligatorio.
+                    md-input-container(flex="50" flex-sm="70").md-block
+                        label Contraseña Nueva
+                        input(required='', name='npass', ng-model='usAccVm.account.pass', type="password"
+                        ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
+                        .hint(ng-if="!accountForm.npass.$touched && !accountForm.$submitted") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
+                        div(ng-messages='accountForm.npass.$error' ng-show="accountForm.$submitted || accountForm.npass.$touched")
+                            div(ng-message='required').required-npass El campo es obligatorio.
+                            div(ng-show="accountForm.npass.$error.pattern").input-error.pattern-pass La contraseña no es correcta.
+                    md-input-container(flex="50", flex-sm="70" layout="column").md-block
+                        h2.md-headline Nivel Cuenta
+                        p Podras cambiar tu nivel de cuenta entre <strong>Propietario</strong> y <strong> Usuario</strong>
+                        md-checkbox(ng-model='usAccVm.account.role', aria-label='Account Level',
+                        ng-true-value="'Propietario'", ng-false-value="'Usuario'", flex='', name="account-level") {{ usAccVm.account.role }}
+                    md-input-container(flex="50", layout="column").md-block
+                        md-button(type="submit")#update_acc.md-raised.md-primary Actualizar
 
 include footer
