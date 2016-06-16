@@ -22,16 +22,17 @@ div(ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()"
             md-button(aria-label='More',ng-show="!loginVm.loggedIn")
                 a(href='/account/').md-body-1.clickable.account-options Login
     md-content(layout="row", layout-align-gt-sm="center center", layout-align-sm="center center", layout-margin)
-        div(flex="95", flex-sm="100", layout="column")
+        div(flex="95", flex-sm="100",flex-xs="100" layout="column")
             h2.md-display-2.font-header Perfil
-            div(layout="row")
-                div(layout="row", flex="30" flex-sm="35").profile-img-container
+            div(layout="row", layout-xs="column" flex-xs="100").img-container
+                div(layout="row", flex="30" flex-sm="35", flex-xs="100").profile-img-container
                     input(id="fileInput" name="file" type="file" class="ng-hide")
                     md-button(id="uploadButton" upload-btn aria-label="Upload button").img-upload-btn
                         img(layout="column" id="userProfileImg" ng-src="{{imgFolder}}"
                         alt="{{imgFolder}}").profile-img
-                div(layout="column")
-                    h2.md-display-1.no-bottom Información Personal
+                div(layout="column", flex-xs="100")
+                    h2(show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-display-1.no-bottom Información Personal
+                    h2(show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-display-1.no-bottom Información
                     ul.user-info-list
                         li
                             p Nombre: {{ usAccVm.user.name }}
@@ -39,30 +40,33 @@ div(ng-controller="UserAccountController as usAccVm" ng-init="usAccVm.getUser()"
                             p Apellidos: {{ usAccVm.user.lname }}
                         li
                             p Nivel Cuenta: {{ usAccVm.account.role}}
-            blockquote.align-img
+            blockquote(hide-xs).align-img
                 p Pulsa sobre la imagen si quieres actualizar tu foto de perfil. Podrás cambiar tu foto de perfil, tantas veces como quieras.
-            div(layout="column")
+            div(layout="column", flex-xs="100")
                 form(novalidate, name="accountForm",ng-submit="accountForm.cpass.$valid && accountForm.npass.$valid && usAccVm.updateAccount(usAccVm.account,accountForm,ev)")
-                    h2.md-headline Contraseña
-                    md-input-container(flex="50" flex-sm="70").md-block
+                    h2.md-headline.pass-header Contraseña
+                    md-input-container(flex="50" flex-sm="70", flex-xs="100").md-block
                         label Contraseña Actual
                         input(required='', name='cpass', ng-model='usAccVm.acc.current', type="password")
                         div(ng-messages='accountForm.cpass.$error' ng-show="accountForm.$submitted || accountForm.cpass.$touched")
                             div(ng-message='required').required-opass El campo es obligatorio.
-                    md-input-container(flex="50" flex-sm="70").md-block
+                    md-input-container(flex="50" flex-sm="70",flex-xs="100").md-block
                         label Contraseña Nueva
                         input(required='', name='npass', ng-model='usAccVm.account.pass', type="password"
                         ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z]).{6}/")
-                        .hint(ng-if="!accountForm.npass.$touched && !accountForm.$submitted") Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
+                        .hint(ng-if="!accountForm.npass.$touched && !accountForm.$submitted", hide-xs) Deberá tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
                         div(ng-messages='accountForm.npass.$error' ng-show="accountForm.$submitted || accountForm.npass.$touched")
                             div(ng-message='required').required-npass El campo es obligatorio.
-                            div(ng-show="accountForm.npass.$error.pattern").input-error.pattern-pass La contraseña no es correcta.
-                    md-input-container(flex="50", flex-sm="70" layout="column").md-block
+                            div(ng-show="accountForm.npass.$error.pattern", show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).input-error.pattern-pass La contraseña no es correcta.
+                            div(ng-show="accountForm.npass.$error.pattern", show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).input-error.pattern-pass Debe tener un mínimo de 6 caracteres, 1 mayúsucula, 1 minísucla y un dígito.
+                    md-input-container(flex="50", flex-sm="70" layout="column", flex-xs="100").md-block
                         h2.md-headline Nivel Cuenta
                         p Podras cambiar tu nivel de cuenta entre <strong>Propietario</strong> y <strong> Usuario</strong>
                         md-checkbox(ng-model='usAccVm.account.role', aria-label='Account Level',
                         ng-true-value="'Propietario'", ng-false-value="'Usuario'", flex='', name="account-level") {{ usAccVm.account.role }}
-                    md-input-container(flex="50", layout="column").md-block
+                    md-input-container(flex="50", flex-xs="100" layout="column", show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-block
+                        md-button(type="submit")#update_acc.md-raised.md-primary Actualizar
+                    md-input-container(flex="50", flex-xs="100" layout="column", show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl)
                         md-button(type="submit")#update_acc.md-raised.md-primary Actualizar
 
 include footer
