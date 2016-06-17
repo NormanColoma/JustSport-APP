@@ -188,16 +188,21 @@ angular
         function getEstabs(ev){
             if(loginService.isLoggedIn()) {
                 backOfficeEstabService.getEstabs(vm.after).then(angular.bind(this, function (data) {
-                    vm.after = data.paging.cursors.after;
-                    for(var i=0;i<data.Establishments.length;i++){
-                        for(var j=0;j<vm.estabs.length;j++){
-                            if(vm.estabs[j].name === data.Establishments[i].name){
-                                data.Establishments.splice(i,1);
+                    if(data.message === "An error occurred"){
+                        vm.estabs = [];
+                        vm.view = 'listEstabs';
+                    }else {
+                        vm.after = data.paging.cursors.after;
+                        for (var i = 0; i < data.Establishments.length; i++) {
+                            for (var j = 0; j < vm.estabs.length; j++) {
+                                if (vm.estabs[j].name === data.Establishments[i].name) {
+                                    data.Establishments.splice(i, 1);
+                                }
                             }
                         }
+                        vm.estabs = vm.estabs.concat(data.Establishments);
+                        vm.view = 'listEstabs';
                     }
-                    vm.estabs = vm.estabs.concat(data.Establishments);
-                    vm.view = 'listEstabs';
                 }));
             }
         }

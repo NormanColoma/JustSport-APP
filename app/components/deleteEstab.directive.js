@@ -17,6 +17,7 @@ function deleteEstab($mdDialog,backOfficeEstabService) {
 
     function linkFunc(scope, el, attr, ctrl,ev) {
         el.on('click', function(){
+            console.log("me ha clickado");
             var id = parseInt(attr.name);
             var confirm = $mdDialog.confirm()
                 .title('¿Quieres eliminar el establecimiento?')
@@ -26,7 +27,12 @@ function deleteEstab($mdDialog,backOfficeEstabService) {
                 .ok('Eliminar')
                 .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
-                var estab = $("#estab-"+id);
+                var estab = null;
+                if(attr.id === "delete-estab") {
+                    estab = $("#estab-" + id);
+                }else{
+                    estab = $("#estab-" + id + "-m");
+                }
                 backOfficeEstabService.deleteEstablishment(id).then(function(data){
                     if(data === true)
                         estab.fadeOut("normal", function() { $(this).remove(); } );
