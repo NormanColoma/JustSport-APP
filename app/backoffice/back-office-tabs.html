@@ -2,7 +2,7 @@
     <md-tab label="Establecimietos">
         <md-content class="md-padding">
             <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-display-2 est-t">Mis Establecimietos</h1>
-            <p ng-show="backOEstVM.view == 'listEstabs'">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
+            <p ng-show="backOEstVM.view == 'listEstabs' && backOEstVM.estabs.length > 0">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
             <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-display-2 add-t">Añadir Establecimiento</h1>
             <p ng-show="backOEstVM.view == 'addEstab'">Complete los campos con la información sobre su nuevo establecimiento. Después dale al botón <strog>Añadir</strog>.</p>
             <h1 ng-show="backOEstVM.view == 'assocSp'" class="md-display-2 impart-t">Impartir Deportes</h1>
@@ -58,7 +58,7 @@
         </md-tab-label>
         <md-tab-body class="md-padding">
             <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-headline est-t">Mis Establecimietos</h1>
-            <p class="md-body-1" ng-show="backOEstVM.view == 'listEstabs'">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
+            <p class="md-body-1" ng-show="backOEstVM.view == 'listEstabs' && backOEstVM.estabs.length > 0">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
             <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-headline add-t">Añadir Establecimiento</h1>
             <p class="md-body-1" ng-show="backOEstVM.view == 'addEstab'">Complete los campos con la información sobre su nuevo establecimiento. Después dale al botón <strog>Añadir</strog>.</p>
             <h1 ng-show="backOEstVM.view == 'assocSp'" class="md-headline impart-t">Impartir Deportes</h1>
