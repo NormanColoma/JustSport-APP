@@ -8,8 +8,8 @@ div(ng-controller="BackOfficeEstabController as backOEstVM" ng-init="backOEstVM.
             span(flex='')
             md-button(aria-label='Login',ng-show="!loginVm.loggedIn")
                 a(href='/account/#/login').md-body-1 Login
-            md-button(aria-label='Login',ng-show="loginVm.loggedIn").md-icon-button
-                a(ng-click="loginVm.openMenu()").md-body-1.clickable.account-options Mi cuenta
+            md-button(aria-label='Login',ng-show="loginVm.loggedIn")
+                a(ng-click="loginVm.openMenu()") Mi cuenta
         div(show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
             md-button(aria-label='Home', ng-href="'/'").md-primary
                 | Just Sport

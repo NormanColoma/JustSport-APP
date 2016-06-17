@@ -161,6 +161,7 @@ angular
                 .catch(getEstsFailed);
 
             function getEstsSuccess(data){
+                console.log("entro");
                 estabs = data.Establishments;
                 var ests = [];
                 for(var i=0;i<estabs.rows.length;i++){

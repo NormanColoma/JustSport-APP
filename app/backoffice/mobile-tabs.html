@@ -1,6 +1,8 @@
 <link rel="stylesheet" type="text/css" href="public/stylesheets/back-office-estabs.css">
 <md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container" ng-show="backOEstVM.view == 'listEstabs'" ng-cloak>
-    <div class="est-owner-container" flex="33" flex-sm="100" flex-xs="100" ng-repeat="item in backOEstVM.estabs" id="estab-{{item.id}}">
+    <p class="md-body-1" ng-show="backOEstVM.estabs.length == 0">Todavía no has añadido ningún establecimiento.</p>
+    <div class="est-owner-container" flex="33" flex-sm="100" flex-xs="100" ng-repeat="item in backOEstVM.estabs"
+         id="estab-{{item.id}}-m">
         <md-card>
             <img ng-src="{{backOEstVM.imgFolder+item.main_img}}" class="md-card-image md-card-image-{{item.id}}" alt="{{backOEstVM.imgFolder+item.main_img}}" src="{{backOEstVM.imgFolder+item.main_img}}">
             <md-card-title>
@@ -14,7 +16,7 @@
             <md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
                 <md-divider></md-divider>
                 <md-button delete-estab class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
-                           id="delete-estab"  name="{{item.id}}">
+                           id="delete-estab-m"  name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/delete.svg" aria-hidden="true" id="est-delete-{{item.id}}"></md-icon>
                     <md-tooltip md-direction="top">
                         Eliminar {{item.name}}
