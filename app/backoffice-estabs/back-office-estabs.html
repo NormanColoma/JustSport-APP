@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="public/stylesheets/back-office-estabs.css">
 <md-content layout="row" layout-sm="column" layout-wrap id="establishments-list-container" ng-show="backOEstVM.view == 'listEstabs'" ng-cloak>
-    <div class="est-owner-container" flex="33" hide-sm hide-xs ng-repeat="item in backOEstVM.estabs" id="estab-{{item.id}}">
+    <div class="est-owner-container" flex="33" flex-sm="100" flex-xs="100" ng-repeat="item in backOEstVM.estabs" id="estab-{{item.id}}">
         <md-card>
             <img ng-src="{{backOEstVM.imgFolder+item.main_img}}" class="md-card-image md-card-image-{{item.id}}" alt="{{backOEstVM.imgFolder+item.main_img}}" src="{{backOEstVM.imgFolder+item.main_img}}">
             <md-card-title>

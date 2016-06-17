@@ -1,12 +1,16 @@
 <md-content layout="row" layout-sm="column" layout-wrap  id="add-course-container" ng-show="coursesVM.addView" flex="100">
-    <h1 class="md-display-2">Añadir Curso</h1>
-    <p>Desde aquí podrás añadir un curso. Ten en cuenta que antes de poder añadir un curso, deberás seleccionar los deportes
+    <h1 show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs class="md-display-2">Añadir Curso</h1>
+    <p show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs>Desde aquí podrás añadir un curso. Ten en cuenta que antes de poder añadir un curso, deberás seleccionar los deportes
     que se impartirán en cada <strong>Establecimiento</strong>, para posteriormente, poder seleccionarlos en los
+        <strong>Cursos</strong></p>
+    <h1 hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs class="md-headline">Añadir Curso</h1>
+    <p hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs class="md-body-1">Desde aquí podrás añadir un curso. Ten en cuenta que antes de poder añadir un curso, deberás seleccionar los deportes
+        que se impartirán en cada <strong>Establecimiento</strong>, para posteriormente, poder seleccionarlos en los
         <strong>Cursos</strong></p>
     <form name="addCourseForm" layout="row" layout-wrap flex="100" novalidate
           ng-submit="addCourseForm.cinfo.$valid && addCourseForm.cins.$valid && addCourseForm.cprice.$valid
                && addCourseForm.csp.$valid && addCourseForm.cest.$valid && coursesVM.addCourse(coursesVM.newCourse,ev,addCourseForm)">
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100">
             <label>Información del Curso (Breve descripción del curso)</label>
             <input required="" name="cinfo" ng-model="coursesVM.newCourse.info" flex="100">
             <div ng-messages="addCourseForm.cinfo.$error" ng-show="addCourseForm.cinfo.$touched || addCourseForm.$submitted">
@@ -14,7 +18,7 @@
             </div>
         </md-input-container>
         <div flex="5"></div>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100">
             <label>¿Quién es el instructor?</label>
             <input required="" name="cins" ng-model="coursesVM.newCourse.instructor" flex="100"
                    ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i"/>
@@ -24,7 +28,7 @@
                     Solo admite caracteres alfanuméricos.</div>
             </div>
         </md-input-container>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100">
             <label>¿En qué establecimiento quieres añadirlo?</label>
             <md-select ng-model="coursesVM.newCourse.establishmentId" flex="100" id="list-add-ests"
                        md-on-close="backOEstVM.getSports(coursesVM.newCourse.establishmentId)" required name="cest">
@@ -35,7 +39,7 @@
             </div>
         </md-input-container>
         <div flex="5"></div>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100">
             <label>¿Qué deporte impartirá?</label>
             <md-select ng-model="coursesVM.newCourse.sportId" flex="100" id="list-add-sports" required name="csp">
                 <md-option ng-repeat="sp in backOEstVM.currentSports" value="{{sp.id}}">{{sp.name}}</md-option>
@@ -44,7 +48,7 @@
                 <div ng-message="required" class="input-error" name="rsp">El deporte es obligatorio.</div>
             </div>
         </md-input-container>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100">
             <label>Precio del curso</label>
             <input required="" name="cprice" ng-model="coursesVM.newCourse.price" flex="100" type="number" min="1">
             <div ng-messages="addCourseForm.cprice.$error" ng-show="addCourseForm.cprice.$touched || addCourseForm.$submitted">

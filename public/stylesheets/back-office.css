@@ -5,3 +5,12 @@ backoffice-tabs{
 .add-btn{
     margin-top: 30px;
 }
+
+@media screen and (min-width: 0px) and (max-width: 599px){
+    .est-owner-container md-card img {
+        height: 225px;
+    }
+    .est-owner-container md-card md-card-title {
+        padding: 10px 16px 5px;
+    }
+}

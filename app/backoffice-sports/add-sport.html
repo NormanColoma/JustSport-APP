@@ -1,7 +1,7 @@
 <md-content layout="row" layout-sm="column" layout-wrap  id="sports-add-container" ng-controller="BackOfficeSportController as sportVM">
     <form name="addSportForm" layout="row" layout-wrap flex="100" novalidate
           ng-submit="addSportForm.sport_name.$valid && sportVM.addSport(sportVM.sp.name,addSportForm,ev)">
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100">
             <label>Nombre del Deporte</label>
             <input required="" name="sport_name" ng-model="sportVM.sp.name" flex="100"
                    ng-pattern="/^([ \u00c0-\u01ffa-zA-Z'\-])+$/i"/>
@@ -10,7 +10,12 @@
                 <div ng-show="addSportForm.sport_name.$error.pattern" class="input-error" name="pname">El nombre del deporte solo puede contener letras.</div>
             </div>
         </md-input-container>
-        <md-input-container class="md-block" flex="100">
+        <md-input-container show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs class="md-block" flex="100">
+            <md-button type="submit" class="md-raised md-primary" id="add-sport-btn" name="add-sport-btn">
+                Añadir
+            </md-button>
+        </md-input-container>
+        <md-input-container hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs layout="column" flex="100">
             <md-button type="submit" class="md-raised md-primary" id="add-sport-btn" name="add-sport-btn">
                 Añadir
             </md-button>
