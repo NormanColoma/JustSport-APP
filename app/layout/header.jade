@@ -8,6 +8,7 @@ html(ng-app="justSportTest")
         link(rel="stylesheet",href="/public/stylesheets/style.css")
         link(href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300', rel='stylesheet', type='text/css')
         link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
     body(ng-controller="LoginController as loginVm" ng-init="loginVm.isLoggedIn()" ng-show="!loginVm.stop" ng-cloak)
             md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right', layout="column")
                 md-toolbar.md-theme-light

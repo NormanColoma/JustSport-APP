@@ -3,7 +3,7 @@
           ng-submit="addEstabForm.ename.$valid && addEstabForm.ephone.$valid &&
           addEstabForm.ecity.$valid && addEstabForm.eprovince.$valid && addEstabForm.eaddr.$valid
           && addEstabForm.eweb.$valid && addEstabForm.edesc.$valid && backOEstVM.addEstablishment(backOEstVM.estab,ev,addEstabForm)">
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-md="100" flex-xs="100">
             <label>Nombre del Establecimiento</label>
             <input required="" name="ename" ng-model="backOEstVM.estab.name" flex="100"
                    ng-pattern="/^([ \u00c0-\u01ffa-zA-Z-0-9'\-])+$/i"/>
@@ -13,7 +13,7 @@
             </div>
         </md-input-container>
         <div flex="5"></div>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-md="100" flex-xs="100">
             <label>Teléfono</label>
             <input required="" name="ephone" ng-model="backOEstVM.estab.phone" flex="100" type="tel"
                    ng-pattern="/^[9|6|7|8][0-9]{8}$/"/>
@@ -22,7 +22,7 @@
                 <div ng-show="addEstabForm.ephone.$error.pattern" class="input-error" name="pphone">El teléfono no es correcto.</div>
             </div>
         </md-input-container>
-        <md-autocomplete flex="40" md-selected-item="backOEstVM.selectedItem" md-search-text="backOEstVM.searchText"
+        <md-autocomplete flex="40" flex-md="100" flex-xs="100" md-selected-item="backOEstVM.selectedItem" md-search-text="backOEstVM.searchText"
                          md-items="item in backOEstVM.querySearch(backOEstVM.searchText)" md-item-text="item"
                          md-floating-label="¿En qué ciudad se encuentra el establecimiento?" md-input-name="ecity"
                          ng-model="backOEstVM.estab.city" md-selected-item-change="backOEstVM.searchCityChange(backOEstVM.searchText)" required="">
@@ -33,7 +33,7 @@
             </div>
         </md-autocomplete>
         <div flex="5"></div>
-        <md-autocomplete flex="40" md-selected-item="backOEstVM.selectedItemProvince" md-search-text="backOEstVM.searchTextProvince"
+        <md-autocomplete flex="40" flex-md="100" flex-xs="100" md-selected-item="backOEstVM.selectedItemProvince" md-search-text="backOEstVM.searchTextProvince"
                          md-items="item in backOEstVM.querySearch(backOEstVM.searchTextProvince)" md-item-text="item"
                          md-floating-label="¿A qué provincia pertenece la ciudad?" md-input-name="eprovince"
                          ng-model="backOEstVM.estab.province" md-selected-item-change="backOEstVM.searchProvinceChange(backOEstVM.searchTextProvince)" required="">
@@ -57,14 +57,19 @@
                 <div ng-message="required" class="input-error" name="rdesc">La descripción es obligatoria.</div>
             </div>
         </md-input-container>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" flex-md="100" flex-xs="100">
             <label>¿El establecimiento tiene sitio web?</label>
             <input name="eweb" ng-model="backOEstVM.estab.website" flex="100" type="url"/>
             <div ng-messages="addEstabForm.eweb.$error" ng-show="addEstabForm.eweb.$touched || addEstabForm.$submitted">
                 <div ng-show="addEstabForm.$error.url" class="input-error" name="purl">La url del sitio web no es correcta.</div>
             </div>
         </md-input-container>
-        <md-input-container class="md-block" flex="100">
+        <md-input-container show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs class="md-block" flex="100">
+            <md-button type="submit" class="md-raised md-primary" id="add-est-btn" name="add-est-btn">
+                Añadir
+            </md-button>
+        </md-input-container>
+        <md-input-container hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs layout="column" flex="100">
             <md-button type="submit" class="md-raised md-primary" id="add-est-btn" name="add-est-btn">
                 Añadir
             </md-button>

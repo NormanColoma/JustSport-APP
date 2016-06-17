@@ -1,4 +1,4 @@
-<md-tabs md-dynamic-height md-border-bottom ng-cloak>
+<md-tabs show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs md-dynamic-height md-border-bottom ng-cloak>
     <md-tab label="Establecimietos">
         <md-content class="md-padding">
             <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-display-2 est-t">Mis Establecimietos</h1>
@@ -48,5 +48,70 @@
             comenzar a impartir sus cursos.</p>
             <add-sport></add-sport>
         </md-content>
+    </md-tab>
+</md-tabs>
+
+<md-tabs hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs md-dynamic-height md-border-bottom ng-cloak>
+    <md-tab>
+        <md-tab-label>
+            <i class="material-icons">store_mall_directory</i>
+        </md-tab-label>
+        <md-tab-body class="md-padding">
+            <h1 ng-show="backOEstVM.view == 'listEstabs'" class="md-headline est-t">Mis Establecimietos</h1>
+            <p class="md-body-1" ng-show="backOEstVM.view == 'listEstabs'">Desde aquí podrás ver la información de los establecimientos que tienes, modificar la información o eliminarlos. También podrás añadir un nuevo cuando quieras.</p>
+            <h1 ng-show="backOEstVM.view == 'addEstab'" class="md-headline add-t">Añadir Establecimiento</h1>
+            <p class="md-body-1" ng-show="backOEstVM.view == 'addEstab'">Complete los campos con la información sobre su nuevo establecimiento. Después dale al botón <strog>Añadir</strog>.</p>
+            <h1 ng-show="backOEstVM.view == 'assocSp'" class="md-headline impart-t">Impartir Deportes</h1>
+            <blockquote ng-show="backOEstVM.view == 'assocSp'">
+                <p class="md-body-1">Desde aquí podrás seleccionar los deportes que deseas impartir en el establecimiento. Por defecto, se te mostrarán los que ya
+                    estás impartiendo actualmente (si lo estás haciendo). Será necesario que selecciones los deportes que se impartirán en el establecimiento,
+                    antes de poner añadir un <strong>Curso</strong> al mismo</p>
+            </blockquote>
+            <h1 ng-show="backOEstVM.view == 'updateEstab'" class="md-headline update-t">Actualizar Establecimiento</h1>
+            <blockquote ng-show="backOEstVM.view == 'updateEstab'">
+                <p class="md-body-1">Desde aquí podrás actualizar la información del Establecimiento. Por defecto, se te mostrará, la información que
+                    actualmente has proporcionado para el Establecimiento en cuestión.</p>
+            </blockquote>
+            <backoffice-estabs></backoffice-estabs>
+            <md-button scroll-to ng-show="backOEstVM.view == 'listEstabs'" class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addEst"  ng-click="backOEstVM.changeView('addEstab')" name="add-est">
+                <md-icon md-svg-icon="public/images/icons/add.svg" aria-hidden="true""></md-icon>
+                <md-tooltip md-direction="right">
+                    Añadir Establecimiento
+                </md-tooltip>
+            </md-button>
+            <md-button scroll-to  ng-show="backOEstVM.view == 'addEstab' || backOEstVM.view == 'assocSp' || backOEstVM.view == 'updateEstab'" class="md-fab md-default add-btn" aria-label="Añadir Nuevo" id="listEst"  ng-click="backOEstVM.changeView('listEstabs')" name="list-est">
+                <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
+                <md-tooltip md-direction="right">
+                    Volver a Lista
+                </md-tooltip>
+            </md-button>
+        </md-tab-body>
+    </md-tab>
+    <md-tab>
+        <md-tab-label>
+            <i class="material-icons">list</i>
+        </md-tab-label>
+        <md-tab-body class="md-padding">
+            <list-courses></list-courses>
+        </md-tab-body>
+    </md-tab>
+    <md-tab>
+        <md-tab-label>
+            <i class="material-icons">event_note</i>
+        </md-tab-label>
+        <md-tab-body class="md-padding">
+            <list-schedule></list-schedule>
+        </md-tab-body>
+    </md-tab>
+    <md-tab>
+        <md-tab-label>
+            <i class="material-icons">fitness_center</i>
+        </md-tab-label>
+        <md-tab-body class="md-padding">
+            <h1 class="md-headline">Deportes</h1>
+            <p class="md-body-1">¿No has encontrado el deporte que quieres impartir en tu establecimento?. Desde aquí podrás añadirlo, y posteriomente,
+                comenzar a impartir sus cursos.</p>
+            <add-sport></add-sport>
+        </md-tab-body>
     </md-tab>
 </md-tabs>
