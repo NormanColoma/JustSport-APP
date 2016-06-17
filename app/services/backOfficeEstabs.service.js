@@ -131,9 +131,11 @@ angular
             function getEstsSuccess(data){
                 estabs = data.Establishments;
                 var ests = [];
+                courses = [];
                 for(var i=0;i<estabs.rows.length;i++){
                     var est = {id: estabs.rows[i].id, name: estabs.rows[i].name};
                     var c = {establishmentId:estabs.rows[i].id, rows: estabs.rows[i].Courses};
+                    console.log(courses);
                     ests.push(est);
                     courses.push(c);
                 }
