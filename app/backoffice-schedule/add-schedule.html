@@ -1,6 +1,7 @@
 <md-content layout="row" layout-sm="column" layout-wrap  id="establishments-add-schedule-container" flex="100"
             ng-show="coursesVM.addSchedView">
-    <h1 class="md-display-2">Añadir Nueva Hora</h1>
+    <h1 show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs class="md-display-2">Añadir Nueva Hora</h1>
+    <h1 hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs class="md-headline">Añadir Nueva Hora</h1>
     <form name="addScheduleForm" novalidate layout="row" layout-wrap flex="100"
           ng-submit="addScheduleForm.sday.$valid && addScheduleForm.sstar.$valid && addScheduleForm.send.$valid &&
         coursesVM.addSchedule(coursesVM.newSchedule,addScheduleForm,ev)">
@@ -22,7 +23,7 @@
         </md-input-container>
         <md-input-container class="md-block" flex="100">
             <label>Inicio (La hora de inicio de la clase p.ej 10:00)</label>
-            <input required="" name="sstar" ng-model="coursesVM.newSchedule.startTime" flex="40"
+            <input required="" name="sstar" ng-model="coursesVM.newSchedule.startTime" flex="40" flex-sm="100" flex-xs="100"
                    ng-pattern="/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/"/>
             <div ng-messages="addScheduleForm.sstar.$error" ng-show="addScheduleForm.sstar.$touched || addScheduleForm.$submitted">
                 <div ng-message="required" class="input-error" name="rstart">La hora de incio es obligatoria.</div>
@@ -34,7 +35,7 @@
         <div flex="5"></div>
         <md-input-container class="md-block" flex="100">
             <label>Final (La hora en que termina la clase p.ej 11:00)</label>
-            <input required="" name="send" ng-model="coursesVM.newSchedule.endTime" flex="40"
+            <input required="" name="send" ng-model="coursesVM.newSchedule.endTime" flex="40" flex-sm="100" flex-xs="100"
                    ng-pattern="/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/"/>
             <div ng-messages="addScheduleForm.send.$error" ng-show="addScheduleForm.send.$touched || addScheduleForm.$submitted">
                 <div ng-message="required" class="input-error" name="rstart">La hora de finalicación es obligatoria.</div>
@@ -43,7 +44,12 @@
                 </div>
             </div>
         </md-input-container>
-        <md-input-container class="md-block" flex="100">
+        <md-input-container show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs  class="md-block" flex="100">
+            <md-button type="submit" class="md-raised md-primary" id="add-schedule-btn" name="add-schedule-btn">
+                Añadir
+            </md-button>
+        </md-input-container>
+        <md-input-container hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs layout="column" flex="100">
             <md-button type="submit" class="md-raised md-primary" id="add-schedule-btn" name="add-schedule-btn">
                 Añadir
             </md-button>

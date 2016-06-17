@@ -3,7 +3,7 @@
     <form novalidate name="estSpForm" ng-submit="backOEstVM.associateSport(backOEstVM.id,backOEstVM.selectedSports,ev)">
         <md-chips ng-model="backOEstVM.selectedSports" md-autocomplete-snap
                   md-transform-chip="spList.transformChip($chip)" md-require-match="true"
-                  class="chipsdemoCustomInputs" flex="70">
+                  class="chipsdemoCustomInputs" flex="70" flex-md="100" flex-xs="100">
             <md-autocomplete
                     md-selected-item="spList.selectedItem"
                     md-search-text="spList.searchText"
@@ -19,7 +19,13 @@
             </md-chip-template>
             <md-chip ng-repeat="sp in backOEstVM.currentSports">{{sp.name}}</md-chip>
         </md-chips>
-        <md-input-container class="md-block" flex="40">
+        <md-input-container class="md-block" flex="40" show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl hide-sm hide-xs>
+            <md-button class="md-raised md-primary"
+                       id="assoc-sp-btn" type="submit">
+                Impartir
+            </md-button>
+        </md-input-container>
+        <md-input-container flex="100" layout="column" hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs>
             <md-button class="md-raised md-primary"
                        id="assoc-sp-btn" type="submit">
                 Impartir
