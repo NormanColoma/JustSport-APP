@@ -47,7 +47,7 @@ angular
         vm.searchProvinceChange = searchProvinceChange;
         vm.selectedEst = null;
         vm.sports = [];
-        vm.view = 'listEstabs';
+        vm.view = 'none';
         vm.updateEstab = updateEstab;
 
 
@@ -197,6 +197,7 @@ angular
                         }
                     }
                     vm.estabs = vm.estabs.concat(data.Establishments);
+                    vm.view = 'listEstabs';
                 }));
             }
         }
