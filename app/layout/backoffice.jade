@@ -18,7 +18,7 @@ div(ng-controller="BackOfficeEstabController as backOEstVM" ng-init="backOEstVM.
                 md-icon(md-svg-icon='./public/images/icons/account.svg')
             md-button(aria-label='More',ng-show="!loginVm.loggedIn" ng-href="/account/")
                 | Login
-    div(id="preload", ng-show="backOEstVM.preload" hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs)
+    div(id="preload", ng-show="backOEstVM.preload" hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl hide-sm show-xs)
         div(layout='row', layout-align="center center").block
             p.md-body-2 Cargando establecimientos
         div(layout='row', layout-sm='column', layout-align='space-around')
