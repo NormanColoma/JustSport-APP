@@ -205,7 +205,7 @@ angular
                         vm.view = 'listEstabs';
                         return $timeout(function() {
                             vm.preload = false;
-                        }, 250);
+                        }, 150);
                     }
                 }));
             }
