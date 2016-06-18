@@ -2,6 +2,24 @@
     display: none !important;
 }
 
+#preload{
+    position: absolute;
+    width: 100%;
+    background-color: #2b2929;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 9999;
+}
+
+#preload p{
+    color: white;
+}
+
+#preload .block{
+    margin-top: 50%;
+}
+
+
 backoffice-tabs{
     background-color: inherit;
 }

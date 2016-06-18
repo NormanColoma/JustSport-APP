@@ -10,7 +10,7 @@ angular
     .controller('BackOfficeEstabController', BackOfficeEstabController);
 
     BackOfficeEstabController.$inject = ['backOfficeEstabService', 'dialogService', 'loginService','citySuggestionsService',
-        'formResetService', 'backOfficeSportService'];
+        'formResetService', 'backOfficeSportService', '$timeout'];
 
     /**
     *
@@ -20,7 +20,7 @@ angular
     *
     */
     function BackOfficeEstabController(backOfficeEstabService, dialogService, loginService, citySuggestionsService,
-                                       formResetService, backOfficeSportService) {
+                                       formResetService, backOfficeSportService, $timeout) {
         var vm = this;
 
         var local_folder = "https://localhost:3000/";
@@ -41,6 +41,7 @@ angular
         vm.getSports = getSports;
         vm.id = 0;
         vm.imgFolder = server+"public/images/ests/";
+        vm.preload = true;
         vm.querySearch = querySearch;
         vm.selectedSports = [];
         vm.searchCityChange = searchCityChange;
@@ -202,6 +203,9 @@ angular
                         }
                         vm.estabs = vm.estabs.concat(data.Establishments);
                         vm.view = 'listEstabs';
+                        return $timeout(function() {
+                            vm.preload = false;
+                        }, 250);
                     }
                 }));
             }
