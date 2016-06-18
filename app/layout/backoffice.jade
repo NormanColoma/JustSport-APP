@@ -21,7 +21,7 @@ div(ng-controller="BackOfficeEstabController as backOEstVM" ng-init="backOEstVM.
     div(id="preload", ng-show="backOEstVM.preload" hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl hide-sm show-xs)
         div(layout='row', layout-align="center center").block
             p.md-title Cargando establecimientos...
-        md-button.md-fab.btn_pre
+        md-button(aria-label="preload btn").md-fab.btn_pre
             div(layout='row', layout-sm='column', layout-align='space-around')
                 md-progress-circular(md-mode='indeterminate')
     div(ng-show="!backOEstVM.preload", md-content, layout="row", layout-align-gt-sm="center center", layout-align-sm="center center" layout-margin)

@@ -233,3 +233,15 @@ md-sidenav md-content{
 md-menu span{
   padding: 0px !important;
 }
+
+.sidenav-toolbar{
+
+}
+
+.sidenav-toolbar  md-list-item .md-avatar, md-list-item .md-list-item-inner .md-avatar {
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}

@@ -16,9 +16,13 @@ html(ng-app="justSport")
         }
     body(ng-controller="LoginController as loginVm" ng-init="loginVm.isLoggedIn()" ng-show="!loginVm.stop" ng-cloak)
             md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right', layout="column")
-                md-toolbar.md-theme-light
-                    h3(style="margin-bottom: 0px;margin-left:15px;").md-headline Mi Cuenta
-                    p(style="margin-left:15px;margin-bottom:15px;").md-caption {{loginVm.name}}
+                md-toolbar.md-theme-light.sidenav-toolbar
+                    md-list
+                        md-list-item
+                            .md-list-item-text(layout='column')
+                                h3(style="margin-bottom: 0px;margin-left:15px;").md-headline {{loginVm.name}}
+                                h4(style="margin-left:15px;margin-bottom:15px;").md-caption {{loginVm.lname}}
+                            img(layout-align="right").md-avatar(ng-src='{{loginVm.img}}', alt='{{loginVm.img}}')
                 md-menu
                     md-menu-content(width='4')
                         md-menu-item

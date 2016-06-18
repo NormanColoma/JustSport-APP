@@ -6,22 +6,27 @@ angular
     .module('loginModule')
     .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['loginService', '$window','$location', 'dialogService', '$mdSidenav', 'redirectService'];
+    LoginController.$inject = ['loginService', '$window','$location', 'dialogService', '$mdSidenav', 'redirectService','userAccountService'];
 
     /**
     * @namespace LoginController
     * @desc Manages the log in/log out of user into the application
     * @memberOf LoginController
     */
-    function LoginController(loginService, $window, $location,dialogService, $mdSidenav, redirectService){
+    function LoginController(loginService, $window, $location,dialogService, $mdSidenav, redirectService,userAccountService){
         var vm = this;
         var base_api = 'https://justsport-api.herokuapp.com/api/';
         var url = $location.protocol()+"://"+$location.host()+":"+$location.port()+"/";
+        var local_folder = "https://localhost:3000/";
+        var server_folder = "https://justsport-api.herokuapp.com/";
+        var server = server_folder;
 
         if($location.host() === 'server')
             url = base_api;
 
         vm.checkToken = checkToken;
+        vm.lname = null;
+        vm.img= server+"public/images/users/";
         vm.isLoggedIn = isLoggedIn;
         vm.loggedIn = false;
         vm.login = login;
@@ -33,7 +38,6 @@ angular
         vm.reload = true;
         vm.role = null;
         vm.stop = false;
-
 
         /**
          * @name checkToken
@@ -60,6 +64,8 @@ angular
                 vm.loggedIn = true;
                 vm.name= localStorage.username;
                 vm.role = localStorage.role;
+                vm.img = localStorage.img;
+                vm.lname = localStorage.lname;
                 if(redirectService.checkRedirect($location.url(), $location.absUrl(), vm.loggedIn, vm.role)){
                     vm.stop = true;
                     if(vm.reload)
@@ -105,6 +111,10 @@ angular
                         vm.loggedIn = true;
                         vm.name = data.username;
                         vm.role = data.role;
+                        userAccountService.getUser(data.user_id).then(function (user) {
+                            localStorage.setItem("img", vm.img+user.img);
+                            localStorage.setItem("lname", user.lname);
+                        });
                         if(vm.reload)
                             $window.location.href = url;
                     }
@@ -122,11 +132,15 @@ angular
             vm.loggedIn = false;
             vm.name = null;
             vm.role = null;
+            vm.img = null;
+            vm.lname = null;
             localStorage.removeItem("token");
             localStorage.removeItem("username");
             localStorage.removeItem("role");
             localStorage.removeItem("user_id");
             localStorage.removeItem("expires");
+            localStorage.removeItem("img");
+            localStorage.removeItem("lname");
             $mdSidenav('right').close();
             if(vm.reload)
                 $window.location.href = url;
