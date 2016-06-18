@@ -1,13 +1,12 @@
 include header
 md-toolbar
     div(show-gt-sm, show-md, show-gt-md, show-lg, show-gt-lg, show-xl,show-sm, hide-xs).md-toolbar-tools.layout-center
-        md-button(aria-label='More')
-            a(href='/') JustSport
+        md-button(aria-label='More', ng-href="/")
+            | JustSport
         span(flex='')
     div(ng-show="estDtVm.establishment == null", show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
-        md-button(aria-label='More')
-            a(href='/')
-                md-icon(md-svg-icon='./public/images/icons/arrow_back.svg')
+        md-button(aria-label='More' ng-href="/").md-icon-button
+            md-icon(md-svg-icon='./public/images/icons/arrow_back.svg')
         h2 JustSport
         span(flex='')
 link(rel="stylesheet",href="/public/stylesheets/login.css")

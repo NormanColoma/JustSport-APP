@@ -44,7 +44,6 @@ angular
         vm.sports = [];
         vm.updateCourse = updateCourse;
 
-        getFullEstabs();
 
         /**
          * @name addCourse
@@ -95,7 +94,8 @@ angular
             var dataDialog = {};
             data.courseId = vm.selectedCourse;
             backOfficeScheduleService.add(data).then(function(res){
-                if(res === true){
+                if(res){
+                    data.id = res;
                     vm.schedule.push(data);
                     vm.addSchedView = false;
                     dataDialog = {
@@ -184,6 +184,8 @@ angular
             for (var i = 0; i < vm.schedule.length; i++) {
                 if (vm.schedule[i].id === id) {
                     vm.schedule.splice(i,1);
+                    if(vm.schedule.length === 0)
+                        vm.emptySchedule = true;
                 }
             }
             dataDialog = {
@@ -245,8 +247,9 @@ angular
          * @returns {void}
          */
         function getFullEstabs(){
-            if(loginService.isLoggedIn()) {
-                backOfficeEstabService.getFullEsts().then(function(data){
+            console.log("entro");
+            if(vm.courses.length == 0) {
+                backOfficeEstabService.getFullEsts().then(function (data) {
                     vm.fullEstabs = data;
                     vm.courses = backOfficeEstabService.getCourses();
                 });
@@ -272,7 +275,6 @@ angular
                     }
                 }
             }
-            console.log(vm.emptySchedule);
         }
 
         /**
