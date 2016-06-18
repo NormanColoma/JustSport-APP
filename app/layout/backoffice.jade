@@ -3,7 +3,7 @@ link(rel="stylesheet" type="text/css" href="public/stylesheets/back-office.css")
 div(ng-controller="BackOfficeEstabController as backOEstVM" ng-init="backOEstVM.getEstabs(ev)" id="main_back_container")
     md-toolbar(ng-show="estDtVm.establishment == null")
         div(hide-sm, hide-xs).md-toolbar-tools.layout-center
-            md-button(aria-label='Home', ng-href="'/'").md-primary
+            md-button(aria-label='Home', ng-href="/").md-primary
                 | Just Sport
             span(flex='')
             md-button(aria-label='Login',ng-show="!loginVm.loggedIn")
@@ -11,7 +11,7 @@ div(ng-controller="BackOfficeEstabController as backOEstVM" ng-init="backOEstVM.
             md-button(aria-label='Login',ng-show="loginVm.loggedIn")
                 a(ng-click="loginVm.openMenu()") Mi cuenta
         div(show-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl).md-toolbar-tools.layout-center
-            md-button(aria-label='Home', ng-href="'/'").md-primary
+            md-button(aria-label='Home', ng-href="/").md-primary
                 | Just Sport
             span(flex='')
             md-button(aria-label='More',ng-show="loginVm.loggedIn").md-icon-button
