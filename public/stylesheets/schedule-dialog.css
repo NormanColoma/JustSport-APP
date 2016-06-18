@@ -2,6 +2,10 @@
     width: 600px;
 }
 
+.dialog-content md-content{
+    background-color: white !important;
+}
+
 .padding-content{
     padding: 20px;
 }
