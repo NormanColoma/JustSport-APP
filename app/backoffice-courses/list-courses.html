@@ -25,14 +25,14 @@
         <md-button scroll-to class="md-fab md-primary add-btn" aria-label="Añadir Nuevo" id="addCourse"
                    ng-click="coursesVM.addView=true" name="add-course" ng-show="!coursesVM.addView && coursesVM.selectedC == null">
             <md-icon md-svg-icon="public/images/icons/add.svg" aria-hidden="true""></md-icon>
-            <md-tooltip md-direction="right">
+            <md-tooltip show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl show-sm hide-xs md-direction="right">
                 Añadir Curso
             </md-tooltip>
         </md-button>
         <md-button scroll-to class="md-fab md-default add-btn" aria-label="Volver a Cursos" id="listCourses"
                    ng-click="coursesVM.backToList()" name="list-courses" ng-show="coursesVM.selectedC != null || coursesVM.addView">
             <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
-            <md-tooltip md-direction="right">
+            <md-tooltip show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl show-sm hide-xs md-direction="right">
                 Volver a lista de Cursos
             </md-tooltip>
         </md-button>
