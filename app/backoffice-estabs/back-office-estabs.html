@@ -16,7 +16,7 @@
                 <md-button delete-estab class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
                            id="delete-estab"  name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/delete.svg" aria-hidden="true" id="est-delete-{{item.id}}"></md-icon>
-                    <md-tooltip md-direction="top">
+                    <md-tooltip show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl show-sm hide-xs md-direction="top">
                         Eliminar {{item.name}}
                     </md-tooltip>
                     <p>{{estDel.status}}</p>
@@ -24,14 +24,14 @@
                 <md-button class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Eliminar"
                            id="impart-sport"  ng-click="backOEstVM.changeView('assocSp', item.id)" name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/add_s.svg" aria-hidden="true" id="est-add-sport-{{item.id}}"></md-icon>
-                    <md-tooltip md-direction="top">
+                    <md-tooltip show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl show-sm hide-xs md-direction="top">
                         Impartir deporte en {{item.name}}
                     </md-tooltip>
                 </md-button>
                 <md-button scroll-to class="md-icon-button md-button md-ink-ripple" type="button" aria-label="Actualizar"
                            id="update-estab"  ng-click="backOEstVM.changeView('updateEstab', item.id)" name="{{item.id}}">
                     <md-icon md-svg-icon="public/images/icons/edit.svg" aria-hidden="true" id="update-{{item.id}}"></md-icon>
-                    <md-tooltip md-direction="top">
+                    <md-tooltip show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl show-sm hide-xs md-direction="top">
                         Actualizar información
                     </md-tooltip>
                 </md-button>
@@ -39,7 +39,7 @@
                            id="update-img-estab"  ng-click="estDtVm.getEstablishment(item.id)" name="{{item.id}}">
                     <label for="img-estab-btn-{{item.id}}">
                         <md-icon md-svg-icon="public/images/icons/add_photo.svg" aria-hidden="true" id="update-img-{{item.id}}"></md-icon>
-                        <md-tooltip md-direction="top">
+                        <md-tooltip show-gt-sm show-md show-gt-md show-lg show-gt-lg show-xl show-sm hide-xs md-direction="top">
                             Cambiar imagen de perfil
                     </label>
                     </md-tooltip>
