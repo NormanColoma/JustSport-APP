@@ -272,7 +272,6 @@ angular
                     }
                 }
             }
-            console.log(vm.emptySchedule);
         }
 
         /**

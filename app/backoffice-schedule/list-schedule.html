@@ -54,7 +54,7 @@
             </md-tooltip>
         </md-button>
         <md-button class="md-fab md-default add-btn" aria-label="Volver a Cursos" id="listSchedule"
-                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0 || coursesVM.addSchedView">
+                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0 || coursesVM.addSchedView || coursesVM.emptySchedule">
             <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
             <md-tooltip md-direction="right">
                 Volver a selección de Horario
