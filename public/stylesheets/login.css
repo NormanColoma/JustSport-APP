@@ -45,7 +45,11 @@
 .margin-field{
     margin-top: 15px;
 }
-
+@media screen and (min-width: 600px) and (max-width: 959px){
+    md-progress-circular{
+        margin-left: 45%;
+    }
+}
 @media screen and (min-width: 0px) and (max-width: 599px){
     .login-title, .register-title{
         margin-bottom: 10px;
