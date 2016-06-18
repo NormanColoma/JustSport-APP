@@ -203,7 +203,9 @@ angular
                         }
                         vm.estabs = vm.estabs.concat(data.Establishments);
                         vm.view = 'listEstabs';
-                        vm.preload = false;
+                        return $timeout(function() {
+                            vm.preload = false;
+                        }, 250);
                     }
                 }));
             }
