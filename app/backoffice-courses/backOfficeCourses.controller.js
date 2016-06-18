@@ -44,7 +44,6 @@ angular
         vm.sports = [];
         vm.updateCourse = updateCourse;
 
-        getFullEstabs();
 
         /**
          * @name addCourse
@@ -248,8 +247,9 @@ angular
          * @returns {void}
          */
         function getFullEstabs(){
-            if(loginService.isLoggedIn()) {
-                backOfficeEstabService.getFullEsts().then(function(data){
+            console.log("entro");
+            if(vm.courses.length == 0) {
+                backOfficeEstabService.getFullEsts().then(function (data) {
                     vm.fullEstabs = data;
                     vm.courses = backOfficeEstabService.getCourses();
                 });
