@@ -52,7 +52,7 @@ angular
                 .catch(addScheduleFailed);
 
             function addScheduleSuccess(data){
-                return true;
+                return data.id;
             }
 
             function addScheduleFailed(data){

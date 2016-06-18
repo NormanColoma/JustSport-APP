@@ -36,15 +36,15 @@ describe('Back Office Schedule Service that handles schedules', function() {
 
     it('Should add the schedule correctly', function(){
         var data = {
-            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
+            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1, id: 5
         };
-        $httpBackend.expectPOST(baseAPI+'schedules/new').respond(201);
+        $httpBackend.expectPOST(baseAPI+'schedules/new?id=5').respond(201);
         var real = null;
         backOSService.add(data).then(function(data){
             real = data;
         });
         $httpBackend.flush();
-        expect(real).toBeTruthy();
+        expect(real).toBe(5);
     });
 
     it('Should not add the schedule correctly', function(){

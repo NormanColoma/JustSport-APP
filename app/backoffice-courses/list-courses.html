@@ -6,10 +6,10 @@
     <p class="md-body-1" hide-gt-sm hide-md hide-gt-md hide-lg hide-gt-lg hide-xl show-sm show-xs ng-show="coursesVM.selectedC == null && !coursesVM.addView">Desde aquí podrás ver los cursos de tus establecimientos, modificarlos, eliminarlos, y añadir nuevos.</p>
     <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100" ng-show="coursesVM.selectedC == null && !coursesVM.addView">
         <label>Establecimiento</label>
-        <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
+        <md-select ng-model="coursesVM.selectedEst" md-on-open="coursesVM.getFullEstabs()" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
                    flex="100" id="list-ests">
             <md-option ng-repeat="est in coursesVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
-        </md-select >
+        </md-select>
     </md-input-container>
     <div flex="5" ng-if="coursesVM.selectedC == null && !coursesVM.addView"></div>
     <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100"  ng-show="coursesVM.currentCourses.length > 0 && coursesVM.selectedC == null">

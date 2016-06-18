@@ -112,9 +112,6 @@ blockquote p{
   text-decoration: underline;
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
 
 md-checkbox.md-checked .md-icon{
   background: rgba(255,82,82,0.87);

@@ -8,7 +8,7 @@
         establecimiento y curso, del cual quieres consultar los horarios.</p>
     <md-input-container class="md-block" flex="40" flex-sm="100" flex-xs="100" ng-show="coursesVM.selectedC == null && !coursesVM.addView">
         <label>Establecimiento</label>
-        <md-select ng-model="coursesVM.selectedEst" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
+        <md-select ng-model="coursesVM.selectedEst" md-on-open="coursesVM.getFullEstabs()" md-on-close="coursesVM.getCourses(coursesVM.selectedEst,ev)"
                    flex="100" id="list-ests-sched">
             <md-option ng-repeat="est in coursesVM.fullEstabs" value="{{est.id}}">{{est.name}}</md-option>
         </md-select >
@@ -54,7 +54,7 @@
             </md-tooltip>
         </md-button>
         <md-button class="md-fab md-default add-btn" aria-label="Volver a Cursos" id="listSchedule"
-                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0 || coursesVM.addSchedView">
+                    name="list-schedule" ng-click="coursesVM.backToList()" ng-show="coursesVM.schedule.length > 0 || coursesVM.addSchedView || coursesVM.emptySchedule">
             <md-icon md-svg-icon="public/images/icons/arrow_back.svg" aria-hidden="true""></md-icon>
             <md-tooltip md-direction="right">
                 Volver a selección de Horario

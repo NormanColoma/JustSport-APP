@@ -1,6 +1,7 @@
 <md-content layout="column" layout-wrap  id="establishments-ass-sp-container" ng-show="backOEstVM.view == 'assocSp'"
             ng-controller="SportListController as spList" flex="100" ng-cloak>
-    <form novalidate name="estSpForm" ng-submit="backOEstVM.associateSport(backOEstVM.id,backOEstVM.selectedSports,ev)">
+    <form novalidate name="estSpForm"
+          ng-submit="backOEstVM.associateSport(backOEstVM.id,backOEstVM.selectedSports,ev)" ng-cloak>
         <md-chips ng-model="backOEstVM.selectedSports" md-autocomplete-snap
                   md-transform-chip="spList.transformChip($chip)" md-require-match="true"
                   class="chipsdemoCustomInputs" flex="70" flex-md="100" flex-xs="100">
