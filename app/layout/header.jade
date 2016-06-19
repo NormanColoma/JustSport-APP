@@ -22,7 +22,7 @@ html(ng-app="justSport")
                             .md-list-item-text(layout='column')
                                 h3(style="margin-bottom: 0px;margin-left:15px;").md-headline {{loginVm.name}}
                                 h4(style="margin-left:15px;margin-bottom:15px;").md-caption {{loginVm.lname}}
-                            img(layout-align="right").md-avatar(ng-src='{{loginVm.img}}', alt='{{loginVm.img}}')
+                            img(layout-align="right" ng-src='{{loginVm.img}}', alt='{{loginVm.img}}').md-avatar
                 md-menu
                     md-menu-content(width='4')
                         md-menu-item
