@@ -169,10 +169,10 @@ describe('Back Office Courses Controller', function() {
     it('Should add new schedule correctly', function(){
         var controller = createController();
         var data = {
-            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1
+            day: "Lunes", startTime: "11:00", endTime: "12:00", courseId: 1, id: 5
         };
         localStorage.setItem('username','Norman');
-        $httpBackend.expectPOST(baseAPI+'schedules/new').respond(201,data);
+        $httpBackend.expectPOST(baseAPI+'schedules/new?id=5').respond(201,data);
         controller.courses = [
             {establishmentId: 1, rows:[
                 {
@@ -180,7 +180,7 @@ describe('Back Office Courses Controller', function() {
                     "info": "Un curso muy completo",
                     "price": 17.5,
                     "instructor": "Juan Domínguez",
-                     Schedule:[]
+                    Schedule:[]
                 },
                 {
                     "id": 2,
