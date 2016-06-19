@@ -17,7 +17,7 @@ div(ng-controller="EstablishmentDetailsController as estDtVm")
                 md-icon(md-svg-icon='./public/images/icons/account.svg')
             md-button(aria-label='More',ng-show="!loginVm.loggedIn", ng-href="/account/")
                 | Login
-        div(show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl, flex='100' ng-show="estDtVm.establishment != null").md-toolbar-tools.layout-center.md-toolbar-tools-notpading
+        div(show-xs,hide-sm, hide-gt-sm, hide-md, hide-gt-md, hide-lg, hide-gt-lg, hide-xl, flex='100' ng-show="estDtVm.establishment != null").md-toolbar-tools.layout-center
             md-button(aria-label='Go Back', ng-click="estDtVm.removeEstab()" ng-href="/")
                 md-icon(md-svg-icon='./public/images/icons/arrow_back.svg')
             h2 Información {{estDtVm.establishment.name}}
