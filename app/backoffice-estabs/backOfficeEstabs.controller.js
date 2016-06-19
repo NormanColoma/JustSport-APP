@@ -23,11 +23,6 @@ angular
                                        formResetService, backOfficeSportService) {
         var vm = this;
 
-        var local_folder = "https://localhost:3000/";
-        var server_folder = "https://justsport-api.herokuapp.com/";
-        var server = local_folder;
-
-
         vm.addEstablishment = addEstablishment;
         vm.addSport = addSport;
         vm.associateSport = associateSport;
@@ -40,7 +35,6 @@ angular
         vm.getEstabs = getEstabs;
         vm.getSports = getSports;
         vm.id = 0;
-        vm.imgFolder = server+"public/images/ests/";
         vm.querySearch = querySearch;
         vm.selectedSports = [];
         vm.searchCityChange = searchCityChange;
@@ -61,7 +55,7 @@ angular
          */
         function addEstablishment(data,ev, form){
             vm.estab.owner = localStorage.user_id;
-            vm.estab.main_img = 'default.jpg';
+            vm.estab.main_img = 'https://res.cloudinary.com/hgu1piqd2/image/upload/v1466335739/default-image_d2b3yh.jpg';
             var dataDialog = {};
             backOfficeEstabService.addEstablishment(data).then(function(data){
                 if(data.message === undefined){
