@@ -10,7 +10,7 @@
         <div class="est-search-container" flex="33" hide-sm hide-xs ng-repeat="item in estFlVm.items" ng-controller="ShowScheduleController as showScVm"
              ng-show="estDtVm.establishment === null">
             <md-card>
-                <img ng-src="{{estFlVm.imgFolder+item.main_img}}" class="md-card-image" alt="{{estFlVm.imgFolder+item.main_img}}" src="{{estFlVm.imgFolder+item.main_img}}">
+                <img ng-src="{{item.main_img}}" class="md-card-image" alt="{{item.main_img}}" src="{{item.main_img}}">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline color-primary">{{item.name}}</span>
@@ -49,7 +49,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-lg card-media">
-                            <img ng-src="{{estFlVm.imgFolder+item.main_img}}" class="md-card-image" alt="{{estFlVm.imgFolder+item.main_img}}" src="{{estFlVm.imgFolder+item.main_img}}">
+                            <img ng-src="{{item.main_img}}" class="md-card-image" alt="{{item.main_img}}" src="{{item.main_img}}">
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -68,7 +68,7 @@
         <div class="est-search-container" flex="100" hide-gt-lg hide-gt hide-gt-sm hide-sm show-xs ng-repeat="item in estFlVm.items" ng-controller="ShowScheduleController as showScVm"
              ng-show="estDtVm.establishment === null">
             <md-card>
-                <img ng-src="{{estFlVm.imgFolder+item.main_img}}" class="md-card-image" alt="{{estFlVm.imgFolder+item.main_img}}" src="{{estFlVm.imgFolder+item.main_img}}">
+                <img ng-src="{{item.main_img}}" class="md-card-image" alt="{{item.main_img}}" src="{{item.main_img}}">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline color-primary">{{item.name}}</span>
