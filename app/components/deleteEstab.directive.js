@@ -17,13 +17,11 @@ function deleteEstab($mdDialog,backOfficeEstabService) {
 
     function linkFunc(scope, el, attr, ctrl,ev) {
         el.on('click', function(){
-            console.log("me ha clickado");
             var id = parseInt(attr.name);
             var confirm = $mdDialog.confirm()
                 .title('¿Quieres eliminar el establecimiento?')
                 .textContent('Al eliminar el establecimiento, se eliminarán también todos sus cursos y horarios.')
                 .ariaLabel('Delete Estab')
-                .targetEvent(ev)
                 .ok('Eliminar')
                 .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
