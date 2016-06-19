@@ -32,6 +32,7 @@ describe('Login Controller', function() {
         expect(controller.role).toBe(null);
         expect(controller.loggedIn).toBeFalsy();
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(200);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
@@ -85,6 +86,7 @@ describe('Login Controller', function() {
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735',
             expires: date};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(200);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
@@ -97,6 +99,7 @@ describe('Login Controller', function() {
         controller.reload = false;
         var token = {access_token: "eyJ0", role: "admin", username: 'Norman', user_id: '8a74a3aa-757d-46f1-ba86-a56a0f107735', expires: 123};
         $httpBackend.expectPOST(baseAPI+'oauth2/token').respond(token);
+        $httpBackend.expectGET(baseAPI+'users/8a74a3aa-757d-46f1-ba86-a56a0f107735').respond(200);
         /* jshint ignore:start*/
         controller.login("Norman", "1234");
         /*jshint ignore:end */
