@@ -3,8 +3,8 @@
     <h1 class="md-display-2 est-title subheader">{{estDtVm.establishment.name}}</h1>
     <md-content layout="row" layout-margin layout-wrap style="background-color: inherit;">
         <div flex="45" flex-sm="100" flex-xs="100" id="img-container">
-            <img flex="100" layout="row" ng-src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}"
-                 alt="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}" src="{{estFlVm.imgFolder+estDtVm.establishment.main_img}}">
+            <img flex="100" layout="row" ng-src="{{estDtVm.establishment.main_img}}"
+                 alt="{{estDtVm.establishment.main_img}}" src="{{estDtVm.establishment.main_img}}">
         </div>
         <div layout="column" flex="50" flex-sm="100" flex-xs="100">
             <p hide-sm hide-xs class="justify md-body-1 est-desc">{{estDtVm.establishment.desc}}</p>
@@ -54,7 +54,7 @@
         <md-list class="est-commentaries">
             <md-subheader class="md-no-sticky" style="background-color: inherit;" ng-if="estDtVm.commentaries.length > 0">{{estDtVm.commentaries.length}} comentarios</md-subheader>
             <md-list-item class="md-3-line" ng-repeat="item in estDtVm.commentaries">
-                <img ng-src="{{estDtVm.imgFolder+item.User.img}}?{{$index}}" class="md-avatar" alt="{{item.User.img}}" />
+                <img ng-src="{{item.User.img}}?{{$index}}" class="md-avatar" alt="{{item.User.img}}" />
                 <div class="md-list-item-text" layout="column">
                     <h3 class="color-primary est-comm-user">{{ item.User.name }}</h3>
                     <h4 class="md-caption est-comm-date">{{ estDtVm.formatDate(item.createdAt) }}</h4>
