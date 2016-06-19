@@ -10,15 +10,12 @@ angular
 
     function UserAccountController(userAccountService,formResetService, dialogService, $scope, loginService){
         var vm=this;
-        var local_folder = "https://localhost:3000/";
-        var server_folder = "https://justsport-api.herokuapp.com/";
-        var server = server_folder;
 
         vm.account = {};
         vm.closeAccount = closeAccount;
         vm.closed = false;
         vm.getUser = getUser;
-        $scope.imgFolder = server+"public/images/users/";
+        $scope.imgFolder = null;
         vm.updateAccount = updateAccount;
         vm.uploadImg = uploadImg;
         vm.updated = false;
@@ -28,8 +25,8 @@ angular
         function uploadImg(file,ev){
             var dataDialog={};
             userAccountService.uploadImg(file).then(function(data){
-                if(data){
-                    $scope.imgFolder = server+"public/images/users/"+file.name;
+                if(data.status === "ok"){
+                    $scope.imgFolder = data.url;
                     dataDialog = {
                         title: '¡Imagen Subida!', text: 'Tu nueva imagen de perfil ha sido actualizada',
                         aria: 'Updated IMG User Alert', textButton: 'Listo'
@@ -66,7 +63,7 @@ angular
                             vm.account.role = "Usuario";
                         }
                         vm.user = user;
-                        $scope.imgFolder = $scope.imgFolder + vm.user.img;
+                        $scope.imgFolder = user.img;
                     } else {
 
                     }

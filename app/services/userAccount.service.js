@@ -101,7 +101,8 @@ angular
                 .catch(uploadImgFailed);
 
             function uploadImgSuccess(data){
-                return true;
+                var res= {status: "ok", url: data.data.img_url};
+                return res;
             }
             function uploadImgFailed(){
                 return false;

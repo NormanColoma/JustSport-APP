@@ -180,7 +180,7 @@ describe('Back Office Courses Controller', function() {
                     "info": "Un curso muy completo",
                     "price": 17.5,
                     "instructor": "Juan Domínguez",
-                     Schedule:[]
+                    Schedule:[]
                 },
                 {
                     "id": 2,

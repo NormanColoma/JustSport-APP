@@ -22,15 +22,11 @@ function uploadEstBtn(dialogService,backOfficeEstabService) {
             input.change(function() {
                 if(input.get(0).files.length > 0){
                     var file = input.get(0).files[0];
-                    if(file.size < 512000 && (file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/png")){
+                    if(file.size < 512000){
                         var img = $('.md-card-image-'+id);
-                        var local_folder = "https://localhost:3000/public/images/ests/";
-                        var server_folder = "https://justsport-api.herokuapp.com/public/images/ests/";
-                        var server = server_folder;
-                        var img_url = server+file.name;
                         backOfficeEstabService.uploadImg(file,id).then(function(res){
-                            if(res){
-                                img.attr('src',img_url);
+                            if(res.status === "ok"){
+                                img.attr('src',res.url);
                                 dataDialog = {
                                     title: '¡Imagen Subida!',
                                     text: 'La imagen de perfil del establecimiento, se ha subido correctamente.',
@@ -44,7 +40,7 @@ function uploadEstBtn(dialogService,backOfficeEstabService) {
                         input.val('');
                         dataDialog = {
                             title: '¡Error!',
-                            text: 'La imagen debe ser de tipo jpg o png, y no puede pesar más de 512Kb.',
+                            text: 'La imagen no puede pesar más de 512Kb.',
                             aria: 'Updated Estab Img Error Alert',
                             textButton: 'Listo'
                         };

@@ -3,7 +3,7 @@
     <p ng-show="backOEstVM.estabs.length == 0">Todavía no has añadido ningún establecimiento.</p>
     <div class="est-owner-container" flex="33" flex-sm="100" flex-xs="100" ng-repeat="item in backOEstVM.estabs" id="estab-{{item.id}}">
         <md-card>
-            <img ng-src="{{backOEstVM.imgFolder+item.main_img}}" class="md-card-image md-card-image-{{item.id}}" alt="{{backOEstVM.imgFolder+item.main_img}}" src="{{backOEstVM.imgFolder+item.main_img}}">
+            <img ng-src="{{item.main_img}}" class="md-card-image md-card-image-{{item.id}}" alt="{{item.main_img}}" src="{{item.main_img}}">
             <md-card-title>
                 <md-card-title-text>
                     <span class="md-headline color-primary">{{item.name}}</span>
