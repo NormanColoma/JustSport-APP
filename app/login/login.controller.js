@@ -56,24 +56,40 @@ function LoginController(loginService, $window, $location,dialogService, $mdSide
      * @return {void}
      */
     function isLoggedIn(){
-        vm.stop = false;
-        if(loginService.isLoggedIn()){
-            vm.loggedIn = true;
-            vm.name= localStorage.username;
-            vm.role = localStorage.role;
-            vm.img = localStorage.img;
-            vm.lname = localStorage.lname;
-            if(redirectService.checkRedirect($location.url(), $location.absUrl(), vm.loggedIn, vm.role)){
-                vm.stop = true;
-                if(vm.reload)
-                    $window.location.href = url;
+        if(checkToken()) {
+            vm.stop = false;
+            if (loginService.isLoggedIn()) {
+                vm.loggedIn = true;
+                vm.name = localStorage.username;
+                vm.role = localStorage.role;
+                vm.img = localStorage.img;
+                vm.lname = localStorage.lname;
+                if (redirectService.checkRedirect($location.url(), $location.absUrl(), vm.loggedIn, vm.role)) {
+                    vm.stop = true;
+                    if (vm.reload)
+                        $window.location.href = url;
+                }
+            } else {
+                if (redirectService.checkRedirect($location.url(), $location.absUrl(), vm.loggedIn, vm.role)) {
+                    vm.stop = true;
+                    if (vm.reload)
+                        $window.location.href = url + 'account/#/login';
+                }
             }
         }else{
-            if(redirectService.checkRedirect($location.url(), $location.absUrl(),vm.loggedIn,vm.role)){
-                vm.stop = true;
-                if(vm.reload)
-                    $window.location.href = url+'account/#/login';
-            }
+            $window.location.href = url;
+            vm.loggedIn = false;
+            vm.name = null;
+            vm.role = null;
+            vm.img = null;
+            vm.lname = null;
+            localStorage.removeItem("token");
+            localStorage.removeItem("username");
+            localStorage.removeItem("role");
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("expires");
+            localStorage.removeItem("img");
+            localStorage.removeItem("lname");
         }
     }
 
@@ -113,9 +129,9 @@ function LoginController(loginService, $window, $location,dialogService, $mdSide
                         localStorage.setItem("lname", user.lname);
                         vm.img = user.img;
                         vm.lname = user.lname;
+                        if(vm.reload)
+                            $window.location.href = url;
                     });
-                    if(vm.reload)
-                        $window.location.href = url;
                 }
             });
         }
